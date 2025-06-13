@@ -431,7 +431,7 @@ MonoBehaviour:
   damageDealMult: 1
   moveSpeedBase: 6
   jumpHeightBase: 2
-  GravityBase: -1
+  GravityBase: -15
   playerArmature: {fileID: 885854386}
 --- !u!1001 &746329221
 PrefabInstance:
