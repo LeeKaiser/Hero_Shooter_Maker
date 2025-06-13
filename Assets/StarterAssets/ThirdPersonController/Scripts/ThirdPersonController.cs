@@ -55,17 +55,6 @@ namespace StarterAssets
         public bool CanJump = true;
         public bool RecentlyJumped = false;
 
-        [Tooltip("amount of times player can jump in a row before the jump height is decreased")]
-        public int JumpsUntilFatigue = 3;
-
-        [Tooltip("degree to which the jump fatigue nerfs the player (set to 0 if you don't want jump fatigue) subtractive")]
-        public float JumpFatigueSub = 1f;
-        [Tooltip("degree to which the jump fatigue nerfs the player (set to 1 if you don't want jump fatigue) multiplicative")]
-        public float JumpFatigueMult = 1f;
-
-        [Tooltip("time to recover from jump fatigue")]
-        public float JumpFatigueRecoverTime = 1f;
-
         [Tooltip("amount of times the character can jump in the air")]
         public int AirJumps = 0;
 
@@ -175,8 +164,6 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
-            JumpFatigueRecoverTime += JumpsUntilFatigue;
-            _jumpLeftUntilFatigue = JumpsUntilFatigue;
         }
 
         private void Update()
@@ -337,17 +324,8 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f )
                 {
-
-                    float CalculatedJumpHeight = JumpHeight;
-                    //calculate jump height based on jump fatigue
-                    if (_jumpLeftUntilFatigue <= -1)
-                    {
-                        Debug.Log("fatigue jump");
-                        CalculatedJumpHeight = (JumpHeight - JumpFatigueSub) * JumpFatigueMult;
-                    }
-
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(CalculatedJumpHeight * -2f * Gravity);
+                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
                     // update animator if using character
                     if (_hasAnimator)
@@ -356,14 +334,6 @@ namespace StarterAssets
                         _animator.SetBool(_animIDJump, true);
                     }
 
-                    if (!RecentlyJumped)
-                    {
-                        //decrement jump until fatigue
-                        _jumpLeftUntilFatigue -= 1;
-                        Invoke("RecoverJumpFatigue", JumpFatigueRecoverTime);
-                    }
-                    //set recently jumped to false
-                    RecentlyJumped = true;
                     CanJump = false;
                     
                 }
@@ -422,15 +392,6 @@ namespace StarterAssets
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
         }
-
-        private void RecoverJumpFatigue()
-        {
-            if (_jumpLeftUntilFatigue < JumpsUntilFatigue)
-            {
-                _jumpLeftUntilFatigue += 1;
-            }
-        }
-
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
