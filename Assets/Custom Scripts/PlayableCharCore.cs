@@ -76,5 +76,10 @@ public class PlayableCharCore : MonoBehaviour
         
     }
 
+    public void DealDamage(int damage)
+    {
+        hitPointsCurrent -= damage;
+    }
+
 
 }
