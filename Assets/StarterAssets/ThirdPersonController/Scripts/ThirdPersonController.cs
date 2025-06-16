@@ -16,10 +16,12 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float ForwardMoveSpeed = 2.0f;
+        public float StrafeMoveSpeed = 2.0f;
+        public float BackwardMoveSpeed = 2.0f;
 
-        [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        [Tooltip("if the character will turn to face movement direction or not")]
+        public bool TurnToFaceMoveDirection = true;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -243,20 +245,35 @@ namespace StarterAssets
 
         private void Move()
         {
-            // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            Vector2 moveInput = _input.move.normalized;
+            Vector3 inputDirection = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
 
-            // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
+            float baseSpeed = 0f;
 
-            // note: Vector2's == operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is no input, set the target speed to 0
-            if (_input.move == Vector2.zero) targetSpeed = 0.0f;
+            if (moveInput != Vector2.zero)
+            {
+                // Determine which axis dominates — this is raw input based, so consistent
+                if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
+                {
+                    baseSpeed = moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                }
+                else
+                {
+                    baseSpeed = StrafeMoveSpeed;
+                }
+            }
+
+            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+
+            // Scale final speed using normalized direction vector
+            float targetSpeed = baseSpeed * inputMagnitude;
+            if (_input.move == Vector2.zero) targetSpeed = 0f;
+
 
             // a reference to the players current horizontal velocity
             float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
             // accelerate or decelerate to target speed
             if (currentHorizontalSpeed < targetSpeed - speedOffset ||
@@ -278,28 +295,45 @@ namespace StarterAssets
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            // normalise input direction
-            Vector3 inputDirection = new Vector3(_input.move.x, 0.0f, _input.move.y).normalized;
-
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero)
+            if (_input.move != Vector2.zero && TurnToFaceMoveDirection)
             {
                 _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
                                   _mainCamera.transform.eulerAngles.y;
-                float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
-
-                // rotate to face input direction relative to camera position
-                transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+            } //otherwise face forward
+            else{
+                _targetRotation = Mathf.Atan2(0, 1) * Mathf.Rad2Deg +
+                                  _mainCamera.transform.eulerAngles.y;
+                
             }
 
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                    RotationSmoothTime);
 
-            Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+            // rotate to face input direction relative to camera position
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+
+            Vector3 targetDirection;
+            if (TurnToFaceMoveDirection){ //moves forward after turning player
+                targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
+
+                
+            }else{ //move in desired direction without having player turned
+                Vector3 cameraForward = _mainCamera.transform.forward;
+                Vector3 cameraRight = _mainCamera.transform.right;
+                cameraForward.y = 0f;
+                cameraRight.y = 0f;
+                cameraForward.Normalize();
+                cameraRight.Normalize();
+
+                targetDirection = cameraForward * _input.move.y + cameraRight * _input.move.x;
+            }
 
             // move the player
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                    new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            
 
             // update animator if using character
             if (_hasAnimator)
@@ -433,8 +467,16 @@ namespace StarterAssets
             }
         }
 
-        public void SetMovementSpeed(float speed){
-            MoveSpeed = speed;
+        public void SetForwardMovementSpeed(float speed){
+            ForwardMoveSpeed = speed;
+        }
+
+        public void SetStrafeMovementSpeed(float speed){
+            StrafeMoveSpeed = speed;
+        }
+
+        public void SetBackwardMovementSpeed(float speed){
+            BackwardMoveSpeed = speed;
         }
 
         public void SetGravity(float grav){
@@ -449,6 +491,11 @@ namespace StarterAssets
         public void SetCanJump(bool canJump)
         {
             CanJump = canJump;
+        }
+
+        public void setPlayerFaceMove(bool FaceMove)
+        {
+            TurnToFaceMoveDirection = FaceMove;
         }
     }
 }

@@ -25,24 +25,35 @@ public class PlayableCharCore : MonoBehaviour
     public float damageDealMult = 1f;
 
     [Header("Movement vars")]
-    [Tooltip("base speed")]
-    public float moveSpeedBase = 6f;
-    [Tooltip("Current speed")]
-    private float moveSpeedCurrent = 6f;
-    [Tooltip("Speed Multiplier")]
-    private float moveSpeedMult = 1f;
+    [Tooltip("base forward speed")]
+    public float forwardSpeedBase = 6f;
+    private float forwardSpeedCurrent = 6f;
+    private float forwardSpeedMult = 1f;
+
+    [Tooltip("base backward speed")]
+    public float backwardSpeedBase = 6f;
+    private float backwardSpeedCurrent = 6f;
+    private float backwardSpeedMult = 1f;
+
+    [Tooltip("base strafe speed")]
+    public float strafeSpeedBase = 6f;
+    private float strafeSpeedCurrent = 6f;
+    private float strafeSpeedMult = 1f;
+
+    
+
     [Tooltip("base Jump Height")]
     public float jumpHeightBase = 1.4f;
-    [Tooltip("Current Jump Height")]
     private float jumpHeightCurrent = 1.4f;
-    [Tooltip("Jump Height Multiplier")]
     private float jumpHeightMult = 1f;
+
     [Tooltip("base Gravity")]
     public float GravityBase = -15f;
-    [Tooltip("Current Gravity")]
     private float GravityCurrent = -15f;
-    [Tooltip("Jump Gravity")]
     private float GravityMult = 1f;
+
+    [Tooltip("If player faces movement or camera (true for movement, false for camera)")]
+    public bool PlayerFaceMovement = true;
 
 
     //add ability / passive / inventory array in future
@@ -60,7 +71,9 @@ public class PlayableCharCore : MonoBehaviour
         hitPointsCurrent = hitPointsBase;
         damageTakeMult = damageTakeMultBase;
         damageDealMult = damageDealMultBase;
-        moveSpeedCurrent = moveSpeedBase;
+        forwardSpeedCurrent = forwardSpeedBase;
+        strafeSpeedCurrent = strafeSpeedBase;
+        backwardSpeedCurrent = backwardSpeedBase;
         jumpHeightCurrent = jumpHeightBase;
         GravityCurrent = GravityBase;
 
@@ -69,10 +82,12 @@ public class PlayableCharCore : MonoBehaviour
     //add Player operations that must be done every tick
     void Update(){
         //set movement speed in third person controller equal to moveSpeedCurrent
-        playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetMovementSpeed(moveSpeedCurrent);
+        playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetForwardMovementSpeed(forwardSpeedCurrent);
+        playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetStrafeMovementSpeed(strafeSpeedCurrent);
+        playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetBackwardMovementSpeed(backwardSpeedCurrent);
         playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetGravity(GravityCurrent);
         playerArmature.GetComponent<StarterAssets.ThirdPersonController>().SetJumpHeight(jumpHeightCurrent);
-
+        playerArmature.GetComponent<StarterAssets.ThirdPersonController>().setPlayerFaceMove(PlayerFaceMovement);
         
     }
 
