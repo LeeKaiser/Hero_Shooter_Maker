@@ -429,9 +429,12 @@ MonoBehaviour:
   hitPointsBase: 4000
   damageTakeMult: 1
   damageDealMult: 1
-  moveSpeedBase: 6
+  forwardSpeedBase: 12
+  backwardSpeedBase: 6
+  strafeSpeedBase: 6
   jumpHeightBase: 2
   GravityBase: -15
+  PlayerFaceMovement: 0
   playerArmature: {fileID: 885854386}
 --- !u!1001 &746329221
 PrefabInstance:
