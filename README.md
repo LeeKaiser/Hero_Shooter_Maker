@@ -22,7 +22,7 @@ Inventory array (store collectables or resource and such)
 
 teams
 
-objective (win condition
+objective (win condition)
 
 match timer
 
