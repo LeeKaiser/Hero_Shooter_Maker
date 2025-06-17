@@ -327,7 +327,7 @@ namespace StarterAssets
                 cameraForward.Normalize();
                 cameraRight.Normalize();
 
-                targetDirection = cameraForward * _input.move.y + cameraRight * _input.move.x;
+                targetDirection = inputDirection;
             }
 
             // move the player

@@ -429,7 +429,7 @@ MonoBehaviour:
   hitPointsBase: 4000
   damageTakeMult: 1
   damageDealMult: 1
-  forwardSpeedBase: 12
+  forwardSpeedBase: 6
   backwardSpeedBase: 6
   strafeSpeedBase: 6
   jumpHeightBase: 2
