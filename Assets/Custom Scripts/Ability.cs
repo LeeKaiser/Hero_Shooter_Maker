@@ -14,12 +14,12 @@ public abstract class Ability: MonoBehaviour
     private int CurrentCharge; //remaining  charge
 
     [Tooltip("Amount of charge to gain in order to complete a charge once")]
-    public int ChargePointsRequired = 100;
+    public float ChargePointsRequired = 100;
 
-    private int ChargePointsProgress; //current progress on getting new charge
+    private float ChargePointsProgress; //current progress on getting new charge
 
     [Tooltip("amount of charge point gained per second ")]
-    public int ChargePointsPerSec = 100;
+    public float ChargePointsPerSec = 100;
 
     [Tooltip("amount of charge gained per full charge point")]
     public int ChargeGainPerFullRecharge = 1;
@@ -62,5 +62,36 @@ public abstract class Ability: MonoBehaviour
     }
 
     protected abstract void OnPerform(InputAction.CallbackContext context);
+
+    //recover ability charge point
+    public void RecoverChargePoint(float TimeElapsed){
+        
+        if (RechargeInProgress)
+        {
+            ChargePointsProgress = ChargePointsPerSec * TimeElapsed;
+            while (ChargePointsProgress >= ChargePointsRequired)
+            {
+                //give a charge
+                if (CurrentCharge < MaxCharge)
+                {
+                    CurrentCharge += ChargeGainPerFullRecharge;
+                }
+                //subtract charge points required from charge point progress 
+                ChargePointsProgress -= ChargePointsRequired;
+                //if fully charged, reset charge point progress to 0
+                if (CurrentCharge >= MaxCharge)
+                {
+                    CurrentCharge = MaxCharge;
+                    ChargePointsProgress = 0;
+                    RechargeInProgress = false;
+                }
+            }
+        }
+    }
+
+    public void GiveChargePointDirect(float ChargePtAdd )
+    {
+        RecoverChargePoint(ChargePtAdd / ChargePointsPerSec);
+    }
 
 }
