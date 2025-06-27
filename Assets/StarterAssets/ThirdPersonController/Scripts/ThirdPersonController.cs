@@ -105,7 +105,6 @@ namespace StarterAssets
         // timeout deltatime
         private float _jumpTimeoutDelta;
         private float _fallTimeoutDelta;
-        public int _jumpLeftUntilFatigue;
 
         // animation IDs
         private int _animIDSpeed;
@@ -350,7 +349,6 @@ namespace StarterAssets
                 // update animator if using character
                 if (_hasAnimator)
                 {
-                    Debug.Log("Jump animation disabled");
                     _animator.SetBool(_animIDJump, false);
                     _animator.SetBool(_animIDFreeFall, false);
                 }
@@ -364,7 +362,6 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        Debug.Log("jump animation activated");
                         _animator.SetBool(_animIDJump, true);
                     }
 

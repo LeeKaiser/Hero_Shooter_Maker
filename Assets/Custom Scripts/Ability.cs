@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public abstract class Ability: MonoBehaviour
 {
@@ -11,12 +12,12 @@ public abstract class Ability: MonoBehaviour
     [Header("Cooldown variables")]
     [Tooltip("maximum amount of charge that can be held")]
     public int MaxCharge = 1;
-    private int CurrentCharge; //remaining  charge
+    protected int CurrentCharge = 1; //remaining  charge
 
     [Tooltip("Amount of charge to gain in order to complete a charge once")]
     public float ChargePointsRequired = 100;
 
-    private float ChargePointsProgress; //current progress on getting new charge
+    protected float ChargePointsProgress; //current progress on getting new charge
 
     [Tooltip("amount of charge point gained per second ")]
     public float ChargePointsPerSec = 100;
@@ -31,37 +32,75 @@ public abstract class Ability: MonoBehaviour
     [Tooltip("all input that can be used to activate this ability")]
     public InputActionReference actionReference;
 
-    private PlayerInputSystem m_Actions;                  // Source code representation of asset.
-    private PlayerInputSystem.AbilitiesActions m_Abilities;     // Source code representation of action map.
+    protected InputAction boundAction;
 
-    void Awake()
+    protected AbilityManager manager;
+    protected bool isActive = false;
+
+    [Header("use time related variables")]
+    [Tooltip("if using ability disables use of other abilities")]
+    public bool canInterruptOthers = false;
+    [Tooltip("amount of time ability use is disabled for when using the ability")]
+    public float UseTime = 0.2f;
+    [Tooltip("amount of time ability use is disabled for when attempting to use ability and it fails")]
+    public float UseFailTime = 0.0f;
+
+    void Awake(){}
+
+    void OnDestroy(){}
+
+    void OnEnable(){}
+
+    void OnDisable(){}
+
+    public virtual void Initialize(PlayerInput playerInput, AbilityManager owningManager)
     {
-        m_Actions = new PlayerInputSystem();              // Create asset object.
-        m_Abilities = m_Actions.Abilities;                      // Extract action map object.
+        manager = owningManager;
+
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogError($"{gameObject.name}: No InputActionReference assigned.");
+            return;
+        }
+
+        // Get the runtime action instance from PlayerInput
+        boundAction = playerInput.actions.FindAction(actionReference.action.name);
+
+        if (boundAction == null)
+        {
+            Debug.LogError($"{gameObject.name}: Action '{actionReference.action.name}' not found in PlayerInput.");
+            return;
+        }
+
+        boundAction.performed += OnInputPerformed;
+
+        Debug.Log($"{gameObject.name} bound to input: {boundAction.name}");
     }
 
-    void OnDestroy()
+    protected virtual void OnInputPerformed(InputAction.CallbackContext context)
     {
-        m_Actions.Dispose();                              // Destroy asset object.
+        Debug.Log("input made");
+        if (CanActivate())
+            StartCoroutine(ActivateAbility());
     }
 
-    void OnEnable()
+    protected virtual bool CanActivate()
     {
-        m_Abilities.Enable();                                // Enable all actions within map.
+        return !isActive && manager.CanUseAbility(this);
     }
 
-    void OnDisable()
+    protected virtual IEnumerator ActivateAbility()
     {
-        m_Abilities.Disable();                               // Disable all actions within map.
+        isActive = true;
+        manager.NotifyAbilityStarted(this);
+
+        yield return Execute();
+
+        isActive = false;
+        manager.NotifyAbilityEnded(this);
     }
 
-    public virtual void Initialize()
-    {
-        if (actionReference != null)
-            actionReference.action.performed += OnPerform;
-    }
-
-    protected abstract void OnPerform(InputAction.CallbackContext context);
+    protected abstract IEnumerator Execute();
 
     //recover ability charge point
     public void RecoverChargePoint(float TimeElapsed){
@@ -92,6 +131,12 @@ public abstract class Ability: MonoBehaviour
     public void GiveChargePointDirect(float ChargePtAdd )
     {
         RecoverChargePoint(ChargePtAdd / ChargePointsPerSec);
+    }
+
+    public virtual void Cleanup()
+    {
+        if (actionReference != null)
+            actionReference.action.performed -= OnInputPerformed;
     }
 
 }
