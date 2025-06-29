@@ -6,21 +6,30 @@ using System.Collections;
 
 public class AbilityTest : Ability
 {
-    
-
     protected override IEnumerator Execute()
     {
-        if (CurrentCharge >= 1)
+        if (currentCharge > 0)
         {
-            Debug.Log("used test ability");
-            CurrentCharge -= 1;
-            RechargeInProgress = true;
-            yield return new WaitForSeconds(UseTime);
+            Debug.Log("Ability tapped or held.");
+            currentCharge -= 1;
         }
-        else
+        InterruptReload();
+        yield return new WaitForSeconds(useTime);
+    }
+
+    protected override IEnumerator ExecuteReleased(float chargeRatio)
+    {
+        Debug.Log($"Ability released with charge: {chargeRatio:F2}");
+        currentCharge -= 1;
+        yield return null;
+    }
+
+    void Update()
+    {
+        if (currentCharge < maxCharge && !isActive)
         {
-            Debug.Log("Out of charges");
-            yield return new WaitForSeconds(UseFailTime);
+            rechargeInProgress = true;
         }
+        RecoverChargePoint(Time.deltaTime); //recharge every tick if possible
     }
 }

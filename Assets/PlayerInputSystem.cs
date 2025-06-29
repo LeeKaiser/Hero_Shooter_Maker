@@ -149,7 +149,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -312,7 +312,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""183fcaee-26e7-47af-9bf0-68f3fe9f9fa0"",
                     ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Hold,Tap"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Ability1"",
