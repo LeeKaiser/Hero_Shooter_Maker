@@ -876,17 +876,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cb2171a6b4544019e0048bd40c6c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCharge: 1
+  maxCharge: 50
+  currentCharge: 1
   chargePointsRequired: 100
-  chargePointsPerSec: 100
-  chargeGainPerFullRecharge: 1
+  chargePointsProgress: 0
+  chargePointsPerSec: 50
+  chargeGainPerFullRecharge: 25
   rechargeInProgress: 0
   actionReference: {fileID: 2427769509979364270, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   canInterruptOthers: 0
-  useTime: 0.2
+  useTime: 0.3
   useFailTime: 0
   maxChargeTime: 3
-  usePerSec: 2
+  usePerSec: 10
   inputMode: 1
 --- !u!4 &1110910345
 Transform:
