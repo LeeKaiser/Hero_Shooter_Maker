@@ -74,7 +74,7 @@ public abstract class Ability: MonoBehaviour
         if (rechargeInProgress)
         {
             //add to charge point's progress
-            chargePointsProgress += chargeAdded;
+            chargePointsProgress += chargeAdded * chargePointMultiplier;
             //converts charge points progress to charge
             while (chargePointsProgress >= abilityStat.chargePointsRequired)
             {
@@ -99,7 +99,7 @@ public abstract class Ability: MonoBehaviour
     //for abilities that reload over time, call this method every update
     public void ReloadOverTime(float TimeElapsed )
     {
-        float newCharge = abilityStat.chargePointsPerSec * TimeElapsed * chargePointMultiplier;
+        float newCharge = abilityStat.chargePointsPerSec * TimeElapsed;
         RecoverChargePoint(newCharge);
     }
 

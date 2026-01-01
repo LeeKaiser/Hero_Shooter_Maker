@@ -47,4 +47,5 @@ MonoBehaviour:
   abilityStat: {fileID: 11400000, guid: 65ea82d6d1a95422396fff79c440789f, type: 2}
   UserRef: {fileID: 0}
   manager: {fileID: 0}
+  AbilUIRef: {fileID: 1646099405858701527, guid: 66e3a075af105480da743b359ae7f390, type: 3}
   AttackPrefab: {fileID: 4590517186784251951, guid: 42fda6020cba045fb8c48140389144a3, type: 3}
