@@ -72,12 +72,12 @@ public class PlayableCharCore : MonoBehaviour
         
     }
 
-    public void DealDamage(int damage)
+    public int DealDamage(int damage)
     {
         int DamageDealt = (int)(damage * damageTakeMult);
         hitPointsCurrent -= DamageDealt;
 
-
+        return DamageDealt;
     }
 
     public void ModifyForwardSpeed(float speedMod)
