@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class ApplyDamage : MonoBehaviour
 {
@@ -26,7 +27,10 @@ public class ApplyDamage : MonoBehaviour
             // get attack's damage
             int DamageDealt = (int) (atkInfo.baseDamage * atkInfo.owningPlayer.GetComponent<PlayableCharCore>().GetDamageMult());
             // deal damage to enemy player
-            enemy.DealDamage(DamageDealt);
+            DamageDealt = enemy.DealDamage(DamageDealt);
+
+            GameObject damageNoVis = Instantiate(atkInfo.DamageNumberPrefab, transform.position, Quaternion.identity);
+            damageNoVis.GetComponent<TextMeshPro>().text = DamageDealt + "";
         }
         
         //self destruct when hitting enemy or environment

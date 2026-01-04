@@ -9,6 +9,8 @@ public class AttackInfo : MonoBehaviour
 
     public LayerMask groundLayers;
 
+    public GameObject DamageNumberPrefab;
+
     public void DestroySelf()
     {
         Destroy(gameObject);
