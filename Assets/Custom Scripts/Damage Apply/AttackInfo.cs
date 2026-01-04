@@ -2,15 +2,16 @@ using UnityEngine;
 
 public class AttackInfo : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject owningPlayer;
+    public TeamManager attackAllegience;
+
+    public int baseDamage;
+
+    public LayerMask groundLayers;
+
+    public void DestroySelf()
     {
-        
+        Destroy(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

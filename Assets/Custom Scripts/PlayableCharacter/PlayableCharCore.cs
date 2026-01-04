@@ -12,6 +12,8 @@ public class PlayableCharCore : MonoBehaviour
     [Tooltip("playable character base stats")]
     public PlayableCharacterStats PlayerStats;
 
+    public TeamManager playerAllegience; //set to team object 
+
     private int hitPointsCurrent; //current hp
     private float damageTakeMult = 1f; //damage taken multiplier
     private float damageDealMult = 1f; //damage dealt multiplier
@@ -72,7 +74,10 @@ public class PlayableCharCore : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-        hitPointsCurrent -= damage;
+        int DamageDealt = (int)(damage * damageTakeMult);
+        hitPointsCurrent -= DamageDealt;
+
+
     }
 
     public void ModifyForwardSpeed(float speedMod)
@@ -90,5 +95,5 @@ public class PlayableCharCore : MonoBehaviour
         backwardSpeedMult += speedMod;
     }
 
-
+    public float GetDamageMult(){return damageDealMult;}
 }

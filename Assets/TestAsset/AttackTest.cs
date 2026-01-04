@@ -44,6 +44,10 @@ public class AttackTest : Ability
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
         attackObj.transform.LookAt(targetPoint);
 
+        AttackInfo atkInfo = attackObj.GetComponent<AttackInfo>();
+        atkInfo.owningPlayer = UserRef;
+        atkInfo.attackAllegience = UserRef.GetComponent<PlayableCharCore>().playerAllegience;
+
         ConsumeCharge(1);
     }
 
