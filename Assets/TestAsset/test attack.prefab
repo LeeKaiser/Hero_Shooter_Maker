@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 7469915885949553222}
   - component: {fileID: 708839473188895882}
   - component: {fileID: 3270334532067908348}
-  m_Layer: 0
+  - component: {fileID: 9041585344030101150}
+  - component: {fileID: 4117115725492988505}
+  - component: {fileID: 2371623512047102482}
+  m_Layer: 16
   m_Name: test attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +81,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -140,6 +143,49 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &9041585344030101150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
+--- !u!114 &4117115725492988505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d85e7c651bc4fa59d89c05556f6165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackInfo
+  owningPlayer: {fileID: 0}
+  attackAllegience: {fileID: 0}
+  baseDamage: 20
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &2371623512047102482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58fb272b0ae9421cad3efd252af1c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovement
+  projectileSpeed: 25
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,8 +197,7 @@ GameObject:
   - component: {fileID: 8286498065118671863}
   - component: {fileID: 4737923544621643310}
   - component: {fileID: 8367767556867563194}
-  - component: {fileID: 8413188916045459086}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward axis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,9 +213,9 @@ Transform:
   m_GameObject: {fileID: 7967322892689922178}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.54}
-  m_LocalScale: {x: 0.31, y: 0.3844, z: 0.31}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: 0, z: 2.12}
+  m_LocalScale: {x: 0.31, y: 2, z: 0.31}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5703548429166304260}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -230,26 +275,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8413188916045459086
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967322892689922178}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
