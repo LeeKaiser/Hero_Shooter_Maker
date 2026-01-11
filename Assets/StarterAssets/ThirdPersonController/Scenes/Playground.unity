@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 773634520632262711, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_StandbyUpdate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 773634520632263113, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -483,6 +487,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6711390121647608053, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791512799149615763, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -587,13 +595,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 8486147625491653562, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.5213
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486147625491653562, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.78691
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486147625491653565, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8486147625491653567, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8486147625491653567, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8613158935229910483, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -617,7 +637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9141450850784337726, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: PlayerIndex
-      value: -1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -691,6 +711,10 @@ PrefabInstance:
     - target: {fileID: 773634520632262710, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_LocalPosition.z
       value: -7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 773634520632262711, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_StandbyUpdate
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 773634520632263113, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -827,6 +851,10 @@ PrefabInstance:
     - target: {fileID: 3527375787506494577, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: ShoulderOffset.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527375787506494577, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: CameraCollisionFilter.m_Bits
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3711155308850949996, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -1012,6 +1040,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6711390121647608053, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6791512799149615763, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -1155,6 +1187,14 @@ PrefabInstance:
     - target: {fileID: 8942319607392435835, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141450850784337726, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: PlayerIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141450850784337726, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: AutoEnableInputs
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

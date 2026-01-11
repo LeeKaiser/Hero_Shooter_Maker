@@ -172,8 +172,8 @@ MonoBehaviour:
   baseDamage: 20
   groundLayers:
     serializedVersion: 2
-    m_Bits: 0
-  DamageNumberPrefab: {fileID: 3156409325373088249, guid: 2290304ce078e40a1aa46abf5d4f4edb, type: 3}
+    m_Bits: 9
+  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!114 &2371623512047102482
 MonoBehaviour:
   m_ObjectHideFlags: 0

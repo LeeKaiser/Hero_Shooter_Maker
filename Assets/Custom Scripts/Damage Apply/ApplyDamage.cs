@@ -1,5 +1,5 @@
 using UnityEngine;
-using TMPro;
+
 
 public class ApplyDamage : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class ApplyDamage : MonoBehaviour
             DamageDealt = enemy.DealDamage(DamageDealt);
 
             GameObject damageNoVis = Instantiate(atkInfo.DamageNumberPrefab, transform.position, Quaternion.identity);
-            damageNoVis.GetComponent<TextMeshPro>().text = DamageDealt + "";
+            damageNoVis.GetComponent<DamageNumberScript>().Init(atkInfo.owningPlayer, DamageDealt);
         }
         
         //self destruct when hitting enemy or environment
