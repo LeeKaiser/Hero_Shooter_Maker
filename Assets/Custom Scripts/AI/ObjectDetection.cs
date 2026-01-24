@@ -10,13 +10,20 @@ public class ObjectDetection : MonoBehaviour
 
     void Start()
     {
-        
+        teamMask = gameObject.layer;
+    }
+
+    void Update()
+    {
+        RadiusScanAll();
     }
 
     public void RadiusScanAll()
     {
         List<GameObject> alliesList = RadiusScanAllies();
-
+        Debug.Log(alliesList.Count);
+        
+        
     }
 
     public List<GameObject> RadiusScanAllies()
@@ -27,11 +34,12 @@ public class ObjectDetection : MonoBehaviour
         List<GameObject> alliesList = new List<GameObject>();
         foreach (var obj in rangeCheck)
         {
-            PlayableCharCore player = obj.GetComponent<PlayableCharCore>();
-            if (player != null)
+            PlayableCharCore player = obj.transform.parent.GetComponent<PlayableCharCore>();
+            if (player != null && obj.gameObject != gameObject)
             {
-                //add to list
+                //add the to list
                 alliesList.Add(player.gameObject);
+                
             }
         }
         return alliesList;
