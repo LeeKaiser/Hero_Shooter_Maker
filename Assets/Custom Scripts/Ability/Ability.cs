@@ -21,7 +21,7 @@ public abstract class Ability: MonoBehaviour
 
     protected bool rechargeInProgress = false;
 
-    public AbilityManager manager; //reference to ability manager
+    public AbilityManager Manager; //reference to ability Manager
     protected bool isActive = false; // 
 
     public AbilityUI AbilUIRef; //reference to ability's UI
@@ -30,18 +30,14 @@ public abstract class Ability: MonoBehaviour
     {
         currentCharge = abilityStat.maxCharge;
         GetComponentInParent<AbilityManager>().AddAbility(this.gameObject);
+        
     }
 
     public virtual void Initialize(AbilityManager owningManager, GameObject playerReference)
     {
-        this.manager = owningManager;
+        this.Manager = owningManager;
         this.UserRef = playerReference;
-
-        if (abilityStat.actionReference == null || abilityStat.actionReference.action == null)
-        {
-            Debug.LogError($"{gameObject.name}: No InputActionReference assigned.");
-            return;
-        }
+        Startup();
     }
 
     protected void ConsumeCharge(int chargeConsumed)
@@ -55,7 +51,7 @@ public abstract class Ability: MonoBehaviour
 
     protected virtual bool CanActivate()
     {
-        return !isActive && manager.CanUseAbility(this) && currentCharge >= 1;
+        return !isActive && Manager.CanUseAbility(this) && currentCharge >= 1;
     }
 
     //when ability is missing any charge, set recharge in progress to true
@@ -112,6 +108,8 @@ public abstract class Ability: MonoBehaviour
     }
 
     public abstract void Cleanup();
+
+    protected abstract void Startup();
 
     public float GetCurrentCharge() { return currentCharge;}
     public float GetChargePointProgress() { return chargePointsProgress;}

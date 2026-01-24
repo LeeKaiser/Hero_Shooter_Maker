@@ -24,10 +24,6 @@ public class AbilityStats : ScriptableObject
     [Tooltip("amount of charge gained per full charge point")]
     public int chargeGainPerFullRecharge = 1;
 
-    [Header("Input variables")]
-    [Tooltip("all input that can be used to activate this ability")]
-    public InputActionReference actionReference;
-
     [Header("use time related variables")]
     [Tooltip("if using ability disables use of other abilities")]
     public bool canInterruptOthers = false;

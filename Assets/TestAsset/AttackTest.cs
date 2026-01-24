@@ -14,7 +14,7 @@ public class AttackTest : Ability
     Transform attackPoint;
     Transform targetPoint;
     
-    void Start(){
+    protected override void Startup(){
         EventBus<PlayerStartAttack1>.Subscribe(executeAbility);
         attackPoint = UserRef.transform.Find("PlayerArmature").transform.Find("KeyPoint1").transform;
         targetPoint = UserRef.transform.Find("TargetPoint").transform;
