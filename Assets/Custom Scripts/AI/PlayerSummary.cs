@@ -6,11 +6,16 @@ using AbilityClassification;
 public struct PlayerSummary
 {
     //summarized variables
+    public GameObject summarizedPlayer;
 
     //health information
     public int remainingHP;
     public int maxHP;
     public float percentHP;
+
+    //position information
+    public bool aboveSelf;
+    public float distanceFromSelf;
 
     //ability information
     public Dictionary <AbilityClass, float> abilChargeRemainPercent; 
@@ -20,13 +25,19 @@ public struct PlayerSummary
     public float threatValue;
     public float vulnValue;
 
-    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager)
+    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform)
     {
+        summarizedPlayer = playerChar.gameObject;
         //set health info
         remainingHP = playerChar.GetHitPointsCurrent();
         maxHP = playerChar.GethitPointsCurrentMax();
         percentHP = remainingHP / maxHP;
 
+        //set position info
+        distanceFromSelf = (playerTransform.position - selfTransform.position).magnitude;
+        aboveSelf = playerTransform.position.y > selfTransform.position.y;
+
+        //set ability info
         
     }
 
@@ -56,6 +67,7 @@ public struct PlayerSummary
 
     public string toString()
     {
-        return $"remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} ";
+        return $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} " + 
+            $"\n distance from self: {distanceFromSelf} \n above self: {aboveSelf}";
     }
 }
