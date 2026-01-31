@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Collections;
+using AbilityClassification;
 
 public abstract class Ability: MonoBehaviour
 {
@@ -14,6 +15,7 @@ public abstract class Ability: MonoBehaviour
     public GameObject UserRef;
     //variables
     protected int currentCharge ; //remaining  charge
+    protected int currentMaxCharge ; // current maximum charge
 
     protected float chargePointsProgress; //current progress on getting new charge
 
@@ -26,9 +28,12 @@ public abstract class Ability: MonoBehaviour
 
     public AbilityUI AbilUIRef; //reference to ability's UI
 
+    public AbilityClass CurrentAbilClass;
+
     void Awake()
     {
         currentCharge = abilityStat.maxCharge;
+        currentMaxCharge = abilityStat.maxCharge;
         GetComponentInParent<AbilityManager>().AddAbility(this.gameObject);
         
     }
@@ -75,16 +80,16 @@ public abstract class Ability: MonoBehaviour
             while (chargePointsProgress >= abilityStat.chargePointsRequired)
             {
                 //give a charge
-                if (currentCharge < abilityStat.maxCharge)
+                if (currentCharge < currentMaxCharge)
                 {
                     currentCharge += abilityStat.chargeGainPerFullRecharge;
                 }
                 //subtract charge points required from charge point progress 
                 chargePointsProgress -= abilityStat.chargePointsRequired;
                 //if fully charged, reset charge point progress to 0
-                if (currentCharge >= abilityStat.maxCharge)
+                if (currentCharge >= currentMaxCharge)
                 {
-                    currentCharge = abilityStat.maxCharge;
+                    currentCharge = currentMaxCharge;
                     chargePointsProgress = 0;
                     rechargeInProgress = false;
                 }
@@ -113,4 +118,6 @@ public abstract class Ability: MonoBehaviour
 
     public float GetCurrentCharge() { return currentCharge;}
     public float GetChargePointProgress() { return chargePointsProgress;}
+
+    public float GetCurrentMaxCharge() {return currentMaxCharge;}
 }

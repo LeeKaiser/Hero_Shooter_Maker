@@ -20,28 +20,37 @@ public class ObjectDetection : MonoBehaviour
 
     public void RadiusScanAll()
     {
-        List<GameObject> alliesList = RadiusScanAllies();
-        Debug.Log(alliesList.Count);
-        
-        
-    }
-
-    public List<GameObject> RadiusScanAllies()
-    {
         //scan for all objects in scanRads 
-        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, scanRads, teamMask);
+        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, scanRads);
         //put in list
-        List<GameObject> alliesList = new List<GameObject>();
+        List<PlayerSummary> alliesList = new List<PlayerSummary>();
+        List<GameObject> enemiesList = new List<GameObject>();
         foreach (var obj in rangeCheck)
         {
+            //check if its player
             PlayableCharCore player = obj.transform.parent.GetComponent<PlayableCharCore>();
             if (player != null && obj.gameObject != gameObject)
             {
-                //add the to list
-                alliesList.Add(player.gameObject);
+                //check if its teammate
+                if (player.gameObject.layer == teamMask)
+                {
+                    PlayerSummary summary = new PlayerSummary();
+                    summary.SetValues(player, obj.GetComponent<AbilityManager>());
+                    alliesList.Add(summary);
+                    Debug.Log($"Added player summary: {summary.toString()}");
+                }
+                //add as enemy otherwise
+                else
+                {
+                    enemiesList.Add(player.gameObject);
+                }
                 
             }
+            //add other object types
+            
         }
-        return alliesList;
+        
+        
+        
     }
 }
