@@ -30,7 +30,7 @@ public abstract class Ability: MonoBehaviour
 
     public AbilityClass CurrentAbilClass;
 
-    void Awake()
+    void Start()
     {
         currentCharge = abilityStat.maxCharge;
         currentMaxCharge = abilityStat.maxCharge;

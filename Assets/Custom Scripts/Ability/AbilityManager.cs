@@ -16,14 +16,16 @@ public class AbilityManager : MonoBehaviour
 
     void Awake()
     {
+        foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+        {
+            if (a == AbilityClass.None) continue;
+            abilClassDict[a] = 0;
+        }
     }
 
     void Start()
     {
-        Array allAbilClasses = Enum.GetValues(typeof(AbilityClass));
-        foreach (AbilityClass i in allAbilClasses){
-            abilClassDict[i] = 0;
-        }
+        
 
         foreach (var ability in abilitiesList)
         {

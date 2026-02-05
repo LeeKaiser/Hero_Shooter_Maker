@@ -45,7 +45,7 @@ public class ObjectDetection : MonoBehaviour
                 if (player.gameObject.layer == teamMask)
                 {
                     PlayerSummary summary = new PlayerSummary();
-                    summary.SetValues(player, obj.GetComponent<AbilityManager>(), obj.transform, transform);
+                    summary.SetValues(player, obj.transform.parent.GetComponent<AbilityManager>(), obj.transform, transform);
                     alliesList.Add(summary);
                     Debug.Log($"Added player summary: {summary.toString()}");
                 }

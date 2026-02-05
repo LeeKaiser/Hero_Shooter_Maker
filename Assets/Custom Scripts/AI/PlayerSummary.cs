@@ -18,12 +18,20 @@ public struct PlayerSummary
     public float distanceFromSelf;
 
     //ability information
-    public Dictionary <AbilityClass, float> abilChargeRemainPercent; 
+    public Dictionary <AbilityClass, float> abilChargeRemainPercent;
     //ability charges remaining in percentage
 
     //threat information
     public float threatValue;
     public float vulnValue;
+    void Start()
+    {
+        foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+        {
+            if (a == AbilityClass.None) continue;
+            abilChargeRemainPercent[a] = 0f;
+        }
+    }
 
     public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform)
     {
@@ -38,13 +46,20 @@ public struct PlayerSummary
         aboveSelf = playerTransform.position.y > selfTransform.position.y;
 
         //set ability info
-        
+        SetAbilSummary(abilManager);
     }
 
     void SetAbilSummary(AbilityManager abilManager)
     {
+        abilChargeRemainPercent = new Dictionary<AbilityClass, float>();
         foreach (AbilityClass i in Enum.GetValues(typeof(AbilityClass))){
             abilChargeRemainPercent[i] = 0f;
+        }
+
+        if (abilManager == null)
+        {
+            Debug.Log("no ability list");
+            return;
         }
         
         foreach (Ability currentAbility in abilManager.GetAbilList())
@@ -68,6 +83,7 @@ public struct PlayerSummary
     public string toString()
     {
         return $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} " + 
-            $"\n distance from self: {distanceFromSelf} \n above self: {aboveSelf}";
+            $"\n distance from self: {distanceFromSelf} \n above self: {aboveSelf}" +
+            $"\n abil summary: {abilChargeRemainPercent}";
     }
 }

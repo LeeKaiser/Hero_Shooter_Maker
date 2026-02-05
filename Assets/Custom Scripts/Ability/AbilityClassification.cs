@@ -3,12 +3,13 @@ using UnityEditor;
 
 namespace AbilityClassification
 {
+
     // classification of abilities that allows AI to decide ways it uses the ability.
     [System.Flags]
     public enum AbilityClass
     {
         None                = 0,
-        Active              = 1 << 0,            // abilities that activate from press of a button. Makes it legal for active use in decision making
+        Active              = 1 << 0,       // abilities that activate from press of a button. Makes it legal for active use in decision making
         Damage              = 1 << 1,       // abilities that make the AI target the enemy when used.
         SupportSave         = 1 << 2,       // abilities that make the AI target available teammates who have high vuln value (likely to die imminently)
         SupportBoost        = 1 << 3,       // abilities that make the AI target available teammates who have high threat value (good situation to attack enemies)
