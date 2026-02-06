@@ -24,6 +24,10 @@ public struct PlayerSummary
     //threat information
     public float threatValue;
     public float vulnValue;
+
+    //expiration details
+    public float timeUntilExpire;
+
     void Start()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
@@ -33,8 +37,10 @@ public struct PlayerSummary
         }
     }
 
-    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform)
+    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float timeUntilExpire)
     {
+        this.timeUntilExpire = timeUntilExpire;
+
         summarizedPlayer = playerChar.gameObject;
         //set health info
         remainingHP = playerChar.GetHitPointsCurrent();
@@ -80,10 +86,21 @@ public struct PlayerSummary
         }
     }
 
+    public void SubtractTimeRemaining(float timeElapsed)
+    {
+        timeUntilExpire -= timeElapsed;
+    }
+
     public string toString()
     {
+        string abilChargeStr = "";
+        foreach (AbilityClass i in Enum.GetValues(typeof(AbilityClass)))
+        {
+            abilChargeStr += i + ": " + abilChargeRemainPercent[i] + $"\n";
+        }
+
         return $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} " + 
             $"\n distance from self: {distanceFromSelf} \n above self: {aboveSelf}" +
-            $"\n abil summary: {abilChargeRemainPercent}";
+            $"\n abil summary: {abilChargeStr}";
     }
 }

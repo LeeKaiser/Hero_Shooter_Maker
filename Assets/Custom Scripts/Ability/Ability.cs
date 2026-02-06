@@ -12,7 +12,7 @@ public abstract class Ability: MonoBehaviour
     [Tooltip("ability stats")]
     public AbilityStats abilityStat;
     [Tooltip("reference to user")]
-    public GameObject UserRef;
+    protected GameObject UserRef;
     //variables
     protected int currentCharge ; //remaining  charge
     protected int currentMaxCharge ; // current maximum charge
@@ -23,7 +23,7 @@ public abstract class Ability: MonoBehaviour
 
     protected bool rechargeInProgress = false;
 
-    public AbilityManager Manager; //reference to ability Manager
+    protected AbilityManager Manager; //reference to ability Manager
     protected bool isActive = false; // 
 
     public AbilityUI AbilUIRef; //reference to ability's UI

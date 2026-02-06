@@ -4,11 +4,14 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour
 {
-    public float ScanTimeInterval = 0.5f;
+    public float scanTimeInterval = 0.5f;
     public float scanRads = 30;
     public GameObject playerRef;
     public LayerMask groundMask, teamMask, enemyMask;
     [Range(0, 360)] public float sightAngle;
+
+    public float allyMemoryTime = 10f;
+    Dictionary <PlayableCharCore, PlayerSummary> knownAllyList;
 
     void Start()
     {
@@ -23,7 +26,7 @@ public class ObjectDetection : MonoBehaviour
 
     IEnumerator WaitThenScan()
     {
-        yield return new WaitForSeconds(ScanTimeInterval);
+        yield return new WaitForSeconds(scanTimeInterval);
         RadiusScanAll();
         StartCoroutine(WaitThenScan());
     }
@@ -38,14 +41,14 @@ public class ObjectDetection : MonoBehaviour
         foreach (var obj in rangeCheck)
         {
             //check if its player
-            PlayableCharCore player = obj.transform.parent.GetComponent<PlayableCharCore>();
+            PlayableCharCore player = obj.transform.GetComponentInParent<PlayableCharCore>();
             if (player != null && obj.gameObject != gameObject)
             {
                 //check if its teammate
                 if (player.gameObject.layer == teamMask)
                 {
                     PlayerSummary summary = new PlayerSummary();
-                    summary.SetValues(player, obj.transform.parent.GetComponent<AbilityManager>(), obj.transform, transform);
+                    summary.SetValues(player, obj.transform.GetComponentInParent<AbilityManager>(), obj.transform, transform);
                     alliesList.Add(summary);
                     Debug.Log($"Added player summary: {summary.toString()}");
                 }

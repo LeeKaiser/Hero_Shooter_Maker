@@ -25,13 +25,6 @@ public class AbilityManager : MonoBehaviour
 
     void Start()
     {
-        
-
-        foreach (var ability in abilitiesList)
-        {
-            if (ability != null)
-                ability.Initialize( this, playerRef);
-        }
     }
 
     void Update()
