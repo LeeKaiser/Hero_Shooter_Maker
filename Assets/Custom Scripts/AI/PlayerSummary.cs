@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using AbilityClassification;
 
-public struct PlayerSummary
+public class PlayerSummary
 {
     //summarized variables
     public GameObject summarizedPlayer;
@@ -37,22 +37,25 @@ public struct PlayerSummary
         }
     }
 
-    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float timeUntilExpire)
+    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
-        this.timeUntilExpire = timeUntilExpire;
+        timeUntilExpire = memoryExpirationTime;
 
         summarizedPlayer = playerChar.gameObject;
         //set health info
         remainingHP = playerChar.GetHitPointsCurrent();
         maxHP = playerChar.GethitPointsCurrentMax();
         percentHP = remainingHP / maxHP;
+        //Debug.Log("set hp info" + $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} ");
 
         //set position info
         distanceFromSelf = (playerTransform.position - selfTransform.position).magnitude;
         aboveSelf = playerTransform.position.y > selfTransform.position.y;
+        //Debug.Log("set pos info");
 
         //set ability info
         SetAbilSummary(abilManager);
+        //Debug.Log("set abil info" + $"\n abil summary: {abilManager}");
     }
 
     void SetAbilSummary(AbilityManager abilManager)
@@ -101,6 +104,6 @@ public struct PlayerSummary
 
         return $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} " + 
             $"\n distance from self: {distanceFromSelf} \n above self: {aboveSelf}" +
-            $"\n abil summary: {abilChargeStr}";
+            $"\n abil summary: {abilChargeStr} time remaining in memory: {timeUntilExpire} \n";
     }
 }

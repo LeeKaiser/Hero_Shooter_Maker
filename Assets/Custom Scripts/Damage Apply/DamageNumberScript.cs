@@ -1,12 +1,9 @@
 using UnityEngine;
 using TMPro;
 
-public class DamageNumberScript : MonoBehaviour
+public class DamageNumberScript : InGameTxtDisplay
 {
-    public GameObject owningPlayer;
-    public int value;
-    TextMeshPro dmgText;
-    Transform playerCam;
+    
 
     [SerializeField] private float remainingDuration;
 
@@ -16,20 +13,10 @@ public class DamageNumberScript : MonoBehaviour
         
     }
 
-    public void Init(GameObject owner, int dmg)
-    {
-        owningPlayer = owner;
-        value = dmg;
-        dmgText = gameObject.GetComponentInChildren<TextMeshPro>();
-        dmgText.text = value + "";
-        playerCam = owningPlayer.GetComponentInChildren<Camera>().transform;
-    }
-
     // Update is called once per frame
     void Update()
     {
-        Vector3 awayDir =  transform.position - playerCam.position;
-        transform.rotation = Quaternion.LookRotation(awayDir);
+        base.Update();
         remainingDuration -= Time.deltaTime;
         if (remainingDuration <= 0)
         {

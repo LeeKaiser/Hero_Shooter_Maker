@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Test Ability
   abilUIPrefab: {fileID: 5694682100280509937, guid: 66e3a075af105480da743b359ae7f390, type: 3}
-  maxCharge: 3
-  chargePointsRequired: 100
-  chargePointsPerSec: 50
+  maxCharge: 1
+  chargePointsRequired: 700
+  chargePointsPerSec: 100
   chargeGainPerFullRecharge: 1
-  actionReference: {fileID: 2427769509979364270, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   canInterruptOthers: 0
   useTime: 0.2
   useFailTime: 0
