@@ -14,13 +14,15 @@ public class InGameTxtDisplay : MonoBehaviour
         
     }
 
-    public void Init(GameObject owner, string value)
+    public void Init(GameObject owner, string valueTxt)
     {
         owningPlayer = owner;
-        this.value = value;
+        value = valueTxt;
         textDisplay = gameObject.GetComponentInChildren<TextMeshPro>();
+        Debug.Log(textDisplay);
         textDisplay.text = value;
         playerCam = owningPlayer.GetComponentInChildren<Camera>().transform;
+        Debug.Log(playerCam);
     }
 
     // Update is called once per frame

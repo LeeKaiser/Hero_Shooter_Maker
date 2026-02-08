@@ -19,6 +19,10 @@ public class ObjectDetection : MonoBehaviour
     public float allyMemoryExpirationTime = 10f;
     Dictionary <PlayableCharCore, PlayerSummary> knownAllyList = new Dictionary<PlayableCharCore, PlayerSummary>();
 
+    [Tooltip("amount of time it takes for the AI to forget the enemy after not being detected")]
+    public float enemyMemoryExpirationTime = 1f;
+    Dictionary <PlayableCharCore, PlayerSummary> knownEnemyList = new Dictionary<PlayableCharCore, PlayerSummary>();
+
     PlayerSummary selfSummary = new PlayerSummary();
 
     void Start()
@@ -78,7 +82,27 @@ public class ObjectDetection : MonoBehaviour
                 //add as enemy otherwise
                 else
                 {
-                    enemiesList.Add(player.gameObject);
+                    Vector3 vectorToTarget = obj.transform.position - transform.position;
+                    //TODO: change forward to vector from self to direction the AI is looking at in the future
+                    //if within  view, then add to memory
+                    if (Vector3.Angle(transform.forward, vectorToTarget.normalized) < sightAngle / 2)
+                    {
+                        if (!Physics.Raycast(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, vectorToTarget.magnitude, groundMask))
+                        {
+                            if (!knownEnemyList.ContainsKey(player))
+                            {
+                                //if not already in enemy list
+                                knownEnemyList.Add(player, new PlayerSummary());
+                                //Debug.Log($"added new player to memory {knownEnemyList[player]}");
+                            }
+                            knownEnemyList[player].SetValues(player, obj.transform.GetComponentInParent<AbilityManager>(), 
+                                obj.transform, transform, enemyMemoryExpirationTime);
+                        }
+                        
+                    }
+
+
+                    
                 }
                 
             }
@@ -112,14 +136,45 @@ public class ObjectDetection : MonoBehaviour
             knownAllyList.Remove(key);
             
         }
+
+        toRemove = new();
+
+        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownEnemyList)
+        {
+            
+            if (player.Value.timeUntilExpire <= 0)
+            {
+                toRemove.Add(player.Key);
+                
+            }
+            else
+            {
+                player.Value.SubtractTimeRemaining(timeElapsed);
+            }
+            
+        }
+
+        foreach (var key in toRemove)
+        {
+            knownEnemyList.Remove(key);
+            
+        }
     }
 
     public string toString()
     {
-        string retStr = "";
+        string retStr = $"self: \n";
         retStr += selfSummary.toString();
 
+        retStr += $"\n known allies: \n";
+
         foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownAllyList)
+        {
+            retStr += player.Value.toString();
+        }
+
+        retStr += $"\n known enemies: \n";
+        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownEnemyList)
         {
             retStr += player.Value.toString();
         }

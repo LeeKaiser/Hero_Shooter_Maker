@@ -45,7 +45,7 @@ public class PlayerSummary
         //set health info
         remainingHP = playerChar.GetHitPointsCurrent();
         maxHP = playerChar.GethitPointsCurrentMax();
-        percentHP = remainingHP / maxHP;
+        percentHP = (float)remainingHP / (float)maxHP;
         //Debug.Log("set hp info" + $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} ");
 
         //set position info
