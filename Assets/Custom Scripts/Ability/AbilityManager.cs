@@ -41,6 +41,8 @@ public class AbilityManager : MonoBehaviour
 
     public List<Ability> GetAbilList(){return abilitiesList;}
 
+    public Dictionary <AbilityClass, int> GetAbilClassDict() {return abilClassDict;}
+
     void OnDisable()
     {
         foreach (var ability in abilitiesList)

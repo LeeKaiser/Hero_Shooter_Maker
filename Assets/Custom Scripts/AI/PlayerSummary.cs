@@ -87,6 +87,14 @@ public class PlayerSummary
                 tempMask &= ~lowestBit;
             }
         }
+
+        foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+        {
+            if (abilChargeRemainPercent[a] > 0)
+            {
+                abilChargeRemainPercent[a] = abilChargeRemainPercent[a] / abilManager.GetAbilClassDict()[a];
+            }
+        }
     }
 
     public void SubtractTimeRemaining(float timeElapsed)

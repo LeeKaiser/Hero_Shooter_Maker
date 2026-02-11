@@ -3,11 +3,12 @@ using UnityEngine;
 public class ODTextDisplay : InGameTxtDisplay
 {
     public ObjectDetection objDetect;
+    [SerializeField] private string detectionToString;
     float x = 0.6f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        value = "";
+        value = "Test AI char";
         Init(owningPlayer, value);
     }
 
@@ -20,9 +21,9 @@ public class ODTextDisplay : InGameTxtDisplay
         }
         else
         {
-            value = objDetect.toString();
+            detectionToString = objDetect.toString();
         }
         
-        //base.Update();
+        base.Update();
     }
 }

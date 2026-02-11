@@ -32,6 +32,7 @@ public class AbilityTest : Ability
 
         InterruptReload();
         Debug.Log("Ability1 activated");
+        
         ConsumeCharge(1);
     }
 
