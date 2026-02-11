@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6704790994295541533}
   - component: {fileID: 4883775894605810851}
   m_Layer: 6
-  m_Name: test ability
+  m_Name: Ability test
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityStat: {fileID: 11400000, guid: 65ea82d6d1a95422396fff79c440789f, type: 2}
   UserRef: {fileID: 0}
-  manager: {fileID: 0}
+  Manager: {fileID: 0}
+  AbilUIRef: {fileID: 1646099405858701527, guid: 47c9f12d60bf5414d8b7f3d323c31d05, type: 3}
+  CurrentAbilClass: 33
   SpeedBoostPrefab: {fileID: 1030073838842322820, guid: 8e9f952b48b474fd5944c7e311dc5fd0, type: 3}

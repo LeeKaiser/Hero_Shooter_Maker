@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Collections;
+using AbilityClassification;
 
 public abstract class Ability: MonoBehaviour
 {
@@ -11,9 +12,10 @@ public abstract class Ability: MonoBehaviour
     [Tooltip("ability stats")]
     public AbilityStats abilityStat;
     [Tooltip("reference to user")]
-    public GameObject UserRef;
+    protected GameObject UserRef;
     //variables
     protected int currentCharge ; //remaining  charge
+    protected int currentMaxCharge ; // current maximum charge
 
     protected float chargePointsProgress; //current progress on getting new charge
 
@@ -21,27 +23,26 @@ public abstract class Ability: MonoBehaviour
 
     protected bool rechargeInProgress = false;
 
-    public AbilityManager manager; //reference to ability manager
+    protected AbilityManager Manager; //reference to ability Manager
     protected bool isActive = false; // 
 
     public AbilityUI AbilUIRef; //reference to ability's UI
 
-    void Awake()
+    public AbilityClass CurrentAbilClass;
+
+    void Start()
     {
         currentCharge = abilityStat.maxCharge;
+        currentMaxCharge = abilityStat.maxCharge;
         GetComponentInParent<AbilityManager>().AddAbility(this.gameObject);
+        
     }
 
     public virtual void Initialize(AbilityManager owningManager, GameObject playerReference)
     {
-        this.manager = owningManager;
+        this.Manager = owningManager;
         this.UserRef = playerReference;
-
-        if (abilityStat.actionReference == null || abilityStat.actionReference.action == null)
-        {
-            Debug.LogError($"{gameObject.name}: No InputActionReference assigned.");
-            return;
-        }
+        Startup();
     }
 
     protected void ConsumeCharge(int chargeConsumed)
@@ -55,7 +56,7 @@ public abstract class Ability: MonoBehaviour
 
     protected virtual bool CanActivate()
     {
-        return !isActive && manager.CanUseAbility(this) && currentCharge >= 1;
+        return !isActive && Manager.CanUseAbility(this) && currentCharge >= 1;
     }
 
     //when ability is missing any charge, set recharge in progress to true
@@ -79,16 +80,16 @@ public abstract class Ability: MonoBehaviour
             while (chargePointsProgress >= abilityStat.chargePointsRequired)
             {
                 //give a charge
-                if (currentCharge < abilityStat.maxCharge)
+                if (currentCharge < currentMaxCharge)
                 {
                     currentCharge += abilityStat.chargeGainPerFullRecharge;
                 }
                 //subtract charge points required from charge point progress 
                 chargePointsProgress -= abilityStat.chargePointsRequired;
                 //if fully charged, reset charge point progress to 0
-                if (currentCharge >= abilityStat.maxCharge)
+                if (currentCharge >= currentMaxCharge)
                 {
-                    currentCharge = abilityStat.maxCharge;
+                    currentCharge = currentMaxCharge;
                     chargePointsProgress = 0;
                     rechargeInProgress = false;
                 }
@@ -113,6 +114,10 @@ public abstract class Ability: MonoBehaviour
 
     public abstract void Cleanup();
 
+    protected abstract void Startup();
+
     public float GetCurrentCharge() { return currentCharge;}
     public float GetChargePointProgress() { return chargePointsProgress;}
+
+    public float GetCurrentMaxCharge() {return currentMaxCharge;}
 }

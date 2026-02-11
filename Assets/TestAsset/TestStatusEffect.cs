@@ -10,17 +10,17 @@ public class TestStatusEffect : StatusEffect
     {
         Active = true;
         RemainingDuration = statusEffectStat.EffectDuration;
-        EffectedPlayer.ModifyForwardSpeed(SpeedMultiplierTest);
-        EffectedPlayer.ModifyStrafeSpeed(SpeedMultiplierTest);
-        EffectedPlayer.ModifyBackwardSpeed(SpeedMultiplierTest);
+        AffectedPlayer.ModifyForwardSpeed(SpeedMultiplierTest);
+        AffectedPlayer.ModifyStrafeSpeed(SpeedMultiplierTest);
+        AffectedPlayer.ModifyBackwardSpeed(SpeedMultiplierTest);
     }
 
     protected override void RemoveEffect()
     {
         //reverse the speed bonus
         Active = false;
-        EffectedPlayer.ModifyForwardSpeed(-SpeedMultiplierTest);
-        EffectedPlayer.ModifyStrafeSpeed(-SpeedMultiplierTest);
-        EffectedPlayer.ModifyBackwardSpeed(-SpeedMultiplierTest);
+        AffectedPlayer.ModifyForwardSpeed(-SpeedMultiplierTest);
+        AffectedPlayer.ModifyStrafeSpeed(-SpeedMultiplierTest);
+        AffectedPlayer.ModifyBackwardSpeed(-SpeedMultiplierTest);
     }
 }

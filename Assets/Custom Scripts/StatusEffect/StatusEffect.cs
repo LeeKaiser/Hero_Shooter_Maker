@@ -7,7 +7,7 @@ public abstract class StatusEffect : MonoBehaviour
 
     protected float RemainingDuration;
 
-    protected PlayableCharCore EffectedPlayer;
+    protected PlayableCharCore AffectedPlayer;
 
     protected bool Active = true; //is active
 
@@ -38,8 +38,8 @@ public abstract class StatusEffect : MonoBehaviour
         return Active;
     }
 
-    public void setEffectedPlayer(PlayableCharCore player)
+    public void SetAffectedPlayer(PlayableCharCore player)
     {
-        EffectedPlayer = player;
+        AffectedPlayer = player;
     }
 }

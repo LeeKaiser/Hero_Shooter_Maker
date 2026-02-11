@@ -15,6 +15,7 @@ public class PlayableCharCore : MonoBehaviour
     public TeamManager playerAllegience; //set to team object 
 
     private int hitPointsCurrent; //current hp
+    private int hitPointsCurrentMax; //current max health
     private float damageTakeMult = 1f; //damage taken multiplier
     private float damageDealMult = 1f; //damage dealt multiplier
 
@@ -50,6 +51,7 @@ public class PlayableCharCore : MonoBehaviour
     //add operation for match load
     void Start(){
         hitPointsCurrent = PlayerStats.hitPointsBase;
+        hitPointsCurrentMax = PlayerStats.hitPointsBase;
         damageTakeMult = PlayerStats.damageTakeMultBase;
         damageDealMult = PlayerStats.damageDealMultBase;
         forwardSpeedCurrent = PlayerStats.forwardSpeedBase;
@@ -96,4 +98,7 @@ public class PlayableCharCore : MonoBehaviour
     }
 
     public float GetDamageMult(){return damageDealMult;}
+
+    public int GetHitPointsCurrent(){return hitPointsCurrent;}
+    public int GethitPointsCurrentMax() {return hitPointsCurrentMax;}
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
+using AbilityClassification;
 
 public class AbilityManager : MonoBehaviour
 {
@@ -11,17 +12,19 @@ public class AbilityManager : MonoBehaviour
 
     public Transform playerCanvas;
 
+    public Dictionary <AbilityClass, int> abilClassDict = new Dictionary<AbilityClass, int>();
+
     void Awake()
     {
+        foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+        {
+            if (a == AbilityClass.None) continue;
+            abilClassDict[a] = 0;
+        }
     }
 
     void Start()
     {
-        foreach (var ability in abilitiesList)
-        {
-            if (ability != null)
-                ability.Initialize( this, playerRef);
-        }
     }
 
     void Update()
@@ -35,6 +38,10 @@ public class AbilityManager : MonoBehaviour
             ability.AbilUIRef.UpdateUI();
         }
     }
+
+    public List<Ability> GetAbilList(){return abilitiesList;}
+
+    public Dictionary <AbilityClass, int> GetAbilClassDict() {return abilClassDict;}
 
     void OnDisable()
     {
@@ -94,5 +101,21 @@ public class AbilityManager : MonoBehaviour
         }
         ability.AbilUIRef = AbilUIScript;
         abilitiesList.Add(ability);
+        //add to ability class dictionary
+        foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+        {
+            if (a == AbilityClass.None)
+            {
+                continue;
+
+            }
+
+            else if (ability.CurrentAbilClass.HasFlag(a))
+            {
+                abilClassDict[a] += 1;
+            }
+        }
     }
+
+
 }

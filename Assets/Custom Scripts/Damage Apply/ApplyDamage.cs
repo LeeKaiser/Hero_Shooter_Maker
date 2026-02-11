@@ -25,12 +25,12 @@ public class ApplyDamage : MonoBehaviour
                 return;
             }
             // get attack's damage
-            int DamageDealt = (int) (atkInfo.baseDamage * atkInfo.owningPlayer.GetComponent<PlayableCharCore>().GetDamageMult());
+            int damageDealt = (int) (atkInfo.baseDamage * atkInfo.owningPlayer.GetComponent<PlayableCharCore>().GetDamageMult());
             // deal damage to enemy player
-            DamageDealt = enemy.DealDamage(DamageDealt);
+            damageDealt = enemy.DealDamage(damageDealt);
 
             GameObject damageNoVis = Instantiate(atkInfo.DamageNumberPrefab, transform.position, Quaternion.identity);
-            damageNoVis.GetComponent<DamageNumberScript>().Init(atkInfo.owningPlayer, DamageDealt);
+            damageNoVis.GetComponent<DamageNumberScript>().Init(atkInfo.owningPlayer, ""+damageDealt);
         }
         
         //self destruct when hitting enemy or environment

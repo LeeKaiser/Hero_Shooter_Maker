@@ -9,7 +9,7 @@ public class AbilityTest : Ability
 {
     public GameObject SpeedBoostPrefab;
 
-    void Start(){
+    protected override void Startup(){
         EventBus<PlayerStartAbility1>.Subscribe(executeAbility);
     }
 
@@ -32,6 +32,7 @@ public class AbilityTest : Ability
 
         InterruptReload();
         Debug.Log("Ability1 activated");
+        
         ConsumeCharge(1);
     }
 

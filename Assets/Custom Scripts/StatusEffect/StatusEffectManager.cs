@@ -44,7 +44,7 @@ public class StatusEffectManager : MonoBehaviour
             return;
         }
 
-        effect.setEffectedPlayer(playerRef);
+        effect.SetAffectedPlayer(playerRef);
         effect.ApplyEffect();
         statusEffectList.Add(effect);
     }
