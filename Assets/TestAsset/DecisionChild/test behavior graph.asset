@@ -39,7 +39,7 @@ MonoBehaviour:
           rid: 1558464503987044604
         m_EndedNodes:
           rid: 1558464503987044605
-        m_VersionTimestamp: 639011471061155820
+        m_VersionTimestamp: 639064960499073730
     - rid: 1558464503987044602
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -161,7 +161,7 @@ MonoBehaviour:
   - rid: 1558464503987044612
   - rid: 1558464503987044625
   - rid: 1558464503987044639
-  m_VersionTimestamp: 639011471061155820
+  m_VersionTimestamp: 639064960499073730
   m_SerializedVersion: 1
   m_DebugInfo: {fileID: 6320146113891003309}
   m_RuntimeGraph: {fileID: -6529566815696172020}
@@ -397,7 +397,7 @@ MonoBehaviour:
     - rid: 1558464503987044639
       type: {class: SequenceNodeModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
       data:
-        Position: {x: 0.30000162, y: 113.69999}
+        Position: {x: 0.29994392, y: 176.07727}
         ID:
           m_Value0: 3428996629346191749
           m_Value1: 1473313921993162800
@@ -484,8 +484,8 @@ MonoBehaviour:
   m_Name: test behavior graph Blackboard
   m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorBlackboardAuthoringAsset
   AssetID:
-    m_Value0: 0
-    m_Value1: 0
+    m_Value0: 10395616573864412955
+    m_Value1: 11676237625137358106
   m_Variables:
   - rid: 1558464503987044611
   m_VersionTimestamp: 639011468304050990
