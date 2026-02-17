@@ -12,7 +12,7 @@ public abstract class Ability: MonoBehaviour
     [Tooltip("ability stats")]
     public AbilityStats abilityStat;
     [Tooltip("reference to user")]
-    protected GameObject UserRef;
+    protected GameObject userRef;
     //variables
     protected int currentCharge ; //remaining  charge
     protected int currentMaxCharge ; // current maximum charge
@@ -23,10 +23,10 @@ public abstract class Ability: MonoBehaviour
 
     protected bool rechargeInProgress = false;
 
-    protected AbilityManager Manager; //reference to ability Manager
+    protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
 
-    public AbilityUI AbilUIRef; //reference to ability's UI
+    public AbilityUI abilUIRef; //reference to ability's UI
 
     public AbilityClass CurrentAbilClass;
 
@@ -40,8 +40,8 @@ public abstract class Ability: MonoBehaviour
 
     public virtual void Initialize(AbilityManager owningManager, GameObject playerReference)
     {
-        this.Manager = owningManager;
-        this.UserRef = playerReference;
+        this.manager = owningManager;
+        this.userRef = playerReference;
         Startup();
     }
 
@@ -56,7 +56,7 @@ public abstract class Ability: MonoBehaviour
 
     protected virtual bool CanActivate()
     {
-        return !isActive && Manager.CanUseAbility(this) && currentCharge >= 1;
+        return !isActive && manager.CanUseAbility(this) && currentCharge >= 1;
     }
 
     //when ability is missing any charge, set recharge in progress to true

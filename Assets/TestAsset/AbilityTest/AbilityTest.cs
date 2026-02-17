@@ -15,7 +15,7 @@ public class AbilityTest : Ability
 
     public void executeAbility(PlayerStartAbility1 inputEventInfo)
     {
-        if (inputEventInfo.PlayerIdentity != UserRef)
+        if (inputEventInfo.PlayerIdentity != userRef)
         {
             return;
         }
@@ -32,7 +32,7 @@ public class AbilityTest : Ability
 
         InterruptReload();
         Debug.Log("Ability1 activated");
-        
+        userRef.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab);
         ConsumeCharge(1);
     }
 

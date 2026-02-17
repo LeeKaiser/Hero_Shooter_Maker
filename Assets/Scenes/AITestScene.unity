@@ -2730,7 +2730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24669dfbcb8ad4b56af8627cb41bf060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
-  scanTimeInterval: 0.5
   scanRads: 30
   playerRef: {fileID: 1330326767}
   groundMask:
@@ -5391,6 +5390,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1319622042}
+    - targetCorrespondingSourceObject: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319622059}
+    - targetCorrespondingSourceObject: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319622060}
   m_SourcePrefab: {fileID: 100100000, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
 --- !u!1 &1134131252 stripped
 GameObject:
@@ -12894,7 +12899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24669dfbcb8ad4b56af8627cb41bf060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
-  scanTimeInterval: 0.5
   scanRads: 30
   playerRef: {fileID: 1662610727}
   groundMask:
@@ -12909,6 +12913,52 @@ MonoBehaviour:
   sightAngle: 90
   allyMemoryExpirationTime: 10
   enemyMemoryExpirationTime: 1
+--- !u!114 &1319622059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319622040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
+  m_Graph: {fileID: -6529566815696172020, guid: 1b075a1232a644901ae55cb741540aa2, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 5859887093462860055
+  m_OriginalGraph: {fileID: -6529566815696172020, guid: 1b075a1232a644901ae55cb741540aa2, type: 2}
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5859887093462860055
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1319622040}
+--- !u!114 &1319622060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319622040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf99454c646c4b018473bfdfb7869c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionMaker
+  decisionTree: {fileID: 11400000, guid: 1b5dd972c49fc4ff1aaf737d0d848d52, type: 2}
+  behaviorAgent: {fileID: 0}
+  objectDetection: {fileID: 0}
+  currentBehavior: {fileID: 0}
+  scanTimeInterval: 0.25
 --- !u!1 &1330326767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3772487131666148388, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}

@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour
 {
-    [Tooltip("time between each scan")]
-    public float scanTimeInterval = 0.25f;
+    
+    
     [Tooltip("radius/distance at which AI can detect object")]
     public float scanRads = 30;
     [Tooltip("reference to self")]
@@ -30,7 +30,7 @@ public class ObjectDetection : MonoBehaviour
     void Start()
     {
         teamMask = gameObject.layer;
-        StartCoroutine(WaitThenScan());
+        
     }
 
     void Update()
@@ -38,16 +38,9 @@ public class ObjectDetection : MonoBehaviour
         //RadiusScanAll();
     }
 
-    IEnumerator WaitThenScan()
-    {
-        yield return new WaitForSeconds(scanTimeInterval);
-        RadiusScanAll();
-        ElapseExpirationTime(scanTimeInterval);
-        currentContext.Init(playerRef, knownAllyList, knownEnemyList, selfSummary);
-        StartCoroutine(WaitThenScan());
-    }
+    
 
-    public KnownContext getCurrentContext(){return currentContext;}
+    public KnownContext GetCurrentContext(){return currentContext;}
 
     public void RadiusScanAll()
     {
@@ -115,10 +108,12 @@ public class ObjectDetection : MonoBehaviour
         
         }
         
+        currentContext.Init(playerRef, knownAllyList, knownEnemyList, selfSummary);
+        
     }
 
     //
-    void ElapseExpirationTime(float timeElapsed)
+    public void ElapseExpirationTime(float timeElapsed)
     {
         List<PlayableCharCore> toRemove = new();
         foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownAllyList)

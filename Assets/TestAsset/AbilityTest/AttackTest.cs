@@ -16,13 +16,13 @@ public class AttackTest : Ability
     
     protected override void Startup(){
         EventBus<PlayerStartAttack1>.Subscribe(executeAbility);
-        attackPoint = UserRef.transform.Find("PlayerArmature").transform.Find("KeyPoint1").transform;
-        targetPoint = UserRef.transform.Find("TargetPoint").transform;
+        attackPoint = userRef.transform.Find("PlayerArmature").transform.Find("KeyPoint1").transform;
+        targetPoint = userRef.transform.Find("TargetPoint").transform;
     }
 
     public void executeAbility(PlayerStartAttack1 inputEventInfo)
     {
-        if (inputEventInfo.PlayerIdentity != UserRef)
+        if (inputEventInfo.PlayerIdentity != userRef)
         {
             return;
         }
@@ -45,8 +45,8 @@ public class AttackTest : Ability
         attackObj.transform.LookAt(targetPoint);
 
         AttackInfo atkInfo = attackObj.GetComponent<AttackInfo>();
-        atkInfo.owningPlayer = UserRef;
-        atkInfo.attackAllegience = UserRef.GetComponent<PlayableCharCore>().playerAllegience;
+        atkInfo.owningPlayer = userRef;
+        atkInfo.attackAllegience = userRef.GetComponent<PlayableCharCore>().playerAllegience;
 
         ConsumeCharge(1);
     }
