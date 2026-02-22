@@ -15,6 +15,11 @@ public class DecisionTreeEditorWindow : EditorWindow
     private DecisionTreeNode draggingNode;
     //private Rect canvasRect = new Rect(-5000, -5000, 10000, 10000);
 
+    private bool choosingRootMode = false;
+    private bool choosingYesMode = false;
+    private bool choosingNoMode = false;
+    private DecisionTreeNode choosingParentNode;
+
     [MenuItem("Window/Decision Tree Editor")]
     public static void OpenWindow()
     {
@@ -26,34 +31,18 @@ public class DecisionTreeEditorWindow : EditorWindow
         //Debug.Log(currentDecisionTree.decisionTreeRoot == null ? "Root is NULL" : "Root EXISTS");
         
         HandleEvents();
-        Rect viewRect = new Rect(0, 0, position.width, position.height);
-        GUI.BeginGroup(viewRect);
         currentDecisionTree = (DecisionTree)EditorGUILayout.ObjectField(
             "Decision Tree",
             currentDecisionTree,
             typeof(DecisionTree),
             false
         );
-        Matrix4x4 oldMatrix = GUI.matrix;
-
-        GUI.matrix = Matrix4x4.TRS(
-            panOffset,
-            Quaternion.identity,
-            Vector3.one * zoom
-        );
-
-        
-
-        
-
         if (currentDecisionTree == null)
         {
             EditorGUILayout.HelpBox("Create or assign a DecisionTree asset to start editing.", MessageType.Info);
-            GUI.EndGroup();
+            //GUI.EndGroup();
             return;
         }
-            
-
         if (currentDecisionTree.decisionTreeRoot == null)
         {
             EditorGUILayout.HelpBox("Tree has no root node.", MessageType.Info);
@@ -63,16 +52,47 @@ public class DecisionTreeEditorWindow : EditorWindow
                 DecisionTreeNode node = CreateNode();
                 currentDecisionTree.decisionTreeRoot = node;
             }
-            GUI.EndGroup();
-            return; // stop drawing further
+
+            
+            
         }
-        else
+        if (GUILayout.Button("Set Existing Node As Root"))
         {
-            Handles.BeginGUI();
-            DrawConnections(currentDecisionTree.decisionTreeRoot);
-            Handles.EndGUI();   
-            DrawNode(currentDecisionTree.decisionTreeRoot);
+            if (choosingRootMode)
+            {
+                choosingRootMode = false;
+            }
+            else
+            {
+                choosingRootMode = true;
+            }
+            
         }
+
+        //tree view
+        Matrix4x4 oldMatrix = GUI.matrix;
+
+        GUI.matrix = Matrix4x4.TRS(
+            panOffset,
+            Quaternion.identity,
+            Vector3.one * zoom
+        );
+
+        Rect viewRect = new Rect(0, 0, position.width, position.height);
+        GUI.BeginGroup(viewRect);
+
+        Handles.BeginGUI();
+        foreach (var node in currentDecisionTree.allNodes)
+        {
+            DrawConnections(node);
+        }
+            
+        Handles.EndGUI();   
+        foreach (var node in currentDecisionTree.allNodes)
+        {
+            DrawNode(node);
+        }
+        
 
         if (GUI.changed)
         {
@@ -87,10 +107,48 @@ public class DecisionTreeEditorWindow : EditorWindow
     void DrawNode(DecisionTreeNode node)
     {
         if (node == null) return;
-        Rect rect = new Rect(node.editorPosition.x, node.editorPosition.y, 300, 130);
+        Rect rect = new Rect(node.editorPosition.x, node.editorPosition.y, 250, 170);
         EditorGUIUtility.AddCursorRect(rect, MouseCursor.MoveArrow);
 
         GUILayout.BeginArea(rect, GUI.skin.window);
+        if (node == currentDecisionTree.decisionTreeRoot)
+        {
+            EditorGUILayout.LabelField("Root Node", EditorStyles.boldLabel);
+        }
+        if (node == choosingParentNode)
+        {
+            EditorGUILayout.LabelField("Choosing Child", EditorStyles.boldLabel);
+        }
+
+        if (choosingRootMode)
+        {
+            if (GUILayout.Button("Set As Root"))
+            {
+                currentDecisionTree.decisionTreeRoot = node;
+                choosingRootMode = false;
+            }
+        }
+
+        if ((choosingYesMode || choosingNoMode) && choosingParentNode != node)
+        {
+            if (GUILayout.Button("Set As child"))
+            {
+                
+                node.parentNodes.Add(choosingParentNode);
+                if (choosingYesMode)
+                {
+                    choosingParentNode.childYesNode = node;
+                }
+                else if (choosingNoMode)
+                {
+                    choosingParentNode.childNoNode = node;
+                }
+
+                choosingNoMode = false;
+                choosingYesMode = false;
+                choosingParentNode = null;
+            }
+        }
 
         if (GUILayout.Button("Delete Node"))
         {
@@ -105,6 +163,7 @@ public class DecisionTreeEditorWindow : EditorWindow
         if (!node.isBehavior)
         {
             node.nodeCondition = (decisionCondition)EditorGUILayout.EnumPopup("Condition: ", node.nodeCondition);
+            node.parameterFloat = EditorGUILayout.FloatField("Parameter: ", node.parameterFloat);
 
             GUILayout.BeginHorizontal();
 
@@ -113,8 +172,10 @@ public class DecisionTreeEditorWindow : EditorWindow
                 if (GUILayout.Button("Add Yes Node"))
                 {
                     DecisionTreeNode newNode = CreateNode();
+                    
+                    newNode.parentNodes.Add(node);
+                    newNode.editorPosition = node.editorPosition + new Vector2(-200, 150);
                     node.childYesNode = newNode;
-                    node.childYesNode.editorPosition = node.editorPosition + new Vector2(-200, 150);
                 }
             }
                 
@@ -124,8 +185,50 @@ public class DecisionTreeEditorWindow : EditorWindow
                 if (GUILayout.Button("Add No Node"))
                 {
                     DecisionTreeNode newNode = CreateNode();
+                    
+                    newNode.parentNodes.Add(node);
+                    newNode.editorPosition = node.editorPosition + new Vector2(200, 150);
                     node.childNoNode = newNode;
-                    node.childNoNode.editorPosition = node.editorPosition + new Vector2(200, 150);
+                }
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+
+            if (node.childYesNode == null)
+            {
+                if (GUILayout.Button("Set Yes Node"))
+                {
+                    if (choosingYesMode)
+                    {
+                        choosingYesMode = false;
+                        choosingNoMode = false;
+                    }
+                    else
+                    {
+                        choosingNoMode = false;
+                        choosingYesMode = true;
+                        choosingParentNode = node;
+                    }
+                    
+                }
+            }
+                
+
+            if (node.childNoNode == null)
+            {
+                if (GUILayout.Button("Set No Node"))
+                {
+                    if (choosingNoMode)
+                    {
+                        choosingYesMode = false;
+                        choosingNoMode = false;
+                    }
+                    else
+                    {
+                        choosingYesMode = false;
+                        choosingNoMode = true;
+                        choosingParentNode = node;
+                    }
                 }
             }
             GUILayout.EndHorizontal();
@@ -141,20 +244,9 @@ public class DecisionTreeEditorWindow : EditorWindow
         }
         
 
-        
-
         GUILayout.EndArea();
 
         DragNode(node, rect);
-
-        if (!node.isBehavior)
-        {
-            if (node.childYesNode != null)
-                DrawNode(node.childYesNode);
-
-            if (node.childNoNode != null)
-                DrawNode(node.childNoNode);
-        }
         
     }
 
@@ -184,39 +276,32 @@ public class DecisionTreeEditorWindow : EditorWindow
     }
     void DeleteNode(DecisionTreeNode node)
     {
-        if (node == currentDecisionTree.decisionTreeRoot)
-        {
-            Undo.RecordObject(currentDecisionTree, "Delete Root");
-            currentDecisionTree.decisionTreeRoot = null;
-            EditorUtility.SetDirty(currentDecisionTree);
-            AssetDatabase.SaveAssets();
-            return;
-        }
-
+        
         Undo.RecordObject(currentDecisionTree, "Delete Node");
-        DeleteNodeRecursive(currentDecisionTree.decisionTreeRoot, node);
+        //remove root's reference if deleted node is root
+        if (currentDecisionTree.decisionTreeRoot == node)
+        {
+            currentDecisionTree.decisionTreeRoot = null;
+        }
+        //remove parent's reference to node
+        node.removeFromParent();
+        
+        //remove child's reference to node
+        if (!(node.childYesNode == null))
+        {
+            node.childYesNode.parentNodes.Remove(node);
+        }
+        if (!(node.childNoNode == null))
+        {
+            node.childNoNode.parentNodes.Remove(node);
+        }
+        //remove list's reference to the node
+        currentDecisionTree.allNodes.Remove(node);
+
+        DestroyImmediate(node,true);
+        
+
         EditorUtility.SetDirty(currentDecisionTree);
-    }
-
-    bool DeleteNodeRecursive(DecisionTreeNode current, DecisionTreeNode target)
-    {
-        if (current == null)
-            return false;
-
-        if (current.childYesNode == target)
-        {
-            current.childYesNode = null;
-            return true;
-        }
-
-        if (current.childNoNode == target)
-        {
-            current.childNoNode = null;
-            return true;
-        }
-
-        return DeleteNodeRecursive(current.childYesNode, target)
-            || DeleteNodeRecursive(current.childNoNode, target);
     }
 
     DecisionTreeNode CreateNode()
@@ -228,7 +313,7 @@ public class DecisionTreeEditorWindow : EditorWindow
         AssetDatabase.AddObjectToAsset(node, currentDecisionTree);
         AssetDatabase.SaveAssets();
 
-        //currentDecisionTree.allNodes.Add(node);
+        currentDecisionTree.allNodes.Add(node);
 
         EditorUtility.SetDirty(currentDecisionTree);
 
@@ -239,27 +324,27 @@ public class DecisionTreeEditorWindow : EditorWindow
     {
         if (!node.isBehavior)
         {
-            Vector2 startPos = node.editorPosition + new Vector2(150, 120);
+            Vector2 startPos = node.editorPosition + new Vector2(125, 170);
             if (node.childYesNode != null)
             {
-                Vector2 leftPos = node.childYesNode.editorPosition + new Vector2(150, 0);
+                Vector2 leftPos = node.childYesNode.editorPosition + new Vector2(125, 0);
                 Handles.DrawLine( startPos, leftPos );
 
                 Vector2 mid = (startPos + leftPos) / 2;
                 Handles.Label(mid, "Yes");
 
-                DrawConnections(node.childYesNode);
+                //DrawConnections(node.childYesNode);
             }
 
             if (node.childNoNode != null)
             {
-                Vector2 rightPos = node.childNoNode.editorPosition + new Vector2(150, 0);
+                Vector2 rightPos = node.childNoNode.editorPosition + new Vector2(125, 0);
                 Handles.DrawLine( startPos, rightPos );
 
                 Vector2 mid = (startPos + rightPos) / 2;
                 Handles.Label(mid, "No");
 
-                DrawConnections(node.childNoNode);
+                //DrawConnections(node.childNoNode);
             }
         }
     }

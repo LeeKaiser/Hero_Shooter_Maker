@@ -1,24 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8545550851540095248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 4862770114486493595}
-  childNoNode: {fileID: -4628217732929841812}
-  nodeCondition: 0
-  behavior: {fileID: 0}
-  isBehavior: 0
-  editorPosition: {x: 417.73224, y: 183.26978}
---- !u!114 &-8511296242445075337
+--- !u!114 &-4190353240872096400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,64 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   childYesNode: {fileID: 0}
   childNoNode: {fileID: 0}
+  parentNodes:
+  - {fileID: 5558142535909733708}
   nodeCondition: 0
-  behavior: {fileID: -6529566815696172020, guid: 1b075a1232a644901ae55cb741540aa2, type: 2}
+  behavior: {fileID: 7786101478722590270, guid: 0a427731f5b07454cbd66122535c2b60, type: 2}
   isBehavior: 1
-  editorPosition: {x: 134.80011, y: 382.4147}
---- !u!114 &-5197274257605574943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
-  behavior: {fileID: 0}
-  isBehavior: 0
-  editorPosition: {x: 308.17993, y: 103.40919}
---- !u!114 &-4822234426466954168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
-  behavior: {fileID: -6529566815696172020, guid: 1b075a1232a644901ae55cb741540aa2, type: 2}
-  isBehavior: 1
-  editorPosition: {x: 217.73224, y: 333.26978}
---- !u!114 &-4628217732929841812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
-  behavior: {fileID: 0}
-  isBehavior: 0
-  editorPosition: {x: 617.73224, y: 333.26978}
+  parameterFloat: 0
+  editorPosition: {x: 418.34363, y: 269.70123}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,8 +33,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59b4ef3832474766aa06e8f43039507, type: 3}
   m_Name: New Decision Tree
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTree
-  decisionTreeRoot: {fileID: 5734870970345875118}
---- !u!114 &1775185009163580552
+  decisionTreeRoot: {fileID: 5558142535909733708}
+  allNodes:
+  - {fileID: 5558142535909733708}
+  - {fileID: 8067390332693551431}
+  - {fileID: -4190353240872096400}
+--- !u!114 &5558142535909733708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,49 +50,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
-  behavior: {fileID: 7786101478722590270, guid: 0a427731f5b07454cbd66122535c2b60, type: 2}
-  isBehavior: 1
-  editorPosition: {x: 534.8001, y: 382.4147}
---- !u!114 &4314181786571934265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
-  behavior: {fileID: 7786101478722590270, guid: 0a427731f5b07454cbd66122535c2b60, type: 2}
-  isBehavior: 1
-  editorPosition: {x: 617.73224, y: 333.26978}
---- !u!114 &4862770114486493595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: 0}
-  childNoNode: {fileID: 0}
-  nodeCondition: 0
+  childYesNode: {fileID: 8067390332693551431}
+  childNoNode: {fileID: -4190353240872096400}
+  parentNodes: []
+  nodeCondition: 1
   behavior: {fileID: 0}
   isBehavior: 0
-  editorPosition: {x: 217.73224, y: 333.26978}
---- !u!114 &5734870970345875118
+  parameterFloat: 10
+  editorPosition: {x: 281.52344, y: 17.727203}
+--- !u!114 &8067390332693551431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,9 +70,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  childYesNode: {fileID: -8511296242445075337}
-  childNoNode: {fileID: 1775185009163580552}
+  childYesNode: {fileID: 0}
+  childNoNode: {fileID: 0}
+  parentNodes:
+  - {fileID: 5558142535909733708}
   nodeCondition: 0
-  behavior: {fileID: 0}
-  isBehavior: 0
-  editorPosition: {x: 334.8001, y: 232.4147}
+  behavior: {fileID: -6529566815696172020, guid: 1b075a1232a644901ae55cb741540aa2, type: 2}
+  isBehavior: 1
+  parameterFloat: 0
+  editorPosition: {x: 117.43028, y: 267.4519}

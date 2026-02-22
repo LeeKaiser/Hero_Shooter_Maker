@@ -9,13 +9,15 @@ public class DecisionTree : ScriptableObject
     
     public DecisionTreeNode decisionTreeRoot = null;
     
-    //public List<DecisionTreeNode> allNodes = new List<DecisionTreeNode>();
+    public List<DecisionTreeNode> allNodes = new List<DecisionTreeNode>();
 
     public BehaviorGraph MakeDecision(KnownContext context)
     {
         BehaviorGraph determinedBehavior = decisionTreeRoot.GetBehavior(context);
         return determinedBehavior;
     }
+
+    
 
 
 }
