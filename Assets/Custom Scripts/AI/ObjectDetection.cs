@@ -4,8 +4,8 @@ using System.Collections;
 
 public class ObjectDetection : MonoBehaviour
 {
-    [Tooltip("time between each scan")]
-    public float scanTimeInterval = 0.5f;
+    
+    
     [Tooltip("radius/distance at which AI can detect object")]
     public float scanRads = 30;
     [Tooltip("reference to self")]
@@ -20,15 +20,17 @@ public class ObjectDetection : MonoBehaviour
     Dictionary <PlayableCharCore, PlayerSummary> knownAllyList = new Dictionary<PlayableCharCore, PlayerSummary>();
 
     [Tooltip("amount of time it takes for the AI to forget the enemy after not being detected")]
-    public float enemyMemoryExpirationTime = 1f;
+    public float enemyMemoryExpirationTime = 3f;
     Dictionary <PlayableCharCore, PlayerSummary> knownEnemyList = new Dictionary<PlayableCharCore, PlayerSummary>();
 
     PlayerSummary selfSummary = new PlayerSummary();
 
+    KnownContext currentContext = new KnownContext();
+
     void Start()
     {
         teamMask = gameObject.layer;
-        StartCoroutine(WaitThenScan());
+        
     }
 
     void Update()
@@ -36,13 +38,9 @@ public class ObjectDetection : MonoBehaviour
         //RadiusScanAll();
     }
 
-    IEnumerator WaitThenScan()
-    {
-        yield return new WaitForSeconds(scanTimeInterval);
-        RadiusScanAll();
-        ElapseExpirationTime(scanTimeInterval);
-        StartCoroutine(WaitThenScan());
-    }
+    
+
+    public KnownContext GetCurrentContext(){return currentContext;}
 
     public void RadiusScanAll()
     {
@@ -110,10 +108,12 @@ public class ObjectDetection : MonoBehaviour
         
         }
         
+        currentContext.Init(playerRef, knownAllyList, knownEnemyList, selfSummary);
+        
     }
 
     //
-    void ElapseExpirationTime(float timeElapsed)
+    public void ElapseExpirationTime(float timeElapsed)
     {
         List<PlayableCharCore> toRemove = new();
         foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownAllyList)
@@ -163,22 +163,6 @@ public class ObjectDetection : MonoBehaviour
 
     public string toString()
     {
-        string retStr = $"self: \n";
-        retStr += selfSummary.toString();
-
-        retStr += $"\n known allies: \n";
-
-        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownAllyList)
-        {
-            retStr += player.Value.toString();
-        }
-
-        retStr += $"\n known enemies: \n";
-        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownEnemyList)
-        {
-            retStr += player.Value.toString();
-        }
-
-        return retStr;
+        return currentContext.toString();
     }
 }

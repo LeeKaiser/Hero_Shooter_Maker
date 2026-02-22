@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: test behavior graph
+  m_Name: AttackBehavior
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraph
   Graphs:
   - rid: 1558464503987044601
@@ -32,14 +32,14 @@ MonoBehaviour:
           rid: 1558464503987044602
         BlackboardGroupReferences: []
         Root:
-          rid: 1558464503987044650
+          rid: 5859887093462860249
         m_ActiveNodes: []
         m_NodesToTick: []
         m_NodesToEnd:
           rid: 1558464503987044604
         m_EndedNodes:
           rid: 1558464503987044605
-        m_VersionTimestamp: 639011471061155820
+        m_VersionTimestamp: 639069236166247270
     - rid: 1558464503987044602
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -56,8 +56,9 @@ MonoBehaviour:
       type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Variables:
-        - rid: 1558464503987044607
-    - rid: 1558464503987044607
+        - rid: 5859887093462860095
+        - rid: 5859887093462860096
+    - rid: 5859887093462860095
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -65,7 +66,15 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 0}
-    - rid: 1558464503987044636
+    - rid: 5859887093462860096
+      type: {class: 'BlackboardVariable`1[[ObjectDetection, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3957389010563416452
+          m_Value1: 17782196439051291814
+        Name: New Object Detection
+        m_Value: {fileID: 0}
+    - rid: 5859887093462860246
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -73,7 +82,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 10
-    - rid: 1558464503987044637
+    - rid: 5859887093462860247
       type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -81,7 +90,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: test AI
-    - rid: 1558464503987044638
+    - rid: 5859887093462860248
       type: {class: 'BlackboardVariable`1[[Unity.Behavior.LogMessageToConsoleAction/LogType, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -89,7 +98,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 0
-    - rid: 1558464503987044650
+    - rid: 5859887093462860249
       type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -100,10 +109,10 @@ MonoBehaviour:
         m_Parent:
           rid: -2
         m_Child:
-          rid: 1558464503987044651
+          rid: 5859887093462860250
         Repeat: 1
         AllowMultipleRepeatsPerTick: 0
-    - rid: 1558464503987044651
+    - rid: 5859887093462860250
       type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -112,11 +121,11 @@ MonoBehaviour:
         Graph:
           rid: 1558464503987044601
         m_Parent:
-          rid: 1558464503987044650
+          rid: 5859887093462860249
         m_Children:
-        - rid: 1558464503987044652
-        - rid: 1558464503987044653
-    - rid: 1558464503987044652
+        - rid: 5859887093462860251
+        - rid: 5859887093462860252
+    - rid: 5859887093462860251
       type: {class: WaitAction, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -125,10 +134,10 @@ MonoBehaviour:
         Graph:
           rid: 1558464503987044601
         m_Parent:
-          rid: 1558464503987044651
+          rid: 5859887093462860250
         SecondsToWait:
-          rid: 1558464503987044636
-    - rid: 1558464503987044653
+          rid: 5859887093462860246
+    - rid: 5859887093462860252
       type: {class: LogMessageToConsoleAction, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -137,11 +146,11 @@ MonoBehaviour:
         Graph:
           rid: 1558464503987044601
         m_Parent:
-          rid: 1558464503987044651
+          rid: 5859887093462860250
         Message:
-          rid: 1558464503987044637
+          rid: 5859887093462860247
         LogLevel:
-          rid: 1558464503987044638
+          rid: 5859887093462860248
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +161,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
-  m_Name: test behavior graph
+  m_Name: AttackBehavior
   m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorAuthoringGraph
   Blackboard: {fileID: 7027958663514110767}
   m_Description: 
@@ -161,7 +170,7 @@ MonoBehaviour:
   - rid: 1558464503987044612
   - rid: 1558464503987044625
   - rid: 1558464503987044639
-  m_VersionTimestamp: 639011471061155820
+  m_VersionTimestamp: 639069236166247270
   m_SerializedVersion: 1
   m_DebugInfo: {fileID: 6320146113891003309}
   m_RuntimeGraph: {fileID: -6529566815696172020}
@@ -234,7 +243,7 @@ MonoBehaviour:
     - rid: 1558464503987044608
       type: {class: StartNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 0, y: 0}
+        Position: {x: 0.0000034570694, y: -3.1999984}
         ID:
           m_Value0: 15407922657100862648
           m_Value1: 854425709842718120
@@ -397,7 +406,7 @@ MonoBehaviour:
     - rid: 1558464503987044639
       type: {class: SequenceNodeModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
       data:
-        Position: {x: 0.30000162, y: 113.69999}
+        Position: {x: 0.29994392, y: 176.07727}
         ID:
           m_Value0: 3428996629346191749
           m_Value1: 1473313921993162800
@@ -437,15 +446,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: test behavior graph Blackboard
+  m_Name: AttackBehavior Blackboard
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
-  VersionTimestamp: 639011468304050990
+  VersionTimestamp: 639067777040752990
   AssetID:
-    m_Value0: 0
-    m_Value1: 0
+    m_Value0: 10395616573864412955
+    m_Value1: 11676237625137358106
   m_Blackboard:
     m_Variables:
     - rid: 1558464503987044610
+    - rid: 5859887093462860099
   m_SharedBlackboardVariableGuids: []
   references:
     version: 2
@@ -458,6 +468,14 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 0}
+    - rid: 5859887093462860099
+      type: {class: 'BlackboardVariable`1[[ObjectDetection, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 3957389010563416452
+          m_Value1: 17782196439051291814
+        Name: New Object Detection
+        m_Value: {fileID: 0}
 --- !u!114 &6320146113891003309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +486,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: test behavior graph Debug Info
+  m_Name: AttackBehavior Debug Info
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphDebugInfo
   m_CodeBreakPointsList: []
 --- !u!114 &7027958663514110767
@@ -481,14 +499,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: test behavior graph Blackboard
+  m_Name: AttackBehavior Blackboard
   m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorBlackboardAuthoringAsset
   AssetID:
-    m_Value0: 0
-    m_Value1: 0
+    m_Value0: 10395616573864412955
+    m_Value1: 11676237625137358106
   m_Variables:
   - rid: 1558464503987044611
-  m_VersionTimestamp: 639011468304050990
+  - rid: 5859887093462860092
+  m_VersionTimestamp: 639067777040752990
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: 4835027291832647645}
@@ -502,6 +521,16 @@ MonoBehaviour:
           m_Value0: 1
           m_Value1: 0
         Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 5859887093462860092
+      type: {class: 'TypedVariableModel`1[[ObjectDetection, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 3957389010563416452
+          m_Value1: 17782196439051291814
+        Name: New Object Detection
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}

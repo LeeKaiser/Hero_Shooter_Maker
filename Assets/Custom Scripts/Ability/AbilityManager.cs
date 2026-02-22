@@ -35,7 +35,7 @@ public class AbilityManager : MonoBehaviour
             ability.ActivateReload();
             ability.ReloadOverTime(Time.deltaTime);
             //call ability's ui to update
-            ability.AbilUIRef.UpdateUI();
+            ability.abilUIRef.UpdateUI();
         }
     }
 
@@ -89,17 +89,17 @@ public class AbilityManager : MonoBehaviour
         }
         ability.Initialize(this, playerRef);
 
-        GameObject AbilUI = Instantiate(ability.abilityStat.abilUIPrefab);
+        GameObject abilUI = Instantiate(ability.abilityStat.abilUIPrefab);
 
 
-        AbilityUI AbilUIScript = AbilUI.GetComponent<AbilityUI>();
-        AbilUIScript.transform.SetParent(playerCanvas, false);
-        if (AbilUIScript != null)
+        AbilityUI abilUIScript = abilUI.GetComponent<AbilityUI>();
+        abilUIScript.transform.SetParent(playerCanvas, false);
+        if (abilUIScript != null)
         {
-            AbilUIScript.abilityRef = ability;
-            AbilUIScript.Initialize();
+            abilUIScript.abilityRef = ability;
+            abilUIScript.Initialize();
         }
-        ability.AbilUIRef = AbilUIScript;
+        ability.abilUIRef = abilUIScript;
         abilitiesList.Add(ability);
         //add to ability class dictionary
         foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
