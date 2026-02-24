@@ -235,10 +235,10 @@ public class DecisionTreeEditorWindow : EditorWindow
         }
         else
         {
-            node.behavior = (BehaviorGraph)EditorGUILayout.ObjectField(
-                "Behavior Graph",
-                node.behavior,
-                typeof(BehaviorGraph),
+            node.action = (AIAction)EditorGUILayout.ObjectField(
+                "AI Action",
+                node.action,
+                typeof(AIAction),
                 false
             );
         }

@@ -25,6 +25,8 @@ public class ObjectDetection : MonoBehaviour
 
     PlayerSummary selfSummary = new PlayerSummary();
 
+    GameObject focusPOI;
+
     KnownContext currentContext = new KnownContext();
 
     void Start()
@@ -47,8 +49,6 @@ public class ObjectDetection : MonoBehaviour
         //scan for all objects in scanRads 
         Collider[] rangeCheck = Physics.OverlapSphere(transform.position, scanRads);
         //put in list
-        List<PlayerSummary> alliesList = new List<PlayerSummary>();
-        List<GameObject> enemiesList = new List<GameObject>();
         foreach (var obj in rangeCheck)
         {
             //check if its player
@@ -99,16 +99,19 @@ public class ObjectDetection : MonoBehaviour
                         
                     }
 
-
-                    
                 }
                 
             }
             //add other object types
-        
+            if (obj.CompareTag("Point Of Interest"))
+            {
+                focusPOI = obj.gameObject;
+                //Debug.Log($"point of interest: {focusPOI}");
+            }
         }
         
         currentContext.Init(playerRef, knownAllyList, knownEnemyList, selfSummary);
+        currentContext.SetPOI(focusPOI);
         
     }
 

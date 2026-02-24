@@ -8,6 +8,7 @@ public struct KnownContext
     public Dictionary <PlayableCharCore, PlayerSummary> knownAllyList;
     public Dictionary <PlayableCharCore, PlayerSummary> knownEnemyList;
     public PlayerSummary selfSummary;
+    public GameObject focusPOI;
 
     public void Init(GameObject pr, Dictionary <PlayableCharCore, PlayerSummary> kal, Dictionary <PlayableCharCore, PlayerSummary> kel, PlayerSummary ss)
     {
@@ -16,6 +17,8 @@ public struct KnownContext
         knownEnemyList = kel;
         selfSummary = ss;
     }
+
+    public void SetPOI(GameObject poi){focusPOI = poi;}
 
     public string toString()
     {
@@ -34,6 +37,8 @@ public struct KnownContext
         {
             retStr += player.Value.toString();
         }
+
+        retStr += $"point of interest: {focusPOI}";
 
         return retStr;
     }

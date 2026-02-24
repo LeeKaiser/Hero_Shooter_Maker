@@ -260,12 +260,18 @@ namespace StarterAssets
 
             float baseSpeed = 0f;
 
-            if (moveInput != Vector2.zero)
+            if (TurnToFaceMoveDirection)
+            {
+               baseSpeed = ForwardMoveSpeed;
+            }
+
+            else if (moveInput != Vector2.zero)
             {
                 // Determine which axis dominates — this is raw input based, so consistent
                 if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
                 {
                     baseSpeed = moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                    
                 }
                 else
                 {
