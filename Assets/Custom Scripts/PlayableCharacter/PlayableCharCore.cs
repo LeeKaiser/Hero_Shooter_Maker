@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 using StarterAssets;
+using MovementStyles;
 
 
 public class PlayableCharCore : MonoBehaviour
@@ -36,7 +37,7 @@ public class PlayableCharCore : MonoBehaviour
     private float GravityMult = 1f;
 
     [Tooltip("If player faces movement or camera (true for movement, false for camera)")]
-    public bool PlayerFaceMovement = true;
+    public MovementStyle movementStyle;
 
     [Header("Misc.")]
     [Tooltip("Third person controller script")]
@@ -70,7 +71,7 @@ public class PlayableCharCore : MonoBehaviour
         playerMovement.SetBackwardMovementSpeed(GetBackwardSpeed());
         playerMovement.SetGravity(GetGravity());
         playerMovement.SetJumpHeight(GetJumpHeight());
-        playerMovement.setPlayerFaceMove(PlayerFaceMovement);
+        playerMovement.setPlayerMovementStyle(movementStyle);
         
     }
 

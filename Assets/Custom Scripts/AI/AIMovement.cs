@@ -1,56 +1,46 @@
 using UnityEngine;
 using UnityEngine.AI;
+using StarterAssets;
 
 public class AIMovement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private PlayableCharCore playerRef;
 
+
     public Transform lookTarget;
     public Transform moveTarget;
 
     [SerializeField] private float angleDiff;
 
+    private StarterAssetsInputs movementInput;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerRef = GetComponentInParent<PlayableCharCore>();
-
+        movementInput = GetComponent<StarterAssetsInputs>();
+        agent.updateRotation = false;
+        agent.speed = 0.01f;
     }
 
     void Update()
     {
         MoveToLocation(moveTarget.position);
         SetLookDirection(lookTarget.position);
-        CorrectNavMeshData();
+        //CorrectNavMeshData();
+        AgentMovement();
     }
 
-    public void CorrectNavMeshData()
+    public void AgentMovement()
     {
-        agent.updateRotation = playerRef.PlayerFaceMovement;
-        
-        if (!agent.updateRotation)
-        {
-            //determine what the speed would be based on angle between player rotation and player movement vector
-            Vector3 lookVect = transform.forward.normalized;
-            Vector3 moveVect = agent.velocity.normalized;
-
-            angleDiff = Mathf.Acos(Vector3.Dot(lookVect, moveVect)) * Mathf.Rad2Deg;
-
-            if (angleDiff <= 45)
-            {
-                agent.speed = playerRef.GetForwardSpeed();
-            }
-            else if (angleDiff >= 135)
-            {
-                agent.speed = playerRef.GetBackwardSpeed();
-            }
-            else
-            {
-                agent.speed = playerRef.GetStrafeSpeed();
-            }
-        }
+        Vector3 directionToInput = transform.InverseTransformDirection(agent.velocity.normalized);
+        Vector2 agentDirection = new Vector2(directionToInput.normalized.x, directionToInput.normalized.z);
+        Debug.Log(agentDirection);
+        movementInput.MoveInput(agentDirection);
     }
+
+    
 
     public void MoveToLocation(Vector3 destination)
     {
