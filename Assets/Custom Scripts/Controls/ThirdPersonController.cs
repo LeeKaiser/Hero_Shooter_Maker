@@ -2,6 +2,7 @@
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
+using MovementStyles;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -25,7 +26,7 @@ namespace StarterAssets
         public float BackwardMoveSpeed = 2.0f;
 
         [Tooltip("if the character will turn to face movement direction or not")]
-        public bool TurnToFaceMoveDirection = true;
+        public MovementStyle movementStyle;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -73,32 +74,10 @@ namespace StarterAssets
         [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
 
-        [Header("Cinemachine")]
-        [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
-        public GameObject CinemachineCameraTarget;
+        [Tooltip("Transform that represents the place player is looking at")]        
+        public Transform targetPoint;
 
-        [Tooltip("How far in degrees can you move the camera up")]
-        public float TopClamp = 70.0f;
-
-        [Tooltip("How far in degrees can you move the camera down")]
-        public float BottomClamp = -30.0f;
-
-        [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
-        public float CameraAngleOverride = 0.0f;
-
-        [Tooltip("For locking the camera position on all axis")]
-        public bool LockCameraPosition = false;
-
-        [Tooltip("Control camera sensitivity for x axis")]
-        public float CameraSensitivityX = 1.0f;
-        [Tooltip("Control camera sensitivity for y axis")]
-        public float CameraSensitivityY = 1.0f;
-
-
-
-        // cinemachine
-        private float _cinemachineTargetYaw;
-        private float _cinemachineTargetPitch;
+        
 
         // player
         private float _speed;
@@ -125,9 +104,9 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        
 
-        private const float _threshold = 0.01f;
+        
 
         private bool _hasAnimator;
 
@@ -147,16 +126,11 @@ namespace StarterAssets
         private void Awake()
         {
             // get a reference to our main camera
-            if (_mainCamera == null)
-            {
-                _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            }
+            
         }
 
         private void Start()
-        {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+        {   
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -183,13 +157,6 @@ namespace StarterAssets
                 Move();
             }
             
-        }
-
-        private void LateUpdate()
-        {
-            if (IsActive){
-                CameraRotation();
-            }
         }
 
         private void AssignAnimationIDs()
@@ -232,46 +199,14 @@ namespace StarterAssets
                 QueryTriggerInteraction.Ignore);
         }
 
-        private void CameraRotation()
-        {
-            // if there is an input and camera position is not fixed
-            if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
-            {
-                //Don't multiply mouse input by Time.deltaTime;
-                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * CameraSensitivityX;//edit this to have sensitivity control
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier * CameraSensitivityY;
-            }
-
-            // clamp our rotations so our values are limited 360 degrees
-            _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
-
-            // Cinemachine will follow this target
-            CinemachineCameraTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride,
-                _cinemachineTargetYaw, 0.0f);
-        }
+        
 
         private void Move()
         {
             Vector2 moveInput = _input.move.normalized;
             Vector3 inputDirection = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
 
-            float baseSpeed = 0f;
-
-            if (moveInput != Vector2.zero)
-            {
-                // Determine which axis dominates — this is raw input based, so consistent
-                if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
-                {
-                    baseSpeed = moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
-                }
-                else
-                {
-                    baseSpeed = StrafeMoveSpeed;
-                }
-            }
+            float baseSpeed = DetermineSpeed(moveInput);
 
             float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
 
@@ -305,43 +240,12 @@ namespace StarterAssets
             _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
             if (_animationBlend < 0.01f) _animationBlend = 0f;
 
-            // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is a move input rotate player when the player is moving
-            if (_input.move != Vector2.zero && TurnToFaceMoveDirection)
-            {
-                _targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
-                                  _mainCamera.transform.eulerAngles.y;
-            } //otherwise face forward
-            else{
-                _targetRotation = Mathf.Atan2(0, 1) * Mathf.Rad2Deg +
-                                  _mainCamera.transform.eulerAngles.y;
-                
-            }
+            PlayerFaceTargetPoint(inputDirection);
 
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
-
-            // rotate to face input direction relative to camera position
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-
-            Vector3 targetDirection;
-            if (TurnToFaceMoveDirection){ //moves forward after turning player
-                targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
-
-                
-            }else{ //move in desired direction without having player turned
-                Vector3 cameraForward = _mainCamera.transform.forward;
-                Vector3 cameraRight = _mainCamera.transform.right;
-                cameraForward.y = 0f;
-                cameraRight.y = 0f;
-                cameraForward.Normalize();
-                cameraRight.Normalize();
-
-                targetDirection = cameraForward * _input.move.y + cameraRight * _input.move.x;
-            }
+            Vector3 targetDirection = GetTargetDirection();
 
             // move the player
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                _controller.Move(targetDirection.normalized * _speed * Time.deltaTime +
                     new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
             
 
@@ -352,6 +256,69 @@ namespace StarterAssets
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
             }
         }
+
+        private float DetermineSpeed(Vector2 moveInput)
+        {
+            switch(movementStyle)
+            {
+                case MovementStyle.AlwaysFaceForward:
+                    // Determine which axis dominates — this is raw input based, so consistent
+                    if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
+                    {
+                        return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                        
+                    }
+                    else
+                    {
+                        return StrafeMoveSpeed;
+                    }
+                case MovementStyle.RotateInsteadOfStrafe:
+                    return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                default:
+                    return ForwardMoveSpeed;
+            }
+        }
+
+        private void PlayerFaceTargetPoint(Vector3 inputDirection)
+        {
+            //vector of player facing the targetpoint
+            Vector3 playerFaceTarget = targetPoint.position - transform.position;
+            //playerFaceTarget.y = 0;
+            // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
+            // if there is a move input rotate player when the player is moving
+            _targetRotation = Mathf.Atan2(playerFaceTarget.x, playerFaceTarget.z) * Mathf.Rad2Deg;
+
+            switch(movementStyle)
+            {
+                case MovementStyle.FaceMovement:
+                    _targetRotation += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
+                    break;
+                case MovementStyle.RotateInsteadOfStrafe:
+                    _targetRotation = StrafeMoveSpeed * RotationSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
+                    break;
+                default:
+                    break;
+            }
+
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
+                    RotationSmoothTime);
+
+            // rotate
+            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+        }
+
+         private Vector3 GetTargetDirection()
+        {
+            switch(movementStyle)
+            {
+                case MovementStyle.AlwaysFaceForward:
+                    return transform.forward * _input.move.y + transform.right * _input.move.x;
+                case MovementStyle.RotateInsteadOfStrafe:
+                    return _input.move.y >= 0 ? transform.forward : -transform.forward;
+                default:
+                    return transform.forward;
+            }
+        } 
 
         private void JumpAndGravity()
         {
@@ -424,8 +391,6 @@ namespace StarterAssets
                 _fallTimeoutDelta = FallTimeout;
 
                 
-            } else{
-                
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -475,35 +440,19 @@ namespace StarterAssets
             }
         }
 
-        public void SetForwardMovementSpeed(float speed){
-            ForwardMoveSpeed = speed;
-        }
+        public void SetForwardMovementSpeed(float speed){ ForwardMoveSpeed = speed;}
 
-        public void SetStrafeMovementSpeed(float speed){
-            StrafeMoveSpeed = speed;
-        }
+        public void SetStrafeMovementSpeed(float speed){StrafeMoveSpeed = speed;}
 
-        public void SetBackwardMovementSpeed(float speed){
-            BackwardMoveSpeed = speed;
-        }
+        public void SetBackwardMovementSpeed(float speed){BackwardMoveSpeed = speed;}
 
-        public void SetGravity(float grav){
-            Gravity = grav;
-        }
+        public void SetGravity(float grav){Gravity = grav;}
 
-        public void SetJumpHeight(float jump){
-            JumpHeight = jump;
-        }
+        public void SetJumpHeight(float jump){JumpHeight = jump;}
 
         //intended to be used for air jump mechanics
-        public void SetCanJump(bool canJump)
-        {
-            CanJump = canJump;
-        }
+        public void SetCanJump(bool canJump){CanJump = canJump;}
 
-        public void setPlayerFaceMove(bool FaceMove)
-        {
-            TurnToFaceMoveDirection = FaceMove;
-        }
+        public void setPlayerMovementStyle(MovementStyle FaceMove){movementStyle = FaceMove;}
     }
 }

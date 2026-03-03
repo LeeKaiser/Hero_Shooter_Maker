@@ -11,10 +11,10 @@ public class DecisionTree : ScriptableObject
     
     public List<DecisionTreeNode> allNodes = new List<DecisionTreeNode>();
 
-    public BehaviorGraph MakeDecision(KnownContext context)
+    public AIAction MakeDecision(KnownContext context)
     {
-        BehaviorGraph determinedBehavior = decisionTreeRoot.GetBehavior(context);
-        return determinedBehavior;
+        AIAction determinedAction = decisionTreeRoot.GetAction(context);
+        return determinedAction;
     }
 
     

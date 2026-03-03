@@ -39,7 +39,6 @@ public class AttackTest : Ability
 
         InterruptReload();
         Debug.Log("Attack1 activated");
-        targetPoint.GetComponent<TargetPointScript>().SetTargetPointViaCam();
         
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
         attackObj.transform.LookAt(targetPoint);
