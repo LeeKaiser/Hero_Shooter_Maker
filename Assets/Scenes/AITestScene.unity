@@ -4404,7 +4404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3772487131666148388, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3790546632043134045, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -4626,6 +4626,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: targetPoint
+      value: 
+      objectReference: {fileID: 383882034}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -4660,7 +4664,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7935477338177272628, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.8647013
+      value: -14.864701
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935477338177272628, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.580987
       objectReference: {fileID: 0}
     - target: {fileID: 7935477338177272628, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12457,8 +12465,8 @@ MonoBehaviour:
   BottomClamp: -90
   CameraAngleOverride: 0
   LockCameraPosition: 0
-  CameraSensitivityX: 1
-  CameraSensitivityY: 1
+  CameraSensitivityX: 5
+  CameraSensitivityY: 5
   targetPoint: {fileID: 733651087}
   clickLayers:
     serializedVersion: 2
@@ -12628,12 +12636,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: movementStyle
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: playerAllegience
       value: 
       objectReference: {fileID: 897932086}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: PlayerFaceMovement
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2765935624619614290, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -13075,7 +13087,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1483635085703114861, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6572968947543702063, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
