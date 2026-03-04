@@ -20,7 +20,7 @@ public class PatrolAction : AIAction
     }
     public override void DetermineAim()
     {
-        //aimTarget.position = movementDestination.position;
+        aimTarget.position = movementDestination.position;
         
     }
     public override void MakeInput()
