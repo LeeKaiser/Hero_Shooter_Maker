@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackInfo : MonoBehaviour
 {
-    public GameObject owningPlayer;
+    public PlayableCharCore owningPlayer;
     public TeamManager attackAllegience;
 
     public int baseDamage;

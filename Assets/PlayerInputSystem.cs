@@ -102,7 +102,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Ability1"",
+                    ""name"": ""Num[1]"",
                     ""type"": ""Button"",
                     ""id"": ""ad1be552-2721-4ff3-b2aa-8ee95fdb29da"",
                     ""expectedControlType"": """",
@@ -111,13 +111,193 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack1"",
+                    ""name"": ""Num[2]"",
+                    ""type"": ""Button"",
+                    ""id"": ""b07fb16f-23b6-4424-b5ef-35b865155ea4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[3]"",
+                    ""type"": ""Button"",
+                    ""id"": ""78231805-d70e-4662-bfeb-61c91e453bad"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[4]"",
+                    ""type"": ""Button"",
+                    ""id"": ""37858c2c-6ce2-416a-ba36-4a6dace53475"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[5]"",
+                    ""type"": ""Button"",
+                    ""id"": ""21151c6f-9415-4841-aa7f-2e855de9384b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[6]"",
+                    ""type"": ""Button"",
+                    ""id"": ""22d6aaf2-a0e2-470a-882b-fd89d9f6a5d6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[7]"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4aae37f-dfe8-46e9-b8aa-81adeb68f29c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[8]"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba57c01d-0891-4f1c-a95b-5e7e32f5ad90"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Num[9]"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f864140-1923-4b9f-8659-b1d954a4000f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[E]"",
+                    ""type"": ""Button"",
+                    ""id"": ""8021e0f4-5064-44b6-890a-6ec9f25c12aa"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[Q]"",
+                    ""type"": ""Button"",
+                    ""id"": ""d54407f8-7ce9-4fe6-85c8-bacc79ed671f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[F]"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a24446c-cc67-45d9-a757-7f4adb3afaa9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[R]"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e644de3-4f64-44ca-8f55-25c79c0bb6f7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[Z]"",
+                    ""type"": ""Button"",
+                    ""id"": ""b010f994-c3af-4c11-875f-46786b340fa4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[X]"",
+                    ""type"": ""Button"",
+                    ""id"": ""8ec1c27b-d70b-4909-a65d-42c4848278ce"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[C]"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7444e7c-42cd-4ad1-b51b-40c0781ba01c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ability[V]"",
+                    ""type"": ""Button"",
+                    ""id"": ""a134409f-2142-41ae-8852-c832fafbb162"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement[Lshift]"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e14f410-1165-42af-a038-103b76857141"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement[Lctrl]"",
+                    ""type"": ""Button"",
+                    ""id"": ""a2429ce5-6c42-4ca9-bbd0-797df0afc502"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack[L]"",
                     ""type"": ""Button"",
                     ""id"": ""7c1cb8f3-be95-415a-b7b9-52d32880fe13"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack[R]"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca6e0c33-04d8-496c-9ddb-923f3dd0ffc8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MouseScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""6a9a27ae-c9fb-43c3-88b4-375be6d938f8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Look"",
@@ -129,15 +309,6 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Crouch"",
-                    ""type"": ""Button"",
-                    ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
@@ -147,12 +318,30 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""Misc[I]"",
                     ""type"": ""Button"",
-                    ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
+                    ""id"": ""fe15175b-304c-40ab-891d-97c200706a73"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Misc[O]"",
+                    ""type"": ""Button"",
+                    ""id"": ""25367b6f-ea97-4c76-b12e-fc5a66e2b04a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Misc[M]"",
+                    ""type"": ""Button"",
+                    ""id"": ""a0b34cd7-8bc4-4cd4-96dd-ca48f2caab90"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -296,18 +485,18 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Num[1]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""183fcaee-26e7-47af-9bf0-68f3fe9f9fa0"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": ""Hold,Tap"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Num[1]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -318,7 +507,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Num[1]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -329,7 +518,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Num[1]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -340,7 +529,1162 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Ability1"",
+                    ""action"": ""Num[1]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b1da1e7d-b3b6-4c77-9b82-529402b7c12a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[2]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4e06a4d-f427-46a5-a154-4d7c2f114ff0"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[2]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48b8b825-adb9-4336-9bb1-57ab2dcaf6b1"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[2]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5369fc06-81f2-4dae-acb1-4f3cc2f9c030"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[2]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e863d7b0-c31b-49c7-85fd-8fb53f066c46"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[2]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d58f260e-71f1-4356-8046-d302c87521cb"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[3]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81eded8f-0f66-4621-9b6b-02a4dc7d9217"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[3]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""57263384-2918-4a92-a904-ba80a1b963f5"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[3]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35231718-252a-4c94-b0fb-e8fdf5406f85"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[3]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fac7d07-f2af-4731-9a1b-042ea5d28658"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[3]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8c748e9f-526a-4fb7-911f-8056795c28da"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[4]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9962f503-f303-4515-987e-7a0ca811c531"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[4]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b795d87-5d29-417e-8208-261d80ae50a9"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[4]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6102431-e5d3-4b24-92a2-829f73b9b960"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[4]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95834106-c6e6-4f00-aef7-bfd7c479b884"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[4]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""78e36f38-d912-4131-8a4e-f552dcaee282"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[5]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c239fa5-d540-45b2-9f3d-1569d594280a"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[5]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8878701f-d8f6-413b-8af6-b9162b9d72b6"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[5]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34cb1870-740f-4645-aa86-6edd17e52594"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[5]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cd1bdaa-d7c5-4442-a847-7a973664d405"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[5]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6392ddf7-870d-4ac4-8bcf-7fcdc8699173"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[6]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""780ac3ef-472c-4eb8-86b2-146fb3953e00"",
+                    ""path"": ""<Keyboard>/6"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[6]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c69051a4-b6b5-4def-99a6-fb91e0d89b9d"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[6]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28fcae99-a6d8-46f8-a847-835b5b973cd3"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[6]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""742457fa-5498-4ee1-87b6-40acdcd26985"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[6]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efd98c51-66e6-45b5-81ee-ff1f099ba494"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[7]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db601ae8-a1fd-485f-840f-d1126e863d50"",
+                    ""path"": ""<Keyboard>/7"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[7]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""45875c46-7426-4df2-8a85-3a58f1029374"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[7]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c94a4bd5-1bb0-4f55-b148-1603089f49f1"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[7]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0449391-add1-4169-8cd7-eff0dd0dcae9"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[7]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b97d7ada-3e13-4906-bd4f-7b7285afcf34"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[8]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14848d59-f01c-476c-badc-148ef2490fd8"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[8]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ad9c11c-8751-436e-ba02-d1c6a85b9f1f"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[8]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d570f5b-c981-4e1f-b4a0-8054dd5011de"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[8]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38d510eb-2daa-4d1a-afe0-d052d71d3d03"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[8]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32063e91-b37e-4ce0-9006-226b0da51b1c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Num[9]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4b20474-380c-430b-b390-e8d1724341d9"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Num[9]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9100ee41-72a6-4c86-8674-19e488c0bdc4"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Num[9]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f42031d7-be5f-49cf-a9b3-417caaf22711"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Num[9]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""064170c3-9043-44c3-9758-4a98a5325298"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Num[9]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c75ff67-fe5f-4ba7-9bb7-c4a35f63d790"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[E]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3c71ee0e-41c9-4ce5-a890-475c4339adb4"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[E]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12427972-385f-475b-8b5c-7049ea86c0ed"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[E]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1060a165-cc31-4ed7-8af7-c07b8e463856"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[E]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e270c11d-fc99-4fec-b17e-4c508e6fa2e8"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[E]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50e8cffc-81c0-4cb2-ac2b-29d08ccc6245"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[Q]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ff8917a-b987-4ab8-a757-c4a26761841d"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[Q]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""72e95392-f863-49f2-b26a-d424162b977e"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[Q]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8dc38fcb-1fbf-46bb-ac91-88fdd04f4454"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[Q]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f78b36c-e0cd-4d9f-8ee8-87e10e026cf2"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[Q]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""03da607f-b8e1-426f-8faf-c458a25d0699"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[F]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d68e0242-2d4d-4c5d-9ed4-6185ffa9a776"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[F]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""216b148b-e395-47d7-9ce0-54a0985d62d4"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[F]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c9d7f5d-9847-4274-9922-5be43f88a1f5"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[F]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6e34d54-6dcb-4bc5-ac44-f17a65b8b68d"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[F]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd2663dd-def7-4d17-87b6-9a31045ff251"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""daf7e7e0-9bcb-4822-bcb3-b76b82d2b99b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f5dffcf0-e683-4faf-98d9-2153d8befe0a"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b00a69ee-9c06-4c73-bc52-127d1d0e3f49"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d85a931c-6d7b-4adb-b80e-2de90120db9d"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f97f8682-5acf-4946-ace6-0ab388a0951e"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Movement[Lshift]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6dc5d689-f74b-487a-9541-fed8bfcab8d1"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Movement[Lshift]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d53d92c-db43-481e-b043-1620bf0da397"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Movement[Lshift]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c841c04-a99e-4edb-af61-d340a0f40702"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Movement[Lshift]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d203cc66-7c99-415f-97ea-5d56131702b6"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Movement[Lshift]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1be1da6e-854c-457b-8bb8-c6ac6e9e4a69"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Movement[Lctrl]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d21274a5-35a2-4b2c-8100-b082ca8551a1"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Movement[Lctrl]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""994350ac-5f46-4b21-b3d4-0a5845b45a92"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Movement[Lctrl]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fbcdb71-182b-4c0b-8c12-b092f7c54ad9"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Movement[Lctrl]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b935620-19d5-4186-b84a-36faf1bdbac9"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Movement[Lctrl]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5661a74e-e931-49c0-90e1-c6b0f5951509"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[Z]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""40a1c5cd-f542-4389-8a22-910469dfd981"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[Z]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9d59b1f-570d-4c65-a135-1af54280e84c"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[Z]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""042dff23-9b0a-4bb9-acf9-fe07b50fa6a6"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[Z]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01f66d32-72c0-4acb-a807-0f8261b6bf7f"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[Z]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e644bdb-b6cc-4741-accd-b44d4f3a7253"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[X]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""66876299-14f9-4ff3-a42a-5f0943ba499c"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[X]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58fbc029-ed19-4c93-8187-8703573d875b"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[X]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bcf30a6-9933-4eba-a4b2-8099edf0c4d7"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[X]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""417691e4-e4a3-4050-974c-8eae0f3189ff"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[X]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc3d5542-c6bd-4bf3-a8f1-3134c7eae495"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[C]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b658b651-8b9e-43c2-884c-1b0b06d17d9f"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[C]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7206a75a-29f6-4ffb-9139-0986abaa7099"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[C]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ff92be2-cf08-4658-a26b-9913aa63bbed"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[C]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0174753-e9b3-4e28-9de4-3fccf1326afa"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[C]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5cfa9907-704f-410a-bc91-1b2481ec0934"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Ability[V]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4e19586-6f3d-4a7e-9239-9eef97700bf6"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Ability[V]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffd2c85f-5238-45d2-ad00-b2c6b904608b"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Ability[V]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c527f570-0f17-4c26-838c-0fb1d096f4a2"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Ability[V]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc516ac4-bcfd-4aaf-9241-2baf3cfc32e6"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Ability[V]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71496f7e-1acc-4f31-85ee-f33c9c539381"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Misc[I]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bb494e18-d779-4fda-a7db-d31673163431"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Misc[I]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ec58a0ed-c326-4bc3-b024-9506fa610e19"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Misc[I]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6606d66-5f2f-4502-9b41-030927db703f"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Misc[I]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab96a973-829e-47ee-afa4-655ea6d1513f"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Misc[I]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7303ee25-3131-465c-b77b-466ffbdcbad0"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Misc[M]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12b160b4-c811-41cb-a749-caaa6ec06a36"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Misc[M]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""33f8efbd-39d5-4daf-aa0f-9314b2fd5561"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Misc[M]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc7f19f6-0dff-4d2b-ad60-7f1584098f2b"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Misc[M]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4521fc07-5209-45df-a9ba-6ddfe32ae26c"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Misc[M]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46a972ff-a699-4652-a5bd-a2deb712da1d"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Misc[O]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d849b91f-35aa-4d1e-a5bc-2b8fded5e597"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Misc[O]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f742bfac-02f9-4e3b-9cc3-e5a94e447be6"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Misc[O]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81ba0cc0-b772-42de-b941-8e086ebb051a"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Misc[O]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73f6d5c7-9fda-464f-bc57-3f366511d24d"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Misc[O]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -351,7 +1695,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Attack1"",
+                    ""action"": ""Attack[L]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -362,7 +1706,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": ""Hold,Tap"",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Attack1"",
+                    ""action"": ""Attack[L]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -373,7 +1717,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Attack1"",
+                    ""action"": ""Attack[L]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -384,7 +1728,7 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick"",
-                    ""action"": ""Attack1"",
+                    ""action"": ""Attack[L]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -395,7 +1739,62 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""XR"",
-                    ""action"": ""Attack1"",
+                    ""action"": ""Attack[L]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""badb1a36-4c0c-48d7-babd-bdab2b5cbf82"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Attack[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4163c319-f630-4d39-b540-07e400a5f0c4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": ""Hold,Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Attack[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0ac18926-23fd-43cd-a15e-c8318884a052"",
+                    ""path"": ""<Touchscreen>/primaryTouch/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Touch"",
+                    ""action"": ""Attack[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98140f41-0940-45d6-9c81-f865688b8579"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Attack[R]"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b157770-123f-43fd-b580-8668c5b525b7"",
+                    ""path"": ""<XRController>/{PrimaryAction}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Attack[R]"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -434,39 +1833,6 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f2e9ba44-c423-42a7-ad56-f20975884794"",
-                    ""path"": ""<Keyboard>/ctrl"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8cbb2f4b-a784-49cc-8d5e-c010b8c7f4e6"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d8bf24bf-3f2f-4160-a97c-38ec1eb520ba"",
-                    ""path"": ""<XRController>/trigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""eb40bb66-4559-4dfa-9a2f-820438abb426"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -500,23 +1866,12 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4f4649ac-64a8-4a73-af11-b3faef356a4d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""6a166bba-8209-4772-888b-92e28fbf196c"",
+                    ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Crouch"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36e52cba-0905-478e-a818-f4bfcb9f3b9a"",
-                    ""path"": ""<Keyboard>/c"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Crouch"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""MouseScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1105,12 +2460,33 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Ability1 = m_Player.FindAction("Ability1", throwIfNotFound: true);
-        m_Player_Attack1 = m_Player.FindAction("Attack1", throwIfNotFound: true);
+        m_Player_Num1 = m_Player.FindAction("Num[1]", throwIfNotFound: true);
+        m_Player_Num2 = m_Player.FindAction("Num[2]", throwIfNotFound: true);
+        m_Player_Num3 = m_Player.FindAction("Num[3]", throwIfNotFound: true);
+        m_Player_Num4 = m_Player.FindAction("Num[4]", throwIfNotFound: true);
+        m_Player_Num5 = m_Player.FindAction("Num[5]", throwIfNotFound: true);
+        m_Player_Num6 = m_Player.FindAction("Num[6]", throwIfNotFound: true);
+        m_Player_Num7 = m_Player.FindAction("Num[7]", throwIfNotFound: true);
+        m_Player_Num8 = m_Player.FindAction("Num[8]", throwIfNotFound: true);
+        m_Player_Num9 = m_Player.FindAction("Num[9]", throwIfNotFound: true);
+        m_Player_AbilityE = m_Player.FindAction("Ability[E]", throwIfNotFound: true);
+        m_Player_AbilityQ = m_Player.FindAction("Ability[Q]", throwIfNotFound: true);
+        m_Player_AbilityF = m_Player.FindAction("Ability[F]", throwIfNotFound: true);
+        m_Player_AbilityR = m_Player.FindAction("Ability[R]", throwIfNotFound: true);
+        m_Player_AbilityZ = m_Player.FindAction("Ability[Z]", throwIfNotFound: true);
+        m_Player_AbilityX = m_Player.FindAction("Ability[X]", throwIfNotFound: true);
+        m_Player_AbilityC = m_Player.FindAction("Ability[C]", throwIfNotFound: true);
+        m_Player_AbilityV = m_Player.FindAction("Ability[V]", throwIfNotFound: true);
+        m_Player_MovementLshift = m_Player.FindAction("Movement[Lshift]", throwIfNotFound: true);
+        m_Player_MovementLctrl = m_Player.FindAction("Movement[Lctrl]", throwIfNotFound: true);
+        m_Player_AttackL = m_Player.FindAction("Attack[L]", throwIfNotFound: true);
+        m_Player_AttackR = m_Player.FindAction("Attack[R]", throwIfNotFound: true);
+        m_Player_MouseScroll = m_Player.FindAction("MouseScroll", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-        m_Player_Crouch = m_Player.FindAction("Crouch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_MiscI = m_Player.FindAction("Misc[I]", throwIfNotFound: true);
+        m_Player_MiscO = m_Player.FindAction("Misc[O]", throwIfNotFound: true);
+        m_Player_MiscM = m_Player.FindAction("Misc[M]", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1205,12 +2581,33 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Ability1;
-    private readonly InputAction m_Player_Attack1;
+    private readonly InputAction m_Player_Num1;
+    private readonly InputAction m_Player_Num2;
+    private readonly InputAction m_Player_Num3;
+    private readonly InputAction m_Player_Num4;
+    private readonly InputAction m_Player_Num5;
+    private readonly InputAction m_Player_Num6;
+    private readonly InputAction m_Player_Num7;
+    private readonly InputAction m_Player_Num8;
+    private readonly InputAction m_Player_Num9;
+    private readonly InputAction m_Player_AbilityE;
+    private readonly InputAction m_Player_AbilityQ;
+    private readonly InputAction m_Player_AbilityF;
+    private readonly InputAction m_Player_AbilityR;
+    private readonly InputAction m_Player_AbilityZ;
+    private readonly InputAction m_Player_AbilityX;
+    private readonly InputAction m_Player_AbilityC;
+    private readonly InputAction m_Player_AbilityV;
+    private readonly InputAction m_Player_MovementLshift;
+    private readonly InputAction m_Player_MovementLctrl;
+    private readonly InputAction m_Player_AttackL;
+    private readonly InputAction m_Player_AttackR;
+    private readonly InputAction m_Player_MouseScroll;
     private readonly InputAction m_Player_Look;
-    private readonly InputAction m_Player_Crouch;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_MiscI;
+    private readonly InputAction m_Player_MiscO;
+    private readonly InputAction m_Player_MiscM;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1227,29 +2624,113 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Ability1".
+        /// Provides access to the underlying input action "Player/Num1".
         /// </summary>
-        public InputAction @Ability1 => m_Wrapper.m_Player_Ability1;
+        public InputAction @Num1 => m_Wrapper.m_Player_Num1;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Attack1".
+        /// Provides access to the underlying input action "Player/Num2".
         /// </summary>
-        public InputAction @Attack1 => m_Wrapper.m_Player_Attack1;
+        public InputAction @Num2 => m_Wrapper.m_Player_Num2;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num3".
+        /// </summary>
+        public InputAction @Num3 => m_Wrapper.m_Player_Num3;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num4".
+        /// </summary>
+        public InputAction @Num4 => m_Wrapper.m_Player_Num4;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num5".
+        /// </summary>
+        public InputAction @Num5 => m_Wrapper.m_Player_Num5;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num6".
+        /// </summary>
+        public InputAction @Num6 => m_Wrapper.m_Player_Num6;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num7".
+        /// </summary>
+        public InputAction @Num7 => m_Wrapper.m_Player_Num7;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num8".
+        /// </summary>
+        public InputAction @Num8 => m_Wrapper.m_Player_Num8;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Num9".
+        /// </summary>
+        public InputAction @Num9 => m_Wrapper.m_Player_Num9;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityE".
+        /// </summary>
+        public InputAction @AbilityE => m_Wrapper.m_Player_AbilityE;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityQ".
+        /// </summary>
+        public InputAction @AbilityQ => m_Wrapper.m_Player_AbilityQ;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityF".
+        /// </summary>
+        public InputAction @AbilityF => m_Wrapper.m_Player_AbilityF;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityR".
+        /// </summary>
+        public InputAction @AbilityR => m_Wrapper.m_Player_AbilityR;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityZ".
+        /// </summary>
+        public InputAction @AbilityZ => m_Wrapper.m_Player_AbilityZ;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityX".
+        /// </summary>
+        public InputAction @AbilityX => m_Wrapper.m_Player_AbilityX;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityC".
+        /// </summary>
+        public InputAction @AbilityC => m_Wrapper.m_Player_AbilityC;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AbilityV".
+        /// </summary>
+        public InputAction @AbilityV => m_Wrapper.m_Player_AbilityV;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MovementLshift".
+        /// </summary>
+        public InputAction @MovementLshift => m_Wrapper.m_Player_MovementLshift;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MovementLctrl".
+        /// </summary>
+        public InputAction @MovementLctrl => m_Wrapper.m_Player_MovementLctrl;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AttackL".
+        /// </summary>
+        public InputAction @AttackL => m_Wrapper.m_Player_AttackL;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/AttackR".
+        /// </summary>
+        public InputAction @AttackR => m_Wrapper.m_Player_AttackR;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MouseScroll".
+        /// </summary>
+        public InputAction @MouseScroll => m_Wrapper.m_Player_MouseScroll;
         /// <summary>
         /// Provides access to the underlying input action "Player/Look".
         /// </summary>
         public InputAction @Look => m_Wrapper.m_Player_Look;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Crouch".
-        /// </summary>
-        public InputAction @Crouch => m_Wrapper.m_Player_Crouch;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Jump".
         /// </summary>
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Sprint".
+        /// Provides access to the underlying input action "Player/MiscI".
         /// </summary>
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @MiscI => m_Wrapper.m_Player_MiscI;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MiscO".
+        /// </summary>
+        public InputAction @MiscO => m_Wrapper.m_Player_MiscO;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/MiscM".
+        /// </summary>
+        public InputAction @MiscM => m_Wrapper.m_Player_MiscM;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1279,24 +2760,87 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Ability1.started += instance.OnAbility1;
-            @Ability1.performed += instance.OnAbility1;
-            @Ability1.canceled += instance.OnAbility1;
-            @Attack1.started += instance.OnAttack1;
-            @Attack1.performed += instance.OnAttack1;
-            @Attack1.canceled += instance.OnAttack1;
+            @Num1.started += instance.OnNum1;
+            @Num1.performed += instance.OnNum1;
+            @Num1.canceled += instance.OnNum1;
+            @Num2.started += instance.OnNum2;
+            @Num2.performed += instance.OnNum2;
+            @Num2.canceled += instance.OnNum2;
+            @Num3.started += instance.OnNum3;
+            @Num3.performed += instance.OnNum3;
+            @Num3.canceled += instance.OnNum3;
+            @Num4.started += instance.OnNum4;
+            @Num4.performed += instance.OnNum4;
+            @Num4.canceled += instance.OnNum4;
+            @Num5.started += instance.OnNum5;
+            @Num5.performed += instance.OnNum5;
+            @Num5.canceled += instance.OnNum5;
+            @Num6.started += instance.OnNum6;
+            @Num6.performed += instance.OnNum6;
+            @Num6.canceled += instance.OnNum6;
+            @Num7.started += instance.OnNum7;
+            @Num7.performed += instance.OnNum7;
+            @Num7.canceled += instance.OnNum7;
+            @Num8.started += instance.OnNum8;
+            @Num8.performed += instance.OnNum8;
+            @Num8.canceled += instance.OnNum8;
+            @Num9.started += instance.OnNum9;
+            @Num9.performed += instance.OnNum9;
+            @Num9.canceled += instance.OnNum9;
+            @AbilityE.started += instance.OnAbilityE;
+            @AbilityE.performed += instance.OnAbilityE;
+            @AbilityE.canceled += instance.OnAbilityE;
+            @AbilityQ.started += instance.OnAbilityQ;
+            @AbilityQ.performed += instance.OnAbilityQ;
+            @AbilityQ.canceled += instance.OnAbilityQ;
+            @AbilityF.started += instance.OnAbilityF;
+            @AbilityF.performed += instance.OnAbilityF;
+            @AbilityF.canceled += instance.OnAbilityF;
+            @AbilityR.started += instance.OnAbilityR;
+            @AbilityR.performed += instance.OnAbilityR;
+            @AbilityR.canceled += instance.OnAbilityR;
+            @AbilityZ.started += instance.OnAbilityZ;
+            @AbilityZ.performed += instance.OnAbilityZ;
+            @AbilityZ.canceled += instance.OnAbilityZ;
+            @AbilityX.started += instance.OnAbilityX;
+            @AbilityX.performed += instance.OnAbilityX;
+            @AbilityX.canceled += instance.OnAbilityX;
+            @AbilityC.started += instance.OnAbilityC;
+            @AbilityC.performed += instance.OnAbilityC;
+            @AbilityC.canceled += instance.OnAbilityC;
+            @AbilityV.started += instance.OnAbilityV;
+            @AbilityV.performed += instance.OnAbilityV;
+            @AbilityV.canceled += instance.OnAbilityV;
+            @MovementLshift.started += instance.OnMovementLshift;
+            @MovementLshift.performed += instance.OnMovementLshift;
+            @MovementLshift.canceled += instance.OnMovementLshift;
+            @MovementLctrl.started += instance.OnMovementLctrl;
+            @MovementLctrl.performed += instance.OnMovementLctrl;
+            @MovementLctrl.canceled += instance.OnMovementLctrl;
+            @AttackL.started += instance.OnAttackL;
+            @AttackL.performed += instance.OnAttackL;
+            @AttackL.canceled += instance.OnAttackL;
+            @AttackR.started += instance.OnAttackR;
+            @AttackR.performed += instance.OnAttackR;
+            @AttackR.canceled += instance.OnAttackR;
+            @MouseScroll.started += instance.OnMouseScroll;
+            @MouseScroll.performed += instance.OnMouseScroll;
+            @MouseScroll.canceled += instance.OnMouseScroll;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
-            @Crouch.started += instance.OnCrouch;
-            @Crouch.performed += instance.OnCrouch;
-            @Crouch.canceled += instance.OnCrouch;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
-            @Sprint.started += instance.OnSprint;
-            @Sprint.performed += instance.OnSprint;
-            @Sprint.canceled += instance.OnSprint;
+            @MiscI.started += instance.OnMiscI;
+            @MiscI.performed += instance.OnMiscI;
+            @MiscI.canceled += instance.OnMiscI;
+            @MiscO.started += instance.OnMiscO;
+            @MiscO.performed += instance.OnMiscO;
+            @MiscO.canceled += instance.OnMiscO;
+            @MiscM.started += instance.OnMiscM;
+            @MiscM.performed += instance.OnMiscM;
+            @MiscM.canceled += instance.OnMiscM;
         }
 
         /// <summary>
@@ -1311,24 +2855,87 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Ability1.started -= instance.OnAbility1;
-            @Ability1.performed -= instance.OnAbility1;
-            @Ability1.canceled -= instance.OnAbility1;
-            @Attack1.started -= instance.OnAttack1;
-            @Attack1.performed -= instance.OnAttack1;
-            @Attack1.canceled -= instance.OnAttack1;
+            @Num1.started -= instance.OnNum1;
+            @Num1.performed -= instance.OnNum1;
+            @Num1.canceled -= instance.OnNum1;
+            @Num2.started -= instance.OnNum2;
+            @Num2.performed -= instance.OnNum2;
+            @Num2.canceled -= instance.OnNum2;
+            @Num3.started -= instance.OnNum3;
+            @Num3.performed -= instance.OnNum3;
+            @Num3.canceled -= instance.OnNum3;
+            @Num4.started -= instance.OnNum4;
+            @Num4.performed -= instance.OnNum4;
+            @Num4.canceled -= instance.OnNum4;
+            @Num5.started -= instance.OnNum5;
+            @Num5.performed -= instance.OnNum5;
+            @Num5.canceled -= instance.OnNum5;
+            @Num6.started -= instance.OnNum6;
+            @Num6.performed -= instance.OnNum6;
+            @Num6.canceled -= instance.OnNum6;
+            @Num7.started -= instance.OnNum7;
+            @Num7.performed -= instance.OnNum7;
+            @Num7.canceled -= instance.OnNum7;
+            @Num8.started -= instance.OnNum8;
+            @Num8.performed -= instance.OnNum8;
+            @Num8.canceled -= instance.OnNum8;
+            @Num9.started -= instance.OnNum9;
+            @Num9.performed -= instance.OnNum9;
+            @Num9.canceled -= instance.OnNum9;
+            @AbilityE.started -= instance.OnAbilityE;
+            @AbilityE.performed -= instance.OnAbilityE;
+            @AbilityE.canceled -= instance.OnAbilityE;
+            @AbilityQ.started -= instance.OnAbilityQ;
+            @AbilityQ.performed -= instance.OnAbilityQ;
+            @AbilityQ.canceled -= instance.OnAbilityQ;
+            @AbilityF.started -= instance.OnAbilityF;
+            @AbilityF.performed -= instance.OnAbilityF;
+            @AbilityF.canceled -= instance.OnAbilityF;
+            @AbilityR.started -= instance.OnAbilityR;
+            @AbilityR.performed -= instance.OnAbilityR;
+            @AbilityR.canceled -= instance.OnAbilityR;
+            @AbilityZ.started -= instance.OnAbilityZ;
+            @AbilityZ.performed -= instance.OnAbilityZ;
+            @AbilityZ.canceled -= instance.OnAbilityZ;
+            @AbilityX.started -= instance.OnAbilityX;
+            @AbilityX.performed -= instance.OnAbilityX;
+            @AbilityX.canceled -= instance.OnAbilityX;
+            @AbilityC.started -= instance.OnAbilityC;
+            @AbilityC.performed -= instance.OnAbilityC;
+            @AbilityC.canceled -= instance.OnAbilityC;
+            @AbilityV.started -= instance.OnAbilityV;
+            @AbilityV.performed -= instance.OnAbilityV;
+            @AbilityV.canceled -= instance.OnAbilityV;
+            @MovementLshift.started -= instance.OnMovementLshift;
+            @MovementLshift.performed -= instance.OnMovementLshift;
+            @MovementLshift.canceled -= instance.OnMovementLshift;
+            @MovementLctrl.started -= instance.OnMovementLctrl;
+            @MovementLctrl.performed -= instance.OnMovementLctrl;
+            @MovementLctrl.canceled -= instance.OnMovementLctrl;
+            @AttackL.started -= instance.OnAttackL;
+            @AttackL.performed -= instance.OnAttackL;
+            @AttackL.canceled -= instance.OnAttackL;
+            @AttackR.started -= instance.OnAttackR;
+            @AttackR.performed -= instance.OnAttackR;
+            @AttackR.canceled -= instance.OnAttackR;
+            @MouseScroll.started -= instance.OnMouseScroll;
+            @MouseScroll.performed -= instance.OnMouseScroll;
+            @MouseScroll.canceled -= instance.OnMouseScroll;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
-            @Crouch.started -= instance.OnCrouch;
-            @Crouch.performed -= instance.OnCrouch;
-            @Crouch.canceled -= instance.OnCrouch;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-            @Sprint.started -= instance.OnSprint;
-            @Sprint.performed -= instance.OnSprint;
-            @Sprint.canceled -= instance.OnSprint;
+            @MiscI.started -= instance.OnMiscI;
+            @MiscI.performed -= instance.OnMiscI;
+            @MiscI.canceled -= instance.OnMiscI;
+            @MiscO.started -= instance.OnMiscO;
+            @MiscO.performed -= instance.OnMiscO;
+            @MiscO.canceled -= instance.OnMiscO;
+            @MiscM.started -= instance.OnMiscM;
+            @MiscM.performed -= instance.OnMiscM;
+            @MiscM.canceled -= instance.OnMiscM;
         }
 
         /// <summary>
@@ -1637,19 +3244,159 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Ability1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Num[1]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAbility1(InputAction.CallbackContext context);
+        void OnNum1(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Attack1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Num[2]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack1(InputAction.CallbackContext context);
+        void OnNum2(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[3]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum3(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[4]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum4(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[5]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum5(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[6]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum6(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[7]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum7(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[8]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum8(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Num[9]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnNum9(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[E]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityE(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[Q]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityQ(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[F]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityF(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[R]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[Z]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityZ(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[X]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityX(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[C]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityC(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Ability[V]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAbilityV(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Movement[Lshift]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMovementLshift(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Movement[Lctrl]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMovementLctrl(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Attack[L]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttackL(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Attack[R]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttackR(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MouseScroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMouseScroll(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1658,13 +3405,6 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLook(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCrouch(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1672,12 +3412,26 @@ public partial class @PlayerInputSystem: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnJump(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Misc[I]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSprint(InputAction.CallbackContext context);
+        void OnMiscI(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Misc[O]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMiscO(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Misc[M]" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMiscM(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

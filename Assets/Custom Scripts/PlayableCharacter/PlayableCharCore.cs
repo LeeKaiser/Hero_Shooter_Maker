@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 using StarterAssets;
-using MovementStyles;
 
 
 public class PlayableCharCore : MonoBehaviour
@@ -37,7 +36,7 @@ public class PlayableCharCore : MonoBehaviour
     private float GravityMult = 1f;
 
     [Tooltip("If player faces movement or camera (true for movement, false for camera)")]
-    public MovementStyle movementStyle;
+    public MovementStyles.MovementStyle movementStyle;
 
     [Header("Misc.")]
     [Tooltip("Third person controller script")]

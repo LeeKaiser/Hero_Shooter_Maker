@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MovementStyles
+public static class MovementStyles
 {
     public enum MovementStyle
     {
