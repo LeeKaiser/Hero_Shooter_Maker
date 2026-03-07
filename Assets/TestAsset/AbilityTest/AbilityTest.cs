@@ -1,21 +1,35 @@
 using UnityEngine;
+using System.Collections.Generic;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 using System.Collections;
-using AbilityInputEvents;
 
 public class AbilityTest : Ability
 {
+    public class AbilTestEventType : PlayerEventInfo
+    {
+        public AbilTestEventType(PlayableCharCore playerRef) : base(playerRef){}
+    }
+    
+    AbilTestEventType attackInput ;
+    //test activation set up
+    List<InputOptions.Input> activationInput =
+    new List<InputOptions.Input>{
+        InputOptions.Input.MoveLShift
+    };
     public GameObject SpeedBoostPrefab;
 
-    protected override void Startup(){
-        EventBus<PlayerStartAbility1>.Subscribe(executeAbility);
+    protected override void Startup()
+    {
+        attackInput = new AbilTestEventType(playerRef);
+        playerRef.transform.Find("PlayerArmature").GetComponent<InputReader>().InputDict.Add(activationInput, attackInput);
+        EventBus<AbilTestEventType>.Subscribe(executeAbility);
     }
 
-    public void executeAbility(PlayerStartAbility1 inputEventInfo)
+    public void executeAbility(AbilTestEventType inputEventInfo)
     {
-        if (inputEventInfo.PlayerIdentity != userRef)
+        if (inputEventInfo.PlayerIdentity != playerRef)
         {
             return;
         }
@@ -32,12 +46,12 @@ public class AbilityTest : Ability
 
         InterruptReload();
         Debug.Log("Ability1 activated");
-        userRef.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab);
+        playerRef.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab);
         ConsumeCharge(1);
     }
 
     public override void Cleanup()
     {
-        EventBus<PlayerStartAbility1>.Unsubscribe(executeAbility);
+        EventBus<AbilTestEventType>.Unsubscribe(executeAbility);
     }
 }

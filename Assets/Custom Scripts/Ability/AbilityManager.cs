@@ -8,7 +8,7 @@ public class AbilityManager : MonoBehaviour
 {
     [SerializeField] private List<Ability> abilitiesList;
     private Ability currentlyActiveAbility;
-    public GameObject playerRef;
+    public PlayableCharCore playerRef;
 
     public Transform playerCanvas;
 

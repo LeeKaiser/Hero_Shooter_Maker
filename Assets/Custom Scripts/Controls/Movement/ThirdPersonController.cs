@@ -2,7 +2,6 @@
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
-using MovementStyles;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -26,7 +25,7 @@ namespace StarterAssets
         public float BackwardMoveSpeed = 2.0f;
 
         [Tooltip("if the character will turn to face movement direction or not")]
-        public MovementStyle movementStyle;
+        public MovementStyles.MovementStyle movementStyle;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -261,7 +260,7 @@ namespace StarterAssets
         {
             switch(movementStyle)
             {
-                case MovementStyle.AlwaysFaceForward:
+                case MovementStyles.MovementStyle.AlwaysFaceForward:
                     // Determine which axis dominates — this is raw input based, so consistent
                     if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
                     {
@@ -272,7 +271,7 @@ namespace StarterAssets
                     {
                         return StrafeMoveSpeed;
                     }
-                case MovementStyle.RotateInsteadOfStrafe:
+                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
                     return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
                 default:
                     return ForwardMoveSpeed;
@@ -290,10 +289,10 @@ namespace StarterAssets
 
             switch(movementStyle)
             {
-                case MovementStyle.FaceMovement:
+                case MovementStyles.MovementStyle.FaceMovement:
                     _targetRotation += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
                     break;
-                case MovementStyle.RotateInsteadOfStrafe:
+                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
                     _targetRotation = StrafeMoveSpeed * RotationSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
                     break;
                 default:
@@ -311,9 +310,9 @@ namespace StarterAssets
         {
             switch(movementStyle)
             {
-                case MovementStyle.AlwaysFaceForward:
+                case MovementStyles.MovementStyle.AlwaysFaceForward:
                     return transform.forward * _input.move.y + transform.right * _input.move.x;
-                case MovementStyle.RotateInsteadOfStrafe:
+                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
                     return _input.move.y >= 0 ? transform.forward : -transform.forward;
                 default:
                     return transform.forward;
@@ -453,6 +452,6 @@ namespace StarterAssets
         //intended to be used for air jump mechanics
         public void SetCanJump(bool canJump){CanJump = canJump;}
 
-        public void setPlayerMovementStyle(MovementStyle FaceMove){movementStyle = FaceMove;}
+        public void setPlayerMovementStyle(MovementStyles.MovementStyle FaceMove){movementStyle = FaceMove;}
     }
 }

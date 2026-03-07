@@ -12,7 +12,7 @@ public abstract class Ability: MonoBehaviour
     [Tooltip("ability stats")]
     public AbilityStats abilityStat;
     [Tooltip("reference to user")]
-    protected GameObject userRef;
+    protected PlayableCharCore playerRef;
     //variables
     protected int currentCharge ; //remaining  charge
     protected int currentMaxCharge ; // current maximum charge
@@ -38,10 +38,10 @@ public abstract class Ability: MonoBehaviour
         
     }
 
-    public virtual void Initialize(AbilityManager owningManager, GameObject playerReference)
+    public virtual void Initialize(AbilityManager owningManager, PlayableCharCore playerReference)
     {
         this.manager = owningManager;
-        this.userRef = playerReference;
+        this.playerRef = playerReference;
         Startup();
     }
 
