@@ -37,11 +37,4 @@ public static class InputOptions
     }
 }
 
-public class PlayerEventInfo
-{
-    public PlayableCharCore PlayerIdentity;
-    public PlayerEventInfo(PlayableCharCore player)
-    {
-        PlayerIdentity = player;
-    }
-}
+public class PlayerActiveAbilID{}
