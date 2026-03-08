@@ -7,12 +7,7 @@ using System.Collections;
 
 public class AbilityTest : Ability
 {
-    public class AbilTestEventType : PlayerEventInfo
-    {
-        public AbilTestEventType(PlayableCharCore playerRef) : base(playerRef){}
-    }
-    
-    AbilTestEventType attackInput ;
+    PlayerActiveAbilID attackInput ;
     //test activation set up
     List<InputOptions.Input> activationInput =
     new List<InputOptions.Input>{
@@ -22,14 +17,14 @@ public class AbilityTest : Ability
 
     protected override void Startup()
     {
-        attackInput = new AbilTestEventType(playerRef);
+        attackInput = new PlayerActiveAbilID();
         playerRef.transform.Find("PlayerArmature").GetComponent<InputReader>().InputDict.Add(activationInput, attackInput);
-        EventBus<AbilTestEventType>.Subscribe(executeAbility);
+        EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
     }
 
-    public void executeAbility(AbilTestEventType inputEventInfo)
+    public void executeAbility(PlayerActiveAbilID inputEventInfo)
     {
-        if (inputEventInfo.PlayerIdentity != playerRef)
+        if (inputEventInfo != attackInput)
         {
             return;
         }
@@ -52,6 +47,6 @@ public class AbilityTest : Ability
 
     public override void Cleanup()
     {
-        EventBus<AbilTestEventType>.Unsubscribe(executeAbility);
+        EventBus<PlayerActiveAbilID>.Unsubscribe(executeAbility);
     }
 }

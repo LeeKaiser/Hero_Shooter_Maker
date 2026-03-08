@@ -8,8 +8,8 @@ public class InputReader : MonoBehaviour
 
     [SerializeField] private List<InputOptions.Input> inputCurrentFrame = new List<InputOptions.Input>();
 
-    public Dictionary<List<InputOptions.Input>, PlayerEventInfo>  InputDict = 
-        new Dictionary<List<InputOptions.Input>, PlayerEventInfo>();
+    public Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>  InputDict = 
+        new Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>();
 
     void Update()
     {
@@ -18,10 +18,10 @@ public class InputReader : MonoBehaviour
     
     void LateUpdate()
     {
-        PlayerEventInfo abilCall = null;
+        PlayerActiveAbilID abilCall = null;
         List<InputOptions.Input> abilCallInput = null;
         //put more complex combos at higher priority
-        foreach (KeyValuePair<List<InputOptions.Input>, PlayerEventInfo> inputCombo in InputDict)
+        foreach (KeyValuePair<List<InputOptions.Input>, PlayerActiveAbilID> inputCombo in InputDict)
         {
             //if the output's combo has keys not in user's input, lists in this var and skip the next if statement
             //var inInputButNotOutput = inputCurrentFrame.Except(inputCombo.Key).ToList();
@@ -44,14 +44,7 @@ public class InputReader : MonoBehaviour
         //Type eventType = abilCall.GetType(); 
         if (!(abilCall == null))
         {
-            Debug.Log(abilCall);
-            Type eventType = abilCall.GetType();
-
-            Type busType = typeof(EventBus<>).MakeGenericType(eventType);
-
-            var invokeMethod = busType.GetMethod("Invoke");
-
-            invokeMethod.Invoke(null, new object[] { abilCall });
+            EventBus<PlayerActiveAbilID>.Invoke(abilCall);
         }
         //clear input for next frame.
         inputCurrentFrame.Clear();
