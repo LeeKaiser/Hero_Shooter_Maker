@@ -1,6 +1,6 @@
-# ACTION GAME MAKER (AGM)
+# HERO SHOOTER MAKER (HSM)
 
-Replicates basic system seen in videogames revolving around combat.
+Replicates basic system seen in videogames based on Hero Shooter and MOBA Genres
 
 ## Player Focused Feature
 - Movement & camera controls (COMPLETE)
