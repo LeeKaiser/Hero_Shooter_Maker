@@ -7,7 +7,7 @@ using System.Collections;
 
 public class AbilityTest : Ability
 {
-    PlayerActiveAbilID attackInput ;
+    public PlayerActiveAbilID AbilID ;
     //test activation set up
     List<InputOptions.Input> activationInput =
     new List<InputOptions.Input>{
@@ -17,14 +17,14 @@ public class AbilityTest : Ability
 
     protected override void Startup()
     {
-        attackInput = new PlayerActiveAbilID();
-        playerRef.transform.Find("PlayerArmature").GetComponent<InputReader>().InputDict.Add(activationInput, attackInput);
+        AbilID = new PlayerActiveAbilID();
+        manager.SetupInput(this, AbilID, activationInput);
         EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
     }
 
     public void executeAbility(PlayerActiveAbilID inputEventInfo)
     {
-        if (inputEventInfo != attackInput)
+        if (inputEventInfo != AbilID)
         {
             return;
         }

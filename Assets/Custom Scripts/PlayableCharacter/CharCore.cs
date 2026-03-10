@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 #endif
 using StarterAssets;
 
-
+//rename to CharCore in the future
 public class PlayableCharCore : MonoBehaviour
 {
     //variables
@@ -42,7 +42,7 @@ public class PlayableCharCore : MonoBehaviour
     [Tooltip("Third person controller script")]
     public ThirdPersonController playerMovement;
 
-    public Transform PlayerArmature;
+    public GameObject playerArmature;
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
