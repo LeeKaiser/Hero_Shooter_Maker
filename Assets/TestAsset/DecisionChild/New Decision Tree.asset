@@ -17,7 +17,7 @@ MonoBehaviour:
   parentNodes:
   - {fileID: 5558142535909733708}
   nodeCondition: 0
-  action: {fileID: 5642463695080310630, guid: b7e17e8a208084b1d882e4ea829e0b09, type: 3}
+  action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
   isBehavior: 1
   parameterFloat: 0
   editorPosition: {x: 721.3436, y: 281.70123}
@@ -56,8 +56,8 @@ MonoBehaviour:
   nodeCondition: 1
   action: {fileID: 0}
   isBehavior: 0
-  parameterFloat: 10
-  editorPosition: {x: 539.52344, y: 74.7272}
+  parameterFloat: 20
+  editorPosition: {x: 521.52344, y: 98.7272}
 --- !u!114 &8067390332693551431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,10 +75,10 @@ MonoBehaviour:
   parentNodes:
   - {fileID: 5558142535909733708}
   nodeCondition: 0
-  action: {fileID: 234486267263847166, guid: b8c384989d12f410097fb8c465deec3c, type: 3}
+  action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
   isBehavior: 1
   parameterFloat: 0
-  editorPosition: {x: 387.4303, y: 274.4519}
+  editorPosition: {x: 333.4303, y: 299.4519}
 --- !u!114 &9085785752760438863
 MonoBehaviour:
   m_ObjectHideFlags: 0

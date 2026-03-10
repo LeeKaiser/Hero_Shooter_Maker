@@ -1,5 +1,5 @@
 using UnityEngine;
-
+[CreateAssetMenu(menuName = "AIAction/Patrol")]
 public class PatrolAction : AIAction
 {
     /*

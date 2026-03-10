@@ -19,18 +19,23 @@ public class InGameTxtDisplay : MonoBehaviour
         owningPlayer = owner;
         value = valueTxt;
         textDisplay = gameObject.GetComponentInChildren<TextMeshPro>();
-        Debug.Log(textDisplay);
+        //Debug.Log(textDisplay);
         textDisplay.text = value;
         playerCam = owningPlayer.GetComponentInChildren<Camera>().transform;
-        Debug.Log(playerCam);
+        //Debug.Log(playerCam);
     }
 
     // Update is called once per frame
     public void Update()
     {
-        Vector3 awayDir =  transform.position - playerCam.position;
-        transform.rotation = Quaternion.LookRotation(awayDir);
-        textDisplay.text = value;
+        if (!(playerCam == null))
+        {
+            Vector3 awayDir =  transform.position - playerCam.position;
+            transform.rotation = Quaternion.LookRotation(awayDir);
+            textDisplay.text = value;
+            
+        }
+        
         
     }
 }

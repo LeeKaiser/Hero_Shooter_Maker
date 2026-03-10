@@ -7,7 +7,7 @@ using System.Collections;
 
 public class AttackTest : Ability
 {
-    PlayerActiveAbilID attackInput ;
+    public PlayerActiveAbilID AbilID;
     //test activation set up
     List<InputOptions.Input> activationInput =
     new List<InputOptions.Input>{
@@ -22,17 +22,17 @@ public class AttackTest : Ability
     private float currentAttackPause = 0;
     
     protected override void Startup(){
-        attackInput = new PlayerActiveAbilID();
-        attackPoint = playerRef.transform.Find("PlayerArmature").transform.Find("KeyPoint1").transform;
+        AbilID = new PlayerActiveAbilID();
+        attackPoint = playerRef.playerArmature.transform.Find("KeyPoint1").transform;
         targetPoint = playerRef.transform.Find("TargetPoint").transform;
-        playerRef.transform.Find("PlayerArmature").GetComponent<InputReader>().InputDict.Add(activationInput, attackInput);
+        manager.SetupInput(this, AbilID, activationInput);
         EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
     }
 
     public void executeAbility(PlayerActiveAbilID inputEventInfo)
     {
         //if event is sent by wrong player, do not activate ability
-        if (inputEventInfo != attackInput)
+        if (inputEventInfo != AbilID)
         {
             return;
         }

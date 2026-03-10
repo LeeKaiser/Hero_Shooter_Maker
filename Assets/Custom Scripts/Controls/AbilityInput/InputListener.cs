@@ -8,14 +8,14 @@ public class InputListener : MonoBehaviour
 {
     
     private PlayerInput playerInput;
-    private InputReader inputRead;
+    private InputEventCaller inputRead;
     protected Dictionary<InputAction, InputOptions.Input> inputDict = new Dictionary<InputAction, InputOptions.Input>();
     
     void Awake()
     {
         //initialize playerinput
         playerInput = GetComponent<PlayerInput>();
-        inputRead = GetComponent<InputReader>();
+        inputRead = GetComponent<InputEventCaller>();
 
         //figure out a better way to initialize inputDict later
         inputDict.Add(playerInput.actions["Num[1]"],InputOptions.Input.Num1 );

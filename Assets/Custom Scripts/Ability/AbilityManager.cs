@@ -14,6 +14,9 @@ public class AbilityManager : MonoBehaviour
 
     public Dictionary <AbilityClass, int> abilClassDict = new Dictionary<AbilityClass, int>();
 
+    public Dictionary <Ability, List<InputOptions.Input>> abilToInput = new Dictionary<Ability, List<InputOptions.Input>>();
+    public InputEventCaller inputEventCaller;
+
     void Awake()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
@@ -21,10 +24,7 @@ public class AbilityManager : MonoBehaviour
             if (a == AbilityClass.None) continue;
             abilClassDict[a] = 0;
         }
-    }
-
-    void Start()
-    {
+        inputEventCaller = transform.Find("PlayerArmature").GetComponent<InputEventCaller>();
     }
 
     void Update()
@@ -117,5 +117,9 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-
+    public void SetupInput(Ability ability, PlayerActiveAbilID abilID, List<InputOptions.Input> abilInput)
+    {
+        inputEventCaller.InputDict.Add(abilInput, abilID);
+        abilToInput.Add(ability, abilInput);
+    }
 }

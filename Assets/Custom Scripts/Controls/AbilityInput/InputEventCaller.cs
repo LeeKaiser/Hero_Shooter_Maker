@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
-public class InputReader : MonoBehaviour
+public class InputEventCaller : MonoBehaviour
 {
 
     [SerializeField] private List<InputOptions.Input> inputCurrentFrame = new List<InputOptions.Input>();
