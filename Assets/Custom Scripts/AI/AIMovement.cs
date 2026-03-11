@@ -68,6 +68,12 @@ public class AIMovement : MonoBehaviour
             agent.enabled = false;
             agent.autoTraverseOffMeshLink = false;
             navmeshPause = t + 0.1f; //refactor this in the future to unpause at the exact time it would land on ground
+
+            //temporary fix to ai freezing at ledges, implement an actual fix in the future
+            if (agentDirection == Vector3.zero)
+            {
+                agentDirection.x = 1;
+            }
         }
 
         //set agent's movement input        
