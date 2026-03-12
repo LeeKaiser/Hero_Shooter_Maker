@@ -2,7 +2,7 @@
 
 Replicates basic system seen in videogames based on Hero Shooter and MOBA Genres
 
-###Install Guide: 
+### Install Guide: 
 
 Made on Unity editor version 6000.2.10f1
 
