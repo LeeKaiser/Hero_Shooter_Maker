@@ -12,10 +12,6 @@ using System;
         Ohter
     }
 
-/*
-Status Effect Manager
-manages player's status effects
-*/
 public class StatusEffectManager : MonoBehaviour
 {
     [Header("Status Effect Stats")]
