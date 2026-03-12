@@ -5,7 +5,12 @@ using UnityEngine.InputSystem;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
-
+/*
+Third person controller
+controls movement
+code based on the Starter Assets package
+*/
+//TODO: make variable names match other formats
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
