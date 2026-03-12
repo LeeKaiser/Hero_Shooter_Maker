@@ -10,6 +10,8 @@ Made on MacOS (theoretically should work on Windows as well)
 
 Build by opening build profile by file -> buld profiles, then select appropriate build profile then build.
 
+Alternatively run the builds in the build folder. 
+
 ## Player Focused Feature
 - Movement & camera controls 
   - Use the movement input to make the player move. Move the mouse to control the player camera.
