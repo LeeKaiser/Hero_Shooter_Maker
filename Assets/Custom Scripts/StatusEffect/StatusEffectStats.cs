@@ -2,10 +2,7 @@ using UnityEngine;
 using StarterAssets;
 
 
-/*
-status effect stats
-base stats of status effects (duration)
-*/
+
 
 [CreateAssetMenu(fileName = "StatusEffectStats", menuName = "Scriptable Objects/StatusEffectStats")]
 public class StatusEffectStats : ScriptableObject
@@ -16,7 +13,7 @@ public class StatusEffectStats : ScriptableObject
 
     [Tooltip("duration is time based. true if it is time based, false if duration uses other system")]
     public bool ExpireViaTime = true;
-    [Tooltip("effect category (buff, debuff, etc.)")]
+
     public EffectCategory effectCategory;
 
 }

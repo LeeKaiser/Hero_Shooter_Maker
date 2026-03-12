@@ -6660,6 +6660,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 414363852}
   moveTarget: {fileID: 239606586}
+  angleDiff: 0
 --- !u!114 &873813213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6813,6 +6814,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 916728827}
   moveTarget: {fileID: 1747187102}
+  angleDiff: 0
 --- !u!114 &894114468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15747,6 +15749,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 247853399}
   moveTarget: {fileID: 1761647532}
+  angleDiff: 0
 --- !u!114 &1274848643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16262,6 +16265,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 383882034}
   moveTarget: {fileID: 1048201704}
+  angleDiff: 0
 --- !u!114 &1319622078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16349,13 +16353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40877573dc5c475298a4b0043ae2c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraControls
-  cinemachineCameraTarget: {fileID: 1781923356}
-  topClamp: 70
-  bottomClamp: -30
-  cameraAngleOverride: 0
-  lockCameraPosition: 0
-  cameraSensitivityX: 1
-  cameraSensitivityY: 1
+  CinemachineCameraTarget: {fileID: 1781923356}
+  TopClamp: 70
+  BottomClamp: -30
+  CameraAngleOverride: 0
+  LockCameraPosition: 0
+  CameraSensitivityX: 1
+  CameraSensitivityY: 1
   targetPoint: {fileID: 733651087}
   clickLayers:
     serializedVersion: 2
@@ -17747,6 +17751,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 1044736067}
   moveTarget: {fileID: 890546285}
+  angleDiff: 0
 --- !u!114 &1626975377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25335,6 +25340,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 1305304610}
   moveTarget: {fileID: 11121649}
+  angleDiff: 0
 --- !u!114 &1800594494
 MonoBehaviour:
   m_ObjectHideFlags: 0

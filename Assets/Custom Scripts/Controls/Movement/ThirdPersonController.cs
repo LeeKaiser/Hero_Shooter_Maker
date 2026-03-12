@@ -11,6 +11,7 @@ controls movement
 code based on the Starter Assets package
 */
 //TODO: make variable names match other formats
+
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]

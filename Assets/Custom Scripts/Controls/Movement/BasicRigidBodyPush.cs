@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 
-/*
-Basic Rigid Body Push
-pushes rigid body object from player
-code based on the Starter Assets package
-*/
 public class BasicRigidBodyPush : MonoBehaviour
 {
 	public LayerMask pushLayers;

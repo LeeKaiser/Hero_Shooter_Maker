@@ -1,24 +1,15 @@
 using UnityEngine;
 
-/*
-Status Effect
-abstract parent class for status effects
-*/
 public abstract class StatusEffect : MonoBehaviour
 {
-    //variable - public
-    [Tooltip("base stats of status effect")]
+
     public StatusEffectStats statusEffectStat;
 
-    //variable - private
-    //remaining duration
     protected float RemainingDuration;
 
-    //player it is affecting
     protected PlayableCharCore AffectedPlayer;
-    
-    //is active
-    protected bool Active = true; 
+
+    protected bool Active = true; //is active
 
     private void Start()
     {
