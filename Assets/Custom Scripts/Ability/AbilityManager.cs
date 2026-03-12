@@ -4,38 +4,19 @@ using System.Collections.Generic;
 using System;
 using AbilityClassification;
 
-/*
-AbilityManager
-stores all abilities belonging to a character
-responsible for storing abilities, tying abilities to input, 
-*/
 public class AbilityManager : MonoBehaviour
 {
-    //Variables - Public
-    [Tooltip("All abilities in character")]
     [SerializeField] private List<Ability> abilitiesList;
-    
-    [Tooltip("reference to player's character information")]
+    private Ability currentlyActiveAbility;
     public PlayableCharCore playerRef;
 
-    [Tooltip("reference to player's UI canvas")]
     public Transform playerCanvas;
 
-    //dictionary of ability class to percent of cooldown left for it
     public Dictionary <AbilityClass, int> abilClassDict = new Dictionary<AbilityClass, int>();
 
-    //dictionary that converts from ability to input for active abilities. Used by AI to use active abilities
     public Dictionary <Ability, List<InputOptions.Input>> abilToInput = new Dictionary<Ability, List<InputOptions.Input>>();
-    
-    [Tooltip("Reference to character's input event caller")]
     public InputEventCaller inputEventCaller;
-    
-    //Variables - Private
-    //reference to current active ability
-    private Ability currentlyActiveAbility;
 
-    //Methods
-    //Called when character is created
     void Awake()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
@@ -46,7 +27,6 @@ public class AbilityManager : MonoBehaviour
         inputEventCaller = transform.Find("PlayerArmature").GetComponent<InputEventCaller>();
     }
 
-    //called every frame.
     void Update()
     {
         //reload all abilities per update call:
@@ -59,13 +39,10 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    //returns list of abilities
     public List<Ability> GetAbilList(){return abilitiesList;}
 
-    //returns ability class dict
     public Dictionary <AbilityClass, int> GetAbilClassDict() {return abilClassDict;}
 
-    //called when character is disabled or program stops. cleans up all abilities in list
     void OnDisable()
     {
         foreach (var ability in abilitiesList)
@@ -75,14 +52,12 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    //returns bool based on if the ability is allowed to be used, based on factors from other abilities.
     public bool CanUseAbility(Ability ability)
     {
         //returns if ability is set as usable in the current system
         return currentlyActiveAbility == null || ability.abilityStat.canInterruptOthers;
     }
 
-    //sets ability as being used
     public void NotifyAbilityStarted(Ability ability)
     {
         if (currentlyActiveAbility != null && ability.abilityStat.canInterruptOthers)
@@ -93,13 +68,13 @@ public class AbilityManager : MonoBehaviour
 
         currentlyActiveAbility = ability;
     }
-    //sets ability as nolonger being used
+
     public void NotifyAbilityEnded(Ability ability)
     {
         if (currentlyActiveAbility == ability)
             currentlyActiveAbility = null;
     }
-    //called when adding a new ability to a character
+
     public void AddAbility(GameObject newAbility)
     {
         // Make a copy of the prefab and attach it to the player
@@ -141,7 +116,7 @@ public class AbilityManager : MonoBehaviour
             }
         }
     }
-    //called when setting up active ability's input
+
     public void SetupInput(Ability ability, PlayerActiveAbilID abilID, List<InputOptions.Input> abilInput)
     {
         inputEventCaller.InputDict.Add(abilInput, abilID);

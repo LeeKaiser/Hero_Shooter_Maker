@@ -4,30 +4,20 @@ using System.Collections.Generic;
 using System;
 using StarterAssets;
 
-/*
-Input Listener
-listens to player's input. 
-enabled for only the player, not AI
-*/
 public class InputListener : MonoBehaviour
 {
-    //variable
-    //reference to player input
+    
     private PlayerInput playerInput;
-
-    //reference to input event caller
-    private InputEventCaller inputCall;
-
-    //dictionary of player's input to input option
+    private InputEventCaller inputRead;
     protected Dictionary<InputAction, InputOptions.Input> inputDict = new Dictionary<InputAction, InputOptions.Input>();
     
     void Awake()
     {
         //initialize playerinput
         playerInput = GetComponent<PlayerInput>();
-        inputCall = GetComponent<InputEventCaller>();
+        inputRead = GetComponent<InputEventCaller>();
 
-        //TODO: figure out a better way to initialize inputDict later
+        //figure out a better way to initialize inputDict later
         inputDict.Add(playerInput.actions["Num[1]"],InputOptions.Input.Num1 );
         inputDict.Add(playerInput.actions["Num[2]"],InputOptions.Input.Num2 );
         inputDict.Add(playerInput.actions["Num[3]"],InputOptions.Input.Num3 );
@@ -58,14 +48,13 @@ public class InputListener : MonoBehaviour
         inputDict.Add(playerInput.actions["Misc[M]"],InputOptions.Input.MiscM );
     }
     
-    //called every frame. if player made input on the frame, register it to input event caller
     void Update()
     {
         foreach (KeyValuePair<InputAction, InputOptions.Input> x in inputDict)
         {
             if (x.Key.IsPressed())
             {
-                inputCall.AddInput(x.Value);
+                inputRead.AddInput(x.Value);
             }
         }
     }
