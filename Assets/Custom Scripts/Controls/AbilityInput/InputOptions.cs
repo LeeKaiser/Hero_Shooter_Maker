@@ -2,39 +2,25 @@ using UnityEngine;
 
 public static class InputOptions
 {
+    //enum of input options
     public enum Input
     {
-        Num1,
-        Num2,
-        Num3,
-        Num4,
-        Num5,
-        Num6,
-        Num7,
-        Num8,
-        Num9,
+        //number keys
+        Num1,Num2,Num3, Num4,Num5,Num6,Num7,Num8,Num9,
 
-        AbilE,
-        AbilQ,
-        AbilF,
-        AbilR,
-        AbilZ,
-        AbilX,
-        AbilC,
-        AbilV,
+        //letter keys near movement keys (WASD)
+        AbilE,AbilQ,AbilF,AbilR,AbilZ,AbilX,AbilC,AbilV,
 
-        MoveLShift,
-        MoveLCtrl,
+        //keys for pinky associated with movement 
+        MoveLShift,MoveLCtrl,
 
-        AtkL,
-        AtkR,
+        //mouse input
+        AtkL,AtkR,
 
-        MiscI,
-        MiscO,
-        MiscM,
-
-        Jump
+        //letter keys away from left hand
+        MiscI,MiscO,MiscM,
     }
 }
 
+//class used as parameter when invoking events associated with abilities. functions as a key of sorts
 public class PlayerActiveAbilID{}

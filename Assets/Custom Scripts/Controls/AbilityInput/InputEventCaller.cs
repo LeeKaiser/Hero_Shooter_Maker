@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+/*
+Input Event Caller
+takes input and invokes event based on it
+intended to be used to activate abilities
+*/
 public class InputEventCaller : MonoBehaviour
 {
-
+    //variable
+    //list of input made at the current frame
     [SerializeField] private List<InputOptions.Input> inputCurrentFrame = new List<InputOptions.Input>();
 
+    //dictionary of input combination to ability call id
     public Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>  InputDict = 
         new Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>();
 
-    void Update()
-    {
-        
-    }
-    
+    //called every frame
     void LateUpdate()
     {
         PlayerActiveAbilID abilCall = null;
         List<InputOptions.Input> abilCallInput = null;
-        //put more complex combos at higher priority
+        
         foreach (KeyValuePair<List<InputOptions.Input>, PlayerActiveAbilID> inputCombo in InputDict)
         {
-            //if the output's combo has keys not in user's input, lists in this var and skip the next if statement
-            //var inInputButNotOutput = inputCurrentFrame.Except(inputCombo.Key).ToList();
-            
+            //if some of the input matches an existing combination, attempt to add to next event invoke
             if (!inputCombo.Key.Except(inputCurrentFrame).Any())
             {
                 if (abilCall == null)
@@ -33,6 +34,7 @@ public class InputEventCaller : MonoBehaviour
                     abilCall = inputCombo.Value;
                     abilCallInput = inputCombo.Key;
                 }
+                //put more complex combos at higher priority
                 else if (abilCallInput.Count < inputCombo.Key.Count)
                 {
                     abilCall = inputCombo.Value;
@@ -41,7 +43,7 @@ public class InputEventCaller : MonoBehaviour
                 
             }
         }
-        //Type eventType = abilCall.GetType(); 
+        //invokes event
         if (!(abilCall == null))
         {
             EventBus<PlayerActiveAbilID>.Invoke(abilCall);
@@ -50,6 +52,7 @@ public class InputEventCaller : MonoBehaviour
         inputCurrentFrame.Clear();
     }
 
+    //register input
     public void AddInput(InputOptions.Input input)
     {
         inputCurrentFrame.Add(input);

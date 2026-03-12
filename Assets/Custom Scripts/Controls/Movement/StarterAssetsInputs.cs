@@ -3,6 +3,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 
+/*
+Starter Assets Inputs
+convert input to value referenced by movement and camera controls
+code based on the Starter Assets package
+*/
+
 namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour

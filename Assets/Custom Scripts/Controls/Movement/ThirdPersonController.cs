@@ -1,15 +1,20 @@
 ﻿ using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLEINPUTSYSTEM 
 using UnityEngine.InputSystem;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
 
+/*
+Third person controller
+controls movement
+code based on the Starter Assets package
+*/
 namespace StarterAssets
 {
     [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
+#if ENABLEINPUTSYSTEM 
     [RequireComponent(typeof(PlayerInput))]
 #endif
     public class ThirdPersonController : MonoBehaviour
@@ -17,61 +22,61 @@ namespace StarterAssets
         [Header("Player")]
 
         [Tooltip("controller active")]
-        public bool IsActive = true;
+        public bool isActive = true;
 
-        [Tooltip("Move speed of the character in m/s")]
-        public float ForwardMoveSpeed = 2.0f;
-        public float StrafeMoveSpeed = 2.0f;
-        public float BackwardMoveSpeed = 2.0f;
+        [Tooltip("Move speed of the character in unit/s")]
+        public float forwardMoveSpeed = 2.0f;
+        public float strafeMoveSpeed = 2.0f;
+        public float backwardMoveSpeed = 2.0f;
 
         [Tooltip("if the character will turn to face movement direction or not")]
         public MovementStyles.MovementStyle movementStyle;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
+        public float rotationSmoothTime = 0.12f;
 
         [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
+        public float speedChangeRate = 10.0f;
 
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
+        public AudioClip landingAudioClip;
+        public AudioClip[] footstepAudioClips;
+        [Range(0, 1)] public float footstepAudioVolume = 0.5f;
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
+        public float jumpHeight = 1.2f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
+        public float gravity = -15.0f;
 
         [Space(10)]
         [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
+        public float jumpTimeout = 0.50f;
 
         [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
-        public float FallTimeout = 0.15f;
+        public float fallTimeout = 0.15f;
 
         [Tooltip("Time required for the grounded status to change")]
-        public float JumpForgivenessTime = 0.3f;
+        public float jumpForgivenessTime = 0.3f;
 
-        [Header("Player Grounded")]
+        [Header("Player grounded")]
         [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-        public bool Grounded = true;
-        public bool CanJump = true;
-        public bool RecentlyJumped = false;
+        public bool grounded = true;
+        public bool canJump = true;
+        public bool recentlyJumped = false;
 
         [Tooltip("amount of times the character can jump in the air")]
-        public int AirJumps = 0;
+        public int airJumps = 0;
 
         [Tooltip("Useful for rough ground")]
-        public float GroundedOffset = -0.14f;
+        public float groundedOffset = -0.14f;
 
         [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        public float GroundedRadius = 0.28f;
+        public float groundedRadius = 0.28f;
 
         [Tooltip("What layers the character uses as ground")]
-        public LayerMask GroundLayers;
+        public LayerMask groundLayers;
 
         [Tooltip("Transform that represents the place player is looking at")]        
         public Transform targetPoint;
@@ -79,42 +84,42 @@ namespace StarterAssets
         
 
         // player
-        private float _speed;
-        private float _animationBlend;
-        private float _targetRotation = 0.0f;
-        private float _rotationVelocity;
-        private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
+        private float speed;
+        private float animationBlend;
+        private float targetRotation = 0.0f;
+        private float rotationVelocity;
+        private float verticalVelocity;
+        private float terminalVelocity = 53.0f;
 
         // timeout deltatime
-        private float _jumpTimeoutDelta;
-        private float _fallTimeoutDelta;
+        private float jumpTimeoutDelta;
+        private float fallTimeoutDelta;
 
         // animation IDs
-        private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDJump;
-        private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
+        private int animIDSpeed;
+        private int animIDgrounded;
+        private int animIDJump;
+        private int animIDFreeFall;
+        private int animIDMotionSpeed;
 
-#if ENABLE_INPUT_SYSTEM 
-        private PlayerInput _playerInput;
+#if ENABLEINPUTSYSTEM 
+        private PlayerInput playerInput;
 #endif
-        private Animator _animator;
-        private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        private Animator animator;
+        private CharacterController controller;
+        private StarterAssetsInputs input;
         
 
         
 
-        private bool _hasAnimator;
+        private bool hasAnimator;
 
         private bool IsCurrentDeviceMouse
         {
             get
             {
-#if ENABLE_INPUT_SYSTEM
-                return _playerInput.currentControlScheme == "KeyboardMouse";
+#if ENABLEINPUTSYSTEM
+                return playerInput.currentControlScheme == "KeyboardMouse";
 #else
 				return false;
 #endif
@@ -130,11 +135,11 @@ namespace StarterAssets
 
         private void Start()
         {   
-            _hasAnimator = TryGetComponent(out _animator);
-            _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
-#if ENABLE_INPUT_SYSTEM 
-            _playerInput = GetComponent<PlayerInput>();
+            hasAnimator = TryGetComponent(out animator);
+            controller = GetComponent<CharacterController>();
+            input = GetComponent<StarterAssetsInputs>();
+#if ENABLEINPUTSYSTEM 
+            playerInput = GetComponent<PlayerInput>();
 #else
 			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
@@ -142,17 +147,17 @@ namespace StarterAssets
             AssignAnimationIDs();
 
             // reset our timeouts on start
-            _jumpTimeoutDelta = JumpTimeout;
-            _fallTimeoutDelta = FallTimeout;
+            jumpTimeoutDelta = jumpTimeout;
+            fallTimeoutDelta = fallTimeout;
         }
 
         private void Update()
         {
-            if (IsActive){
-                _hasAnimator = TryGetComponent(out _animator);
+            if (isActive){
+                hasAnimator = TryGetComponent(out animator);
 
                 JumpAndGravity();
-                GroundedCheck();
+                groundedCheck();
                 Move();
             }
             
@@ -160,41 +165,41 @@ namespace StarterAssets
 
         private void AssignAnimationIDs()
         {
-            _animIDSpeed = Animator.StringToHash("Speed");
-            _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDJump = Animator.StringToHash("Jump");
-            _animIDFreeFall = Animator.StringToHash("FreeFall");
-            _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+            animIDSpeed = Animator.StringToHash("Speed");
+            animIDgrounded = Animator.StringToHash("grounded");
+            animIDJump = Animator.StringToHash("Jump");
+            animIDFreeFall = Animator.StringToHash("FreeFall");
+            animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
-        private void GroundedCheck()
+        private void groundedCheck()
         {
             // set sphere position, with offset
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset,
                 transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            grounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers,
                 QueryTriggerInteraction.Ignore);
-            if (!Grounded)
+            if (!grounded)
                 {
                     //do this again cayote time later
-                    Invoke("SecondGroundCheck", JumpForgivenessTime);
+                    Invoke("SecondGroundCheck", jumpForgivenessTime);
                 }
             else{
-                CanJump = true;
+                canJump = true;
             }
 
             // update animator if using character
-            if (_hasAnimator)
+            if (hasAnimator)
             {
-                _animator.SetBool(_animIDGrounded, Grounded);
+                animator.SetBool(animIDgrounded, grounded);
             }
         }
 
         private void SecondGroundCheck()
         {
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
+            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset,
                 transform.position.z);
-            CanJump = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
+            canJump = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers,
                 QueryTriggerInteraction.Ignore);
         }
 
@@ -202,20 +207,20 @@ namespace StarterAssets
 
         private void Move()
         {
-            Vector2 moveInput = _input.move.normalized;
-            Vector3 inputDirection = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
+            Vector2 moveInput = input.move.normalized;
+            Vector3 inputDirection = new Vector3(input.move.x, 0f, input.move.y).normalized;
 
             float baseSpeed = DetermineSpeed(moveInput);
 
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+            float inputMagnitude = input.analogMovement ? input.move.magnitude : 1f;
 
             // Scale final speed using normalized direction vector
             float targetSpeed = baseSpeed * inputMagnitude;
-            if (_input.move == Vector2.zero) targetSpeed = 0f;
+            if (input.move == Vector2.zero) targetSpeed = 0f;
 
 
             // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            float currentHorizontalSpeed = new Vector3(controller.velocity.x, 0.0f, controller.velocity.z).magnitude;
 
             float speedOffset = 0.1f;
 
@@ -225,34 +230,34 @@ namespace StarterAssets
             {
                 // creates curved result rather than a linear one giving a more organic speed change
                 // note T in Lerp is clamped, so we don't need to clamp our speed
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * SpeedChangeRate);
+                speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
+                    Time.deltaTime * speedChangeRate);
 
                 // round speed to 3 decimal places
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
+                speed = Mathf.Round(speed * 1000f) / 1000f;
             }
             else
             {
-                _speed = targetSpeed;
+                speed = targetSpeed;
             }
 
-            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
+            animationBlend = Mathf.Lerp(animationBlend, targetSpeed, Time.deltaTime * speedChangeRate);
+            if (animationBlend < 0.01f) animationBlend = 0f;
 
             PlayerFaceTargetPoint(inputDirection);
 
             Vector3 targetDirection = GetTargetDirection();
 
             // move the player
-                _controller.Move(targetDirection.normalized * _speed * Time.deltaTime +
-                    new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+                controller.Move(targetDirection.normalized * speed * Time.deltaTime +
+                    new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
             
 
             // update animator if using character
-            if (_hasAnimator)
+            if (hasAnimator)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                animator.SetFloat(animIDSpeed, animationBlend);
+                animator.SetFloat(animIDMotionSpeed, inputMagnitude);
             }
         }
 
@@ -264,17 +269,17 @@ namespace StarterAssets
                     // Determine which axis dominates — this is raw input based, so consistent
                     if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
                     {
-                        return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                        return moveInput.y >= 0 ? forwardMoveSpeed : backwardMoveSpeed;
                         
                     }
                     else
                     {
-                        return StrafeMoveSpeed;
+                        return strafeMoveSpeed;
                     }
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                    return moveInput.y >= 0 ? forwardMoveSpeed : backwardMoveSpeed;
                 default:
-                    return ForwardMoveSpeed;
+                    return forwardMoveSpeed;
             }
         }
 
@@ -285,22 +290,22 @@ namespace StarterAssets
             //playerFaceTarget.y = 0;
             // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
             // if there is a move input rotate player when the player is moving
-            _targetRotation = Mathf.Atan2(playerFaceTarget.x, playerFaceTarget.z) * Mathf.Rad2Deg;
+            targetRotation = Mathf.Atan2(playerFaceTarget.x, playerFaceTarget.z) * Mathf.Rad2Deg;
 
             switch(movementStyle)
             {
                 case MovementStyles.MovementStyle.FaceMovement:
-                    _targetRotation += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
+                    targetRotation += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
                     break;
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    _targetRotation = StrafeMoveSpeed * RotationSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
+                    targetRotation = strafeMoveSpeed * rotationSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
                     break;
                 default:
                     break;
             }
 
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
+            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref rotationVelocity,
+                    rotationSmoothTime);
 
             // rotate
             transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
@@ -311,9 +316,9 @@ namespace StarterAssets
             switch(movementStyle)
             {
                 case MovementStyles.MovementStyle.AlwaysFaceForward:
-                    return transform.forward * _input.move.y + transform.right * _input.move.x;
+                    return transform.forward * input.move.y + transform.right * input.move.x;
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    return _input.move.y >= 0 ? transform.forward : -transform.forward;
+                    return input.move.y >= 0 ? transform.forward : -transform.forward;
                 default:
                     return transform.forward;
             }
@@ -321,81 +326,81 @@ namespace StarterAssets
 
         private void JumpAndGravity()
         {
-            if (CanJump)
+            if (canJump)
             {
                 // update animator if using character
-                if (_hasAnimator)
+                if (hasAnimator)
                 {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
+                    animator.SetBool(animIDJump, false);
+                    animator.SetBool(animIDFreeFall, false);
                 }
 
                 // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f )
+                if (input.jump && jumpTimeoutDelta <= 0.0f )
                 {
                     // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
 
                     // update animator if using character
-                    if (_hasAnimator)
+                    if (hasAnimator)
                     {
-                        _animator.SetBool(_animIDJump, true);
+                        animator.SetBool(animIDJump, true);
                     }
 
-                    CanJump = false;
+                    canJump = false;
                     
                 }
                 //air jump
-                //else if (_input.jump &&) 
+                //else if (input.jump &&) 
 
                 // jump timeout
-                if (_jumpTimeoutDelta >= 0.0f)
+                if (jumpTimeoutDelta >= 0.0f)
                 {
-                    _jumpTimeoutDelta -= Time.deltaTime;
-                    if (_jumpTimeoutDelta <= 0.0f)
+                    jumpTimeoutDelta -= Time.deltaTime;
+                    if (jumpTimeoutDelta <= 0.0f)
                     {
-                        RecentlyJumped = false;
+                        recentlyJumped = false;
                     }
                 }
             }
             else{
                 // reset the jump timeout timer
-                _jumpTimeoutDelta = JumpTimeout;
+                jumpTimeoutDelta = jumpTimeout;
 
                 // fall timeout
-                if (_fallTimeoutDelta >= 0.0f)
+                if (fallTimeoutDelta >= 0.0f)
                 {
-                    _fallTimeoutDelta -= Time.deltaTime;
+                    fallTimeoutDelta -= Time.deltaTime;
                 }
                 else
                 {
                     // update animator if using character
-                    if (_hasAnimator)
+                    if (hasAnimator)
                     {
-                        _animator.SetBool(_animIDFreeFall, true);
+                        animator.SetBool(animIDFreeFall, true);
                     }
                 }
                 // if we are not grounded, do not jump
-                _input.jump = false;
+                input.jump = false;
             }
-            if (Grounded)
+            if (grounded)
             {
                 // stop our velocity dropping infinitely when grounded
-                if (_verticalVelocity < 0.0f)
+                if (verticalVelocity < 0.0f)
                 {
-                    _verticalVelocity = -3f;
+                    verticalVelocity = -3f;
                 }
 
                 // reset the fall timeout timer
-                _fallTimeoutDelta = FallTimeout;
+                fallTimeoutDelta = fallTimeout;
 
                 
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-            if (_verticalVelocity < _terminalVelocity)
+            if (verticalVelocity < terminalVelocity)
             {
-                _verticalVelocity += Gravity * Time.deltaTime;
+                verticalVelocity += gravity * Time.deltaTime;
             }
         }
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -410,23 +415,23 @@ namespace StarterAssets
             Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
             Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
-            if (Grounded) Gizmos.color = transparentGreen;
+            if (grounded) Gizmos.color = transparentGreen;
             else Gizmos.color = transparentRed;
 
             // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
             Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
+                new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z),
+                groundedRadius);
         }
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                if (FootstepAudioClips.Length > 0)
+                if (footstepAudioClips.Length > 0)
                 {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                    var index = Random.Range(0, footstepAudioClips.Length);
+                    AudioSource.PlayClipAtPoint(footstepAudioClips[index], transform.TransformPoint(controller.center), footstepAudioVolume);
                 }
             }
         }
@@ -435,22 +440,22 @@ namespace StarterAssets
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                AudioSource.PlayClipAtPoint(landingAudioClip, transform.TransformPoint(controller.center), footstepAudioVolume);
             }
         }
 
-        public void SetForwardMovementSpeed(float speed){ ForwardMoveSpeed = speed;}
+        public void SetForwardMovementSpeed(float speed){ forwardMoveSpeed = speed;}
 
-        public void SetStrafeMovementSpeed(float speed){StrafeMoveSpeed = speed;}
+        public void SetStrafeMovementSpeed(float speed){strafeMoveSpeed = speed;}
 
-        public void SetBackwardMovementSpeed(float speed){BackwardMoveSpeed = speed;}
+        public void SetBackwardMovementSpeed(float speed){backwardMoveSpeed = speed;}
 
-        public void SetGravity(float grav){Gravity = grav;}
+        public void SetGravity(float grav){gravity = grav;}
 
-        public void SetJumpHeight(float jump){JumpHeight = jump;}
+        public void SetJumpHeight(float jump){jumpHeight = jump;}
 
         //intended to be used for air jump mechanics
-        public void SetCanJump(bool canJump){CanJump = canJump;}
+        public void SetcanJump(bool canJump){canJump = canJump;}
 
         public void setPlayerMovementStyle(MovementStyles.MovementStyle FaceMove){movementStyle = FaceMove;}
     }
