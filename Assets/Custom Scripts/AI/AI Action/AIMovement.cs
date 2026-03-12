@@ -2,22 +2,32 @@ using UnityEngine;
 using UnityEngine.AI;
 using StarterAssets;
 
+/*
+AI Movement
+continuously moves the character to a destination
+*/
 public class AIMovement : MonoBehaviour
 {
+    //Varaibles - Public
+    [Tooltip("reference to navmesh agent")]
     [SerializeField] private NavMeshAgent agent;
+    [Tooltip("reference to player's information")]
     [SerializeField] private PlayableCharCore playerRef;
 
-
+    [Tooltip("transform the character looks at")]
     public Transform lookTarget;
+    [Tooltip("transform the character moves to")]
     public Transform moveTarget;
 
-    [SerializeField] private float angleDiff;
-
+    //Variables - private
+    //reference to movement input 
     private StarterAssetsInputs movementInput;
-
+    //the direction agent is inputting for movement
     private Vector3 agentDirection;
+    //amount of time until navmesh is unpaused. 
     private float navmeshPause = 0;
 
+    //called when character is created
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,16 +38,20 @@ public class AIMovement : MonoBehaviour
         agent.speed = 0.01f;
     }
 
+    //called every frame
     void Update()
     {
         MoveToLocation(moveTarget.position);
         AgentMovement();
+        //lets time pass on navmesh pause
+        //TODO: change it to unpause when character lands on the ground
         if (navmeshPause > 0)
         {
             navmeshPause -= Time.deltaTime;
+            //unpause navmesh
             if (navmeshPause <= 0)
             {
-                Debug.Log("Unpaused navmesh");
+                //Debug.Log("Unpaused navmesh");
                 agent.enabled = true;
                 agent.autoTraverseOffMeshLink = true;
             }
@@ -47,9 +61,9 @@ public class AIMovement : MonoBehaviour
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
-        //when on navmesh link (on ledge or when it needs to jumo), disable agent
+        //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
-        // this is currently determined based on if navmesh link destination is positioned within jump trajectory
+        // this is currently determined based on if navmesh link destination is positioned within fall trajectory
         bool inputJump = false;
         if (agent.isOnOffMeshLink)
         {
@@ -67,9 +81,10 @@ public class AIMovement : MonoBehaviour
             }
             agent.enabled = false;
             agent.autoTraverseOffMeshLink = false;
-            navmeshPause = t + 0.1f; //refactor this in the future to unpause at the exact time it would land on ground
+            navmeshPause = t + 0.1f; //TODO: refactor this in the future to unpause at the exact time it would land on ground
 
             //temporary fix to ai freezing at ledges, implement an actual fix in the future
+            //TODO: make a legitamate fix for this issue (fixing navmesh pause timing is likely enough)
             if (agentDirection == Vector3.zero)
             {
                 agentDirection.x = 1;

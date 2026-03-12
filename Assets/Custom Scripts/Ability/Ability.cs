@@ -4,32 +4,39 @@ using UnityEngine.InputSystem.Interactions;
 using System.Collections;
 using AbilityClassification;
 
+/*
+Ability
+abstract parent class for abiltiies
+*/
 public abstract class Ability: MonoBehaviour
 {
-    //charge represents a use of an ability (functional as ammo)
-    //charge point is progress to complete a full charge up or reload.
-    [Header("ability stats")]
+    //variables - public
     [Tooltip("ability stats")]
     public AbilityStats abilityStat;
-    [Tooltip("reference to user")]
-    protected PlayableCharCore playerRef;
-    //variables
-    protected int currentCharge ; //remaining  charge
-    protected int currentMaxCharge ; // current maximum charge
-
-    protected float chargePointsProgress; //current progress on getting new charge
-
-    protected float chargePointMultiplier = 1; //amount of multiplier to the charge rate
-
-    protected bool rechargeInProgress = false;
-
-    protected AbilityManager manager; //reference to ability manager
-    protected bool isActive = false; // 
-
-    public AbilityUI abilUIRef; //reference to ability's UI
-
+    [Tooltip("reference to ability's UI")]
+    public AbilityUI abilUIRef;
+    [Tooltip("ability's class")]
     public AbilityClass CurrentAbilClass;
 
+    //variables - private
+    //reference to character information
+    protected PlayableCharCore playerRef;
+    //charge represents a use of an ability (functional as ammo)
+    protected int currentCharge ; //remaining  charge
+    protected int currentMaxCharge ; // current maximum charge
+    
+    //charge point is progress to complete a full charge up or reload.
+    protected float chargePointsProgress; //current progress on getting new charge
+    protected float chargePointMultiplier = 1; //amount of multiplier to the charge rate
+    protected bool rechargeInProgress = false; //true if currently recharging
+    
+    //reference to ability manager
+    protected AbilityManager manager; 
+    //bool representing if the ability is currently active
+    protected bool isActive = false;
+
+    //Methods
+    //called when ability is created
     void Start()
     {
         currentCharge = abilityStat.maxCharge;
@@ -37,14 +44,14 @@ public abstract class Ability: MonoBehaviour
         GetComponentInParent<AbilityManager>().AddAbility(this.gameObject);
         
     }
-
+    //initialize some ability's information (manager and player reference)
     public virtual void Initialize(AbilityManager owningManager, PlayableCharCore playerReference)
     {
         this.manager = owningManager;
         this.playerRef = playerReference;
         Startup();
     }
-
+    //called when a charge is used. decreasing current charge. does not go below 0
     protected void ConsumeCharge(int chargeConsumed)
     {
         currentCharge -= chargeConsumed;
@@ -53,7 +60,7 @@ public abstract class Ability: MonoBehaviour
             currentCharge = 0;
         }
     }
-
+    //checks if it is valid for ability to activate
     protected virtual bool CanActivate()
     {
         return !isActive && manager.CanUseAbility(this) && currentCharge >= 1;
@@ -68,7 +75,6 @@ public abstract class Ability: MonoBehaviour
         }
     }
 
-    // # Ability recharge code
     //recover ability charge point
     public void RecoverChargePoint(float chargeAdded){
 

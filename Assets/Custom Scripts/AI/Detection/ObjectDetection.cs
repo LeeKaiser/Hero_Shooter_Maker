@@ -2,10 +2,14 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+/*
+Object Detection
+Scans in a sphere and detects objects of interest
+currently implemented to look for teammates, enemies, and point of interest
+*/
 public class ObjectDetection : MonoBehaviour
 {
-    
-    
+    //Variable - Public
     [Tooltip("radius/distance at which AI can detect object")]
     public float scanRads = 30;
     [Tooltip("reference to self")]
@@ -17,33 +21,37 @@ public class ObjectDetection : MonoBehaviour
 
     [Tooltip("amount of time it takes for the AI to forget the ally after not being detected")]
     public float allyMemoryExpirationTime = 10f;
-    Dictionary <PlayableCharCore, PlayerSummary> knownAllyList = new Dictionary<PlayableCharCore, PlayerSummary>();
-
+    
     [Tooltip("amount of time it takes for the AI to forget the enemy after not being detected")]
     public float enemyMemoryExpirationTime = 3f;
+
+    //variable - private
+    //dictionary of known allies
+    Dictionary <PlayableCharCore, PlayerSummary> knownAllyList = new Dictionary<PlayableCharCore, PlayerSummary>();
+
+    //dictionary of known enemies
     Dictionary <PlayableCharCore, PlayerSummary> knownEnemyList = new Dictionary<PlayableCharCore, PlayerSummary>();
 
+    //summary of self
     PlayerSummary selfSummary = new PlayerSummary();
 
+    //the point of interest the AI cares about
     GameObject focusPOI;
-
+    // object representing what it knows
     KnownContext currentContext = new KnownContext();
 
+    //method
+    //called when created
     void Start()
     {
         teamMask = gameObject.layer;
         
     }
 
-    void Update()
-    {
-        //RadiusScanAll();
-    }
-
-    
-
+    //returns current context
     public KnownContext GetCurrentContext(){return currentContext;}
 
+    //detect objects
     public void RadiusScanAll()
     {
         //scan for all objects in scanRads 
@@ -115,7 +123,7 @@ public class ObjectDetection : MonoBehaviour
         
     }
 
-    //
+    //causes information to expire by given time 
     public void ElapseExpirationTime(float timeElapsed)
     {
         List<PlayableCharCore> toRemove = new();
@@ -164,6 +172,7 @@ public class ObjectDetection : MonoBehaviour
         }
     }
 
+    //returns current context in string
     public string toString()
     {
         return currentContext.toString();

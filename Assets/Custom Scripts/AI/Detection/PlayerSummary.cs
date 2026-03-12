@@ -4,9 +4,15 @@ using System;
 using AbilityClassification;
 using System.Linq;
 
+/*
+PlayerSummary
+simplified profile of a player to use as shortcut in decision making
+holds variety of information around health, remaining abilities, positioning, likelyhood of winning a fight, likelyhood of losing a fight
+*/
 public class PlayerSummary
 {
-    //summarized variables
+    //Variables - Public
+    //reference to the player it is summarizing. access it for detailed info
     public GameObject summarizedPlayer;
 
     //health information
@@ -14,13 +20,18 @@ public class PlayerSummary
     public int maxHP;
     public float percentHP;
 
+    //arbitrary multiplier for threat calculation for hp
     [SerializeField] float hpThreatMult = 4f;
+    //arbitrary multiplier for vuln calculation for hp
     [SerializeField] float hpVulnMult = 12f;
 
     //position information
     public bool aboveSelf;
     public float distanceFromSelf;
+
+    //arbitrary multiplier for threat calculation for highground
     [SerializeField] float highGndThreatMult = 1.5f;
+    //arbitrary multiplier for vuln calculation for highground
     [SerializeField] float highGndVulnMult = 1.5f;
 
     //ability information
@@ -28,13 +39,15 @@ public class PlayerSummary
     //ability charges remaining in percentage
     public Dictionary <AbilityClass, int> hasAbilClass; //0f is false, 1f is true
 
-    //threat information
+    //threat and vuln information
     public float threatValue;
     public float vulnValue;
 
-    //expiration details
+    //info expiration details
     public float timeUntilExpire;
 
+    //Method
+    //called when created
     void Start()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
@@ -45,6 +58,7 @@ public class PlayerSummary
         }
     }
 
+    //sets all values
     public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
         timeUntilExpire = memoryExpirationTime;
@@ -69,6 +83,7 @@ public class PlayerSummary
         CalculateVuln();
     }
 
+    //sets ability information summary
     void SetAbilSummary(AbilityManager abilManager)
     {
         abilChargeRemainPercent = new Dictionary<AbilityClass, float>();
@@ -81,6 +96,7 @@ public class PlayerSummary
             Debug.Log("no ability list");
             return;
         }
+        
         
         foreach (Ability currentAbility in abilManager.GetAbilList())
         {
@@ -98,7 +114,7 @@ public class PlayerSummary
                 tempMask &= ~lowestBit;
             }
         }
-
+        //sets ability charge remaining in percentage
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
         {
             if (a == AbilityClass.None) continue;
@@ -116,6 +132,7 @@ public class PlayerSummary
             );
     }
 
+    //subtract time remaining until it expires
     public void SubtractTimeRemaining(float timeElapsed)
     {
         timeUntilExpire -= timeElapsed;
@@ -167,6 +184,7 @@ public class PlayerSummary
         vulnValue = (totalPossibleVuln - currentVuln) / totalPossibleVuln;
     }
 
+    //returns all of its information in string
     public string toString()
     {
         string abilChargeStr = "";

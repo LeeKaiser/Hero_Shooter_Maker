@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Event Bus
+used to invoke an event of any type
+*/
 public static class EventBus<T>
 {
     private static event Action<T> OnEvent;
