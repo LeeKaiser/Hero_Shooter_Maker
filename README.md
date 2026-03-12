@@ -6,8 +6,11 @@ Replicates basic system seen in videogames based on Hero Shooter and MOBA Genres
 
 Made on Unity editor version 6000.2.10f1
 
-Made on MacOS (theoretically should work on any OS)
+Made on MacOS (theoretically should work on Windows as well)
 
+Build by opening build profile by file -> buld profiles, then select appropriate build profile then build.
+
+Steps:
 
 ## Player Focused Feature
 - Movement & camera controls 
