@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+playable character stats
+default stats of a character
+*/
 [CreateAssetMenu(fileName = "PlayableCharacterStats", menuName = "Scriptable Objects/PlayableCharacterStats")]
 public class PlayableCharacterStats : ScriptableObject
 {

@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 using StarterAssets;
 
 //rename to CharCore in the future
+/*
+playable character core
+handles base information of player
+*/
 public class PlayableCharCore : MonoBehaviour
 {
     //variables
