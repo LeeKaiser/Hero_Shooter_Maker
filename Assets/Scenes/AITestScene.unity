@@ -796,6 +796,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1044736067}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -2232,6 +2236,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 414363852}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2928,6 +2936,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1305304610}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -6648,6 +6660,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 414363852}
   moveTarget: {fileID: 239606586}
+  angleDiff: 0
 --- !u!114 &873813213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6801,6 +6814,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 916728827}
   moveTarget: {fileID: 1747187102}
+  angleDiff: 0
 --- !u!114 &894114468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7973,6 +7987,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 383882034}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -15731,6 +15749,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 247853399}
   moveTarget: {fileID: 1761647532}
+  angleDiff: 0
 --- !u!114 &1274848643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16246,6 +16265,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 383882034}
   moveTarget: {fileID: 1048201704}
+  angleDiff: 0
 --- !u!114 &1319622078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16333,13 +16353,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40877573dc5c475298a4b0043ae2c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraControls
-  cinemachineCameraTarget: {fileID: 0}
-  topClamp: 70
-  bottomClamp: -30
-  cameraAngleOverride: 0
-  lockCameraPosition: 0
-  cameraSensitivityX: 1
-  cameraSensitivityY: 1
+  CinemachineCameraTarget: {fileID: 1781923356}
+  TopClamp: 70
+  BottomClamp: -30
+  CameraAngleOverride: 0
+  LockCameraPosition: 0
+  CameraSensitivityX: 1
+  CameraSensitivityY: 1
   targetPoint: {fileID: 733651087}
   clickLayers:
     serializedVersion: 2
@@ -16829,6 +16849,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 733651087}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: CinemachineCameraTarget
       value: 
@@ -17727,6 +17751,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 1044736067}
   moveTarget: {fileID: 890546285}
+  angleDiff: 0
 --- !u!114 &1626975377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25002,6 +25027,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 247853399}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -25272,6 +25301,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1238685754}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1781923356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3142862733107681493, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+  m_PrefabInstance: {fileID: 1372142451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800594491 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
@@ -25306,6 +25340,7 @@ MonoBehaviour:
   playerRef: {fileID: 0}
   lookTarget: {fileID: 1305304610}
   moveTarget: {fileID: 11121649}
+  angleDiff: 0
 --- !u!114 &1800594494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25854,6 +25889,10 @@ PrefabInstance:
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 916728827}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 6
