@@ -1,12 +1,6 @@
 using UnityEngine;
 using StarterAssets;
 
-/*
-Movement Input Events
-
-structs associated with an event
-(not integrated yet)
-*/
 namespace MovementInputEvents
 {
     //add all event types for possible playable character movement related events here

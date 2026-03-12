@@ -3,43 +3,24 @@ using Unity.Behavior;
 using System.Collections.Generic;
 using System.Collections;
 
-/*
-DecisionMaker
-activates detection, decision making, and calls AI Action
-*/
 public class DecisionMaker : MonoBehaviour
 {
-    //variable - public
-    [Tooltip("reference to decision tree")]
     [SerializeField] private DecisionTree decisionTree;
-
-    [Tooltip("reference to object detection")]
+    //[SerializeField] private BehaviorGraphAgent behaviorAgent;
     [SerializeField] private ObjectDetection objectDetection;
-
-    [Tooltip("current AI Action in use")]
+    //[SerializeField] private BehaviorGraph currentBehavior;
     [SerializeField] private AIAction currentAction;
-
-    [Tooltip("reference to ability input event caller")]
     [SerializeField] private InputEventCaller inputCall;
 
-    [Tooltip("transform representing where character aims at")]
-    public Transform aimTarget;
+    private DecisionTree decisionTreeRuntime;
+    private AIAction actionRunTime;
 
-    [Tooltip("transform representing where character moves to")]
+    public Transform aimTarget;
     public Transform movementDestination;
 
     [Tooltip("time between each scan")]
     public float scanTimeInterval = 0.25f;
 
-
-    //variable - private
-    //copy of decision tree at run time
-    private DecisionTree decisionTreeRuntime;
-    //copy of AI Action at run time
-    private AIAction actionRunTime;
-
-    //method
-    //called when agent is created
     void Start()
     {
         //step 0: start
@@ -48,7 +29,6 @@ public class DecisionMaker : MonoBehaviour
         decisionTreeRuntime = Instantiate(decisionTree);
     }
 
-    //goes through detection - decision - action steps every scan interval
     IEnumerator WaitThenScan()
     {
         yield return new WaitForSeconds(scanTimeInterval);
