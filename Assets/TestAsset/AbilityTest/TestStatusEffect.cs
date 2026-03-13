@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TestStatusEffect", menuName = "Scriptable Objects/TestStatusEffect")]
 public class TestStatusEffect : StatusEffect
 {
     [Tooltip("amount of speed boost")]

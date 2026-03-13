@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using Unity.Behavior;
 
 [CreateAssetMenu(menuName = "DecisionTree")]
 public class DecisionTree : ScriptableObject
