@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEditor;
 using DecisionCondition;
-using Unity.Behavior;
 
 public class DecisionTreeEditorWindow : EditorWindow
 {
