@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 {
-    [SerializeField] private PlayableCharCore[] TeamMembers;
+    [SerializeField] private CharCore[] TeamMembers;
 
     public LayerMask teamLayer;
 

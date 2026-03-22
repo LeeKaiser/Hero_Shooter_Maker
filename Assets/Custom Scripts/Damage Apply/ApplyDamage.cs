@@ -12,7 +12,7 @@ public class ApplyDamage : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         // check if collision has playable character core
-        PlayableCharCore enemy = collision.transform.parent.GetComponent<PlayableCharCore>();
+        CharCore enemy = collision.transform.parent.GetComponent<CharCore>();
 
         // check if enemy player allegience is different from the player
         if (enemy != null)

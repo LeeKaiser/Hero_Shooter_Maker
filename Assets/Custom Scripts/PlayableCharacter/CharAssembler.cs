@@ -4,7 +4,7 @@ public class CharAssembler : MonoBehaviour
 {
     public CharAssembleInfo assembleInfo;
 
-    public PlayableCharCore playerRef;
+    public CharCore playerRef;
     public InputEventCaller inputCall;
 
     public void Init()

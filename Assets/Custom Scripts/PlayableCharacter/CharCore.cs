@@ -5,12 +5,12 @@ using UnityEngine.InputSystem;
 using StarterAssets;
 
 //rename to CharCore in the future
-public class PlayableCharCore : MonoBehaviour
+public class CharCore : MonoBehaviour
 {
     //variables
     [Header("Player stats")]
     [Tooltip("playable character base stats")]
-    public PlayableCharacterStats PlayerStats;
+    public CharStats PlayerStats;
 
     public TeamManager playerAllegience; //set to team object 
 

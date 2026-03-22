@@ -17,11 +17,11 @@ public class ObjectDetection : MonoBehaviour
 
     [Tooltip("amount of time it takes for the AI to forget the ally after not being detected")]
     public float allyMemoryExpirationTime = 10f;
-    Dictionary <PlayableCharCore, PlayerSummary> knownAllyList = new Dictionary<PlayableCharCore, PlayerSummary>();
+    Dictionary <CharCore, PlayerSummary> knownAllyList = new Dictionary<CharCore, PlayerSummary>();
 
     [Tooltip("amount of time it takes for the AI to forget the enemy after not being detected")]
     public float enemyMemoryExpirationTime = 3f;
-    Dictionary <PlayableCharCore, PlayerSummary> knownEnemyList = new Dictionary<PlayableCharCore, PlayerSummary>();
+    Dictionary <CharCore, PlayerSummary> knownEnemyList = new Dictionary<CharCore, PlayerSummary>();
 
     PlayerSummary selfSummary = new PlayerSummary();
 
@@ -52,7 +52,7 @@ public class ObjectDetection : MonoBehaviour
         foreach (var obj in rangeCheck)
         {
             //check if its player
-            PlayableCharCore player = obj.transform.GetComponentInParent<PlayableCharCore>();
+            CharCore player = obj.transform.GetComponentInParent<CharCore>();
             if (player != null)
             {
                 //check if its self
@@ -118,8 +118,8 @@ public class ObjectDetection : MonoBehaviour
     //
     public void ElapseExpirationTime(float timeElapsed)
     {
-        List<PlayableCharCore> toRemove = new();
-        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownAllyList)
+        List<CharCore> toRemove = new();
+        foreach (KeyValuePair<CharCore, PlayerSummary> player in knownAllyList)
         {
             
             if (player.Value.timeUntilExpire <= 0)
@@ -142,7 +142,7 @@ public class ObjectDetection : MonoBehaviour
 
         toRemove = new();
 
-        foreach (KeyValuePair<PlayableCharCore, PlayerSummary> player in knownEnemyList)
+        foreach (KeyValuePair<CharCore, PlayerSummary> player in knownEnemyList)
         {
             
             if (player.Value.timeUntilExpire <= 0)
