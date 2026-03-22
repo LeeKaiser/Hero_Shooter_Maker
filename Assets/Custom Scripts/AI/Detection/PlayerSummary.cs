@@ -45,7 +45,7 @@ public class PlayerSummary
         }
     }
 
-    public void SetValues(PlayableCharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
+    public void SetValues(CharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
         timeUntilExpire = memoryExpirationTime;
 

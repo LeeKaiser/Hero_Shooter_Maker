@@ -23,7 +23,7 @@ public class AttackAction : AIAction
             if (targetEnemy == null)
             {
                 float highestVuln = 0;
-                foreach (KeyValuePair<PlayableCharCore, PlayerSummary> potentialTarget in objectDetection.GetCurrentContext().knownEnemyList)
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in objectDetection.GetCurrentContext().knownEnemyList)
                 {
                     if (potentialTarget.Value.vulnValue > highestVuln)
                     {

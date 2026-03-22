@@ -18,7 +18,7 @@ public class StatusEffectManager : MonoBehaviour
     [Tooltip("current status effects")]
     [SerializeField] List<StatusEffect> statusEffectList = new List<StatusEffect>();
 
-    PlayableCharCore playerRef;
+    CharCore playerRef;
 
     [Tooltip("EffectTimeMultiplier for buffs")]
     public float EffectTimeMultiplierBuffs = 1;
@@ -27,7 +27,7 @@ public class StatusEffectManager : MonoBehaviour
 
     public void Start()
     {
-        playerRef = this.gameObject.GetComponent<PlayableCharCore>();
+        playerRef = this.gameObject.GetComponent<CharCore>();
     }
 
     //get effect

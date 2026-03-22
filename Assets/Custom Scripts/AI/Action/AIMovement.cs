@@ -5,7 +5,7 @@ using StarterAssets;
 public class AIMovement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private PlayableCharCore playerRef;
+    [SerializeField] private CharCore playerRef;
 
 
     public Transform lookTarget;
@@ -21,7 +21,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        playerRef = GetComponentInParent<PlayableCharCore>();
+        playerRef = GetComponentInParent<CharCore>();
         movementInput = GetComponent<StarterAssetsInputs>();
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding

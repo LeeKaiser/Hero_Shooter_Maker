@@ -17,7 +17,7 @@ public static class ConditionCheck
             case decisionCondition.EnemyClose:
                 if (context.knownEnemyList.Count > 0) 
                 {
-                    foreach (KeyValuePair<PlayableCharCore, PlayerSummary> x in context.knownEnemyList)
+                    foreach (KeyValuePair<CharCore, PlayerSummary> x in context.knownEnemyList)
                     {
                         if (x.Value.distanceFromSelf < parameterFloat)
                         {

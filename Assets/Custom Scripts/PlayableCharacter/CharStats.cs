@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayableCharacterStats", menuName = "Scriptable Objects/PlayableCharacterStats")]
-public class PlayableCharacterStats : ScriptableObject
+[CreateAssetMenu(fileName = "CharStats", menuName = "Scriptable Objects/CharStats")]
+public class CharStats : ScriptableObject
 {
     //variables
     [Header("Hitpoints vars")]
