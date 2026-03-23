@@ -205,7 +205,7 @@ namespace StarterAssets
             PlayerGrounded playerGroundedType = new PlayerGrounded();
             playerGroundedType.playerIdentity = GetComponentInParent<CharCore>();
             playerGroundedType.grounded = Grounded;
-            EventBs<PlayerGrounded>.Invoke(playerGroundedType);
+            EventBus<PlayerGrounded>.Invoke(playerGroundedType);
         }
 
         private void SecondGroundCheck()

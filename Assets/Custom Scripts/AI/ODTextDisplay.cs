@@ -4,7 +4,7 @@ public class ODTextDisplay : InGameTxtDisplay
 {
     public ObjectDetection objDetect;
     [SerializeField] private string detectionToString;
-    float x = 0.6f;
+    float x = 5f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

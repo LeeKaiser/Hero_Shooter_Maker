@@ -12,11 +12,11 @@ namespace MovementInputEvents
 
     public struct PlayerLandOnGround{
         public CharCore playerIdentity;
-        public bool grounded;
     }
 
     public struct PlayerGrounded{
         public CharCore playerIdentity;
+        public bool grounded;
     }
 
 
