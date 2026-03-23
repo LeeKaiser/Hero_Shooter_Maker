@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using StarterAssets;
+using MovementInputEvents;
 
 public class AIMovement : MonoBehaviour
 {
@@ -26,13 +27,14 @@ public class AIMovement : MonoBehaviour
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
+        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmesh);
     }
 
     void Update()
     {
         MoveToLocation(moveTarget.position);
         AgentMovement();
-        if (navmeshPause > 0)
+        if (navmeshPause >= 0)
         {
             navmeshPause -= Time.deltaTime;
             if (navmeshPause <= 0)
@@ -44,10 +46,21 @@ public class AIMovement : MonoBehaviour
         }
     }
 
+    public void UnpauseNavmesh(PlayerLandOnGround landOnGroundInfo)
+    {
+        if (landOnGroundInfo.playerIdentity == playerRef)
+        {
+            Debug.Log("Unpaused navmesh");
+            agent.enabled = true;
+            agent.autoTraverseOffMeshLink = true;
+        }
+        
+    }
+
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
-        //when on navmesh link (on ledge or when it needs to jumo), disable agent
+        //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
         // this is currently determined based on if navmesh link destination is positioned within jump trajectory
         bool inputJump = false;
@@ -67,12 +80,15 @@ public class AIMovement : MonoBehaviour
             }
             agent.enabled = false;
             agent.autoTraverseOffMeshLink = false;
-            navmeshPause = t + 0.1f; //refactor this in the future to unpause at the exact time it would land on ground
+            navmeshPause = t + 0.1f;
+            Debug.Log("Paused Navmesh");
+
+            Debug.Break();
 
             //temporary fix to ai freezing at ledges, implement an actual fix in the future
             if (agentDirection == Vector3.zero)
             {
-                agentDirection.x = 1;
+                agentDirection.z = 1;
             }
         }
 

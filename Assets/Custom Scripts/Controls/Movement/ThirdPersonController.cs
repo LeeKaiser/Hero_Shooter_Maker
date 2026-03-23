@@ -2,7 +2,7 @@
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
-
+using MovementInputEvents;
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
 /*
@@ -176,6 +176,7 @@ namespace StarterAssets
         private void GroundedCheck()
         {
             // set sphere position, with offset
+            bool previouslyGrounded = Grounded;
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
@@ -194,6 +195,17 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
+
+            if (!previouslyGrounded && Grounded)
+            {
+                PlayerLandOnGround playerLandType = new PlayerLandOnGround();
+                playerLandType.playerIdentity = GetComponentInParent<CharCore>();
+                EventBus<PlayerLandOnGround>.Invoke(playerLandType);
+            }
+            PlayerGrounded playerGroundedType = new PlayerGrounded();
+            playerGroundedType.playerIdentity = GetComponentInParent<CharCore>();
+            playerGroundedType.grounded = Grounded;
+            EventBus<PlayerGrounded>.Invoke(playerGroundedType);
         }
 
         private void SecondGroundCheck()
@@ -347,7 +359,9 @@ namespace StarterAssets
                     {
                         _animator.SetBool(_animIDJump, true);
                     }
-
+                    PlayerJump playerJumpType = new PlayerJump();
+                    playerJumpType.playerIdentity = GetComponentInParent<CharCore>();
+                    EventBus<PlayerJump>.Invoke(playerJumpType);
                     CanJump = false;
                     
                 }

@@ -7,58 +7,55 @@ namespace MovementInputEvents
 
     //jumping related
     public struct PlayerJump{
-        public GameObject PlayerIdentity;
-    }
-
-    public struct PlayerAirborne{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerLandOnGround{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerGrounded{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
+        public bool grounded;
     }
 
 
     //moving related
     public struct PlayerMove{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerMoveForward{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerMoveStrafe{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerMoveBackward{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerStopMove{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
 
     //crouching related
     public struct PlayerStartCrouch{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerHoldCrouch{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerReleaseCrouch{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 
     public struct PlayerNotCrouch{
-        public GameObject PlayerIdentity;
+        public CharCore playerIdentity;
     }
 }
