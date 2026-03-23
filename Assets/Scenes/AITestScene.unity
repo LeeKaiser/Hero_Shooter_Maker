@@ -7071,7 +7071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8476773989762337301, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
       propertyPath: m_VerticalAlignment
@@ -7086,6 +7086,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1483432069}
+    - targetCorrespondingSourceObject: {fileID: 8028663614032814110, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &912066269
 GameObject:
@@ -7761,7 +7764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3772487131666148388, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3790546632043134045, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
