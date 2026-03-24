@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932417b3b5a94e0591b157fb2f26d44, type: 3}
   m_Name: TestAttackStats
   m_EditorClassIdentifier: 
-  abilityName: Test Attack
-  abilUIPrefab: {fileID: 5694682100280509937, guid: 66e3a075af105480da743b359ae7f390, type: 3}
-  maxCharge: 3
-  chargePointsRequired: 100
-  chargePointsPerSec: 50
-  chargeGainPerFullRecharge: 1
-  canInterruptOthers: 0
-  useTime: 0.2
-  useFailTime: 0
-  maxChargeTime: 0
-  usePerSec: 0
+  AbilityName: Test Attack
+  AbilityUIPrefab: {fileID: 5694682100280509937, guid: 66e3a075af105480da743b359ae7f390, type: 3}
+  MaxCharge: 20
+  ChargePointsRequired: 40
+  ChargePointsPerSec: 100
+  ChargeGainPerFullRecharge: 1
+  CanInterruptOthers: 0
+  UseTime: 0.2
+  UseFailTime: 0
+  MaxChargeTime: 0
+  UsePerSec: 5
