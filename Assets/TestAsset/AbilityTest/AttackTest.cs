@@ -17,7 +17,6 @@ public class AttackTest : Ability
     public LayerMask EnemyMask;
     Transform attackPoint;
     Transform targetPoint;
-    public float fireRate; //custom fire rate in shots per sec
 
     private float currentAttackPause = 0;
     
@@ -56,7 +55,7 @@ public class AttackTest : Ability
         Debug.Log("Attack1 activated");
 
         //limit fire rate
-        currentAttackPause = 1 / fireRate;
+        currentAttackPause = 1 / abilityStat.usePerSec;
         
         //instantiate projectile
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);

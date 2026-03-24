@@ -25,7 +25,7 @@ public class AttackAction : AIAction
                 float highestVuln = 0;
                 foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in objectDetection.GetCurrentContext().knownEnemyList)
                 {
-                    if (potentialTarget.Value.vulnValue > highestVuln)
+                    if (potentialTarget.Value.vulnValue >= highestVuln)
                     {
                         targetEnemy = potentialTarget.Key.playerArmature;
                         highestVuln = potentialTarget.Value.vulnValue;
