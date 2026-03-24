@@ -4,27 +4,32 @@ using System.Collections.Generic;
 using System;
 using AbilityClassification;
 
+/*
+Ability Manager
+manages ability's input, cooldown, and UI systems
+easily find player's abilities through ability manager
+*/
 public class AbilityManager : MonoBehaviour
 {
     [SerializeField] private List<Ability> abilitiesList;
     private Ability currentlyActiveAbility;
-    public CharCore playerRef;
+    public CharCore PlayerReference;
 
-    public Transform playerCanvas;
+    public Transform PlayerCanvas;
 
-    public Dictionary <AbilityClass, int> abilClassDict = new Dictionary<AbilityClass, int>();
+    public Dictionary <AbilityClass, int> AbilityClassDictionary = new Dictionary<AbilityClass, int>();
 
-    public Dictionary <Ability, List<InputOptions.Input>> abilToInput = new Dictionary<Ability, List<InputOptions.Input>>();
-    public InputEventCaller inputEventCaller;
+    public Dictionary <Ability, List<InputOptions.Input>> AbiltyToInputDictionary = new Dictionary<Ability, List<InputOptions.Input>>();
+    public InputEventCaller EventCaller;
 
     void Awake()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
         {
             if (a == AbilityClass.None) continue;
-            abilClassDict[a] = 0;
+            AbilityClassDictionary[a] = 0;
         }
-        inputEventCaller = transform.Find("PlayerArmature").GetComponent<InputEventCaller>();
+        EventCaller = transform.Find("PlayerArmature").GetComponent<InputEventCaller>();
     }
 
     void Update()
@@ -35,13 +40,13 @@ public class AbilityManager : MonoBehaviour
             ability.ActivateReload();
             ability.ReloadOverTime(Time.deltaTime);
             //call ability's ui to update
-            ability.abilUIRef.UpdateUI();
+            ability.AbilityUIReference.UpdateUI();
         }
     }
 
     public List<Ability> GetAbilList(){return abilitiesList;}
 
-    public Dictionary <AbilityClass, int> GetAbilClassDict() {return abilClassDict;}
+    public Dictionary <AbilityClass, int> GetAbilityClassDictionary() {return AbilityClassDictionary;}
 
     void OnDisable()
     {
@@ -55,12 +60,12 @@ public class AbilityManager : MonoBehaviour
     public bool CanUseAbility(Ability ability)
     {
         //returns if ability is set as usable in the current system
-        return currentlyActiveAbility == null || ability.abilityStat.canInterruptOthers;
+        return currentlyActiveAbility == null || ability.Stats.CanInterruptOthers;
     }
 
     public void NotifyAbilityStarted(Ability ability)
     {
-        if (currentlyActiveAbility != null && ability.abilityStat.canInterruptOthers)
+        if (currentlyActiveAbility != null && ability.Stats.CanInterruptOthers)
         {
             // Optionally add cancellation logic here
             Debug.Log($"{ability.name} is interrupting {currentlyActiveAbility.name}");
@@ -87,19 +92,19 @@ public class AbilityManager : MonoBehaviour
             Debug.LogError("The prefab does not have an Ability component!");
             return;
         }
-        ability.Initialize(this, playerRef);
+        ability.Initialize(this, PlayerReference);
 
-        GameObject abilUI = Instantiate(ability.abilityStat.abilUIPrefab);
+        GameObject abilUI = Instantiate(ability.Stats.AbilityUIPrefab);
 
 
         AbilityUI abilUIScript = abilUI.GetComponent<AbilityUI>();
-        abilUIScript.transform.SetParent(playerCanvas, false);
+        abilUIScript.transform.SetParent(PlayerCanvas, false);
         if (abilUIScript != null)
         {
-            abilUIScript.abilityRef = ability;
+            abilUIScript.AbilityReference = ability;
             abilUIScript.Initialize();
         }
-        ability.abilUIRef = abilUIScript;
+        ability.AbilityUIReference = abilUIScript;
         abilitiesList.Add(ability);
         //add to ability class dictionary
         foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
@@ -112,14 +117,14 @@ public class AbilityManager : MonoBehaviour
 
             else if (ability.CurrentAbilClass.HasFlag(a))
             {
-                abilClassDict[a] += 1;
+                AbilityClassDictionary[a] += 1;
             }
         }
     }
 
     public void SetupInput(Ability ability, PlayerActiveAbilID abilID, List<InputOptions.Input> abilInput)
     {
-        inputEventCaller.InputDict.Add(abilInput, abilID);
-        abilToInput.Add(ability, abilInput);
+        EventCaller.InputDict.Add(abilInput, abilID);
+        AbiltyToInputDictionary.Add(ability, abilInput);
     }
 }

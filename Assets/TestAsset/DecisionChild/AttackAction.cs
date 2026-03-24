@@ -75,7 +75,7 @@ public class AttackAction : AIAction
         //if there is an ability available, call the input for it
         if (!(abilToUse == null))
         {
-            foreach (InputOptions.Input i in abilManager.abilToInput[abilToUse])
+            foreach (InputOptions.Input i in abilManager.AbiltyToInputDictionary[abilToUse])
             {
                 inputCall.AddInput(i);
             }

@@ -102,15 +102,15 @@ public class PlayerSummary
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
         {
             if (a == AbilityClass.None) continue;
-            if (abilManager.GetAbilClassDict()[a] > 0)
+            if (abilManager.GetAbilityClassDictionary()[a] > 0)
             {
-                abilChargeRemainPercent[a] = abilChargeRemainPercent[a] / abilManager.GetAbilClassDict()[a];
+                abilChargeRemainPercent[a] = abilChargeRemainPercent[a] / abilManager.GetAbilityClassDictionary()[a];
                 
             }
             
         }
 
-        hasAbilClass = abilManager.GetAbilClassDict().ToDictionary(
+        hasAbilClass = abilManager.GetAbilityClassDictionary().ToDictionary(
             pair => pair.Key,
             pair => pair.Value > 0 ? 1 : 0
             );

@@ -4,15 +4,19 @@ using UnityEngine.InputSystem.Interactions;
 using System.Collections;
 using AbilityClassification;
 
+/*
+Ability
+abstract parent class for all abilities
+*/
 public abstract class Ability: MonoBehaviour
 {
     //charge represents a use of an ability (functional as ammo)
     //charge point is progress to complete a full charge up or reload.
     [Header("ability stats")]
     [Tooltip("ability stats")]
-    public AbilityStats abilityStat;
+    public AbilityStats Stats;
     [Tooltip("reference to user")]
-    protected CharCore playerRef;
+    protected CharCore playerReference;
     //variables
     protected int currentCharge ; //remaining  charge
     protected int currentMaxCharge ; // current maximum charge
@@ -26,22 +30,22 @@ public abstract class Ability: MonoBehaviour
     protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
 
-    public AbilityUI abilUIRef; //reference to ability's UI
+    public AbilityUI AbilityUIReference; //reference to ability's UI
 
     public AbilityClass CurrentAbilClass;
 
     void Start()
     {
-        currentCharge = abilityStat.maxCharge;
-        currentMaxCharge = abilityStat.maxCharge;
+        currentCharge = Stats.MaxCharge;
+        currentMaxCharge = Stats.MaxCharge;
         GetComponentInParent<AbilityManager>().AddAbility(this.gameObject);
         
     }
 
-    public virtual void Initialize(AbilityManager owningManager, CharCore playerReference)
+    public virtual void Initialize(AbilityManager owningManager, CharCore playerCharCore)
     {
         this.manager = owningManager;
-        this.playerRef = playerReference;
+        this.playerReference = playerCharCore;
         Startup();
     }
 
@@ -62,7 +66,7 @@ public abstract class Ability: MonoBehaviour
     //when ability is missing any charge, set recharge in progress to true
     public void ActivateReload()
     {
-        if (currentCharge < abilityStat.maxCharge && !isActive)
+        if (currentCharge < Stats.MaxCharge && !isActive)
         {
             rechargeInProgress = true;
         }
@@ -77,15 +81,15 @@ public abstract class Ability: MonoBehaviour
             //add to charge point's progress
             chargePointsProgress += chargeAdded * chargePointMultiplier;
             //converts charge points progress to charge
-            while (chargePointsProgress >= abilityStat.chargePointsRequired)
+            while (chargePointsProgress >= Stats.ChargePointsRequired)
             {
                 //give a charge
                 if (currentCharge < currentMaxCharge)
                 {
-                    currentCharge += abilityStat.chargeGainPerFullRecharge;
+                    currentCharge += Stats.ChargeGainPerFullRecharge;
                 }
                 //subtract charge points required from charge point progress 
-                chargePointsProgress -= abilityStat.chargePointsRequired;
+                chargePointsProgress -= Stats.ChargePointsRequired;
                 //if fully charged, reset charge point progress to 0
                 if (currentCharge >= currentMaxCharge)
                 {
@@ -100,7 +104,7 @@ public abstract class Ability: MonoBehaviour
     //for abilities that reload over time, call this method every update
     public void ReloadOverTime(float TimeElapsed )
     {
-        float newCharge = abilityStat.chargePointsPerSec * TimeElapsed;
+        float newCharge = Stats.ChargePointsPerSec * TimeElapsed;
         RecoverChargePoint(newCharge);
     }
 
