@@ -45,11 +45,10 @@ public class AttackAction : AIAction
     }
     public override void DetermineAim()
     {
-        Vector3 targetPos = targetEnemy.transform.position;
+        Vector3 targetPosition = targetEnemy.transform.position;
         float heightAdjustment = targetEnemy.GetComponent<CharacterController>().height * 0.8f;
-        targetPos.y += heightAdjustment;
-        aimTarget.position = targetPos;
-        //Debug.Log(aimTarget.position);
+        targetPosition.y += heightAdjustment;
+        aimTarget.position = targetPosition;
     }
     public override void MakeInput()
     {
