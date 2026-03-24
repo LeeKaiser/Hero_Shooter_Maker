@@ -27,7 +27,7 @@ public class AIMovement : MonoBehaviour
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
-        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmesh);
+        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
     }
 
     void Update()
@@ -39,22 +39,24 @@ public class AIMovement : MonoBehaviour
             navmeshPause -= Time.deltaTime;
             if (navmeshPause <= 0)
             {
-                Debug.Log("Unpaused navmesh");
-                agent.enabled = true;
-                agent.autoTraverseOffMeshLink = true;
+                UnpauseNavmesh();
             }
         }
     }
 
-    public void UnpauseNavmesh(PlayerLandOnGround landOnGroundInfo)
+    public void UnpauseNavmeshOnLanding(PlayerLandOnGround landOnGroundInfo)
     {
         if (landOnGroundInfo.playerIdentity == playerRef)
         {
-            Debug.Log("Unpaused navmesh");
-            agent.enabled = true;
-            agent.autoTraverseOffMeshLink = true;
+            UnpauseNavmesh();
         }
         
+    }
+
+    void UnpauseNavmesh()
+    {
+        agent.enabled = true;
+        agent.autoTraverseOffMeshLink = true;
     }
 
     //makes an artificial input to the agent's input file.
@@ -81,9 +83,6 @@ public class AIMovement : MonoBehaviour
             agent.enabled = false;
             agent.autoTraverseOffMeshLink = false;
             navmeshPause = t + 0.1f;
-            Debug.Log("Paused Navmesh");
-
-            Debug.Break();
 
             //temporary fix to ai freezing at ledges, implement an actual fix in the future
             if (agentDirection == Vector3.zero)

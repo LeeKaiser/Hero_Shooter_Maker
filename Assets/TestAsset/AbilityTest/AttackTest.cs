@@ -14,17 +14,15 @@ public class AttackTest : Ability
         InputOptions.Input.AtkL
     };
     public GameObject attackPrefab;
-    public LayerMask EnemyMask;
     Transform attackPoint;
     Transform targetPoint;
-    public float fireRate; //custom fire rate in shots per sec
 
     private float currentAttackPause = 0;
     
     protected override void Startup(){
         AbilID = new PlayerActiveAbilID();
-        attackPoint = playerRef.playerArmature.transform.Find("KeyPoint1").transform;
-        targetPoint = playerRef.transform.Find("TargetPoint").transform;
+        attackPoint = playerReference.playerArmature.transform.Find("KeyPoint1").transform;
+        targetPoint = playerReference.transform.Find("TargetPoint").transform;
         manager.SetupInput(this, AbilID, activationInput);
         EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
     }
@@ -56,7 +54,7 @@ public class AttackTest : Ability
         Debug.Log("Attack1 activated");
 
         //limit fire rate
-        currentAttackPause = 1 / fireRate;
+        currentAttackPause = 1 / Stats.UsePerSec;
         
         //instantiate projectile
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
@@ -64,8 +62,8 @@ public class AttackTest : Ability
 
         //set projectile settings
         AttackInfo atkInfo = attackObj.GetComponent<AttackInfo>();
-        atkInfo.owningPlayer = playerRef;
-        atkInfo.attackAllegience = playerRef.playerAllegience;
+        atkInfo.owningPlayer = playerReference;
+        atkInfo.attackAllegience = playerReference.playerAllegience;
 
         //use a charge
         ConsumeCharge(1);

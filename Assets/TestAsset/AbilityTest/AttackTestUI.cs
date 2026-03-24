@@ -11,21 +11,21 @@ public class AttackTestUI : AbilityUI
 
     public override void Initialize()
     {
-        if (abilityRef == null)
+        if (AbilityReference == null)
         {
             return;
         }
-        abilityName.text = abilityRef.abilityStat.abilityName;
-        chargeRemaining.text = abilityRef.GetCurrentCharge() + "";
-        maxCharge.text = abilityRef.abilityStat.maxCharge + "";
-        chargeProgress.maxValue = abilityRef.abilityStat.chargePointsRequired;
-        chargeProgress.value = abilityRef.GetChargePointProgress();
+        abilityName.text = AbilityReference.Stats.AbilityName;
+        chargeRemaining.text = AbilityReference.GetCurrentCharge() + "";
+        maxCharge.text = AbilityReference.Stats.MaxCharge + "";
+        chargeProgress.maxValue = AbilityReference.Stats.ChargePointsRequired;
+        chargeProgress.value = AbilityReference.GetChargePointProgress();
         
     }
 
     public override void UpdateUI()
     {
-        chargeRemaining.text = abilityRef.GetCurrentCharge() + "";
-        chargeProgress.value = abilityRef.GetChargePointProgress();
+        chargeRemaining.text = AbilityReference.GetCurrentCharge() + "";
+        chargeProgress.value = AbilityReference.GetChargePointProgress();
     }
 }

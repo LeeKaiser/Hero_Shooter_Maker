@@ -25,7 +25,7 @@ public class AttackAction : AIAction
                 float highestVuln = 0;
                 foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in objectDetection.GetCurrentContext().knownEnemyList)
                 {
-                    if (potentialTarget.Value.vulnValue > highestVuln)
+                    if (potentialTarget.Value.vulnValue >= highestVuln)
                     {
                         targetEnemy = potentialTarget.Key.playerArmature;
                         highestVuln = potentialTarget.Value.vulnValue;
@@ -45,11 +45,10 @@ public class AttackAction : AIAction
     }
     public override void DetermineAim()
     {
-        Vector3 targetPos = targetEnemy.transform.position;
+        Vector3 targetPosition = targetEnemy.transform.position;
         float heightAdjustment = targetEnemy.GetComponent<CharacterController>().height * 0.8f;
-        targetPos.y += heightAdjustment;
-        aimTarget.position = targetPos;
-        //Debug.Log(aimTarget.position);
+        targetPosition.y += heightAdjustment;
+        aimTarget.position = targetPosition;
     }
     public override void MakeInput()
     {
@@ -76,7 +75,7 @@ public class AttackAction : AIAction
         //if there is an ability available, call the input for it
         if (!(abilToUse == null))
         {
-            foreach (InputOptions.Input i in abilManager.abilToInput[abilToUse])
+            foreach (InputOptions.Input i in abilManager.AbiltyToInputDictionary[abilToUse])
             {
                 inputCall.AddInput(i);
             }
