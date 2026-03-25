@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2502441231928985280}
   m_Layer: 6
-  m_Name: TargetPoint
+  m_Name: AimTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3312555172618419675}
   m_Layer: 0
-  m_Name: MovementDestination
+  m_Name: MoveTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1193,10 +1193,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIMovement
   agent: {fileID: 0}
-  playerRef: {fileID: 0}
-  lookTarget: {fileID: 2502441231928985280}
-  moveTarget: {fileID: 3312555172618419675}
-  angleDiff: 0
+  playerReference: {fileID: 0}
+  AimTarget: {fileID: 0}
+  MoveTarget: {fileID: 0}
 --- !u!114 &3363027209936969933
 MonoBehaviour:
   m_ObjectHideFlags: 0

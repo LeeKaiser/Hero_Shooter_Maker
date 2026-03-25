@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class AttackAction : AIAction
 {
     /*
-    public Transform movementDestination;
-    public Transform aimTarget;
-    public ObjectDetection objectDetection;
-    public InputEventCaller inputCall;
+    public Transform MoveTarget;
+    public Transform AimTarget;
+    public ObjectDetection Detection;
+    public InputEventCaller InputCall;
     */
 
     GameObject targetEnemy = null;
@@ -17,13 +17,13 @@ public class AttackAction : AIAction
     float randomDistanceTweak = 2f;
     public override void DetermineMovement()
     {
-        if (!(objectDetection.GetCurrentContext().knownEnemyList == null))
+        if (!(Detection.GetCurrentContext().knownEnemyList == null))
         {
             // identify weakest enemy
             if (targetEnemy == null)
             {
                 float highestVuln = 0;
-                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in objectDetection.GetCurrentContext().knownEnemyList)
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().knownEnemyList)
                 {
                     if (potentialTarget.Value.vulnValue >= highestVuln)
                     {
@@ -36,11 +36,11 @@ public class AttackAction : AIAction
             Debug.Log(targetEnemy);
             Vector3 nextDestination = targetEnemy.transform.position;
 
-            Vector3 enemyToSelf =  objectDetection.GetCurrentContext().selfSummary.summarizedPlayer.transform.position - targetEnemy.transform.position;
+            Vector3 enemyToSelf =  Detection.GetCurrentContext().selfSummary.summarizedPlayer.transform.position - targetEnemy.transform.position;
             Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
             nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
             //Debug.Log(nextDestination);
-            movementDestination.position = nextDestination;
+            MoveTarget.position = nextDestination;
         }
     }
     public override void DetermineAim()
@@ -48,14 +48,14 @@ public class AttackAction : AIAction
         Vector3 targetPosition = targetEnemy.transform.position;
         float heightAdjustment = targetEnemy.GetComponent<CharacterController>().height * 0.8f;
         targetPosition.y += heightAdjustment;
-        aimTarget.position = targetPosition;
+        AimTarget.position = targetPosition;
     }
     public override void MakeInput()
     {
         //attempt to shoot a damage attack
 
         //get the attack from the self's ability manager
-        AbilityManager abilManager = objectDetection.GetCurrentContext().selfSummary.summarizedPlayer.GetComponent<AbilityManager>();
+        AbilityManager abilManager = Detection.GetCurrentContext().selfSummary.summarizedPlayer.GetComponent<AbilityManager>();
         Ability abilToUse = null;
         float bestCooldown = 0;
         foreach (Ability abil in abilManager.GetAbilList())
@@ -77,7 +77,7 @@ public class AttackAction : AIAction
         {
             foreach (InputOptions.Input i in abilManager.AbiltyToInputDictionary[abilToUse])
             {
-                inputCall.AddInput(i);
+                InputCall.AddInput(i);
             }
         }
     }

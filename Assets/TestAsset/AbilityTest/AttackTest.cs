@@ -22,7 +22,7 @@ public class AttackTest : Ability
     protected override void Startup(){
         AbilID = new PlayerActiveAbilID();
         attackPoint = playerReference.playerArmature.transform.Find("KeyPoint1").transform;
-        targetPoint = playerReference.transform.Find("TargetPoint").transform;
+        targetPoint = playerReference.transform.Find("AimTarget").transform;
         manager.SetupInput(this, AbilID, activationInput);
         EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
     }
