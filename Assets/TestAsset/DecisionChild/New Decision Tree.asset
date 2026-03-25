@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5081304676461503944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
+  childYesNode: {fileID: 0}
+  childNoNode: {fileID: 0}
+  parentNodes: []
+  nodeCondition: 0
+  action: {fileID: 0}
+  isBehavior: 0
+  parameterFloat: 0
+  editorPosition: {x: 0, y: 0}
 --- !u!114 &-4190353240872096400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,11 +53,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59b4ef3832474766aa06e8f43039507, type: 3}
   m_Name: New Decision Tree
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTree
-  decisionTreeRoot: {fileID: 5558142535909733708}
-  allNodes:
-  - {fileID: 5558142535909733708}
-  - {fileID: 8067390332693551431}
-  - {fileID: -4190353240872096400}
+  DecisionTreeRoot: {fileID: 3983096840440300588}
+  AllNodes:
+  - {fileID: 3983096840440300588}
+  - {fileID: 6334987470798618535}
+--- !u!114 &3983096840440300588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
+  childYesNode: {fileID: 6334987470798618535}
+  childNoNode: {fileID: 0}
+  parentNodes: []
+  nodeCondition: 0
+  action: {fileID: 0}
+  isBehavior: 0
+  parameterFloat: 0
+  editorPosition: {x: 484, y: 105}
 --- !u!114 &5558142535909733708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +97,27 @@ MonoBehaviour:
   isBehavior: 0
   parameterFloat: 20
   editorPosition: {x: 521.52344, y: 98.7272}
+--- !u!114 &6334987470798618535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
+  childYesNode: {fileID: 0}
+  childNoNode: {fileID: 0}
+  parentNodes:
+  - {fileID: 3983096840440300588}
+  nodeCondition: 0
+  action: {fileID: 0}
+  isBehavior: 0
+  parameterFloat: 0
+  editorPosition: {x: 284, y: 255}
 --- !u!114 &8067390332693551431
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,36 +3,57 @@ using DecisionCondition;
 using System.Collections.Generic;
 using System.Collections;
 
+/*
+Condition Check
+Static class containing a method to check if a condition is true or false. 
+*/
 public static class ConditionCheck
 {
-    
-
     public static bool CheckIfConditionTrue(decisionCondition currentCondition, float parameterFloat, KnownContext context)
     {
         switch (currentCondition)
         {
             case decisionCondition.EnemyPresent:
-                if (context.knownEnemyList.Count > 0) {return true;}
-                else{return false;}
+                return EnemyPresentCondition(context);
             case decisionCondition.EnemyClose:
-                if (context.knownEnemyList.Count > 0) 
-                {
-                    foreach (KeyValuePair<CharCore, PlayerSummary> x in context.knownEnemyList)
-                    {
-                        if (x.Value.distanceFromSelf < parameterFloat)
-                        {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-                else{return false;}
+                return EnemyCloseCondition(context,parameterFloat);
             case decisionCondition.TeammatePresent:
-                if (context.knownAllyList.Count > 0) {return true;}
-                else{return false;}
-            
+                return TeammatePresentConditiion(context);
+            case decisionCondition.Random:
+                return RandomCondition(parameterFloat);
             default:
                 return false;
         }
+    }
+
+    private static bool EnemyPresentCondition(KnownContext context)
+    {
+        return context.knownEnemyList.Count > 0;
+    }
+
+    private static bool TeammatePresentConditiion(KnownContext context)
+    {
+        return context.knownAllyList.Count > 0;
+    }
+
+    private static bool EnemyCloseCondition(KnownContext context, float parameterFloat)
+    {
+        if (context.knownEnemyList.Count > 0) 
+        {
+            foreach (KeyValuePair<CharCore, PlayerSummary> x in context.knownEnemyList)
+            {
+                if (x.Value.distanceFromSelf < parameterFloat)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else{return false;}
+    }
+
+    private static bool RandomCondition(float parameterFloat)
+    {
+        return parameterFloat <= Random.Range(0f,1f);
     }
 }
