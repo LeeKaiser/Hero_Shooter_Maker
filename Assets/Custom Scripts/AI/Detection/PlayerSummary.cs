@@ -4,61 +4,65 @@ using System;
 using AbilityClassification;
 using System.Linq;
 
+/*
+PlayerSummary
+concise version of player's informations
+*/
 public class PlayerSummary
 {
     //summarized variables
-    public GameObject summarizedPlayer;
+    public GameObject SummarizedPlayer;
 
     //health information
-    public int remainingHP;
-    public int maxHP;
-    public float percentHP;
+    public int RemainingHP;
+    public int MaxHP;
+    public float PercentHP;
 
-    [SerializeField] float hpThreatMult = 4f;
-    [SerializeField] float hpVulnMult = 12f;
+    [SerializeField] float hpThreatMultiplier = 4f;
+    [SerializeField] float hpVulnerabilityMultiplier = 12f;
 
     //position information
-    public bool aboveSelf;
-    public float distanceFromSelf;
-    [SerializeField] float highGndThreatMult = 1.5f;
-    [SerializeField] float highGndVulnMult = 1.5f;
+    public bool AboveSelf;
+    public float DistanceFromSelf;
+    [SerializeField] float highGroundThreatMultiplier = 1.5f;
+    [SerializeField] float highGroundVulnerabilityMultiplier = 1.5f;
 
     //ability information
-    public Dictionary <AbilityClass, float> abilChargeRemainPercent;
+    public Dictionary <AbilityClass, float> AbililityChargeRemainPercent;
     //ability charges remaining in percentage
-    public Dictionary <AbilityClass, int> hasAbilClass; //0f is false, 1f is true
+    public Dictionary <AbilityClass, int> HasAbilityClass; //0f is false, 1f is true
 
     //threat information
-    public float threatValue;
-    public float vulnValue;
+    public float ThreatValue;
+    public float VulnerabilityValue;
 
     //expiration details
-    public float timeUntilExpire;
+    public float TimeUntilExpire;
 
     void Start()
     {
         foreach (AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
         {
             if (a == AbilityClass.None) continue;
-            abilChargeRemainPercent[a] = 0f;
-            //hasAbilClass[a] = 0f;
+            AbililityChargeRemainPercent[a] = 0f;
+            //HasAbilityClass[a] = 0f;
         }
     }
 
     public void SetValues(CharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
-        timeUntilExpire = memoryExpirationTime;
+        TimeUntilExpire = memoryExpirationTime;
 
-        summarizedPlayer = playerChar.gameObject;
+        SummarizedPlayer = playerChar.gameObject;
         //set health info
-        remainingHP = playerChar.GetHitPointsCurrent();
-        maxHP = playerChar.GethitPointsCurrentMax();
-        percentHP = (float)remainingHP / (float)maxHP;
-        //Debug.Log("set hp info" + $"\n remaining hp: {remainingHP} \n max hp: {maxHP} \n % health remaining: {percentHP} ");
+        RemainingHP = playerChar.GetHitPointsCurrent();
+        MaxHP = playerChar.GethitPointsCurrentMax();
+        PercentHP = (float)RemainingHP / (float)MaxHP;
+        //Debug.Log("set hp info" + $"\n remaining hp: {RemainingHP} \n max hp: {MaxHP} \n % health remaining: {PercentHP} ");
 
         //set position info
-        distanceFromSelf = (playerTransform.position - selfTransform.position).magnitude;
-        aboveSelf = playerTransform.position.y > selfTransform.position.y;
+        DistanceFromSelf = (playerTransform.position - selfTransform.position).magnitude;
+        AboveSelf = playerTransform.position.y > selfTransform.position.y;
         //Debug.Log("set pos info");
 
         //set ability info
@@ -71,9 +75,9 @@ public class PlayerSummary
 
     void SetAbilSummary(AbilityManager abilManager)
     {
-        abilChargeRemainPercent = new Dictionary<AbilityClass, float>();
+        AbililityChargeRemainPercent = new Dictionary<AbilityClass, float>();
         foreach (AbilityClass i in Enum.GetValues(typeof(AbilityClass))){
-            abilChargeRemainPercent[i] = 0f;
+            AbililityChargeRemainPercent[i] = 0f;
         }
 
         if (abilManager == null)
@@ -93,7 +97,7 @@ public class PlayerSummary
                 int lowestBit = tempMask & -tempMask;
                 int index = Mathf.RoundToInt(Mathf.Log(lowestBit,2));
 
-                abilChargeRemainPercent[(AbilityClass)(1 << index)] += percentAbilChargeRemain;
+                AbililityChargeRemainPercent[(AbilityClass)(1 << index)] += percentAbilChargeRemain;
 
                 tempMask &= ~lowestBit;
             }
@@ -104,13 +108,13 @@ public class PlayerSummary
             if (a == AbilityClass.None) continue;
             if (abilManager.GetAbilityClassDictionary()[a] > 0)
             {
-                abilChargeRemainPercent[a] = abilChargeRemainPercent[a] / abilManager.GetAbilityClassDictionary()[a];
+                AbililityChargeRemainPercent[a] = AbililityChargeRemainPercent[a] / abilManager.GetAbilityClassDictionary()[a];
                 
             }
             
         }
 
-        hasAbilClass = abilManager.GetAbilityClassDictionary().ToDictionary(
+        HasAbilityClass = abilManager.GetAbilityClassDictionary().ToDictionary(
             pair => pair.Key,
             pair => pair.Value > 0 ? 1 : 0
             );
@@ -118,7 +122,7 @@ public class PlayerSummary
 
     public void SubtractTimeRemaining(float timeElapsed)
     {
-        timeUntilExpire -= timeElapsed;
+        TimeUntilExpire -= timeElapsed;
     }
 
     //creates an arbitrary estimation of the likelyhood of this player to defeat other players based on known factors for simplification in decision making.
@@ -128,20 +132,20 @@ public class PlayerSummary
         float currentThreat = 0;
 
         
-        currentThreat += (percentHP * hpThreatMult) + (highGndThreatMult * Convert.ToSingle(aboveSelf)) + 
-            abilChargeRemainPercent[AbilityClass.Active] + abilChargeRemainPercent[AbilityClass.Damage] +
-            abilChargeRemainPercent[AbilityClass.SelfBoost] + abilChargeRemainPercent[AbilityClass.SelfSave] + 
-            abilChargeRemainPercent[AbilityClass.MobilEng] + abilChargeRemainPercent[AbilityClass.Skirmish] + 
-            abilChargeRemainPercent[AbilityClass.Shutdown] + abilChargeRemainPercent[AbilityClass.Parry];
-        totalPossibleThreat += hpThreatMult + highGndThreatMult + hasAbilClass[AbilityClass.Active] + 
-            hasAbilClass[AbilityClass.Damage] + hasAbilClass[AbilityClass.SelfBoost] +
-            hasAbilClass[AbilityClass.SelfSave] + hasAbilClass[AbilityClass.MobilEng] +
-            hasAbilClass[AbilityClass.Skirmish] + hasAbilClass[AbilityClass.Shutdown] +
-            hasAbilClass[AbilityClass.Parry];
+        currentThreat += (PercentHP * hpThreatMultiplier) + (highGroundThreatMultiplier * Convert.ToSingle(AboveSelf)) + 
+            AbililityChargeRemainPercent[AbilityClass.Active] + AbililityChargeRemainPercent[AbilityClass.Damage] +
+            AbililityChargeRemainPercent[AbilityClass.SelfBoost] + AbililityChargeRemainPercent[AbilityClass.SelfSave] + 
+            AbililityChargeRemainPercent[AbilityClass.MobilEng] + AbililityChargeRemainPercent[AbilityClass.Skirmish] + 
+            AbililityChargeRemainPercent[AbilityClass.Shutdown] + AbililityChargeRemainPercent[AbilityClass.Parry];
+        totalPossibleThreat += hpThreatMultiplier + highGroundThreatMultiplier + HasAbilityClass[AbilityClass.Active] + 
+            HasAbilityClass[AbilityClass.Damage] + HasAbilityClass[AbilityClass.SelfBoost] +
+            HasAbilityClass[AbilityClass.SelfSave] + HasAbilityClass[AbilityClass.MobilEng] +
+            HasAbilityClass[AbilityClass.Skirmish] + HasAbilityClass[AbilityClass.Shutdown] +
+            HasAbilityClass[AbilityClass.Parry];
 
         if (totalPossibleThreat == 0) totalPossibleThreat = 1;
 
-        threatValue = currentThreat / totalPossibleThreat;
+        ThreatValue = currentThreat / totalPossibleThreat;
     }
 
     //creates an arbitrary estimation of the likelyhood of this player be defeated by other players based on known factors for simplification in decision making.
@@ -151,20 +155,20 @@ public class PlayerSummary
         float currentVuln = 0;
 
         
-        currentVuln += (percentHP * hpVulnMult) + (highGndVulnMult * Convert.ToSingle(aboveSelf)) + 
-            abilChargeRemainPercent[AbilityClass.Active] + abilChargeRemainPercent[AbilityClass.Damage] +
-            abilChargeRemainPercent[AbilityClass.LongTermPet] + abilChargeRemainPercent[AbilityClass.SelfSave] + 
-            abilChargeRemainPercent[AbilityClass.MobilDis] + abilChargeRemainPercent[AbilityClass.Zoning] + 
-            abilChargeRemainPercent[AbilityClass.Shutdown] + abilChargeRemainPercent[AbilityClass.Parry];
-        totalPossibleVuln += hpVulnMult + highGndVulnMult + hasAbilClass[AbilityClass.Active] + 
-            hasAbilClass[AbilityClass.Damage] + hasAbilClass[AbilityClass.LongTermPet] + 
-            hasAbilClass[AbilityClass.SelfSave] + hasAbilClass[AbilityClass.MobilDis] +
-            hasAbilClass[AbilityClass.Zoning] + hasAbilClass[AbilityClass.Shutdown] +
-            hasAbilClass[AbilityClass.Parry];
+        currentVuln += (PercentHP * hpVulnerabilityMultiplier) + (highGroundVulnerabilityMultiplier * Convert.ToSingle(AboveSelf)) + 
+            AbililityChargeRemainPercent[AbilityClass.Active] + AbililityChargeRemainPercent[AbilityClass.Damage] +
+            AbililityChargeRemainPercent[AbilityClass.LongTermPet] + AbililityChargeRemainPercent[AbilityClass.SelfSave] + 
+            AbililityChargeRemainPercent[AbilityClass.MobilDis] + AbililityChargeRemainPercent[AbilityClass.Zoning] + 
+            AbililityChargeRemainPercent[AbilityClass.Shutdown] + AbililityChargeRemainPercent[AbilityClass.Parry];
+        totalPossibleVuln += hpVulnerabilityMultiplier + highGroundVulnerabilityMultiplier + HasAbilityClass[AbilityClass.Active] + 
+            HasAbilityClass[AbilityClass.Damage] + HasAbilityClass[AbilityClass.LongTermPet] + 
+            HasAbilityClass[AbilityClass.SelfSave] + HasAbilityClass[AbilityClass.MobilDis] +
+            HasAbilityClass[AbilityClass.Zoning] + HasAbilityClass[AbilityClass.Shutdown] +
+            HasAbilityClass[AbilityClass.Parry];
 
         if (totalPossibleVuln == 0) totalPossibleVuln = 1;
 
-        vulnValue = (totalPossibleVuln - currentVuln) / totalPossibleVuln;
+        VulnerabilityValue = (totalPossibleVuln - currentVuln) / totalPossibleVuln;
     }
 
     public string toString()
@@ -172,13 +176,13 @@ public class PlayerSummary
         string abilChargeStr = "";
         foreach (AbilityClass i in Enum.GetValues(typeof(AbilityClass)))
         {
-            abilChargeStr += i + ": " + abilChargeRemainPercent[i] + $"\n";
+            abilChargeStr += i + ": " + AbililityChargeRemainPercent[i] + $"\n";
         }
 
-        return $"\nremaining hp: {remainingHP} \nmax hp: {maxHP} \n% health remaining: {percentHP} " + 
-            $"\ndistance from self: {distanceFromSelf} \nabove self: {aboveSelf}" +
+        return $"\nremaining hp: {RemainingHP} \nmax hp: {MaxHP} \n% health remaining: {PercentHP} " + 
+            $"\ndistance from self: {DistanceFromSelf} \nabove self: {AboveSelf}" +
             $"\nabil summary: {abilChargeStr}" + 
-            $"Threat Value: {threatValue} \nVuln Value: {vulnValue}" +
-            $"\ntime remaining in memory: {timeUntilExpire} \n";
+            $"Threat Value: {ThreatValue} \nVuln Value: {VulnerabilityValue}" +
+            $"\ntime remaining in memory: {TimeUntilExpire} \n";
     }
 }

@@ -17,18 +17,18 @@ public class AttackAction : AIAction
     float randomDistanceTweak = 2f;
     public override void DetermineMovement()
     {
-        if (!(Detection.GetCurrentContext().knownEnemyList == null))
+        if (!(Detection.GetCurrentContext().KnownEnemyList == null))
         {
             // identify weakest enemy
             if (targetEnemy == null)
             {
                 float highestVuln = 0;
-                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().knownEnemyList)
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
                 {
-                    if (potentialTarget.Value.vulnValue >= highestVuln)
+                    if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                     {
                         targetEnemy = potentialTarget.Key.playerArmature;
-                        highestVuln = potentialTarget.Value.vulnValue;
+                        highestVuln = potentialTarget.Value.VulnerabilityValue;
                     }
                 }
             }
@@ -36,7 +36,7 @@ public class AttackAction : AIAction
             Debug.Log(targetEnemy);
             Vector3 nextDestination = targetEnemy.transform.position;
 
-            Vector3 enemyToSelf =  Detection.GetCurrentContext().selfSummary.summarizedPlayer.transform.position - targetEnemy.transform.position;
+            Vector3 enemyToSelf =  Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.transform.position - targetEnemy.transform.position;
             Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
             nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
             //Debug.Log(nextDestination);
@@ -55,7 +55,7 @@ public class AttackAction : AIAction
         //attempt to shoot a damage attack
 
         //get the attack from the self's ability manager
-        AbilityManager abilManager = Detection.GetCurrentContext().selfSummary.summarizedPlayer.GetComponent<AbilityManager>();
+        AbilityManager abilManager = Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.GetComponent<AbilityManager>();
         Ability abilToUse = null;
         float bestCooldown = 0;
         foreach (Ability abil in abilManager.GetAbilList())

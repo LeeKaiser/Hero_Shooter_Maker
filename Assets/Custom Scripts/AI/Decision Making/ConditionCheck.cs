@@ -28,21 +28,21 @@ public static class ConditionCheck
 
     private static bool EnemyPresentCondition(KnownContext context)
     {
-        return context.knownEnemyList.Count > 0;
+        return context.KnownEnemyList.Count > 0;
     }
 
     private static bool TeammatePresentConditiion(KnownContext context)
     {
-        return context.knownAllyList.Count > 0;
+        return context.KnownAllyList.Count > 0;
     }
 
     private static bool EnemyCloseCondition(KnownContext context, float parameterFloat)
     {
-        if (context.knownEnemyList.Count > 0) 
+        if (context.KnownEnemyList.Count > 0) 
         {
-            foreach (KeyValuePair<CharCore, PlayerSummary> x in context.knownEnemyList)
+            foreach (KeyValuePair<CharCore, PlayerSummary> x in context.KnownEnemyList)
             {
-                if (x.Value.distanceFromSelf < parameterFloat)
+                if (x.Value.DistanceFromSelf < parameterFloat)
                 {
                     return true;
                 }
