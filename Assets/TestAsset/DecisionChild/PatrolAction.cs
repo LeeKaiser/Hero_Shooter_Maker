@@ -3,24 +3,25 @@ using UnityEngine;
 public class PatrolAction : AIAction
 {
     /*
-    public Transform movementDestination;
-    public Transform aimTarget;
-    public ObjectDetection objectDetection;
+    public Transform MoveTarget;
+    public Transform AimTarget;
+    public ObjectDetection Detection;
+    public InputEventCaller InputCall;
     */
     public override void DetermineMovement()
     {
-        if (!(objectDetection.GetCurrentContext().focusPOI == null))
+        if (!(Detection.GetCurrentContext().FocusPOI == null))
         {
-            Vector3 nextDestination = objectDetection.GetCurrentContext().focusPOI.transform.position;
+            Vector3 nextDestination = Detection.GetCurrentContext().FocusPOI.transform.position;
             nextDestination.x = nextDestination.x + Random.Range(-10,10);
             nextDestination.z = nextDestination.z + Random.Range(-10,10);
             //Debug.Log(nextDestination);
-            movementDestination.position = nextDestination;
+            MoveTarget.position = nextDestination;
         }
     }
     public override void DetermineAim()
     {
-        aimTarget.position = movementDestination.position;
+        AimTarget.position = MoveTarget.position;
         
     }
     public override void MakeInput()

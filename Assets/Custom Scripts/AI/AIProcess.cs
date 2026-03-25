@@ -2,7 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class DecisionMaker : MonoBehaviour
+/*
+AIProcess
+Continuously activates Object Detection, Decision Making, and AI Action
+*/
+public class AIProcess : MonoBehaviour
 {
     [SerializeField] private DecisionTree decisionTree;
     //[SerializeField] private BehaviorGraphAgent behaviorAgent;
@@ -14,11 +18,11 @@ public class DecisionMaker : MonoBehaviour
     private DecisionTree decisionTreeRuntime;
     private AIAction actionRunTime;
 
-    public Transform aimTarget;
-    public Transform movementDestination;
+    public Transform AimTarget;
+    public Transform MoveTarget;
 
     [Tooltip("time between each scan")]
-    public float scanTimeInterval = 0.25f;
+    public float ScanTimeInterval = 0.25f;
 
     void Start()
     {
@@ -26,29 +30,31 @@ public class DecisionMaker : MonoBehaviour
         objectDetection = GetComponent<ObjectDetection>();
         StartCoroutine(WaitThenScan());
         decisionTreeRuntime = Instantiate(decisionTree);
+        
     }
 
     IEnumerator WaitThenScan()
     {
-        yield return new WaitForSeconds(scanTimeInterval);
+        yield return new WaitForSeconds(ScanTimeInterval);
         //step 1: run object detection
         objectDetection.RadiusScanAll();
-        objectDetection.ElapseExpirationTime(scanTimeInterval);
+        objectDetection.ElapseExpirationTime(ScanTimeInterval);
 
         //step 2: make decision
-        
         AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
         if (currentAction != chosenAction)
         {
             currentAction = chosenAction;
             actionRunTime = Instantiate(currentAction);
         }
-        actionRunTime.Init(movementDestination,aimTarget,objectDetection, inputCall);
+        actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall);
 
         //step 3: act on decision
         actionRunTime.DetermineMovement();
         actionRunTime.DetermineAim();
         actionRunTime.MakeInput();
+
+        //repeat
         StartCoroutine(WaitThenScan());
     }
 

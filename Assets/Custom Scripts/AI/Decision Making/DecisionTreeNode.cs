@@ -5,38 +5,37 @@ using DecisionCondition;
 
 public class DecisionTreeNode : ScriptableObject
 {
-    public DecisionTreeNode childYesNode;
-    public DecisionTreeNode childNoNode;
-    public List<DecisionTreeNode> parentNodes = new List<DecisionTreeNode>();
-    public decisionCondition nodeCondition;
-    //public BehaviorGraph behavior;
-    public AIAction action;
-    public bool isBehavior = false; //if true, return the associated behavior, if false, return the child.
+    public DecisionTreeNode ChildYesNode;
+    public DecisionTreeNode ChildNoNode;
+    public List<DecisionTreeNode> ParentNodes = new List<DecisionTreeNode>();
+    public decisionCondition NodeCondition;
+    public AIAction Action;
+    public bool IsAction = false; //if true, return the associated behavior, if false, return the child.
 
-    public float parameterFloat = 0;
-    public Vector2 editorPosition; // for visual placement
+    public float ParameterFloat = 0;
+    public Vector2 EditorPosition; // for visual placement
 
     //get the behavior that the AI should use.
     public AIAction GetAction(KnownContext currentContext)
     {
-        if (isBehavior)
+        if (IsAction)
         {
-            return action;
+            return Action;
         }
         else
         {
             
-            if (ConditionCheck.CheckIfConditionTrue(nodeCondition, parameterFloat, currentContext))
+            if (ConditionCheck.CheckIfConditionTrue(NodeCondition, ParameterFloat, currentContext))
             {
-                return childYesNode != null
-                ? childYesNode.GetAction(currentContext)
+                return ChildYesNode != null
+                ? ChildYesNode.GetAction(currentContext)
                 : null;
                 
             }
             else
             {
-                return childNoNode != null
-                ? childNoNode.GetAction(currentContext)
+                return ChildNoNode != null
+                ? ChildNoNode.GetAction(currentContext)
                 : null;
             }
         }
@@ -44,15 +43,15 @@ public class DecisionTreeNode : ScriptableObject
 
     public void removeFromParent()
     {
-        foreach(var x in parentNodes)
+        foreach(var x in ParentNodes)
         {
-            if (x.childYesNode == this)
+            if (x.ChildYesNode == this)
             {
-                x.childYesNode = null;
+                x.ChildYesNode = null;
             }
-            else if (x.childNoNode == this)
+            else if (x.ChildNoNode == this)
             {
-                x.childNoNode = null;
+                x.ChildNoNode = null;
             }
         }
     }

@@ -3,16 +3,22 @@ using UnityEngine.AI;
 using StarterAssets;
 using MovementInputEvents;
 
+/*
+AI Movement
+Automatically causes AI to look at the LookTarget and move to MoveTarget. Requires Navmesh Agent. 
+
+AI has modified behavior for when it encounters off mesh link. 
+It moves forward and drops if the off mesh link end is close enough to be reached without jumping, 
+and jumps if the distance from self to off mesh link end is too far to be made by dropping. 
+*/
 public class AIMovement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
-    [SerializeField] private CharCore playerRef;
+    [SerializeField] private CharCore playerReference;
 
 
-    public Transform lookTarget;
-    public Transform moveTarget;
-
-    [SerializeField] private float angleDiff;
+    public Transform AimTarget;
+    public Transform MoveTarget;
 
     private StarterAssetsInputs movementInput;
 
@@ -22,17 +28,24 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        playerRef = GetComponentInParent<CharCore>();
+        playerReference = GetComponentInParent<CharCore>();
         movementInput = GetComponent<StarterAssetsInputs>();
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
         EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
+        AimTarget = playerReference.transform.Find("AimTarget").transform;
+        MoveTarget = playerReference.transform.Find("MoveTarget").transform;
+    }
+
+    void OnDisable()
+    {
+        EventBus<PlayerLandOnGround>.Unsubscribe(UnpauseNavmeshOnLanding);
     }
 
     void Update()
     {
-        MoveToLocation(moveTarget.position);
+        MoveToLocation(MoveTarget.position);
         AgentMovement();
         if (navmeshPause >= 0)
         {
@@ -46,7 +59,7 @@ public class AIMovement : MonoBehaviour
 
     public void UnpauseNavmeshOnLanding(PlayerLandOnGround landOnGroundInfo)
     {
-        if (landOnGroundInfo.playerIdentity == playerRef)
+        if (landOnGroundInfo.playerIdentity == playerReference)
         {
             UnpauseNavmesh();
         }
@@ -74,8 +87,8 @@ public class AIMovement : MonoBehaviour
             float vertDist = endPos.y;
             endPos.y = 0;
             float horizDist = endPos.magnitude;
-            float t = horizDist / playerRef.GetForwardSpeed();
-            float y = -0.5f * playerRef.GetGravity() * t * t;
+            float t = horizDist / playerReference.GetForwardSpeed();
+            float y = -0.5f * playerReference.GetGravity() * t * t;
             if (y < vertDist)
             {
                 inputJump = true;
@@ -94,13 +107,13 @@ public class AIMovement : MonoBehaviour
         //set agent's movement input        
         if (agent.enabled)
         {
-            switch (playerRef.movementStyle)
+            switch (playerReference.movementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
                     agentDirection = transform.InverseTransformDirection(agent.velocity.normalized);
                     break;
                 default:
-                    Vector3 agentLookVect = lookTarget.position - transform.position;
+                    Vector3 agentLookVect = AimTarget.position - transform.position;
                     agentLookVect = agentLookVect.normalized; //direction agent is aiming at
                     Vector3 agentMoveVect = agent.velocity.normalized; //direction agent moves in world space
                     agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * agentMoveVect;
@@ -116,7 +129,7 @@ public class AIMovement : MonoBehaviour
 
     
     //Move To Location
-    //sets navmesh agent's destination to the location in parameter. generally called with position of moveTarget.
+    //sets navmesh agent's destination to the location in parameter. generally called with position of MoveTarget.
     public void MoveToLocation(Vector3 destination)
     {
         if (agent.enabled)

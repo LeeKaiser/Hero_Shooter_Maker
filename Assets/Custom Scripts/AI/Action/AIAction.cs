@@ -1,18 +1,22 @@
 using UnityEngine;
 
+/* 
+AIAction
+Abstract Parent class which determines how AI behaves. 
+*/
 public abstract class AIAction : ScriptableObject
 {
-    public Transform movementDestination;
-    public Transform aimTarget;
-    public ObjectDetection objectDetection;
-    public InputEventCaller inputCall;
+    public Transform MoveTarget;
+    public Transform AimTarget;
+    public ObjectDetection Detection;
+    public InputEventCaller InputCall;
 
-    public void Init(Transform movement, Transform aim, ObjectDetection od, InputEventCaller input)
+    public void Init(Transform movement, Transform aim, ObjectDetection detection, InputEventCaller input)
     {
-        movementDestination = movement;
-        aimTarget = aim;
-        objectDetection = od;
-        inputCall = input;
+        MoveTarget = movement;
+        AimTarget = aim;
+        Detection = detection;
+        InputCall = input;
     }
 
     public abstract void DetermineMovement();
