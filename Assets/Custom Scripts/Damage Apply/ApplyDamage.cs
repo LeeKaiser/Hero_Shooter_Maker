@@ -11,7 +11,11 @@ public class ApplyDamage : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
-        Debug.Log("hit something");
+        
+        if ((collision.gameObject.layer & atkInfo.groundLayers)>0)
+        {
+            atkInfo.DestroySelf();
+        }
         // check if collision has playable character core
         CharCore enemy = collision.transform.parent.GetComponent<CharCore>();
 
@@ -33,13 +37,7 @@ public class ApplyDamage : MonoBehaviour
             damageNoVis.GetComponent<DamageNumberScript>().Init(atkInfo.owningPlayer.gameObject, ""+damageDealt);
             atkInfo.DestroySelf();
         }
+        
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == atkInfo.groundLayers)
-        {
-            atkInfo.DestroySelf();
-        }
-    }
 }
