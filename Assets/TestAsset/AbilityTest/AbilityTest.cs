@@ -7,7 +7,7 @@ using System.Collections;
 
 public class AbilityTest : Ability
 {
-    public PlayerActiveAbilID AbilID ;
+    public ActiveAbilityID AbilID ;
     //test activation set up
     List<InputOptions.Input> activationInput =
     new List<InputOptions.Input>{
@@ -17,12 +17,12 @@ public class AbilityTest : Ability
 
     protected override void Startup()
     {
-        AbilID = new PlayerActiveAbilID();
+        AbilID = new ActiveAbilityID();
         manager.SetupInput(this, AbilID, activationInput);
-        EventBus<PlayerActiveAbilID>.Subscribe(executeAbility);
+        EventBus<ActiveAbilityID>.Subscribe(executeAbility);
     }
 
-    public void executeAbility(PlayerActiveAbilID inputEventInfo)
+    public void executeAbility(ActiveAbilityID inputEventInfo)
     {
         if (inputEventInfo != AbilID)
         {
@@ -47,6 +47,6 @@ public class AbilityTest : Ability
 
     public override void Cleanup()
     {
-        EventBus<PlayerActiveAbilID>.Unsubscribe(executeAbility);
+        EventBus<ActiveAbilityID>.Unsubscribe(executeAbility);
     }
 }
