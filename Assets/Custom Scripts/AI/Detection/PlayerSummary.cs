@@ -49,14 +49,14 @@ public class PlayerSummary
         }
     }
 
-    public void SetValues(CharCore playerChar, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
+    public void SetValues(CharCore character, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
         TimeUntilExpire = memoryExpirationTime;
 
-        SummarizedPlayer = playerChar.gameObject;
+        SummarizedPlayer = character.gameObject;
         //set health info
-        RemainingHP = playerChar.GetHitPointsCurrent();
-        MaxHP = playerChar.GethitPointsCurrentMax();
+        RemainingHP = character.GetHitPointsCurrent();
+        MaxHP = character.GetHitPointsBase();
         PercentHP = (float)RemainingHP / (float)MaxHP;
         //Debug.Log("set hp info" + $"\n remaining hp: {RemainingHP} \n max hp: {MaxHP} \n % health remaining: {PercentHP} ");
 

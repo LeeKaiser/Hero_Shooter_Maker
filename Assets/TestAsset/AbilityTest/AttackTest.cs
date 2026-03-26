@@ -21,7 +21,7 @@ public class AttackTest : Ability
     
     protected override void Startup(){
         AbilID = new ActiveAbilityID();
-        attackPoint = playerReference.playerArmature.transform.Find("KeyPoint1").transform;
+        attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
         targetPoint = playerReference.transform.Find("AimTarget").transform;
         manager.SetupInput(this, AbilID, activationInput);
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
@@ -63,7 +63,7 @@ public class AttackTest : Ability
         //set projectile settings
         AttackInfo atkInfo = attackObj.GetComponent<AttackInfo>();
         atkInfo.owningPlayer = playerReference;
-        atkInfo.attackAllegience = playerReference.playerAllegience;
+        atkInfo.attackAllegience = playerReference.PlayerAllegience;
 
         //use a charge
         ConsumeCharge(1);
