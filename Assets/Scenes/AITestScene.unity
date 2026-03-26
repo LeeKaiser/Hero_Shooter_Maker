@@ -4831,6 +4831,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: Stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 91416d36eb03940b1a4e428ffabeaf7f, type: 2}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: movementStyle
       value: 0
       objectReference: {fileID: 0}
@@ -4838,6 +4842,10 @@ PrefabInstance:
       propertyPath: playerArmature
       value: 
       objectReference: {fileID: 1319622040}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: PlayerAllegience
+      value: 
+      objectReference: {fileID: 454322423}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: playerAllegience
       value: 
@@ -13247,6 +13255,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: Stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 91416d36eb03940b1a4e428ffabeaf7f, type: 2}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: movementStyle
       value: 0
       objectReference: {fileID: 0}
@@ -13254,6 +13266,10 @@ PrefabInstance:
       propertyPath: playerArmature
       value: 
       objectReference: {fileID: 1360688997}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: PlayerAllegience
+      value: 
+      objectReference: {fileID: 897932086}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: playerAllegience
       value: 

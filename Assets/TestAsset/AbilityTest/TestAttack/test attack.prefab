@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackInfo
   owningPlayer: {fileID: 0}
   attackAllegience: {fileID: 0}
-  baseDamage: 20
+  baseDamage: 100
   groundLayers:
     serializedVersion: 2
     m_Bits: 9
@@ -186,7 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58fb272b0ae9421cad3efd252af1c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovement
-  projectileSpeed: 40
+  projectileSpeed: 60
+  remainingDuration: 2
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0
