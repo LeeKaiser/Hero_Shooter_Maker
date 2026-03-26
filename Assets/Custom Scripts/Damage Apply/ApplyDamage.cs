@@ -11,13 +11,17 @@ public class ApplyDamage : MonoBehaviour
     }
     void OnTriggerEnter(Collider collision)
     {
+        
+        if ((collision.gameObject.layer & atkInfo.groundLayers)>0)
+        {
+            atkInfo.DestroySelf();
+        }
         // check if collision has playable character core
         CharCore enemy = collision.transform.parent.GetComponent<CharCore>();
 
         // check if enemy player allegience is different from the player
         if (enemy != null)
         {
-            Debug.Log("hit");
 
             if (enemy.PlayerAllegience == atkInfo.attackAllegience)
             {
@@ -31,16 +35,9 @@ public class ApplyDamage : MonoBehaviour
 
             GameObject damageNoVis = Instantiate(atkInfo.DamageNumberPrefab, transform.position, Quaternion.identity);
             damageNoVis.GetComponent<DamageNumberScript>().Init(atkInfo.owningPlayer.gameObject, ""+damageDealt);
+            atkInfo.DestroySelf();
         }
         
-        //self destruct when hitting enemy or environment
-        if (enemy != null)
-        {
-            atkInfo.DestroySelf();
-        }
-        else if (collision.gameObject.layer == atkInfo.groundLayers)
-        {
-            atkInfo.DestroySelf();
-        }
     }
+
 }

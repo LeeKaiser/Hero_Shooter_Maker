@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1311f7bb0654a449d93ca4af4f801575, type: 3}
   m_Name: TestPlayableCharacter
   m_EditorClassIdentifier: 
-  hitPointsBase: 100
-  damageTakeMultBase: 1
-  damageDealMultBase: 1
-  forwardSpeedBase: 6
-  backwardSpeedBase: 6
-  strafeSpeedBase: 6
-  jumpHeightBase: 1.4
+  HitPointsBase: 100
+  ForwardSpeedBase: 4
+  BackwardSpeedBase: 3
+  StrafeSpeedBase: 3
+  JumpHeightBase: 0.7
   GravityBase: -15
