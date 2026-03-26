@@ -37,4 +37,4 @@ public static class InputOptions
     }
 }
 
-public class PlayerActiveAbilID{}
+public class ActiveAbilityID{}

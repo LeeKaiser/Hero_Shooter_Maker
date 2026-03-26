@@ -1230,20 +1230,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24669dfbcb8ad4b56af8627cb41bf060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
-  scanRads: 30
-  playerRef: {fileID: 3772487131666148388}
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 8
-  teamMask:
+  ScanRads: 30
+  PlayerReference: {fileID: 0}
+  GroundMask:
     serializedVersion: 2
     m_Bits: 0
-  enemyMask:
+  TeamMask:
     serializedVersion: 2
     m_Bits: 0
-  sightAngle: 90
-  allyMemoryExpirationTime: 10
-  enemyMemoryExpirationTime: 3
+  SightAngle: 0
+  AllyMemoryExpirationTime: 10
+  EnemyMemoryExpirationTime: 3
 --- !u!114 &1882099305404397499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,8 +1260,8 @@ MonoBehaviour:
   LockCameraPosition: 0
   CameraSensitivityX: 5
   CameraSensitivityY: 5
-  targetPoint: {fileID: 2502441231928985280}
-  clickLayers:
+  AimTarget: {fileID: 2502441231928985280}
+  ClickLayers:
     serializedVersion: 2
     m_Bits: 8
 --- !u!114 &4959994725332064017

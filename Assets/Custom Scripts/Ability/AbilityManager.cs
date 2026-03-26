@@ -122,7 +122,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void SetupInput(Ability ability, PlayerActiveAbilID abilID, List<InputOptions.Input> abilInput)
+    public void SetupInput(Ability ability, ActiveAbilityID abilID, List<InputOptions.Input> abilInput)
     {
         EventCaller.InputDict.Add(abilInput, abilID);
         AbiltyToInputDictionary.Add(ability, abilInput);

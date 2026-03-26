@@ -3,7 +3,10 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
 using StarterAssets;
-
+/*
+InputListener
+Sends player’s inputs to InputEventCaller
+*/
 public class InputListener : MonoBehaviour
 {
     
@@ -17,7 +20,7 @@ public class InputListener : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         inputRead = GetComponent<InputEventCaller>();
 
-        //figure out a better way to initialize inputDict later
+        //TODO: figure out a better way to initialize inputDict later
         inputDict.Add(playerInput.actions["Num[1]"],InputOptions.Input.Num1 );
         inputDict.Add(playerInput.actions["Num[2]"],InputOptions.Input.Num2 );
         inputDict.Add(playerInput.actions["Num[3]"],InputOptions.Input.Num3 );

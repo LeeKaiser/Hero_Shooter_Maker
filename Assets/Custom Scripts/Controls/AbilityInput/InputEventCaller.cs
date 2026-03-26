@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+/*
+InputEventCaller
+Converts inputs to event calls of type ActiveAbilityID. 
+*/
 public class InputEventCaller : MonoBehaviour
 {
 
     [SerializeField] private List<InputOptions.Input> inputCurrentFrame = new List<InputOptions.Input>();
 
-    public Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>  InputDict = 
-        new Dictionary<List<InputOptions.Input>, PlayerActiveAbilID>();
+    public Dictionary<List<InputOptions.Input>, ActiveAbilityID>  InputDict = 
+        new Dictionary<List<InputOptions.Input>, ActiveAbilityID>();
 
-    void Update()
-    {
-        
-    }
     
     void LateUpdate()
     {
-        PlayerActiveAbilID abilCall = null;
+        ActiveAbilityID abilCall = null;
         List<InputOptions.Input> abilCallInput = null;
         //put more complex combos at higher priority
-        foreach (KeyValuePair<List<InputOptions.Input>, PlayerActiveAbilID> inputCombo in InputDict)
+        foreach (KeyValuePair<List<InputOptions.Input>, ActiveAbilityID> inputCombo in InputDict)
         {
             //if the output's combo has keys not in user's input, lists in this var and skip the next if statement
             //var inInputButNotOutput = inputCurrentFrame.Except(inputCombo.Key).ToList();
@@ -44,7 +44,7 @@ public class InputEventCaller : MonoBehaviour
         //Type eventType = abilCall.GetType(); 
         if (!(abilCall == null))
         {
-            EventBus<PlayerActiveAbilID>.Invoke(abilCall);
+            EventBus<ActiveAbilityID>.Invoke(abilCall);
         }
         //clear input for next frame.
         inputCurrentFrame.Clear();
