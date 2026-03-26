@@ -10,82 +10,115 @@ public class CharCore : MonoBehaviour
     //variables
     [Header("Player stats")]
     [Tooltip("playable character base stats")]
-    public CharStats PlayerStats;
-
-    public TeamManager playerAllegience; //set to team object 
-
-    private int hitPointsCurrent; //current hp
-    private int hitPointsCurrentMax; //current max health
-    private float damageTakeMult = 1f; //damage taken multiplier
-    private float damageDealMult = 1f; //damage dealt multiplier
-
-    //forward movement adjustment
-    private float forwardSpeedCurrent = 6f;
-    private float forwardSpeedMult = 1f;
-    //backward movement adjustment
-    private float backwardSpeedCurrent = 6f;
-    private float backwardSpeedMult = 1f;
-    //strafe movement adjustment
-    private float strafeSpeedCurrent = 6f;
-    private float strafeSpeedMult = 1f;
-    //jump height adjustment
-    private float jumpHeightCurrent = 1.4f;
-    private float jumpHeightMult = 1f;
-    //gravity adjustment
-    private float GravityCurrent = -15f;
-    private float GravityMult = 1f;
-
-    [Tooltip("If player faces movement or camera (true for movement, false for camera)")]
-    public MovementStyles.MovementStyle movementStyle;
+    public CharStats Stats;
+    
+    [Tooltip("Team the player belongs to")]
+    public TeamManager PlayerAllegience; //set to team object 
+    [Tooltip("The way player moves")]
+    public MovementStyles.MovementStyle MovementStyle;
 
     [Header("Misc.")]
     [Tooltip("Third person controller script")]
-    public ThirdPersonController playerMovement;
+    public ThirdPersonController PlayerMovement;
+    [Tooltip("Player's armature")]
+    public GameObject PlayerArmature;
+    [Tooltip("Player's alive status (true if alive, false if dead)")]
+    public bool IsAlive;
+    
+    private CharStats currentStats; //local copy of player's stats (can be edited)
+    private int hitPointsCurrent; //current hp
+    private float damageTakeMult = 1f; //damage taken multiplier
+    private float damageDealMult = 1f; //damage dealt multiplier
+    
+    //forward movement adjustment
+    private float forwardSpeedMult = 1f;
+    //backward movement adjustment
+    private float backwardSpeedMult = 1f;
+    //strafe movement adjustment
+    private float strafeSpeedMult = 1f;
+    //jump height adjustment
+    private float jumpHeightMult = 1f;
+    //gravity adjustment
+    private float GravityMult = 1f;
 
-    public GameObject playerArmature;
+    
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
 #endif
 
     //add operation for match load
-    void Start(){
-        hitPointsCurrent = PlayerStats.hitPointsBase;
-        hitPointsCurrentMax = PlayerStats.hitPointsBase;
-        damageTakeMult = PlayerStats.damageTakeMultBase;
-        damageDealMult = PlayerStats.damageDealMultBase;
-        forwardSpeedCurrent = PlayerStats.forwardSpeedBase;
-        strafeSpeedCurrent = PlayerStats.strafeSpeedBase;
-        backwardSpeedCurrent = PlayerStats.backwardSpeedBase;
-        jumpHeightCurrent = PlayerStats.jumpHeightBase;
-        GravityCurrent = PlayerStats.GravityBase;
+    void Awake()
+    {
+        PlayerArmature = transform.Find("PlayerArmature").gameObject;
+        PlayerMovement = PlayerArmature.GetComponent<ThirdPersonController>();
+    }
 
+    void Start(){
+        currentStats = Instantiate(Stats);
+        hitPointsCurrent = currentStats.HitPointsBase;
+        
     }
 
     //add Player operations that must be done every tick
     void Update(){
         //set movement speed in third person controller equal to moveSpeedCurrent
-        playerMovement.SetForwardMovementSpeed(GetForwardSpeed());
-        playerMovement.SetStrafeMovementSpeed(GetStrafeSpeed());
-        playerMovement.SetBackwardMovementSpeed(GetBackwardSpeed());
-        playerMovement.SetGravity(GetGravity());
-        playerMovement.SetJumpHeight(GetJumpHeight());
-        playerMovement.setPlayerMovementStyle(movementStyle);
+        PlayerMovement.SetForwardMovementSpeed(GetForwardSpeed());
+        PlayerMovement.SetStrafeMovementSpeed(GetStrafeSpeed());
+        PlayerMovement.SetBackwardMovementSpeed(GetBackwardSpeed());
+        PlayerMovement.SetGravity(GetGravity());
+        PlayerMovement.SetJumpHeight(GetJumpHeight());
+        PlayerMovement.setPlayerMovementStyle(MovementStyle);
         
     }
 
-    public float GetForwardSpeed(){return forwardSpeedCurrent * forwardSpeedMult;}
-    public float GetBackwardSpeed(){return backwardSpeedCurrent * backwardSpeedMult;}
-    public float GetStrafeSpeed(){return strafeSpeedCurrent * strafeSpeedMult;}
-    public float GetGravity(){return GravityCurrent * GravityMult;}
-    public float GetJumpHeight(){return jumpHeightCurrent * jumpHeightMult;}
+    public float GetForwardSpeed(){return currentStats.ForwardSpeedBase * forwardSpeedMult;}
+    public float GetBackwardSpeed(){return currentStats.BackwardSpeedBase * backwardSpeedMult;}
+    public float GetStrafeSpeed(){return currentStats.StrafeSpeedBase * strafeSpeedMult;}
+    public float GetGravity(){return currentStats.GravityBase * GravityMult;}
+    public float GetJumpHeight(){return currentStats.JumpHeightBase * jumpHeightMult;}
 
+    //Deal Damage
+    //causes the character to take damage
     public int DealDamage(int damage)
     {
         int DamageDealt = (int)(damage * damageTakeMult);
         hitPointsCurrent -= DamageDealt;
+        if (hitPointsCurrent <= 0)
+        {
+            Defeat();
+        }
 
         return DamageDealt;
+    }
+
+    //Defeat
+    //causes the character to die
+    public void Defeat()
+    {
+        IsAlive = false;
+        PlayerArmature.SetActive(IsAlive);
+    }
+
+    //Spawn
+    //if player is previously dead, spawns the player
+    public void Spawn()
+    {
+        if (!IsAlive)
+        {
+            IsAlive = true;
+            PlayerArmature.SetActive(IsAlive);
+        }
+    }
+    //Spawn
+    //if player is previously dead, spawns the player at a location
+    public void Spawn(Vector3 spawnLocation)
+    {
+        if (!IsAlive)
+        {
+            Spawn();
+            PlayerArmature.transform.position = spawnLocation;
+        }
     }
 
     public void ModifyForwardSpeed(float speedMod)
@@ -106,5 +139,5 @@ public class CharCore : MonoBehaviour
     public float GetDamageMult(){return damageDealMult;}
 
     public int GetHitPointsCurrent(){return hitPointsCurrent;}
-    public int GethitPointsCurrentMax() {return hitPointsCurrentMax;}
+    public int GetHitPointsBase() {return currentStats.HitPointsBase;}
 }

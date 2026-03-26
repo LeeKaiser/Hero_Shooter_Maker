@@ -27,7 +27,7 @@ public class AttackAction : AIAction
                 {
                     if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                     {
-                        targetEnemy = potentialTarget.Key.playerArmature;
+                        targetEnemy = potentialTarget.Key.PlayerArmature;
                         highestVuln = potentialTarget.Value.VulnerabilityValue;
                     }
                 }

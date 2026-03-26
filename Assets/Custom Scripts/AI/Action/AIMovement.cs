@@ -107,7 +107,7 @@ public class AIMovement : MonoBehaviour
         //set agent's movement input        
         if (agent.enabled)
         {
-            switch (playerReference.movementStyle)
+            switch (playerReference.MovementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
                     agentDirection = transform.InverseTransformDirection(agent.velocity.normalized);

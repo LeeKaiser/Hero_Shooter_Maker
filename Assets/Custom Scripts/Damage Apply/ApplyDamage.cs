@@ -19,7 +19,7 @@ public class ApplyDamage : MonoBehaviour
         {
             Debug.Log("hit");
 
-            if (enemy.playerAllegience == atkInfo.attackAllegience)
+            if (enemy.PlayerAllegience == atkInfo.attackAllegience)
             {
                 //projectile and target on same team, ignore unless friendly fire on
                 return;
