@@ -2,6 +2,10 @@ using UnityEngine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 
+/*
+CameraControls
+Influences positioning of player’s camera and the associated aim target
+*/
 public class CameraControls : MonoBehaviour
 {
     [Header("Cinemachine")]
@@ -24,11 +28,11 @@ public class CameraControls : MonoBehaviour
         public float CameraSensitivityX = 1.0f;
         [Tooltip("Control camera sensitivity for y axis")]
         public float CameraSensitivityY = 1.0f;
-    [Header("TargetPoint")]
+    [Header("AimTarget")]
         [Tooltip("Transform that represents the place player is looking at")]        
-        public Transform targetPoint;
+        public Transform AimTarget;
         [Tooltip("Layers that count as ground")]        
-        public LayerMask clickLayers;
+        public LayerMask ClickLayers;
 
 
     // cinemachine
@@ -60,25 +64,25 @@ public class CameraControls : MonoBehaviour
     void LateUpdate()
     {
         CameraRotation();
-        SetTargetPointViaCam();
+        SetAimTargetViaCam();
     }
 
     
 
-    public void SetTargetPointViaCam()
+    public void SetAimTargetViaCam()
     {
         //transform.position = playerCam.transform.position + (playerCam.transform.forward * 100);
 
         RaycastHit hitInfo = new RaycastHit();
-        bool hit = Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out hitInfo, 100f, clickLayers);
+        bool hit = Physics.Raycast(_mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue()), out hitInfo, 100f, ClickLayers);
             if (hit)
             {
                 //send to where the camera is pointing to
-                targetPoint.position = hitInfo.point;
+                AimTarget.position = hitInfo.point;
             }
             else {
                 // send to long distance from camera
-                targetPoint.position = _mainCamera.transform.position + (_mainCamera.transform.forward * 100);
+                AimTarget.position = _mainCamera.transform.position + (_mainCamera.transform.forward * 100);
             }
     }
 
