@@ -10,7 +10,6 @@ Third person controller
 controls movement
 code based on the Starter Assets package
 */
-//TODO: make variable names match other formats
 
 namespace StarterAssets
 {
@@ -173,6 +172,14 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
+        //Translate
+        //teleports player to a position
+        public void Translate(Vector3 targetPosition)
+        {
+            _controller.enabled = false;
+            transform.position = targetPosition;
+            _controller.enabled = true;
+        }
         private void GroundedCheck()
         {
             // set sphere position, with offset
@@ -196,12 +203,12 @@ namespace StarterAssets
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
 
-            if (!previouslyGrounded && Grounded)
+            /* if (!previouslyGrounded && Grounded)
             {
                 PlayerLandOnGround playerLandType = new PlayerLandOnGround();
                 playerLandType.playerIdentity = GetComponentInParent<CharCore>();
                 EventBus<PlayerLandOnGround>.Invoke(playerLandType);
-            }
+            } */
             PlayerGrounded playerGroundedType = new PlayerGrounded();
             playerGroundedType.playerIdentity = GetComponentInParent<CharCore>();
             playerGroundedType.grounded = Grounded;
@@ -215,8 +222,6 @@ namespace StarterAssets
             CanJump = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
         }
-
-        
 
         private void Move()
         {
@@ -457,6 +462,9 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+            PlayerLandOnGround playerLandType = new PlayerLandOnGround();
+            playerLandType.playerIdentity = GetComponentInParent<CharCore>();
+            EventBus<PlayerLandOnGround>.Invoke(playerLandType);
         }
 
         public void SetForwardMovementSpeed(float speed){ ForwardMoveSpeed = speed;}
