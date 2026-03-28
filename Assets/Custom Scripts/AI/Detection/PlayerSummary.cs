@@ -12,6 +12,7 @@ public class PlayerSummary
 {
     //summarized variables
     public GameObject SummarizedPlayer;
+    public CharCore SummarizedPlayerCharCore;
 
     //health information
     public int RemainingHP;
@@ -52,7 +53,7 @@ public class PlayerSummary
     public void SetValues(CharCore character, AbilityManager abilManager, Transform playerTransform, Transform selfTransform, float memoryExpirationTime)
     {
         TimeUntilExpire = memoryExpirationTime;
-
+        SummarizedPlayerCharCore = character;
         SummarizedPlayer = character.gameObject;
         //set health info
         RemainingHP = character.GetHitPointsCurrent();
@@ -123,6 +124,10 @@ public class PlayerSummary
     public void SubtractTimeRemaining(float timeElapsed)
     {
         TimeUntilExpire -= timeElapsed;
+        if (!SummarizedPlayerCharCore.IsAlive)
+        {
+            TimeUntilExpire = 0;
+        }
     }
 
     //creates an arbitrary estimation of the likelyhood of this player to defeat other players based on known factors for simplification in decision making.

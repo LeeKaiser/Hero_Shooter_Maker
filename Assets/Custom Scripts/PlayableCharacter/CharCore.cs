@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 #endif
 using StarterAssets;
+using PlayerEvents;
 
 //rename to CharCore in the future
 public class CharCore : MonoBehaviour
@@ -29,6 +30,7 @@ public class CharCore : MonoBehaviour
     private int hitPointsCurrent; //current hp
     private float damageTakeMult = 1f; //damage taken multiplier
     private float damageDealMult = 1f; //damage dealt multiplier
+    private float healingMult = 1f;
     
     //forward movement adjustment
     private float forwardSpeedMult = 1f;
@@ -82,14 +84,34 @@ public class CharCore : MonoBehaviour
     //causes the character to take damage
     public int DealDamage(int damage)
     {
-        int DamageDealt = (int)(damage * damageTakeMult);
-        hitPointsCurrent -= DamageDealt;
+        int damageDealt = (int)(damage * damageTakeMult);
+        hitPointsCurrent -= damageDealt;
+        PlayerTakeDamage playerTakeDamageEvent = new PlayerTakeDamage();
+        playerTakeDamageEvent.PlayerIdentity = this;
+        playerTakeDamageEvent.Damage = damageDealt;
+        EventBus<PlayerTakeDamage>.Invoke(playerTakeDamageEvent);
         if (hitPointsCurrent <= 0)
         {
             Defeat();
         }
 
-        return DamageDealt;
+        return damageDealt;
+    }
+
+    public int HealHealth(int healing)
+    {
+        int healthHealed = (int)(healing * healingMult);
+        hitPointsCurrent += healthHealed;
+        PlayerHealHealth PlayerHealHealthEvent = new PlayerHealHealth();
+        PlayerHealHealthEvent.PlayerIdentity = this;
+        PlayerHealHealthEvent.Healing = healthHealed;
+        EventBus<PlayerHealHealth>.Invoke(PlayerHealHealthEvent);
+        if (hitPointsCurrent >= currentStats.HitPointsBase)
+        {
+            hitPointsCurrent = currentStats.HitPointsBase;
+        }
+
+        return healthHealed;
     }
 
     //Defeat
@@ -97,6 +119,9 @@ public class CharCore : MonoBehaviour
     public void Defeat()
     {
         IsAlive = false;
+        PlayerDead playerDeadEvent = new PlayerDead();
+        playerDeadEvent.PlayerIdentity = this;
+        EventBus<PlayerDead>.Invoke(playerDeadEvent);
         PlayerArmature.SetActive(IsAlive);
     }
 
@@ -107,6 +132,7 @@ public class CharCore : MonoBehaviour
         if (!IsAlive)
         {
             IsAlive = true;
+            hitPointsCurrent = currentStats.HitPointsBase;
             PlayerArmature.SetActive(IsAlive);
         }
     }
@@ -117,7 +143,8 @@ public class CharCore : MonoBehaviour
         if (!IsAlive)
         {
             Spawn();
-            PlayerArmature.transform.position = spawnLocation;
+            Debug.Log($"spawning on position: {spawnLocation}");
+            PlayerMovement.Translate(spawnLocation);
         }
     }
 
