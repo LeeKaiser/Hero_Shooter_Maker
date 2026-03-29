@@ -12,10 +12,14 @@ public abstract class Ability: MonoBehaviour
 {
     //charge represents a use of an ability (functional as ammo)
     //charge point is progress to complete a full charge up or reload.
-    [Header("ability stats")]
+    [Header("Ability operation")]
     [Tooltip("ability stats")]
     public AbilityStats Stats;
-    [Tooltip("reference to user")]
+    
+    [Header("AI Relevant Information")]
+    [Tooltip("ability classification")]
+    public AbilityClass CurrentAbilClass;
+    
     protected CharCore playerReference;
     //variables
     protected int currentCharge ; //remaining  charge
@@ -30,9 +34,7 @@ public abstract class Ability: MonoBehaviour
     protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
 
-    public AbilityUI AbilityUIReference; //reference to ability's UI
-
-    public AbilityClass CurrentAbilClass;
+    protected AbilityUI AbilityUIReference; //reference to ability's UI
 
     void Start()
     {
@@ -124,4 +126,7 @@ public abstract class Ability: MonoBehaviour
     public float GetChargePointProgress() { return chargePointsProgress;}
 
     public float GetCurrentMaxCharge() {return currentMaxCharge;}
+
+    public AbilityUI GetAbilityUI(){ return AbilityUIReference;}
+    public void SetAbilityUI(AbilityUI ui){AbilityUIReference = ui;}
 }

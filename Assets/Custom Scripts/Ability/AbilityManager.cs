@@ -40,7 +40,7 @@ public class AbilityManager : MonoBehaviour
             ability.ActivateReload();
             ability.ReloadOverTime(Time.deltaTime);
             //call ability's ui to update
-            ability.AbilityUIReference.UpdateUI();
+            ability.GetAbilityUI().UpdateUI();
         }
     }
 
@@ -104,7 +104,7 @@ public class AbilityManager : MonoBehaviour
             abilUIScript.AbilityReference = ability;
             abilUIScript.Initialize();
         }
-        ability.AbilityUIReference = abilUIScript;
+        ability.SetAbilityUI(abilUIScript);
         abilitiesList.Add(ability);
         //add to ability class dictionary
         foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
