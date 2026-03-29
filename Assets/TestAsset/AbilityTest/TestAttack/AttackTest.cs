@@ -1,8 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 using System.Collections;
 
 public class AttackTest : Ability

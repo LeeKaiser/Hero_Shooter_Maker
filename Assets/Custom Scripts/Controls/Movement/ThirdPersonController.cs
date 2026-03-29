@@ -90,6 +90,13 @@ namespace StarterAssets
         private float _rotationVelocity;
         private float _verticalVelocity;
         private float _terminalVelocity = 53.0f;
+        private Vector3 _externalForceDirection;
+        private float _externalForceVelocity;
+
+        private Vector3 _currentDirection;
+
+        private bool _horizontalMovementPause;
+        private bool _verticalMovementPause;
 
         // timeout deltatime
         private float _jumpTimeoutDelta;
@@ -108,12 +115,7 @@ namespace StarterAssets
         private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
-        
-
-        
-
         private bool _hasAnimator;
-
         private bool IsCurrentDeviceMouse
         {
             get
@@ -179,6 +181,12 @@ namespace StarterAssets
             _controller.enabled = false;
             transform.position = targetPosition;
             _controller.enabled = true;
+        }
+
+        public void ApplyExternalForce(Vector3 direction, float velocity)
+        {
+            _externalForceDirection = direction;
+            _externalForceVelocity = velocity;
         }
         private void GroundedCheck()
         {
@@ -264,11 +272,18 @@ namespace StarterAssets
 
             PlayerFaceTargetPoint(inputDirection);
 
-            Vector3 targetDirection = GetTargetDirection();
+            _currentDirection = GetTargetDirection();
 
             // move the player
-                _controller.Move(targetDirection.normalized * _speed * Time.deltaTime +
-                    new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            //external force
+            Vector3 allMovement = _externalForceDirection.normalized * _externalForceVelocity;
+            //movement
+            if (!_horizontalMovementPause) {allMovement += _currentDirection.normalized * _speed;}
+            if (!_verticalMovementPause) {allMovement += Vector3.up * _verticalVelocity;}
+
+            allMovement = allMovement * Time.deltaTime;
+            
+            _controller.Move(allMovement);
             
 
             // update animator if using character
@@ -481,5 +496,14 @@ namespace StarterAssets
         public void SetCanJump(bool canJump){CanJump = canJump;}
 
         public void setPlayerMovementStyle(MovementStyles.MovementStyle FaceMove){movementStyle = FaceMove;}
+
+        public void SetHorizontalMovementPause(bool pause){_horizontalMovementPause = pause;}
+        public void SetVerticalMovementPause(bool pause){_verticalMovementPause = pause;}
+        public void ResetCharacterVelocity()
+        {
+            _controller.Move(Vector3.zero);
+        }
+
+        public Vector3 GetCurrentDirection(){return _currentDirection;}
     }
 }
