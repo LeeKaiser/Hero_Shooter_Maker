@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityName: Test Attack
   AbilityUIPrefab: {fileID: 5694682100280509937, guid: 66e3a075af105480da743b359ae7f390, type: 3}
-  MaxCharge: 3
+  MaxCharge: 2
   ChargePointsRequired: 150
   ChargePointsPerSec: 100
-  ChargeGainPerFullRecharge: 1
+  ChargeGainPerFullRecharge: 2
   CanInterruptOthers: 0
   UseTime: 0.2
   UseFailTime: 0
   MaxChargeTime: 0
-  UsePerSec: 2
+  UsePerSec: 4

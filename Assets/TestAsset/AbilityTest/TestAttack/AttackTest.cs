@@ -7,13 +7,16 @@ using System.Collections;
 
 public class AttackTest : Ability
 {
+    [Header("Custom variables")]
+    public GameObject attackPrefab;
+
     public ActiveAbilityID AbilID;
     //test activation set up
     List<InputOptions.Input> activationInput =
     new List<InputOptions.Input>{
         InputOptions.Input.AtkL
     };
-    public GameObject attackPrefab;
+    
     Transform attackPoint;
     Transform targetPoint;
 

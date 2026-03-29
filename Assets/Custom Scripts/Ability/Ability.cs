@@ -34,7 +34,7 @@ public abstract class Ability: MonoBehaviour
     protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
 
-    [HideInInspector]public AbilityUI AbilityUIReference; //reference to ability's UI
+    protected AbilityUI AbilityUIReference; //reference to ability's UI
 
     void Start()
     {
@@ -126,4 +126,7 @@ public abstract class Ability: MonoBehaviour
     public float GetChargePointProgress() { return chargePointsProgress;}
 
     public float GetCurrentMaxCharge() {return currentMaxCharge;}
+
+    public AbilityUI GetAbilityUI(){ return AbilityUIReference;}
+    public void SetAbilityUI(AbilityUI ui){AbilityUIReference = ui;}
 }
