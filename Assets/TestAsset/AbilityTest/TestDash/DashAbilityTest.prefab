@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestDashAbility
   Stats: {fileID: 11400000, guid: e9deac20ef8804da4acdb9c70ee754dc, type: 2}
   CurrentAbilClass: 385
-  DashDistance: 3
-  DashSpeed: 20
+  DashDistance: 5
+  DashSpeed: 15
   DashMoveDirection: 1
