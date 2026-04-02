@@ -33,7 +33,6 @@ public class AttackAction : AIAction
                 }
             }
 
-            Debug.Log(targetEnemy);
             Vector3 nextDestination = targetEnemy.transform.position;
 
             Vector3 enemyToSelf =  Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.transform.position - targetEnemy.transform.position;

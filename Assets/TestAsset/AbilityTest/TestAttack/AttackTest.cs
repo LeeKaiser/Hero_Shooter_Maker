@@ -42,7 +42,6 @@ public class AttackTest : ActiveAbility
         }
 
         InterruptReload();
-        Debug.Log("Attack1 activated");
 
         //limit fire rate
         currentAttackPause = 1 / Stats.UsePerSec;

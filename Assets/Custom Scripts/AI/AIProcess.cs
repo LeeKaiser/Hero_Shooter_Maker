@@ -44,7 +44,6 @@ public class AIProcess : MonoBehaviour
         //step 1: run object detection
         objectDetection.RadiusScanAll();
         objectDetection.ElapseExpirationTime(ScanTimeInterval);
-        Debug.Log("Completed step 1");
 
         //step 2: make decision
         AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
@@ -54,13 +53,11 @@ public class AIProcess : MonoBehaviour
             actionRunTime = Instantiate(currentAction);
         }
         actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall);
-        Debug.Log("Completed step 2");
 
         //step 3: act on decision
         actionRunTime.DetermineMovement();
         actionRunTime.DetermineAim();
         actionRunTime.MakeInput();
-        Debug.Log("Completed step 3");
 
         //repeat
         StartCoroutine(WaitThenScan());
