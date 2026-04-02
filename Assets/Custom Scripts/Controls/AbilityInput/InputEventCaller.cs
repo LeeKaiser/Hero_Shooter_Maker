@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using InputOptions;
 
 /*
 InputEventCaller
@@ -10,30 +11,30 @@ Converts inputs to event calls of type ActiveAbilityID.
 public class InputEventCaller : MonoBehaviour
 {
 
-    [SerializeField] private List<InputOptions.Input> inputCurrentFrame = new List<InputOptions.Input>();
+    private InputEnum inputPressCurrentFrame = 0; 
+    private InputEnum inputHoldCurrentFrame = 0;
+    private InputEnum InputReleaseCurrentFrame = 0;
 
-    public Dictionary<List<InputOptions.Input>, ActiveAbilityID>  InputDict = 
-        new Dictionary<List<InputOptions.Input>, ActiveAbilityID>();
+
+    public Dictionary<InputUnit, ActiveAbilityID>  InputDict = new Dictionary<InputUnit, ActiveAbilityID>();
 
     
     void LateUpdate()
     {
         ActiveAbilityID abilCall = null;
-        List<InputOptions.Input> abilCallInput = null;
+        InputUnit abilCallInput = null;
         //put more complex combos at higher priority
-        foreach (KeyValuePair<List<InputOptions.Input>, ActiveAbilityID> inputCombo in InputDict)
+        foreach (KeyValuePair<InputUnit, ActiveAbilityID> inputCombo in InputDict)
         {
             //if the output's combo has keys not in user's input, lists in this var and skip the next if statement
-            //var inInputButNotOutput = inputCurrentFrame.Except(inputCombo.Key).ToList();
+            Debug.Log(inputPressCurrentFrame);
+            Debug.Log(inputHoldCurrentFrame);
+            Debug.Log(InputReleaseCurrentFrame);
             
-            if (!inputCombo.Key.Except(inputCurrentFrame).Any())
+            if (inputCombo.Key.CompareInputToCombo(inputPressCurrentFrame,inputHoldCurrentFrame,InputReleaseCurrentFrame))
             {
-                if (abilCall == null)
-                {
-                    abilCall = inputCombo.Value;
-                    abilCallInput = inputCombo.Key;
-                }
-                else if (abilCallInput.Count < inputCombo.Key.Count)
+                Debug.Log("combo complete");
+                if (abilCall == null || abilCallInput.Priority < inputCombo.Key.Priority)
                 {
                     abilCall = inputCombo.Value;
                     abilCallInput = inputCombo.Key;
@@ -44,14 +45,27 @@ public class InputEventCaller : MonoBehaviour
         //Type eventType = abilCall.GetType(); 
         if (!(abilCall == null))
         {
+            Debug.Log("abilCall");
             EventBus<ActiveAbilityID>.Invoke(abilCall);
         }
         //clear input for next frame.
-        inputCurrentFrame.Clear();
+        inputPressCurrentFrame = 0;
+        inputHoldCurrentFrame = 0;
+        InputReleaseCurrentFrame = 0;
     }
 
-    public void AddInput(InputOptions.Input input)
+    public void AddHoldInput(InputEnum input)
     {
-        inputCurrentFrame.Add(input);
+        inputHoldCurrentFrame = inputHoldCurrentFrame | input;
+    }
+
+    public void AddPressInput(InputEnum input)
+    {
+        inputPressCurrentFrame = inputPressCurrentFrame | input;
+    }
+
+    public void AddReleaseInput(InputEnum input)
+    {
+        InputReleaseCurrentFrame = InputReleaseCurrentFrame | input;
     }
 }

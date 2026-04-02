@@ -1,21 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-#if ENABLE_INPUT_SYSTEM
-using UnityEngine.InputSystem;
-#endif
 using System.Collections;
 
-public class AttackTest : Ability
+public class AttackTest : ActiveAbility
 {
     [Header("Custom variables")]
     public GameObject attackPrefab;
-
-    public ActiveAbilityID AbilID;
-    //test activation set up
-    List<InputOptions.Input> activationInput =
-    new List<InputOptions.Input>{
-        InputOptions.Input.AtkL
-    };
     
     Transform attackPoint;
     Transform targetPoint;
@@ -23,17 +13,15 @@ public class AttackTest : Ability
     private float currentAttackPause = 0;
     
     protected override void Startup(){
-        AbilID = new ActiveAbilityID();
         attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
         targetPoint = playerReference.transform.Find("AimTarget").transform;
-        manager.SetupInput(this, AbilID, activationInput);
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
     }
 
     public void executeAbility(ActiveAbilityID inputEventInfo)
     {
         //if event is sent by wrong player, do not activate ability
-        if (inputEventInfo != AbilID)
+        if (inputEventInfo != AbilityID)
         {
             return;
         }

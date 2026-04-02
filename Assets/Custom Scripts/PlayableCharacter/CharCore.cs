@@ -52,6 +52,7 @@ public class CharCore : MonoBehaviour
     //add operation for match load
     void Awake()
     {
+        
         PlayerArmature = transform.Find("PlayerArmature").gameObject;
         PlayerMovement = PlayerArmature.GetComponent<ThirdPersonController>();
     }

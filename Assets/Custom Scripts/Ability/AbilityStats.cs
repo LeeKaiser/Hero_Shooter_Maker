@@ -31,10 +31,6 @@ public class AbilityStats : ScriptableObject
     [Header("use time related variables")]
     [Tooltip("if using ability disables use of other abilities")]
     public bool CanInterruptOthers = false;
-    [Tooltip("amount of time ability use is disabled for when using the ability")]
-    public float UseTime = 0.2f;
-    [Tooltip("amount of time ability use is disabled for when attempting to use ability and it fails")]
-    public float UseFailTime = 0.0f;
 
     [Header("charge variables")]
     [Tooltip("amount of time to charge up ability")]
