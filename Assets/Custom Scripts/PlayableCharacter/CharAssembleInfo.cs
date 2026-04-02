@@ -7,8 +7,8 @@ public class CharAssembleInfo : ScriptableObject
 {
     public CharStats Stats;
     
-    public Dictionary<InputUnit,GameObject> ActiveAbilityInput; // gameobject must have child of ability component
-    public List<GameObject> OtherAbilities; // gameobject must have child of ability component
+    public Dictionary<InputUnit,GameObject> ActiveAbilityInput = new Dictionary<InputUnit,GameObject>(); // gameobject must have child of ability component
+    public List<GameObject> OtherAbilities = new List<GameObject>() ; // gameobject must have child of ability component
 
 
 }

@@ -20,12 +20,12 @@ public class InputUnit : ScriptableObject
         {
             case InputType.Press:
                 //TODO: would be very sensitive so find a way to make it more lenient if it is an issue
-                return (InputCombo & pressInputs) > InputCombo;
+                return (InputCombo & pressInputs) == InputCombo;
             case InputType.Hold:
-                return (InputCombo & holdInputs) > InputCombo;
+                return (InputCombo & holdInputs) == InputCombo;
             case InputType.Release:
                 //TODO: would be very sensitive so find a way to make it more lenient if it is an issue
-                return (InputCombo & releaseInputs) > InputCombo;
+                return (InputCombo & releaseInputs) == InputCombo;
             default:
                 return false;
         }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64dfe681b8f84423580dd1d899fc8af8, type: 3}
   m_Name: TestCharAssemble
   m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
-  charStats: {fileID: 0}
-  otherAbils: []
+  Stats: {fileID: 11400000, guid: 91416d36eb03940b1a4e428ffabeaf7f, type: 2}
+  OtherAbilities: []

@@ -16,5 +16,5 @@ MonoBehaviour:
   ForwardSpeedBase: 4
   BackwardSpeedBase: 3
   StrafeSpeedBase: 3
-  JumpHeightBase: 0.7
+  JumpHeightBase: 1.2
   GravityBase: -15

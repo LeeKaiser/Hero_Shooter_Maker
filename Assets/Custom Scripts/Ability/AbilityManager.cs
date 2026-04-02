@@ -125,6 +125,7 @@ public class AbilityManager : MonoBehaviour
 
     public void SetupInput(Ability ability, ActiveAbilityID abilID, InputUnit abilInput)
     {
+        Debug.Log(EventCaller);
         EventCaller.InputDict.Add(abilInput, abilID);
         AbiltyToInputDictionary.Add(ability, abilInput);
     }

@@ -11,13 +11,12 @@ public class CharAssembler : MonoBehaviour
 
     void Awake()
     {
-        Init();
-    }
-    public void Init()
-    {
         //put char stat in char core
         playerReference.Stats = assembleInfo.Stats;
+    }
 
+    void Start()
+    {
         //tie actives to input
         foreach (KeyValuePair<InputUnit,GameObject> abil in assembleInfo.ActiveAbilityInput)
         {
@@ -32,4 +31,5 @@ public class CharAssembler : MonoBehaviour
             GameObject AbilityObject = Instantiate(abil, this.transform);
         }
     }
+    
 }
