@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
 using AbilityClassification;
+using InputOptions;
 
 /*
 Ability Manager
@@ -19,7 +20,7 @@ public class AbilityManager : MonoBehaviour
 
     public Dictionary <AbilityClass, int> AbilityClassDictionary = new Dictionary<AbilityClass, int>();
 
-    public Dictionary <Ability, List<InputOptions.Input>> AbiltyToInputDictionary = new Dictionary<Ability, List<InputOptions.Input>>();
+    public Dictionary <Ability, InputUnit> AbiltyToInputDictionary = new Dictionary<Ability, InputUnit>();
     public InputEventCaller EventCaller;
 
     void Awake()
@@ -122,7 +123,7 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    public void SetupInput(Ability ability, ActiveAbilityID abilID, List<InputOptions.Input> abilInput)
+    public void SetupInput(Ability ability, ActiveAbilityID abilID, InputUnit abilInput)
     {
         EventCaller.InputDict.Add(abilInput, abilID);
         AbiltyToInputDictionary.Add(ability, abilInput);

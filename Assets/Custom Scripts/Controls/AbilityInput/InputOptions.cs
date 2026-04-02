@@ -42,32 +42,7 @@ namespace InputOptions
         Press = 1 << 0,
         Hold = 1 << 1,
         Release = 1 << 2
-    }
-
-    public struct InputUnit
-    {
-        public Input InputCombo;
-        public InputType ComboInputType;
-
-        //CompareInputToCombo
-        //compares input to the InputCombo. return true if the input matches the combo and therefore should activate.
-
-        public bool CompareInputToCombo(InputEnum pressInputs, InputEnum holdInputs, InputEnum releaseInputs)
-        {
-            switch (ComboInputType)
-            {
-                case InputType.Press:
-                    //TODO: would be very sensitive so find a way to make it more lenient if it is an issue
-                    return InputCombo & pressInputs > InputCombo;
-                case InputType.Hold:
-                    return InputCombo & holdInputs > InputCombo;
-                case InputType.Release:
-                    return InputCombo & releaseInputs > InputCombo;
-                default:
-                    return false;
-            }
-        }
-    }       
+    }     
 }
 
 public class ActiveAbilityID{}

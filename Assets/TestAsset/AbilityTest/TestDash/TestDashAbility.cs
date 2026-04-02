@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using StarterAssets;
 
-public class TestDashAbility : Ability
+public class TestDashAbility : ActiveAbility
 {
     [Header("CustomVariables")]
     [Tooltip("distance traveled by the dash")]
@@ -13,20 +13,12 @@ public class TestDashAbility : Ability
     [Tooltip("if set to true, player dashes in movement direction, if set to false, dash to look direction")]
     public bool DashMoveDirection = false;
 
-    List<InputOptions.Input> activationInput =
-    new List<InputOptions.Input>{
-        InputOptions.Input.MoveLShift
-    };
-    public ActiveAbilityID AbilID;
-
     Transform targetPoint;
     ThirdPersonController playerMovement;
     float durationRemaining;
     private float currentAttackPause = 0;
     protected override void Startup(){
-        AbilID = new ActiveAbilityID();
         targetPoint = playerReference.transform.Find("AimTarget").transform;
-        manager.SetupInput(this, AbilID, activationInput);
         EventBus<ActiveAbilityID>.Subscribe(ExecuteAbility);
         playerMovement = playerReference.PlayerMovement;
     }
@@ -34,7 +26,7 @@ public class TestDashAbility : Ability
     public void ExecuteAbility(ActiveAbilityID inputEventInfo)
     {
         //if event is sent by wrong player, do not activate ability
-        if (inputEventInfo != AbilID)
+        if (inputEventInfo != AbilityID)
         {
             return;
         }

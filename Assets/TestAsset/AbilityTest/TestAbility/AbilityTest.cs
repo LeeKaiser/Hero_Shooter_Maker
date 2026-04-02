@@ -5,26 +5,19 @@ using UnityEngine.InputSystem;
 #endif
 using System.Collections;
 
-public class AbilityTest : Ability
+public class AbilityTest : ActiveAbility
 {
-    public ActiveAbilityID AbilID ;
-    //test activation set up
-    List<InputOptions.Input> activationInput =
-    new List<InputOptions.Input>{
-        InputOptions.Input.MoveLShift
-    };
+    
     public GameObject SpeedBoostPrefab;
 
     protected override void Startup()
     {
-        AbilID = new ActiveAbilityID();
-        manager.SetupInput(this, AbilID, activationInput);
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
     }
 
     public void executeAbility(ActiveAbilityID inputEventInfo)
     {
-        if (inputEventInfo != AbilID)
+        if (inputEventInfo != AbilityID)
         {
             return;
         }

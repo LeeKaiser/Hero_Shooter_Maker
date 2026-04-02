@@ -73,12 +73,12 @@ public class AttackAction : AIAction
         }
         
         //if there is an ability available, call the input for it
+        //TODO: rework to use correct input type
         if (!(abilToUse == null))
         {
-            foreach (InputOptions.Input i in abilManager.AbiltyToInputDictionary[abilToUse])
-            {
-                InputCall.AddInput(i);
-            }
+            
+            InputCall.AddHoldInput(abilManager.AbiltyToInputDictionary[abilToUse].InputCombo);
+            
         }
     }
 }

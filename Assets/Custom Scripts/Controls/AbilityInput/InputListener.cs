@@ -13,7 +13,7 @@ public class InputListener : MonoBehaviour
     
     private PlayerInput playerInput;
     private InputEventCaller inputRead;
-    protected Dictionary<InputAction, Input> inputDict = new Dictionary<InputAction, Input>();
+    protected Dictionary<InputAction, InputEnum> inputDict = new Dictionary<InputAction, InputEnum>();
     
     void Awake()
     {
@@ -22,51 +22,51 @@ public class InputListener : MonoBehaviour
         inputRead = GetComponent<InputEventCaller>();
 
         //TODO: figure out a better way to initialize inputDict later
-        inputDict.Add(playerInput.actions["Num[1]"],Input.Num1 );
-        inputDict.Add(playerInput.actions["Num[2]"],Input.Num2 );
-        inputDict.Add(playerInput.actions["Num[3]"],Input.Num3 );
-        inputDict.Add(playerInput.actions["Num[4]"],Input.Num4 );
-        inputDict.Add(playerInput.actions["Num[5]"],Input.Num5 );
-        inputDict.Add(playerInput.actions["Num[6]"],Input.Num6 );
-        inputDict.Add(playerInput.actions["Num[7]"],Input.Num7 );
-        inputDict.Add(playerInput.actions["Num[8]"],Input.Num8 );
-        inputDict.Add(playerInput.actions["Num[9]"],Input.Num9 );
+        inputDict.Add(playerInput.actions["Num[1]"],InputEnum.Num1 );
+        inputDict.Add(playerInput.actions["Num[2]"],InputEnum.Num2 );
+        inputDict.Add(playerInput.actions["Num[3]"],InputEnum.Num3 );
+        inputDict.Add(playerInput.actions["Num[4]"],InputEnum.Num4 );
+        inputDict.Add(playerInput.actions["Num[5]"],InputEnum.Num5 );
+        inputDict.Add(playerInput.actions["Num[6]"],InputEnum.Num6 );
+        inputDict.Add(playerInput.actions["Num[7]"],InputEnum.Num7 );
+        inputDict.Add(playerInput.actions["Num[8]"],InputEnum.Num8 );
+        inputDict.Add(playerInput.actions["Num[9]"],InputEnum.Num9 );
 
-        inputDict.Add(playerInput.actions["Ability[E]"],Input.AbilE );
-        inputDict.Add(playerInput.actions["Ability[Q]"],Input.AbilQ );
-        inputDict.Add(playerInput.actions["Ability[F]"],Input.AbilF );
-        inputDict.Add(playerInput.actions["Ability[R]"],Input.AbilR );
-        inputDict.Add(playerInput.actions["Ability[Z]"],Input.AbilZ );
-        inputDict.Add(playerInput.actions["Ability[X]"],Input.AbilX );
-        inputDict.Add(playerInput.actions["Ability[C]"],Input.AbilC );
-        inputDict.Add(playerInput.actions["Ability[V]"],Input.AbilV );
+        inputDict.Add(playerInput.actions["Ability[E]"],InputEnum.AbilE );
+        inputDict.Add(playerInput.actions["Ability[Q]"],InputEnum.AbilQ );
+        inputDict.Add(playerInput.actions["Ability[F]"],InputEnum.AbilF );
+        inputDict.Add(playerInput.actions["Ability[R]"],InputEnum.AbilR );
+        inputDict.Add(playerInput.actions["Ability[Z]"],InputEnum.AbilZ );
+        inputDict.Add(playerInput.actions["Ability[X]"],InputEnum.AbilX );
+        inputDict.Add(playerInput.actions["Ability[C]"],InputEnum.AbilC );
+        inputDict.Add(playerInput.actions["Ability[V]"],InputEnum.AbilV );
 
-        inputDict.Add(playerInput.actions["Movement[Lshift]"],Input.MoveLShift );
-        inputDict.Add(playerInput.actions["Movement[Lctrl]"],Input.MoveLCtrl );
+        inputDict.Add(playerInput.actions["Movement[Lshift]"],InputEnum.MoveLShift );
+        inputDict.Add(playerInput.actions["Movement[Lctrl]"],InputEnum.MoveLCtrl );
 
-        inputDict.Add(playerInput.actions["Attack[L]"],Input.AtkL );
-        inputDict.Add(playerInput.actions["Attack[R]"],Input.AtkR );
+        inputDict.Add(playerInput.actions["Attack[L]"],InputEnum.AtkL );
+        inputDict.Add(playerInput.actions["Attack[R]"],InputEnum.AtkR );
 
-        inputDict.Add(playerInput.actions["Misc[I]"],Input.MiscI );
-        inputDict.Add(playerInput.actions["Misc[O]"],Input.MiscO );
-        inputDict.Add(playerInput.actions["Misc[M]"],Input.MiscM );
+        inputDict.Add(playerInput.actions["Misc[I]"],InputEnum.MiscI );
+        inputDict.Add(playerInput.actions["Misc[O]"],InputEnum.MiscO );
+        inputDict.Add(playerInput.actions["Misc[M]"],InputEnum.MiscM );
     }
     
     void Update()
     {
-        foreach (KeyValuePair<InputAction, Input> x in inputDict)
+        foreach (KeyValuePair<InputAction, InputEnum> x in inputDict)
         {
             if (x.Key.WasPressedThisFrame())
             {
-                
+                inputRead.AddPressInput(x.Value);
             }
             if (x.Key.IsPressed())
             {
-                inputRead.AddInput(x.Value);
+                inputRead.AddHoldInput(x.Value);
             }
             if (x.Key.WasReleasedThisFrame())
             {
-                
+                inputRead.AddReleaseInput(x.Value);
             }
         }
     }

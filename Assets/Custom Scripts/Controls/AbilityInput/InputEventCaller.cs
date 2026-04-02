@@ -32,7 +32,7 @@ public class InputEventCaller : MonoBehaviour
             
             if (inputCombo.Key.CompareInputToCombo(inputPressCurrentFrame,inputHoldCurrentFrame,InputReleaseCurrentFrame))
             {
-                if ((abilCall == null) || (abilCallInput.Count < inputCombo.Key.Count))
+                if (abilCall == null || abilCallInput.Priority < inputCombo.Key.Priority)
                 {
                     abilCall = inputCombo.Value;
                     abilCallInput = inputCombo.Key;
