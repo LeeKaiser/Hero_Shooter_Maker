@@ -144,7 +144,6 @@ public class CharCore : MonoBehaviour
         if (!IsAlive)
         {
             Spawn();
-            Debug.Log($"spawning on position: {spawnLocation}");
             PlayerMovement.Translate(spawnLocation);
         }
     }

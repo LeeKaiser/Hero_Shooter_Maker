@@ -27,13 +27,9 @@ public class InputEventCaller : MonoBehaviour
         foreach (KeyValuePair<InputUnit, ActiveAbilityID> inputCombo in InputDict)
         {
             //if the output's combo has keys not in user's input, lists in this var and skip the next if statement
-            Debug.Log(inputPressCurrentFrame);
-            Debug.Log(inputHoldCurrentFrame);
-            Debug.Log(InputReleaseCurrentFrame);
             
             if (inputCombo.Key.CompareInputToCombo(inputPressCurrentFrame,inputHoldCurrentFrame,InputReleaseCurrentFrame))
             {
-                Debug.Log("combo complete");
                 if (abilCall == null || abilCallInput.Priority < inputCombo.Key.Priority)
                 {
                     abilCall = inputCombo.Value;
@@ -45,7 +41,6 @@ public class InputEventCaller : MonoBehaviour
         //Type eventType = abilCall.GetType(); 
         if (!(abilCall == null))
         {
-            Debug.Log("abilCall");
             EventBus<ActiveAbilityID>.Invoke(abilCall);
         }
         //clear input for next frame.
