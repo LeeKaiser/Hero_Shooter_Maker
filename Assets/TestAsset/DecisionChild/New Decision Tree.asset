@@ -20,7 +20,7 @@ MonoBehaviour:
   Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 315, y: 382}
+  EditorPosition: {x: 249, y: 377}
 --- !u!114 &-4190353240872096400
 MonoBehaviour:
   m_ObjectHideFlags: 0

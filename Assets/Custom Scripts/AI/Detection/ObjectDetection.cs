@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 /*
 ObjectDetection
@@ -34,15 +35,8 @@ public class ObjectDetection : MonoBehaviour
     void Start()
     {
         TeamMask = gameObject.layer;
-        
+        currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
     }
-
-    void Update()
-    {
-        //RadiusScanAll();
-    }
-
-    
 
     public KnownContext GetCurrentContext(){return currentContext;}
 
@@ -111,58 +105,29 @@ public class ObjectDetection : MonoBehaviour
                 //Debug.Log($"point of interest: {focusPOI}");
             }
         }
-        
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
         currentContext.SetPOI(focusPOI);
-        
     }
 
     //
     public void ElapseExpirationTime(float timeElapsed)
     {
-        List<CharCore> toRemove = new();
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownAllyList)
         {
-            
+            player.Value.SubtractTimeRemaining(timeElapsed);
             if (player.Value.TimeUntilExpire <= 0)
             {
-                toRemove.Add(player.Key);
-                
+                knownAllyList.Remove(player.Key);
             }
-            else
-            {
-                player.Value.SubtractTimeRemaining(timeElapsed);
-            }
-            
         }
-
-        foreach (var key in toRemove)
-        {
-            knownAllyList.Remove(key);
-            
-        }
-
-        toRemove = new();
 
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownEnemyList)
         {
-            
+            player.Value.SubtractTimeRemaining(timeElapsed);
             if (player.Value.TimeUntilExpire <= 0)
             {
-                toRemove.Add(player.Key);
-                
+                knownAllyList.Remove(player.Key);
             }
-            else
-            {
-                player.Value.SubtractTimeRemaining(timeElapsed);
-            }
-            
-        }
-
-        foreach (var key in toRemove)
-        {
-            knownEnemyList.Remove(key);
-            
         }
     }
 
