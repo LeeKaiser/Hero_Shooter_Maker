@@ -48,10 +48,11 @@ public class CameraControls : MonoBehaviour
     void Awake()
     {
         if (_cameraGameObj == null)
-            {
-                _cameraGameObj = GameObject.FindGameObjectWithTag("MainCamera");
-                _mainCamera = _cameraGameObj.GetComponent<Camera>();
-            }
+        {
+            _cameraGameObj = GameObject.FindGameObjectWithTag("MainCamera");
+            _mainCamera = _cameraGameObj.GetComponent<Camera>();
+        }
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     void Start()
