@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b9dfd6de8be74bb48fc49af8b03adef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharAssembler
-  assembleInfo: {fileID: 0}
+  assembleInfo: {fileID: 11400000, guid: 03fb661debc0f4c3e982f4059157dda9, type: 2}
   playerReference: {fileID: 2752219482786120103}
   abilityManager: {fileID: 3632947638755840050}
 --- !u!1 &4021468038529991300
@@ -924,6 +924,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: targetPoint
+      value: 
+      objectReference: {fileID: 2502441231928985280}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: JumpFatigueMult
       value: 1
       objectReference: {fileID: 0}
@@ -1217,7 +1221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf99454c646c4b018473bfdfb7869c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionMaker
-  decisionTree: {fileID: 0}
+  decisionTree: {fileID: 11400000, guid: 1b5dd972c49fc4ff1aaf737d0d848d52, type: 2}
   objectDetection: {fileID: 5118836739238029101}
   currentAction: {fileID: 0}
   inputCall: {fileID: 4959994725332064017}

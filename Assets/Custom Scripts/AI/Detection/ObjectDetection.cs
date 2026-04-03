@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 /*
 ObjectDetection
@@ -34,15 +35,8 @@ public class ObjectDetection : MonoBehaviour
     void Start()
     {
         TeamMask = gameObject.layer;
-        
+        currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
     }
-
-    void Update()
-    {
-        //RadiusScanAll();
-    }
-
-    
 
     public KnownContext GetCurrentContext(){return currentContext;}
 
@@ -111,58 +105,29 @@ public class ObjectDetection : MonoBehaviour
                 //Debug.Log($"point of interest: {focusPOI}");
             }
         }
-        
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
         currentContext.SetPOI(focusPOI);
-        
     }
 
     //
     public void ElapseExpirationTime(float timeElapsed)
     {
-        List<CharCore> toRemove = new();
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownAllyList)
         {
-            
-            if (player.Value.TimeUntilExpire <= 0)
-            {
-                toRemove.Add(player.Key);
-                
-            }
-            else
-            {
                 player.Value.SubtractTimeRemaining(timeElapsed);
-            }
-            
         }
-
-        foreach (var key in toRemove)
+        foreach (var key in knownAllyList.Where(p => p.Value.TimeUntilExpire <= 0).Select(p => p.Key).ToList())
         {
             knownAllyList.Remove(key);
-            
         }
-
-        toRemove = new();
 
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownEnemyList)
         {
-            
-            if (player.Value.TimeUntilExpire <= 0)
-            {
-                toRemove.Add(player.Key);
-                
-            }
-            else
-            {
                 player.Value.SubtractTimeRemaining(timeElapsed);
-            }
-            
         }
-
-        foreach (var key in toRemove)
+        foreach (var key in knownEnemyList.Where(p => p.Value.TimeUntilExpire <= 0).Select(p => p.Key).ToList())
         {
             knownEnemyList.Remove(key);
-            
         }
     }
 

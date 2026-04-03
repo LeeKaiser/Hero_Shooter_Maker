@@ -42,10 +42,28 @@ public class AIProcess : MonoBehaviour
     {
         yield return new WaitForSeconds(ScanTimeInterval);
         //step 1: run object detection
-        objectDetection.RadiusScanAll();
-        objectDetection.ElapseExpirationTime(ScanTimeInterval);
+        StartCoroutine(RunObjectDetection());
 
         //step 2: make decision
+        StartCoroutine(MakeDecision());
+
+        //step 3: act on decision
+        StartCoroutine(ActDecision());
+
+        //repeat
+        StartCoroutine(WaitThenScan());
+    }
+
+    IEnumerator RunObjectDetection()
+    {
+        objectDetection.RadiusScanAll();
+        objectDetection.ElapseExpirationTime(ScanTimeInterval);
+        yield return new WaitForSeconds(Random.Range(0.01f , 0.05f));
+    }
+
+    IEnumerator MakeDecision()
+    {
+
         AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
         if (currentAction != chosenAction)
         {
@@ -53,14 +71,15 @@ public class AIProcess : MonoBehaviour
             actionRunTime = Instantiate(currentAction);
         }
         actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall);
+        yield return new WaitForSeconds(Random.Range(0.01f , 0.05f));
+    }
 
-        //step 3: act on decision
+    IEnumerator ActDecision()
+    {
+
         actionRunTime.DetermineMovement();
         actionRunTime.DetermineAim();
         actionRunTime.MakeInput();
-
-        //repeat
-        StartCoroutine(WaitThenScan());
+        yield return new WaitForSeconds(Random.Range(0.01f , 0.05f));
     }
-
 }
