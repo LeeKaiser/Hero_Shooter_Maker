@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using System.Linq;
 
 /*
 ObjectDetection
@@ -112,22 +111,37 @@ public class ObjectDetection : MonoBehaviour
     //
     public void ElapseExpirationTime(float timeElapsed)
     {
+        List<CharCore> toRemove = new();
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownAllyList)
         {
-            player.Value.SubtractTimeRemaining(timeElapsed);
             if (player.Value.TimeUntilExpire <= 0)
             {
-                knownAllyList.Remove(player.Key);
+                toRemove.Add(player.Key);
+            }
+            else
+            {
+                player.Value.SubtractTimeRemaining(timeElapsed);
             }
         }
-
+        foreach (var key in toRemove)
+        {
+            knownAllyList.Remove(key);
+        }
+        toRemove = new();
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownEnemyList)
         {
-            player.Value.SubtractTimeRemaining(timeElapsed);
             if (player.Value.TimeUntilExpire <= 0)
             {
-                knownAllyList.Remove(player.Key);
+                toRemove.Add(player.Key);
             }
+            else
+            {
+                player.Value.SubtractTimeRemaining(timeElapsed);
+            }
+        }
+        foreach (var key in toRemove)
+        {
+            knownEnemyList.Remove(key);
         }
     }
 
