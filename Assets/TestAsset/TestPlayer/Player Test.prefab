@@ -1248,7 +1248,7 @@ MonoBehaviour:
   TeamMask:
     serializedVersion: 2
     m_Bits: 0
-  SightAngle: 0
+  SightAngle: 90
   AllyMemoryExpirationTime: 10
   EnemyMemoryExpirationTime: 3
 --- !u!114 &1882099305404397499

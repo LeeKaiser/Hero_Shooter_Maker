@@ -114,20 +114,20 @@ public class ObjectDetection : MonoBehaviour
     {
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownAllyList)
         {
-                player.Value.SubtractTimeRemaining(timeElapsed);
-        }
-        foreach (var key in knownAllyList.Where(p => p.Value.TimeUntilExpire <= 0).Select(p => p.Key).ToList())
-        {
-            knownAllyList.Remove(key);
+            player.Value.SubtractTimeRemaining(timeElapsed);
+            if (player.Value.TimeUntilExpire <= 0)
+            {
+                knownAllyList.Remove(player.Key);
+            }
         }
 
         foreach (KeyValuePair<CharCore, PlayerSummary> player in knownEnemyList)
         {
-                player.Value.SubtractTimeRemaining(timeElapsed);
-        }
-        foreach (var key in knownEnemyList.Where(p => p.Value.TimeUntilExpire <= 0).Select(p => p.Key).ToList())
-        {
-            knownEnemyList.Remove(key);
+            player.Value.SubtractTimeRemaining(timeElapsed);
+            if (player.Value.TimeUntilExpire <= 0)
+            {
+                knownAllyList.Remove(player.Key);
+            }
         }
     }
 
