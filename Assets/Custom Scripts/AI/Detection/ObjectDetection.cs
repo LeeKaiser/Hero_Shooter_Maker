@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.Collections;
 
 /*
 ObjectDetection
@@ -16,6 +17,9 @@ public class ObjectDetection : MonoBehaviour
     public LayerMask GroundMask, TeamMask;
     [Tooltip("angle at which they detect certain objects")]
     [Range(0, 360)] public float SightAngle;
+
+    [Tooltip("maximum amount of object that can be detected by AI")]
+    [Range(100, 999)]public int MaxObjectDetected = 100;
 
     [Tooltip("amount of time it takes for the AI to forget the ally after not being detected")]
     public float AllyMemoryExpirationTime = 10f;
@@ -42,19 +46,30 @@ public class ObjectDetection : MonoBehaviour
     public void RadiusScanAll()
     {
         //scan for all objects in ScanRads 
-        Collider[] rangeCheck = Physics.OverlapSphere(transform.position, ScanRads);
+        var commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
+        var rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
+
+        commands[0] = new OverlapSphereCommand(transform.position, ScanRads, QueryParameters.Default);
+
+        OverlapSphereCommand.ScheduleBatch(commands, rangeCheck, 1, MaxObjectDetected).Complete();
+
+        //Collider[] rangeCheck = Physics.OverlapSphere(transform.position, ScanRads);
         //put in list
         foreach (var obj in rangeCheck)
         {
+            if (obj.collider == null)
+            {
+                continue;
+            }
             //check if its player
-            CharCore player = obj.transform.GetComponentInParent<CharCore>();
+            CharCore player = obj.collider.transform.GetComponentInParent<CharCore>();
             if (player != null)
             {
                 //check if its self
-                if (obj.gameObject == gameObject)
+                if (obj.collider.gameObject == gameObject)
                 {
-                    selfSummary.SetValues(player, obj.transform.GetComponentInParent<AbilityManager>(), 
-                        obj.transform, transform, 999f);
+                    selfSummary.SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                        obj.collider.transform, transform, 999f);
                 }
                 //check if its teammate
                 else if (player.gameObject.layer == TeamMask)
@@ -65,8 +80,8 @@ public class ObjectDetection : MonoBehaviour
                         knownAllyList.Add(player, new PlayerSummary());
                         //Debug.Log($"added new player to memory {knownAllyList[player]}");
                     }
-                    knownAllyList[player].SetValues(player, obj.transform.GetComponentInParent<AbilityManager>(), 
-                        obj.transform, transform, AllyMemoryExpirationTime);
+                    knownAllyList[player].SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                        obj.collider.transform, transform, AllyMemoryExpirationTime);
                     
                         
                     //Debug.Log($"Added player summary: {knownAllyList[player].toString()}");
@@ -75,12 +90,17 @@ public class ObjectDetection : MonoBehaviour
                 //add as enemy otherwise
                 else
                 {
-                    Vector3 vectorToTarget = obj.transform.position - transform.position;
-                    //TODO: change forward to vector from self to direction the AI is looking at in the future
+                    Vector3 vectorToTarget = obj.collider.transform.position - transform.position;
+                    //TODO: change forward to vector from self to direction the AI is supposed to be aiming at in the future
                     //if within  view, then add to memory
                     if (Vector3.Angle(transform.forward, vectorToTarget.normalized) < SightAngle / 2)
                     {
-                        if (!Physics.Raycast(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, vectorToTarget.magnitude, GroundMask))
+                        var commandsEnemyRay = new NativeArray<RaycastCommand>(1, Allocator.TempJob);
+                        var resultsEnemyRay = new NativeArray<RaycastHit>(1, Allocator.TempJob);
+                        commandsEnemyRay[0] = new RaycastCommand(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, QueryParameters.Default);
+                        RaycastCommand.ScheduleBatch(commandsEnemyRay,resultsEnemyRay,1,default).Complete();
+
+                        if (resultsEnemyRay[0].collider.transform.GetComponentInParent<CharCore>() == player)
                         {
                             if (!knownEnemyList.ContainsKey(player))
                             {
@@ -88,24 +108,28 @@ public class ObjectDetection : MonoBehaviour
                                 knownEnemyList.Add(player, new PlayerSummary());
                                 //Debug.Log($"added new player to memory {knownEnemyList[player]}");
                             }
-                            knownEnemyList[player].SetValues(player, obj.transform.GetComponentInParent<AbilityManager>(), 
-                                obj.transform, transform, EnemyMemoryExpirationTime);
+                            knownEnemyList[player].SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                                obj.collider.transform, transform, EnemyMemoryExpirationTime);
                         }
-                        
+                        resultsEnemyRay.Dispose();
+                        commandsEnemyRay.Dispose();
                     }
 
                 }
                 
             }
             //add other object types
-            if (obj.CompareTag("Point Of Interest"))
+            if (obj.collider.CompareTag("Point Of Interest"))
             {
-                focusPOI = obj.gameObject;
+                focusPOI = obj.collider.gameObject;
                 //Debug.Log($"point of interest: {focusPOI}");
             }
         }
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
         currentContext.SetPOI(focusPOI);
+
+        commands.Dispose();
+        rangeCheck.Dispose();
     }
 
     //
