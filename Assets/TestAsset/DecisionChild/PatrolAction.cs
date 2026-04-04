@@ -17,6 +17,7 @@ public class PatrolAction : AIAction
             nextDestination.z = nextDestination.z + Random.Range(-10,10);
             //Debug.Log(nextDestination);
             MoveTarget.position = nextDestination;
+            Movement.MoveToLocation();
         }
     }
     public override void DetermineAim()

@@ -21,6 +21,8 @@ public class CharCore : MonoBehaviour
     [Header("Misc.")]
     [Tooltip("Third person controller script")]
     public ThirdPersonController PlayerMovement;
+    [Tooltip("Ability Manager script")]
+    public AbilityManager AbilityManage;
     [Tooltip("Player's armature")]
     public GameObject PlayerArmature;
     [Tooltip("Player's alive status (true if alive, false if dead)")]
@@ -52,7 +54,7 @@ public class CharCore : MonoBehaviour
     //add operation for match load
     void Awake()
     {
-        
+        AbilityManage = GetComponent<AbilityManager>();
         PlayerArmature = transform.Find("PlayerArmature").gameObject;
         PlayerMovement = PlayerArmature.GetComponent<ThirdPersonController>();
     }

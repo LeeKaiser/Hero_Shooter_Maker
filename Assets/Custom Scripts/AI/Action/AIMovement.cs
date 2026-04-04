@@ -45,7 +45,6 @@ public class AIMovement : MonoBehaviour
 
     void Update()
     {
-        MoveToLocation(MoveTarget.position);
         AgentMovement();
         if (navmeshPause >= 0)
         {
@@ -130,11 +129,17 @@ public class AIMovement : MonoBehaviour
     
     //Move To Location
     //sets navmesh agent's destination to the location in parameter. generally called with position of MoveTarget.
-    public void MoveToLocation(Vector3 destination)
+    public void MoveToLocation()
     {
         if (agent.enabled)
         {
-            agent.SetDestination(destination);
+            agent.SetDestination(MoveTarget.position);
+        }
+        else
+        {
+            agent.enabled = true;
+            agent.SetDestination(MoveTarget.position);
+            agent.enabled = false;
         }
         
     }

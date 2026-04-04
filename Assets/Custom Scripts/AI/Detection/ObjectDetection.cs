@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.Collections;
+using Unity.Jobs;
 
 /*
 ObjectDetection
@@ -34,6 +35,10 @@ public class ObjectDetection : MonoBehaviour
     GameObject focusPOI;
 
     KnownContext currentContext = new KnownContext();
+    private JobHandle overlapHandle;
+    private NativeArray<OverlapSphereCommand> commands;
+    private NativeArray<ColliderHit> rangeCheck;
+    private bool scanInProgress = false;
 
     void Start()
     {
@@ -41,19 +46,39 @@ public class ObjectDetection : MonoBehaviour
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
     }
 
+    void Update()
+    {
+        if (scanInProgress)
+        {
+            FinishScan();
+        }
+    }
     public KnownContext GetCurrentContext(){return currentContext;}
 
     public void RadiusScanAll()
     {
         //scan for all objects in ScanRads 
-        var commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
-        var rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
+        commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
+        rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
 
         commands[0] = new OverlapSphereCommand(transform.position, ScanRads, QueryParameters.Default);
 
-        OverlapSphereCommand.ScheduleBatch(commands, rangeCheck, 1, MaxObjectDetected).Complete();
+        overlapHandle = OverlapSphereCommand.ScheduleBatch(commands, rangeCheck, 1, MaxObjectDetected);
 
-        //Collider[] rangeCheck = Physics.OverlapSphere(transform.position, ScanRads);
+        scanInProgress = true;
+
+        
+    }
+
+    private void FinishScan()
+    {
+        if (!overlapHandle.IsCompleted)
+        {
+            //Debug.Log("Job not done yet — was actually async!");
+            return;
+        }
+        overlapHandle.Complete();
+
         //put in list
         foreach (var obj in rangeCheck)
         {
@@ -68,19 +93,19 @@ public class ObjectDetection : MonoBehaviour
                 //check if its self
                 if (obj.collider.gameObject == gameObject)
                 {
-                    selfSummary.SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                    selfSummary.SetValues(player, player.AbilityManage, 
                         obj.collider.transform, transform, 999f);
                 }
                 //check if its teammate
                 else if (player.gameObject.layer == TeamMask)
                 {
-                    if (!knownAllyList.ContainsKey(player))
+                    if (!knownAllyList.TryGetValue(player, out PlayerSummary summary))
                     {
-                        //if not already in ally list
-                        knownAllyList.Add(player, new PlayerSummary());
-                        //Debug.Log($"added new player to memory {knownAllyList[player]}");
+                        // Key didn't exist — create and add it
+                        summary = new PlayerSummary();
+                        knownAllyList.Add(player, summary);
                     }
-                    knownAllyList[player].SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                    summary.SetValues(player, player.AbilityManage, 
                         obj.collider.transform, transform, AllyMemoryExpirationTime);
                     
                         
@@ -95,24 +120,18 @@ public class ObjectDetection : MonoBehaviour
                     //if within  view, then add to memory
                     if (Vector3.Angle(transform.forward, vectorToTarget.normalized) < SightAngle / 2)
                     {
-                        var commandsEnemyRay = new NativeArray<RaycastCommand>(1, Allocator.TempJob);
-                        var resultsEnemyRay = new NativeArray<RaycastHit>(1, Allocator.TempJob);
-                        commandsEnemyRay[0] = new RaycastCommand(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, QueryParameters.Default);
-                        RaycastCommand.ScheduleBatch(commandsEnemyRay,resultsEnemyRay,1,default).Complete();
 
-                        if (resultsEnemyRay[0].collider.transform.GetComponentInParent<CharCore>() == player)
+                        if (!Physics.Raycast(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, vectorToTarget.magnitude, GroundMask))
                         {
-                            if (!knownEnemyList.ContainsKey(player))
+                            if (!knownEnemyList.TryGetValue(player, out PlayerSummary summary))
                             {
-                                //if not already in enemy list
-                                knownEnemyList.Add(player, new PlayerSummary());
-                                //Debug.Log($"added new player to memory {knownEnemyList[player]}");
+                                // Key didn't exist — create and add it
+                                summary = new PlayerSummary();
+                                knownEnemyList.Add(player, summary);
                             }
-                            knownEnemyList[player].SetValues(player, obj.collider.transform.GetComponentInParent<AbilityManager>(), 
+                            summary.SetValues(player, player.AbilityManage, 
                                 obj.collider.transform, transform, EnemyMemoryExpirationTime);
                         }
-                        resultsEnemyRay.Dispose();
-                        commandsEnemyRay.Dispose();
                     }
 
                 }
@@ -127,9 +146,10 @@ public class ObjectDetection : MonoBehaviour
         }
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
         currentContext.SetPOI(focusPOI);
-
+        
         commands.Dispose();
         rangeCheck.Dispose();
+        scanInProgress = false;
     }
 
     //
@@ -173,4 +193,16 @@ public class ObjectDetection : MonoBehaviour
     {
         return currentContext.toString();
     }
+
+    void OnDisable()
+    {
+        if (scanInProgress)
+        {
+            overlapHandle.Complete();
+            commands.Dispose();
+            rangeCheck.Dispose();
+        }
+    }
 }
+
+    

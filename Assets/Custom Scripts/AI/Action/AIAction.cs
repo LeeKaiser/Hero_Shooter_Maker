@@ -10,13 +10,15 @@ public abstract class AIAction : ScriptableObject
     public Transform AimTarget;
     public ObjectDetection Detection;
     public InputEventCaller InputCall;
+    public AIMovement Movement;
 
-    public void Init(Transform movement, Transform aim, ObjectDetection detection, InputEventCaller input)
+    public void Init(Transform movement, Transform aim, ObjectDetection detection, InputEventCaller input, AIMovement move)
     {
         MoveTarget = movement;
         AimTarget = aim;
         Detection = detection;
         InputCall = input;
+        Movement = move;
     }
 
     public abstract void DetermineMovement();
