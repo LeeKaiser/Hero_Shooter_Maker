@@ -18,8 +18,8 @@ MonoBehaviour:
   NodeCondition: 0
   Action: {fileID: 0}
   IsAction: 0
-  ParameterFloat: 0
-  EditorPosition: {x: 446.4724, y: 50.880096}
+  ParameterFloat: 20
+  EditorPosition: {x: 438.44867, y: 53.889038}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

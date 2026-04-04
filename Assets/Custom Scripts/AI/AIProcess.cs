@@ -68,7 +68,7 @@ public class AIProcess : MonoBehaviour
 
     IEnumerator RunObjectDetection()
     {
-        yield return new WaitForSeconds(Random.Range(0.01f , 0.05f));
+        yield return new WaitForSeconds(Random.Range(0.0f , 0.1f));
         objectDetection.RadiusScanAll();
         objectDetection.ElapseExpirationTime(ScanTimeInterval);
         
