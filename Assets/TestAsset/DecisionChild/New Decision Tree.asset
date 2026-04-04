@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 9066887121063257519}
-  ChildNoNode: {fileID: 0}
+  ChildNoNode: {fileID: 8553270159893661306}
   ParentNodes: []
   NodeCondition: 0
   Action: {fileID: 0}
   IsAction: 0
   ParameterFloat: 0
-  EditorPosition: {x: 427.3924, y: 40.704056}
+  EditorPosition: {x: 446.4724, y: 50.880096}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36,6 +36,7 @@ MonoBehaviour:
   AllNodes:
   - {fileID: -4699986295574894627}
   - {fileID: 9066887121063257519}
+  - {fileID: 8553270159893661306}
 --- !u!114 &8553270159893661306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50,12 +51,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 0}
   ChildNoNode: {fileID: 0}
-  ParentNodes: []
+  ParentNodes:
+  - {fileID: -4699986295574894627}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
+  IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 0, y: 0}
+  EditorPosition: {x: 600.68024, y: 282.28815}
 --- !u!114 &9066887121063257519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +75,7 @@ MonoBehaviour:
   ParentNodes:
   - {fileID: -4699986295574894627}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
+  IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 227.3924, y: 190.70406}
+  EditorPosition: {x: 285.90448, y: 283.8789}
