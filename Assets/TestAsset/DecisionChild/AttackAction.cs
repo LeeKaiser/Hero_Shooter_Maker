@@ -40,6 +40,7 @@ public class AttackAction : AIAction
             nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
             //Debug.Log(nextDestination);
             MoveTarget.position = nextDestination;
+            Movement.MoveToLocation();
         }
     }
     public override void DetermineAim()
