@@ -28,6 +28,8 @@ public class ObjectDetection : MonoBehaviour
 
     [Tooltip("amount of time it takes for the AI to forget the enemy after not being detected")]
     public float EnemyMemoryExpirationTime = 3f;
+    [Tooltip("The object detection is done by the entity itself. If set to false, its detection is handled by the player. Turn this off if you want to have many amount of this agent.")]
+    public bool EnableIndependentScan = true;
     Dictionary <CharCore, PlayerSummary> knownEnemyList = new Dictionary<CharCore, PlayerSummary>();
 
     PlayerSummary selfSummary = new PlayerSummary();
@@ -39,15 +41,22 @@ public class ObjectDetection : MonoBehaviour
     private NativeArray<OverlapSphereCommand> commands;
     private NativeArray<ColliderHit> rangeCheck;
     private bool scanInProgress = false;
+    private bool hasCompletedSetUp = false;
 
     void Start()
     {
         TeamMask = gameObject.layer;
-        currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
     }
 
     void Update()
     {
+        if (!hasCompletedSetUp)
+        {
+            CharCore selfReference = transform.GetComponentInParent<CharCore>();
+            selfSummary.SetValues(selfReference, selfReference.AbilityManage, transform, transform, 999f);
+            currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
+            hasCompletedSetUp = true;
+        }
         if (scanInProgress)
         {
             FinishScan();
@@ -57,6 +66,10 @@ public class ObjectDetection : MonoBehaviour
 
     public void RadiusScanAll()
     {
+        if (!EnableIndependentScan)
+        {
+            return;
+        }
         //scan for all objects in ScanRads 
         commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
         rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
@@ -93,47 +106,17 @@ public class ObjectDetection : MonoBehaviour
                 //check if its self
                 if (obj.collider.gameObject == gameObject)
                 {
-                    selfSummary.SetValues(player, player.AbilityManage, 
-                        obj.collider.transform, transform, 999f);
+                    continue;
                 }
                 //check if its teammate
                 else if (player.gameObject.layer == TeamMask)
                 {
-                    if (!knownAllyList.TryGetValue(player, out PlayerSummary summary))
-                    {
-                        // Key didn't exist — create and add it
-                        summary = new PlayerSummary();
-                        knownAllyList.Add(player, summary);
-                    }
-                    summary.SetValues(player, player.AbilityManage, 
-                        obj.collider.transform, transform, AllyMemoryExpirationTime);
-                    
-                        
-                    //Debug.Log($"Added player summary: {knownAllyList[player].toString()}");
-                    
+                    AddInAlly(player, obj.collider.transform);
                 }
                 //add as enemy otherwise
                 else
                 {
-                    Vector3 vectorToTarget = obj.collider.transform.position - transform.position;
-                    //TODO: change forward to vector from self to direction the AI is supposed to be aiming at in the future
-                    //if within  view, then add to memory
-                    if (Vector3.Angle(transform.forward, vectorToTarget.normalized) < SightAngle / 2)
-                    {
-
-                        if (!Physics.Raycast(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, vectorToTarget.magnitude, GroundMask))
-                        {
-                            if (!knownEnemyList.TryGetValue(player, out PlayerSummary summary))
-                            {
-                                // Key didn't exist — create and add it
-                                summary = new PlayerSummary();
-                                knownEnemyList.Add(player, summary);
-                            }
-                            summary.SetValues(player, player.AbilityManage, 
-                                obj.collider.transform, transform, EnemyMemoryExpirationTime);
-                        }
-                    }
-
+                    AddInEnemy(player, obj.collider.transform);
                 }
                 
             }
@@ -144,12 +127,51 @@ public class ObjectDetection : MonoBehaviour
                 //Debug.Log($"point of interest: {focusPOI}");
             }
         }
-        currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
-        currentContext.SetPOI(focusPOI);
+        SetContext();
         
         commands.Dispose();
         rangeCheck.Dispose();
         scanInProgress = false;
+    }
+
+    public void AddInAlly(CharCore player, Transform armatureTransform)
+    {
+        if (!knownAllyList.TryGetValue(player, out PlayerSummary summary))
+        {
+            // Key didn't exist — create and add it
+            summary = new PlayerSummary();
+            knownAllyList.Add(player, summary);
+        }
+        summary.SetValues(player, player.AbilityManage, 
+            armatureTransform, transform, AllyMemoryExpirationTime);
+    }
+
+    public void AddInEnemy(CharCore player, Transform armatureTransform)
+    {
+        Vector3 vectorToTarget = armatureTransform.position - transform.position;
+        //TODO: change forward to vector from self to direction the AI is supposed to be aiming at in the future
+        //if within  view, then add to memory
+        if (Vector3.Angle(transform.forward, vectorToTarget.normalized) < SightAngle / 2)
+        {
+
+            if (!Physics.Raycast(transform.position + new Vector3(0, 1.6f, 0), vectorToTarget.normalized, vectorToTarget.magnitude, GroundMask))
+            {
+                if (!knownEnemyList.TryGetValue(player, out PlayerSummary summary))
+                {
+                    // Key didn't exist — create and add it
+                    summary = new PlayerSummary();
+                    knownEnemyList.Add(player, summary);
+                }
+                summary.SetValues(player, player.AbilityManage, 
+                    armatureTransform, transform, EnemyMemoryExpirationTime);
+            }
+        }
+    }
+
+    public void SetContext()
+    {
+        currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
+        currentContext.SetPOI(focusPOI);
     }
 
     //
