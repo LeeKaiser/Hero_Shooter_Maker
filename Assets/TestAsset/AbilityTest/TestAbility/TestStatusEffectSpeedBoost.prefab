@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusEffectStat: {fileID: 11400000, guid: e9a40db62ed194b1d98b38466941e40f, type: 2}
-  SpeedMultiplierTest: 0.5
+  SpeedMultiplierTest: 14
