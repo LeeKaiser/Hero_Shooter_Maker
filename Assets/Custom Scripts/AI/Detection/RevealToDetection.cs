@@ -1,0 +1,139 @@
+using UnityEngine;
+using Unity.Jobs;
+using Unity.Collections;
+
+/*
+Reveal To Detection
+Reveals the player to other characters
+use for characters that appear very frequently, such as swarm of small enemies. 
+*/
+public class RevealToDetection : MonoBehaviour
+{
+    [Tooltip("radius/distance at which AI can detect object")]
+    public float ScanRads = 30;
+    [Tooltip("reference to self")]
+    public GameObject PlayerReference;
+    [Tooltip("mask for detecting objects")]
+    public LayerMask GroundMask, TeamMask;
+    [Tooltip("maximum amount of object that can be detected by AI")]
+    [Range(100, 9999)]public int MaxObjectDetected = 100;
+    [Tooltip("Reveals itself to AI that is not scanning for itself. Turn this off if you want to have many amount of this agent.")]
+    public bool EnableSelfReveal = true;
+
+    private CharCore playerReference;
+    private JobHandle overlapHandle;
+    private NativeArray<OverlapSphereCommand> commands;
+    private NativeArray<ColliderHit> rangeCheck;
+    private bool scanInProgress = false;
+
+    void Start()
+    {
+        TeamMask = gameObject.layer;
+        playerReference = transform.GetComponentInParent<CharCore>();
+    }
+
+    void Update()
+    {
+        if (scanInProgress)
+        {
+            FinishScan();
+        }
+        else
+        {
+            RadiusScanAll();
+        }
+    }
+
+    public void RadiusScanAll()
+    {
+        //if the character does not want to reveal itself
+        if (!EnableSelfReveal)
+        {
+            return;
+        }
+        //scan for all objects in ScanRads 
+        commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
+        rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
+
+        commands[0] = new OverlapSphereCommand(transform.position, ScanRads, QueryParameters.Default);
+
+        overlapHandle = OverlapSphereCommand.ScheduleBatch(commands, rangeCheck, 1, MaxObjectDetected);
+
+        scanInProgress = true;
+
+        
+    }
+
+    private void FinishScan()
+    {
+        if (!overlapHandle.IsCompleted)
+        {
+            //Debug.Log("Job not done yet — was actually async!");
+            return;
+        }
+        overlapHandle.Complete();
+
+        //put in list
+        foreach (var obj in rangeCheck)
+        {
+            if (obj.collider == null)
+            {
+                continue;
+            }
+            //check if its player
+            CharCore player = obj.collider.transform.GetComponentInParent<CharCore>();
+            ObjectDetection detection = obj.collider.transform.GetComponent<ObjectDetection>();
+            float distance = (obj.collider.transform.position - transform.position).magnitude;
+            if (player != null)
+            {
+                //check if its self
+                if (obj.collider.gameObject == gameObject)
+                {
+                    continue;
+                }
+                //check if its teammate
+                else if (player.gameObject.layer == TeamMask)
+                {
+                    //add self to ally's object detection 
+                    if (!(detection == null) && !detection.EnableIndependentScan && distance <= detection.ScanRads)
+                    {
+                        detection.AddInAlly(playerReference,transform);
+                        detection.SetContext();
+                    }
+                }
+                //add as enemy otherwise
+                else
+                {
+                    if (!(detection == null) && !detection.EnableIndependentScan && distance <= detection.ScanRads)
+                    {
+                        detection.AddInEnemy(playerReference,transform);
+                        detection.SetContext();
+                    }
+
+                }
+                
+            }
+            //add other object types
+            if (obj.collider.CompareTag("Point Of Interest"))
+            {
+                //focusPOI = obj.collider.gameObject;
+                //Debug.Log($"point of interest: {focusPOI}");
+            }
+        }
+        
+        
+        commands.Dispose();
+        rangeCheck.Dispose();
+        scanInProgress = false;
+    }
+
+    void OnDisable()
+    {
+        if (scanInProgress)
+        {
+            overlapHandle.Complete();
+            commands.Dispose();
+            rangeCheck.Dispose();
+        }
+    }
+}
