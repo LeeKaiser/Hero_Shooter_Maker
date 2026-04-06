@@ -51,9 +51,9 @@ public class AttackTest : ActiveAbility
         attackObj.transform.LookAt(targetPoint);
 
         //set projectile settings
-        AttackInfo atkInfo = attackObj.GetComponent<AttackInfo>();
-        atkInfo.owningPlayer = playerReference;
-        atkInfo.attackAllegience = playerReference.PlayerAllegience;
+        ProjectileInfo atkInfo = attackObj.GetComponent<ProjectileInfo>();
+        atkInfo.OwningPlayer = playerReference;
+        atkInfo.AttackAllegience = playerReference.PlayerAllegience;
 
         //use a charge
         ConsumeCharge(1);

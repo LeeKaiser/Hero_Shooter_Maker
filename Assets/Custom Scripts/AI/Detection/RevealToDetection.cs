@@ -14,7 +14,7 @@ public class RevealToDetection : MonoBehaviour
     [Tooltip("reference to self")]
     public GameObject PlayerReference;
     [Tooltip("mask for detecting objects")]
-    public LayerMask GroundMask, TeamMask;
+    public LayerMask GroundMask, TeamMask, EnemyMask;
     [Tooltip("maximum amount of object that can be detected by AI")]
     [Range(100, 9999)]public int MaxObjectDetected = 100;
     [Tooltip("Reveals itself to AI that is not scanning for itself. Turn this off if you want to have many amount of this agent.")]
@@ -28,8 +28,10 @@ public class RevealToDetection : MonoBehaviour
 
     void Start()
     {
-        TeamMask = gameObject.layer;
         playerReference = transform.GetComponentInParent<CharCore>();
+        TeamMask = playerReference.PlayerAllegience.TeamLayer;
+        EnemyMask = playerReference.PlayerAllegience.EnemyLayer;
+        
     }
 
     void Update()
@@ -92,7 +94,7 @@ public class RevealToDetection : MonoBehaviour
                     continue;
                 }
                 //check if its teammate
-                else if (player.gameObject.layer == TeamMask)
+                else if ((1 << player.gameObject.layer) == TeamMask)
                 {
                     //add self to ally's object detection 
                     if (!(detection == null) && !detection.EnableIndependentScan && distance <= detection.ScanRads)
@@ -102,7 +104,7 @@ public class RevealToDetection : MonoBehaviour
                     }
                 }
                 //add as enemy otherwise
-                else
+                else if ((1 << player.gameObject.layer) == EnemyMask)
                 {
                     if (!(detection == null) && !detection.EnableIndependentScan && distance <= detection.ScanRads)
                     {
@@ -112,12 +114,6 @@ public class RevealToDetection : MonoBehaviour
 
                 }
                 
-            }
-            //add other object types
-            if (obj.collider.CompareTag("Point Of Interest"))
-            {
-                //focusPOI = obj.collider.gameObject;
-                //Debug.Log($"point of interest: {focusPOI}");
             }
         }
         

@@ -10,12 +10,16 @@ public class TeamManager : MonoBehaviour
     public Transform[] SpawnPositions;
 
     public LayerMask TeamLayer;
+    public LayerMask EnemyLayer;
 
     public int SpawnTime;
 
-    void Start()
+    void Awake()
     {
         EventBus<PlayerDead>.Subscribe(SpawnPlayer);
+        TeamLayer = 1 << gameObject.layer;
+        EnemyLayer = ~TeamLayer & EnemyLayer;
+        AssignTeam();
     }
     void OnDisable()
     {
@@ -26,6 +30,14 @@ public class TeamManager : MonoBehaviour
         if (TeamMembers.Contains(defeatedPlayer.PlayerIdentity))
         {
             StartCoroutine(SpawnAfterTime(defeatedPlayer.PlayerIdentity));
+        }
+    }
+
+    public void AssignTeam()
+    {
+        foreach(CharCore member in TeamMembers)
+        {
+            member.PlayerAllegience = this;
         }
     }
 
