@@ -198,9 +198,9 @@ MonoBehaviour:
   Speed: 50
   Gravity: 9.8
   EnemyHitRads: 0.25
-  AllyHitRads: 0.25
-  ObstacleHitRads: 0.25
-  Range: 30
+  AllyHitRads: 0.5
+  ObstacleHitRads: 0.125
+  Range: 50
 --- !u!114 &4677647275391394857
 MonoBehaviour:
   m_ObjectHideFlags: 0
