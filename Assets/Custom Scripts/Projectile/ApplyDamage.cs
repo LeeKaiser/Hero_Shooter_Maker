@@ -32,7 +32,7 @@ public class ApplyDamage : MonoBehaviour
     IEnumerator CheckForCollision()
     {
         yield return new WaitForFixedUpdate();
-        if (info.EnemyHit.Length > 0)
+        if (info.EnemyHit.Count > 0)
         {
             foreach(var target in info.EnemyHit)
             {
@@ -49,7 +49,7 @@ public class ApplyDamage : MonoBehaviour
                 // deal damage to enemy player
                 damageDealt = enemy.DealDamage(damageDealt);
 
-                GameObject damageNoVis = Instantiate(DamageNumberPrefab, transform.position, Quaternion.identity);
+                GameObject damageNoVis = Instantiate(DamageNumberPrefab, enemy.PlayerArmature.transform.position, Quaternion.identity);
                 damageNoVis.GetComponent<DamageNumberScript>().Init(info.OwningPlayer.gameObject, ""+damageDealt);
                 alreadyHitPlayers.Add(enemy);
                 MaxHits -= 1;

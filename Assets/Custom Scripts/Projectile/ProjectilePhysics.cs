@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 //update projectile's position and check collision
 public class ProjectilePhysics : MonoBehaviour
@@ -36,9 +37,17 @@ public class ProjectilePhysics : MonoBehaviour
         
         float distanceTraveled = (velocity * Time.fixedDeltaTime).magnitude;
         //spherecast from where it is to where it will be 
-        info.ObstacleHit = Physics.SphereCastAll(transform.position, ObstacleHitRads, velocity.normalized, distanceTraveled, info.GroundLayer);
-        info.EnemyHit = Physics.SphereCastAll(transform.position, EnemyHitRads, velocity.normalized, distanceTraveled, info.EnemyLayer);
-        info.AllyHit = Physics.SphereCastAll(transform.position, AllyHitRads, velocity.normalized, distanceTraveled, info.TeamLayer);
+        info.ObstacleHit = Physics.SphereCastAll(transform.position, ObstacleHitRads, velocity.normalized, distanceTraveled, info.GroundLayer).ToList();
+        info.EnemyHit = Physics.SphereCastAll(transform.position, EnemyHitRads, velocity.normalized, distanceTraveled, info.EnemyLayer).ToList();
+        info.AllyHit = Physics.SphereCastAll(transform.position, AllyHitRads, velocity.normalized, distanceTraveled, info.TeamLayer).ToList();
+
+        //report to parent projectileinfo if it exists
+        if (info.parentInfo != null)
+        {
+            info.parentInfo.ObstacleHit.AddRange(info.ObstacleHit);
+            info.parentInfo.EnemyHit.AddRange(info.EnemyHit);
+            info.parentInfo.AllyHit.AddRange(info.EnemyHit);
+        }
         transform.position = nextPosition;
 
         duration -= Time.fixedDeltaTime;

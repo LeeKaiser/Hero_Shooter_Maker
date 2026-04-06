@@ -40,7 +40,7 @@ public class DestroyOnCollision : MonoBehaviour
         Vector3? closestPoint = null;
         float closestDistance = -1;
         bool doDestroy = false;
-        if (info.ObstacleHit.Length > 0 && DestroyFromObstacle)
+        if (info.ObstacleHit.Count > 0 && DestroyFromObstacle)
         {
             foreach(RaycastHit target in info.ObstacleHit)
             {
@@ -56,7 +56,7 @@ public class DestroyOnCollision : MonoBehaviour
                 }
             }
         }
-        if (info.EnemyHit.Length > 0 && DestroyFromEnemy)
+        if (info.EnemyHit.Count > 0 && DestroyFromEnemy)
         {
             foreach(RaycastHit target in info.EnemyHit)
             {
@@ -72,7 +72,7 @@ public class DestroyOnCollision : MonoBehaviour
                 }
             }
         }
-        if (info.AllyHit.Length > 0 && DestroyFromAlly)
+        if (info.AllyHit.Count > 0 && DestroyFromAlly)
         {
             foreach(RaycastHit target in info.AllyHit)
             {
