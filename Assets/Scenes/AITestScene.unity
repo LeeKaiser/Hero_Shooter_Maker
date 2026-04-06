@@ -4505,6 +4505,9 @@ MonoBehaviour:
   TeamLayer:
     serializedVersion: 2
     m_Bits: 64
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 960
   SpawnTime: 5
 --- !u!4 &454322424
 Transform:
@@ -7435,6 +7438,9 @@ MonoBehaviour:
   TeamLayer:
     serializedVersion: 2
     m_Bits: 128
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 960
   SpawnTime: 5
 --- !u!4 &897932087
 Transform:

@@ -104,7 +104,7 @@ public class RevealToDetection : MonoBehaviour
                     }
                 }
                 //add as enemy otherwise
-                else if ((1 << player.gameObject.layer) == EnemyMask)
+                else if (((1 << player.gameObject.layer) & EnemyMask) > 0)
                 {
                     if (!(detection == null) && !detection.EnableIndependentScan && distance <= detection.ScanRads)
                     {

@@ -116,7 +116,7 @@ public class ObjectDetection : MonoBehaviour
                     AddInAlly(player, obj.collider.transform);
                 }
                 //add as enemy otherwise
-                else if ((1 << player.gameObject.layer) == EnemyMask)
+                else if (((1 << player.gameObject.layer) & EnemyMask) > 0)
                 {
                     AddInEnemy(player, obj.collider.transform);
                 }
