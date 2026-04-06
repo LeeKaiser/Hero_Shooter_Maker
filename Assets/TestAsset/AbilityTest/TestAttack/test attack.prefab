@@ -175,7 +175,7 @@ MonoBehaviour:
   AttackAllegience: {fileID: 0}
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   TeamLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58fb272b0ae9421cad3efd252af1c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovement
-  Speed: 25
+  Speed: 50
   Gravity: 9.8
   EnemyHitRads: 0.25
   AllyHitRads: 0.25
