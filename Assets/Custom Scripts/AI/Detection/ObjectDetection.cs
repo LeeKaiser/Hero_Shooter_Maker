@@ -15,7 +15,7 @@ public class ObjectDetection : MonoBehaviour
     [Tooltip("reference to self")]
     public GameObject PlayerReference;
     [Tooltip("mask for detecting objects")]
-    public LayerMask GroundMask, TeamMask;
+    public LayerMask GroundMask, TeamMask, EnemyMask;
     [Tooltip("angle at which they detect certain objects")]
     [Range(0, 360)] public float SightAngle;
 
@@ -45,7 +45,9 @@ public class ObjectDetection : MonoBehaviour
 
     void Start()
     {
-        TeamMask = gameObject.layer;
+        CharCore selfReference = transform.GetComponentInParent<CharCore>();
+        TeamMask = selfReference.PlayerAllegience.TeamLayer;
+        EnemyMask = selfReference.PlayerAllegience.EnemyLayer;
     }
 
     void Update()
@@ -109,12 +111,12 @@ public class ObjectDetection : MonoBehaviour
                     continue;
                 }
                 //check if its teammate
-                else if (player.gameObject.layer == TeamMask)
+                else if ((1 << player.gameObject.layer) == TeamMask)
                 {
                     AddInAlly(player, obj.collider.transform);
                 }
                 //add as enemy otherwise
-                else
+                else if (((1 << player.gameObject.layer) & EnemyMask) > 0)
                 {
                     AddInEnemy(player, obj.collider.transform);
                 }
