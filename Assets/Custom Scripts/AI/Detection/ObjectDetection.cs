@@ -220,7 +220,7 @@ public class ObjectDetection : MonoBehaviour
 
     void OnDisable()
     {
-        if (scanInProgress)
+        if (!overlapHandle.IsCompleted)
         {
             overlapHandle.Complete();
             commands.Dispose();
