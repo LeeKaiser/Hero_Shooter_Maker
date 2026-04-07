@@ -32,18 +32,15 @@ public class ApplyDamage : MonoBehaviour
             yield return new WaitForFixedUpdate();
             if (info.EnemyHit.Count > 0)
             {
-                Debug.Log("started check Collision");
                 foreach(var target in info.EnemyHit)
                 {
                     if (MaxHits <= 0)
                     {
-                        Debug.Log("reached max hits");
                         break;
                     }
                     CharCore enemy = target.transform.parent.GetComponent<CharCore>();
                     if (alreadyHitPlayers.Contains(enemy))
                     {
-                        Debug.Log("already hit this enemy");
                         continue;
                     }
                     int damageDealt = (int) (BaseDamage * info.OwningPlayer.GetDamageMult());
