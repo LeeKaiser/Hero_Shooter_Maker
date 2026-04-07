@@ -26,72 +26,50 @@ public class DestroyOnCollision : MonoBehaviour
     void Start()
     {
         info = GetComponent<ProjectileInfo>();
-    }
-    
-    void FixedUpdate()
-    {
         StartCoroutine(CheckForCollision());
     }
 
 
     IEnumerator CheckForCollision()
     {
-        yield return new WaitForFixedUpdate();
-        Vector3? closestPoint = null;
-        float closestDistance = -1;
-        bool doDestroy = false;
-        if (info.ObstacleHit.Length > 0 && DestroyFromObstacle)
+        while (true)
         {
-            foreach(RaycastHit target in info.ObstacleHit)
+            yield return new WaitForFixedUpdate();
+            Vector3? closestPoint = null;
+            float closestDistance = -1;
+            bool doDestroy = false;
+            bool[] allBools = {DestroyFromObstacle, DestroyFromEnemy, DestroyFromAlly};
+            int[] allInts = {MaxHitsObstacle, MaxHitsEnemy,MaxHitsAlly};
+            List<RaycastHit>[] allHits = {info.ObstacleHit, info.EnemyHit, info.AllyHit};
+            for (int i = 0; i < allBools.Length; i++)
             {
-                MaxHitsObstacle -= 1;
-                if (MaxHitsObstacle <= 0)
+                if (allHits[i].Count > 0 && allBools[i])
                 {
-                    doDestroy = true;
-                    if (closestDistance == -1 || target.distance < closestDistance)
+                    foreach(RaycastHit target in allHits[i])
                     {
-                        closestDistance = target.distance;
-                        closestPoint = target.point;
+                        allInts[i] -= 1;
+                        if (allInts[i] <= 0)
+                        {
+                            doDestroy = true;
+                            if (closestDistance == -1 || target.distance < closestDistance)
+                            {
+                                closestDistance = target.distance;
+                                closestPoint = target.point;
+                            }
+                        }
                     }
                 }
             }
-        }
-        if (info.EnemyHit.Length > 0 && DestroyFromEnemy)
-        {
-            foreach(RaycastHit target in info.EnemyHit)
+
+            MaxHitsObstacle = allInts[0];
+            MaxHitsEnemy = allInts[1];
+            MaxHitsAlly = allInts[2];
+            if (doDestroy && closestPoint != null)
             {
-                MaxHitsEnemy -= 1;
-                if (MaxHitsEnemy <= 0)
-                {
-                    doDestroy = true;
-                    if (closestDistance == -1 || target.distance < closestDistance)
-                    {
-                        closestDistance = target.distance;
-                        closestPoint = target.point;
-                    }
-                }
+                info.DestroySelf(closestPoint ?? transform.position);
             }
         }
-        if (info.AllyHit.Length > 0 && DestroyFromAlly)
-        {
-            foreach(RaycastHit target in info.AllyHit)
-            {
-                MaxHitsAlly -= 1;
-                if (MaxHitsAlly <= 0)
-                {
-                    doDestroy = true;
-                    if (closestDistance == -1 || target.distance < closestDistance)
-                    {
-                        closestDistance = target.distance;
-                        closestPoint = target.point;
-                    }
-                }
-            }
-        }
-        if (doDestroy && closestPoint != null)
-        {
-            info.DestroySelf(closestPoint ?? transform.position);
-        }
+        
 
     }
 

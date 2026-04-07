@@ -125,7 +125,7 @@ public class RevealToDetection : MonoBehaviour
 
     void OnDisable()
     {
-        if (scanInProgress)
+        if (!overlapHandle.IsCompleted)
         {
             overlapHandle.Complete();
             commands.Dispose();
