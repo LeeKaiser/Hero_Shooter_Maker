@@ -17,13 +17,9 @@ public class ApplyDamage : MonoBehaviour
     void Start()
     {
         info = GetComponent<ProjectileInfo>();
-    }
-    
-    void FixedUpdate()
-    {
         StartCoroutine(CheckForCollision());
     }
-
+    
     void ResetHitPlayers()
     {
         alreadyHitPlayers.Clear();
@@ -31,32 +27,37 @@ public class ApplyDamage : MonoBehaviour
 
     IEnumerator CheckForCollision()
     {
-        yield return new WaitForFixedUpdate();
-        if (info.EnemyHit.Count > 0)
+        while (true)
         {
-            foreach(var target in info.EnemyHit)
+            yield return new WaitForFixedUpdate();
+            if (info.EnemyHit.Count > 0)
             {
-                if (MaxHits <= 0)
+                Debug.Log("started check Collision");
+                foreach(var target in info.EnemyHit)
                 {
-                    break;
-                }
-                CharCore enemy = target.transform.parent.GetComponent<CharCore>();
-                if (alreadyHitPlayers.Contains(enemy))
-                {
-                    continue;
-                }
-                int damageDealt = (int) (BaseDamage * info.OwningPlayer.GetDamageMult());
-                // deal damage to enemy player
-                damageDealt = enemy.DealDamage(damageDealt);
+                    if (MaxHits <= 0)
+                    {
+                        Debug.Log("reached max hits");
+                        break;
+                    }
+                    CharCore enemy = target.transform.parent.GetComponent<CharCore>();
+                    if (alreadyHitPlayers.Contains(enemy))
+                    {
+                        Debug.Log("already hit this enemy");
+                        continue;
+                    }
+                    int damageDealt = (int) (BaseDamage * info.OwningPlayer.GetDamageMult());
+                    // deal damage to enemy player
+                    damageDealt = enemy.DealDamage(damageDealt);
 
-                GameObject damageNoVis = Instantiate(DamageNumberPrefab, enemy.PlayerArmature.transform.position, Quaternion.identity);
-                damageNoVis.GetComponent<DamageNumberScript>().Init(info.OwningPlayer.gameObject, ""+damageDealt);
-                alreadyHitPlayers.Add(enemy);
-                MaxHits -= 1;
+                    GameObject damageNoVis = Instantiate(DamageNumberPrefab, enemy.PlayerArmature.transform.position, Quaternion.identity);
+                    damageNoVis.GetComponent<DamageNumberScript>().Init(info.OwningPlayer.gameObject, ""+damageDealt);
+                    alreadyHitPlayers.Add(enemy);
+                    MaxHits -= 1;
+                }
+                
             }
-            
         }
-        
         
     }
 }
