@@ -10,6 +10,14 @@ public class ProjectileGroup : MonoBehaviour
 
     void Start()
     {
+        foreach (Transform child in transform)
+        {
+            ProjectileInfo childInfo = child.gameObject.GetComponent<ProjectileInfo>();
+            if (childInfo != null)
+            {
+                ProjectilesInGroup.Add(childInfo.gameObject);
+            }
+        }
         info = GetComponent<ProjectileInfo>();
         foreach (GameObject projectile in ProjectilesInGroup)
         {

@@ -47,8 +47,14 @@ public class ApplyDamage : MonoBehaviour
                     // deal damage to enemy player
                     damageDealt = enemy.DealDamage(damageDealt);
 
-                    GameObject damageNoVis = Instantiate(DamageNumberPrefab, enemy.PlayerArmature.transform.position, Quaternion.identity);
+                    //TODO: manage damage number separately 
+                    Vector3 damageNumPos = enemy.PlayerArmature.transform.position;
+                    damageNumPos.y += enemy.PlayerArmature.GetComponent<CharacterController>().height;
+                    damageNumPos += new Vector3(Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f));
+                    GameObject damageNoVis = Instantiate(DamageNumberPrefab, damageNumPos , Quaternion.identity);
                     damageNoVis.GetComponent<DamageNumberScript>().Init(info.OwningPlayer.gameObject, ""+damageDealt);
+
+                    //add to already hit player so that it does not continuously hit the player.
                     alreadyHitPlayers.Add(enemy);
                     MaxHits -= 1;
                 }

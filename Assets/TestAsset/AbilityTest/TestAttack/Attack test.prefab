@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 11400000, guid: f0a9d6379981f45979884119eacc0331, type: 2}
   CurrentAbilClass: 3
-  attackPrefab: {fileID: 4654230464608969014, guid: 98c9111fcb68c450bbd0bd5fe97b875c, type: 3}
+  attackPrefab: {fileID: 8877656599772540256, guid: 9cc0ba82cc3c144ce9977de7592e8646, type: 3}
