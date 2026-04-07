@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 5
+  MaxHits: 1
   BaseDamage: 35
   DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &5107475467614177346

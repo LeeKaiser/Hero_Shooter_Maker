@@ -20,4 +20,4 @@ MonoBehaviour:
   ChargeGainPerFullRecharge: 1
   CanInterruptOthers: 0
   MaxChargeTime: 0
-  UsePerSec: 0.5
+  UsePerSec: 2
