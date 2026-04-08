@@ -25,7 +25,9 @@ public class PlayerClient : MonoBehaviour
 
     public void ConnectToPlayer()
     {
-        cinemachine.LookAt = PlayerReference.PlayerArmature.transform.Find("PlayerCameraRoot");
+        Transform cameraRoot = PlayerReference.PlayerArmature.transform.Find("PlayerCameraRoot");
+        cinemachine.LookAt = cameraRoot;
+        cinemachine.Follow = cameraRoot;
         listener.SetInputAction( PlayerReference.PlayerArmature.GetComponent<InputEventCaller>());
         starterAsset = PlayerReference.PlayerArmature.GetComponent<StarterAssetsInputs>();
         PlayerReference.GetComponent<AbilityManager>().PlayerCanvas = PlayerCanvas;

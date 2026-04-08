@@ -221,6 +221,7 @@ public class ObjectDetection : MonoBehaviour
         if (!overlapHandle.IsCompleted){overlapHandle.Complete();}
         if (commands.IsCreated){commands.Dispose();}
         if (rangeCheck.IsCreated){rangeCheck.Dispose();}
+        scanInProgress = false;
     }
 }
 
