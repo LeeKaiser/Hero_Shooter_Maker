@@ -19,25 +19,7 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
-		{
-			MoveInput(value.Get<Vector2>());
-		}
 
-		public void OnLook(InputValue value)
-		{
-			if(cursorInputForLook)
-			{
-				LookInput(value.Get<Vector2>());
-			}
-		}
-
-		public void OnJump(InputValue value)
-		{
-			JumpInput(value.isPressed);
-		}
-#endif
 
 
 		public void MoveInput(Vector2 newMoveDirection)
