@@ -81,8 +81,6 @@ public class ObjectDetection : MonoBehaviour
         overlapHandle = OverlapSphereCommand.ScheduleBatch(commands, rangeCheck, 1, MaxObjectDetected);
 
         scanInProgress = true;
-
-        
     }
 
     private void FinishScan()
@@ -220,12 +218,10 @@ public class ObjectDetection : MonoBehaviour
 
     void OnDisable()
     {
-        if (scanInProgress)
-        {
-            overlapHandle.Complete();
-            commands.Dispose();
-            rangeCheck.Dispose();
-        }
+        if (!overlapHandle.IsCompleted){overlapHandle.Complete();}
+        if (commands.IsCreated){commands.Dispose();}
+        if (rangeCheck.IsCreated){rangeCheck.Dispose();}
+        scanInProgress = false;
     }
 }
 

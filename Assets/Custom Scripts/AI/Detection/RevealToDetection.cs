@@ -55,7 +55,7 @@ public class RevealToDetection : MonoBehaviour
         }
         //scan for all objects in ScanRads 
         commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
-        rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene
+        rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob);
 
         commands[0] = new OverlapSphereCommand(transform.position, ScanRads, QueryParameters.Default);
 
@@ -125,11 +125,9 @@ public class RevealToDetection : MonoBehaviour
 
     void OnDisable()
     {
-        if (!overlapHandle.IsCompleted)
-        {
-            overlapHandle.Complete();
-            commands.Dispose();
-            rangeCheck.Dispose();
-        }
+        if (!overlapHandle.IsCompleted){overlapHandle.Complete();}
+        if (commands.IsCreated){commands.Dispose();}
+        if (rangeCheck.IsCreated){rangeCheck.Dispose();}
+        scanInProgress = false;
     }
 }

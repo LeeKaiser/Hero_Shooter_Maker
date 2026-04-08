@@ -19,7 +19,7 @@ public class InputListener : MonoBehaviour
     {
         //initialize playerinput
         playerInput = GetComponent<PlayerInput>();
-        inputRead = GetComponent<InputEventCaller>();
+        //inputRead = GetComponent<InputEventCaller>();
 
         //TODO: figure out a better way to initialize inputDict later
         inputDict.Add(playerInput.actions["Num[1]"],InputEnum.Num1 );
@@ -71,7 +71,10 @@ public class InputListener : MonoBehaviour
         }
     }
     
-
+    public void SetInputAction(InputEventCaller input)
+    {
+        inputRead = input;
+    }
     
     
 }
