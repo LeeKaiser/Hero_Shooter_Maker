@@ -42,35 +42,27 @@ public class AIProcess : MonoBehaviour
 
     IEnumerator WaitThenScan()
     {
-        yield return new WaitForSeconds(ScanTimeInterval);
-        //step 1: run object detection
-        StartCoroutine(RunObjectDetection());
-        //objectDetection.RadiusScanAll();
-        //objectDetection.ElapseExpirationTime(ScanTimeInterval);
-
-        //step 2: make decision
-        AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
-        if (currentAction != chosenAction)
+        while (true)
         {
-            currentAction = chosenAction;
-            actionRunTime = Instantiate(currentAction);
+            yield return new WaitForSeconds(ScanTimeInterval);
+            //step 1: run object detection
+            yield return new WaitForSeconds(Random.Range(0.0f , 0.1f));
+            objectDetection.RadiusScanAll();
+            objectDetection.ElapseExpirationTime(ScanTimeInterval);
+
+            //step 2: make decision
+            AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
+            if (currentAction != chosenAction)
+            {
+                currentAction = chosenAction;
+                actionRunTime = Instantiate(currentAction);
+            }
+            actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall, movement);
+
+            //step 3: act on decision
+            actionRunTime.DetermineMovement();
+            actionRunTime.DetermineAim();
+            actionRunTime.MakeInput();
         }
-        actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall, movement);
-
-        //step 3: act on decision
-        actionRunTime.DetermineMovement();
-        actionRunTime.DetermineAim();
-        actionRunTime.MakeInput();
-
-        //repeat
-        StartCoroutine(WaitThenScan());
-    }
-
-    IEnumerator RunObjectDetection()
-    {
-        yield return new WaitForSeconds(Random.Range(0.0f , 0.1f));
-        objectDetection.RadiusScanAll();
-        objectDetection.ElapseExpirationTime(ScanTimeInterval);
-        
     }
 }
