@@ -25,5 +25,15 @@ namespace PlayerEvents
         public CharCore PlayerIdentity;
     }
 
+    public struct AddNewAbility
+    {
+        public CharCore PlayerIdentity;
+        public Ability AddedAbility;
+    }
 
+    public struct RemoveNewAbility
+    {
+        public CharCore PlayerIdentity;
+        public Ability RemovedAbility;
+    }
 }

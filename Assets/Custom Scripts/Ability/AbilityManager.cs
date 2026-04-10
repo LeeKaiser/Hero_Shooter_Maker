@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using AbilityClassification;
 using InputOptions;
+using PlayerEvents;
 
 /*
 Ability Manager
@@ -16,7 +17,7 @@ public class AbilityManager : MonoBehaviour
     private Ability currentlyActiveAbility;
     public CharCore PlayerReference;
 
-    public Transform PlayerCanvas;
+    //public Transform PlayerCanvas;
 
     public Dictionary <AbilityClass, int> AbilityClassDictionary = new Dictionary<AbilityClass, int>();
 
@@ -41,7 +42,7 @@ public class AbilityManager : MonoBehaviour
             ability.ActivateReload();
             ability.ReloadOverTime(Time.deltaTime);
             //call ability's ui to update
-            ability.GetAbilityUI().UpdateUI();
+            
         }
     }
 
@@ -93,21 +94,17 @@ public class AbilityManager : MonoBehaviour
             Debug.LogError("The prefab does not have an Ability component!");
             return;
         }
+        
         ability.Initialize(this, PlayerReference);
-
-        GameObject abilUI = Instantiate(ability.Stats.AbilityUIPrefab);
-
-
-        AbilityUI abilUIScript = abilUI.GetComponent<AbilityUI>();
-        abilUIScript.transform.SetParent(PlayerCanvas, false);
-        if (abilUIScript != null)
-        {
-            abilUIScript.AbilityReference = ability;
-            abilUIScript.Initialize();
-        }
-        ability.SetAbilityUI(abilUIScript);
+        
+        AddNewAbility addAbilityEvent = new AddNewAbility();
+        addAbilityEvent.PlayerIdentity = PlayerReference;
+        addAbilityEvent.AddedAbility = ability;
+        EventBus<AddNewAbility>.Invoke(addAbilityEvent);
+        
         abilitiesList.Add(ability);
         //add to ability class dictionary
+
         foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
         {
             if (a == AbilityClass.None)

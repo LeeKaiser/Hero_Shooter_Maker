@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerClient : MonoBehaviour
 {
-    public CharCore PlayerReference;
-    public Transform PlayerCanvas;
+    public CharCore CharacterReference;
+    public ClientUI PlayerCanvas;
     [SerializeField] CinemachineVirtualCamera cinemachine;
     InputListener listener;
     StarterAssetsInputs starterAsset;
@@ -25,12 +25,13 @@ public class PlayerClient : MonoBehaviour
 
     public void ConnectToPlayer()
     {
-        Transform cameraRoot = PlayerReference.PlayerArmature.transform.Find("PlayerCameraRoot");
+        Transform cameraRoot = CharacterReference.PlayerArmature.transform.Find("PlayerCameraRoot");
         cinemachine.LookAt = cameraRoot;
         cinemachine.Follow = cameraRoot;
-        listener.SetInputAction( PlayerReference.PlayerArmature.GetComponent<InputEventCaller>());
-        starterAsset = PlayerReference.PlayerArmature.GetComponent<StarterAssetsInputs>();
-        PlayerReference.GetComponent<AbilityManager>().PlayerCanvas = PlayerCanvas;
+        listener.SetInputAction( CharacterReference.PlayerArmature.GetComponent<InputEventCaller>());
+        starterAsset = CharacterReference.PlayerArmature.GetComponent<StarterAssetsInputs>();
+        PlayerCanvas.characterReference = CharacterReference;
+        PlayerCanvas.SetUpNewUI();
     }
 
     #if ENABLE_INPUT_SYSTEM
