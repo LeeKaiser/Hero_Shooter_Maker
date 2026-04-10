@@ -3,7 +3,6 @@ using TMPro;
 
 public class InGameTxtDisplay : MonoBehaviour
 {
-    public GameObject owningPlayer;
     [SerializeField] protected string value;
     TextMeshPro textDisplay;
     Transform playerCam;
@@ -14,15 +13,12 @@ public class InGameTxtDisplay : MonoBehaviour
         
     }
 
-    public void Init(GameObject owner, string valueTxt)
+    public void Init(Transform camera, string valueTxt)
     {
-        owningPlayer = owner;
         value = valueTxt;
         textDisplay = gameObject.GetComponentInChildren<TextMeshPro>();
-        //Debug.Log(textDisplay);
         textDisplay.text = value;
-        playerCam = owningPlayer.GetComponentInChildren<Camera>().transform;
-        //Debug.Log(playerCam);
+        playerCam = camera;
     }
 
     // Update is called once per frame

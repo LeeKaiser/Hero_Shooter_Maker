@@ -2,21 +2,19 @@ using UnityEngine;
 
 namespace PlayerEvents
 {
+    //struct for calling events when the player dies
     public struct PlayerDead
     {
         public CharCore PlayerIdentity;
+        public CharCore PlayerKiller;
     }
 
+    //struct for when player takes damage
     public struct PlayerTakeDamage
     {
         public int Damage;
         public CharCore PlayerIdentity;
-    }
-
-    public struct PlayerDealDamage
-    {
-        public int Damage;
-        public CharCore PlayerIdentity;
+        public CharCore DamageDealer;
     }
 
     public struct PlayerHealHealth

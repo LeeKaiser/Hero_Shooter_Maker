@@ -20,6 +20,7 @@ public class PlayerClient : MonoBehaviour
     void Start()
     {
         listener = GetComponent<InputListener>();
+        GetComponent<ClientDamageNumber>().CharacterReference = CharacterReference;
         ConnectToPlayer();
     }
 
@@ -32,6 +33,7 @@ public class PlayerClient : MonoBehaviour
         starterAsset = CharacterReference.PlayerArmature.GetComponent<StarterAssetsInputs>();
         PlayerCanvas.characterReference = CharacterReference;
         PlayerCanvas.SetUpNewUI();
+        
     }
 
     #if ENABLE_INPUT_SYSTEM
