@@ -32,7 +32,6 @@ public class InGameTxtDisplay : MonoBehaviour
             textDisplay.text = value;
             float textScale = awayDir.magnitude / ReferenceDistance;
             transform.localScale = Vector3.one * textScale;
-            Debug.Log(transform.localScale);
         }
         
         
