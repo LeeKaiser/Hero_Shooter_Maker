@@ -57,7 +57,7 @@ MonoBehaviour:
   Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 600.68024, y: 282.28815}
+  EditorPosition: {x: 612.68024, y: 282.28815}
 --- !u!114 &9066887121063257519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,4 +78,4 @@ MonoBehaviour:
   Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 285.90448, y: 283.8789}
+  EditorPosition: {x: 289.90448, y: 280.8789}

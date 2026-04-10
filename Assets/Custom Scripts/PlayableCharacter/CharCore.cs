@@ -85,17 +85,18 @@ public class CharCore : MonoBehaviour
 
     //Deal Damage
     //causes the character to take damage
-    public int DealDamage(int damage)
+    public int DealDamage(int damage, CharCore damageDealer)
     {
         int damageDealt = (int)(damage * damageTakeMult);
         hitPointsCurrent -= damageDealt;
         PlayerTakeDamage playerTakeDamageEvent = new PlayerTakeDamage();
         playerTakeDamageEvent.PlayerIdentity = this;
+        playerTakeDamageEvent.DamageDealer = damageDealer;
         playerTakeDamageEvent.Damage = damageDealt;
         EventBus<PlayerTakeDamage>.Invoke(playerTakeDamageEvent);
         if (hitPointsCurrent <= 0)
         {
-            Defeat();
+            Defeat(damageDealer);
         }
 
         return damageDealt;
@@ -119,11 +120,12 @@ public class CharCore : MonoBehaviour
 
     //Defeat
     //causes the character to die
-    public void Defeat()
+    public void Defeat(CharCore killer)
     {
         IsAlive = false;
         PlayerDead playerDeadEvent = new PlayerDead();
         playerDeadEvent.PlayerIdentity = this;
+        playerDeadEvent.PlayerKiller = killer;
         EventBus<PlayerDead>.Invoke(playerDeadEvent);
         PlayerArmature.SetActive(IsAlive);
     }

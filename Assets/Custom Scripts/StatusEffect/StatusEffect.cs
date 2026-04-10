@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class StatusEffect : MonoBehaviour
 {
 
-    public StatusEffectStats statusEffectStat;
+    public StatusEffectStats Stats;
 
     protected float RemainingDuration;
 
@@ -13,7 +13,7 @@ public abstract class StatusEffect : MonoBehaviour
 
     private void Start()
     {
-        RemainingDuration = statusEffectStat.EffectDuration;
+        RemainingDuration = Stats.EffectDuration;
     }
     
     //main effect

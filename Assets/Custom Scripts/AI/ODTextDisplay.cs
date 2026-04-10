@@ -9,7 +9,7 @@ public class ODTextDisplay : InGameTxtDisplay
     void Start()
     {
         value = "Test AI char";
-        Init(owningPlayer, value);
+        Init(transform, value);
     }
 
     // Update is called once per frame

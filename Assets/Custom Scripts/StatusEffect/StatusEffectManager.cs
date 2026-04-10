@@ -18,7 +18,7 @@ public class StatusEffectManager : MonoBehaviour
     [Tooltip("current status effects")]
     [SerializeField] List<StatusEffect> statusEffectList = new List<StatusEffect>();
 
-    CharCore playerRef;
+    CharCore playerReference;
 
     [Tooltip("EffectTimeMultiplier for buffs")]
     public float EffectTimeMultiplierBuffs = 1;
@@ -27,7 +27,7 @@ public class StatusEffectManager : MonoBehaviour
 
     public void Start()
     {
-        playerRef = this.gameObject.GetComponent<CharCore>();
+        playerReference = this.gameObject.GetComponent<CharCore>();
     }
 
     //get effect
@@ -44,7 +44,7 @@ public class StatusEffectManager : MonoBehaviour
             return;
         }
 
-        effect.SetAffectedPlayer(playerRef);
+        effect.SetAffectedPlayer(playerReference);
         effect.ApplyEffect();
         statusEffectList.Add(effect);
     }
@@ -52,30 +52,34 @@ public class StatusEffectManager : MonoBehaviour
     public void Update()
     {
         //delete inactive SE
-        for (int i = statusEffectList.Count - 1; i >= 0; i--)
+        foreach (StatusEffect status in statusEffectList)
         {
-            if (statusEffectList[i].statusEffectStat.ExpireViaTime)
+            if (status.Stats.ExpireViaTime)
             {
                 float DurationMult = 1;
-                if (statusEffectList[i].statusEffectStat.effectCategory == EffectCategory.Buff)
+                if (status.Stats.effectCategory == EffectCategory.Buff)
                 {
                     DurationMult = EffectTimeMultiplierBuffs;
                 }
-                if (statusEffectList[i].statusEffectStat.effectCategory == EffectCategory.Debuff)
+                if (status.Stats.effectCategory == EffectCategory.Debuff)
                 {
                     DurationMult = EffectTimeMultiplierDebuffs;
                 }
 
-                statusEffectList[i].SpendDuration(Time.deltaTime / DurationMult);
+                status.SpendDuration(Time.deltaTime / DurationMult);
                 
             }
             
-            
-
-            if (!statusEffectList[i].CurrentlyActive())
+            if (!status.CurrentlyActive() && status.Stats.DeleteOnExpire)
             {
-                statusEffectList.RemoveAt(i);
+                RemoveStatus(status);
             }
         }
+    }
+
+    public void RemoveStatus(StatusEffect status)
+    {
+        statusEffectList.Remove(status);
+        Destroy(status.gameObject);
     }
 }

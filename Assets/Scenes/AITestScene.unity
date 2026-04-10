@@ -8950,11 +8950,6 @@ Transform:
   - {fileID: 523655746}
   m_Father: {fileID: 1745985000}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1134131252 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3772487131666148388, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
-  m_PrefabInstance: {fileID: 1372142451}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1158045041
 GameObject:
   m_ObjectHideFlags: 0
@@ -19012,8 +19007,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de09af631d98b4d1bbc3e509b8c7af12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ODTextDisplay
-  owningPlayer: {fileID: 1134131252}
   value: 
+  textDisplay: {fileID: 0}
+  ReferenceDistance: 1
   objDetect: {fileID: 1319622089}
   detectionToString: 
 --- !u!4 &1539385039 stripped
@@ -77809,7 +77805,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
   m_PrefabInstance: {fileID: 1372142451}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134131252}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16174184d30db4f3f8b42b844700d484, type: 3}
@@ -78057,12 +78053,24 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1360689010}
+    - target: {fileID: 934412128509908987, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99999774
+      objectReference: {fileID: 0}
+    - target: {fileID: 934412128509908987, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0021429928
+      objectReference: {fileID: 0}
     - target: {fileID: 1836561720539166733, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_Name
       value: PlayerClient
       objectReference: {fileID: 0}
     - target: {fileID: 6738360166723796098, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: PlayerReference
+      value: 
+      objectReference: {fileID: 2006772611}
+    - target: {fileID: 6738360166723796098, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
+      propertyPath: CharacterReference
       value: 
       objectReference: {fileID: 2006772611}
     - target: {fileID: 8438420640493443478, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
