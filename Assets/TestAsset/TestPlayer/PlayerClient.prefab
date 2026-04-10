@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7757391153162001167}
   - component: {fileID: 4728148998163030815}
   - component: {fileID: 6738360166723796098}
+  - component: {fileID: 2474858069244727974}
   m_Layer: 0
   m_Name: PlayerClient
   m_TagString: Untagged
@@ -181,6 +182,21 @@ MonoBehaviour:
   CharacterReference: {fileID: 0}
   PlayerCanvas: {fileID: 1884166111313981093}
   cinemachine: {fileID: 8438420640493443478}
+--- !u!114 &2474858069244727974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1836561720539166733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8733f5c7bc8dc429d8c65cbf14adc67e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClientDamageNumber
+  CharacterReference: {fileID: 0}
+  PlayerCamera: {fileID: 934412128509908987}
+  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &3456114001060034160
 GameObject:
   m_ObjectHideFlags: 0
