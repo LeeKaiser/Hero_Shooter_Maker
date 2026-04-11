@@ -10,6 +10,7 @@ public class ClientDamageNumber : MonoBehaviour
     public GameObject DamageNumberPrefab;
 
     Dictionary<CharCore, int> characterToDamage = new Dictionary<CharCore, int>();
+    int recentDamageTaken = 0;
 
     IEnumerator GenerateDamageNumber()
     {
@@ -31,6 +32,26 @@ public class ClientDamageNumber : MonoBehaviour
         
     }
 
+    IEnumerator GenerateDamageTakenNumber()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            
+            if (recentDamageTaken > 0)
+            {
+                Vector3 damageNumPos = CharacterReference.PlayerArmature.transform.position;
+                damageNumPos.y += CharacterReference.PlayerArmature.GetComponent<CharacterController>().height;
+                damageNumPos += new Vector3(Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f));
+                GameObject damageNoVis = Instantiate(DamageNumberPrefab, damageNumPos , Quaternion.identity);
+                damageNoVis.GetComponent<DamageNumberScript>().Init(PlayerCamera, ""+recentDamageTaken);
+                
+                recentDamageTaken = 0;
+            }
+            
+        }
+    }
+
     public void ShowDamageDealt(PlayerTakeDamage dealDamage)
     {
         if (dealDamage.DamageDealer != CharacterReference)
@@ -49,14 +70,27 @@ public class ClientDamageNumber : MonoBehaviour
         
     }
 
+    public void ShowTakenDamage(PlayerTakeDamage takeDamage)
+    {
+        if (takeDamage.PlayerIdentity != CharacterReference)
+        {
+            return;
+        }
+        recentDamageTaken += takeDamage.Damage;
+    }
+
+
     void OnEnable()
     {
         EventBus<PlayerTakeDamage>.Subscribe(ShowDamageDealt);
+        EventBus<PlayerTakeDamage>.Subscribe(ShowTakenDamage);
         StartCoroutine(GenerateDamageNumber());
+        StartCoroutine(GenerateDamageTakenNumber());
     }
 
     void OnDisable()
     {
         EventBus<PlayerTakeDamage>.Unsubscribe(ShowDamageDealt);
+        EventBus<PlayerTakeDamage>.Unsubscribe(ShowTakenDamage);
     }
 }

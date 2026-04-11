@@ -33,7 +33,6 @@ public class AbilityTest : ActiveAbility
         }
 
         InterruptReload();
-        Debug.Log("Ability1 activated");
         playerReference.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab);
         ConsumeCharge(1);
     }

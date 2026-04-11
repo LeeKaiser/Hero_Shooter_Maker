@@ -52,6 +52,7 @@ public class StatusEffectManager : MonoBehaviour
     public void Update()
     {
         //delete inactive SE
+        List<StatusEffect> effectToDelete = new List<StatusEffect>();
         foreach (StatusEffect status in statusEffectList)
         {
             if (status.Stats.ExpireViaTime)
@@ -72,9 +73,14 @@ public class StatusEffectManager : MonoBehaviour
             
             if (!status.CurrentlyActive() && status.Stats.DeleteOnExpire)
             {
-                RemoveStatus(status);
+                effectToDelete.Add(status);
             }
         }
+        foreach(StatusEffect status in effectToDelete)
+        {
+            RemoveStatus(status);
+        }
+        effectToDelete.Clear();
     }
 
     public void RemoveStatus(StatusEffect status)
