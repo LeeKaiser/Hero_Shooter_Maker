@@ -9,19 +9,24 @@ public class PlayerClient : MonoBehaviour
 {
     public CharCore CharacterReference;
     public ClientUI PlayerCanvas;
+    public UIBar healthBar;
     [SerializeField] CinemachineVirtualCamera cinemachine;
     InputListener listener;
     StarterAssetsInputs starterAsset;
 
-    //set cinemachine follow target to player's cinemachine root
-    //set event caller in input listener to player's event caller
-    //set camera controls starter asset input
-    //set movement controls starter asset input
     void Start()
     {
         listener = GetComponent<InputListener>();
         GetComponent<ClientDamageNumber>().CharacterReference = CharacterReference;
         ConnectToPlayer();
+    }
+
+    void Update()
+    {
+        if (healthBar != null && CharacterReference != null)
+        {
+            healthBar.UpdateSlider(CharacterReference.GetHitPointsCurrent(), CharacterReference.GetHitPointsBase());
+        }
     }
 
     public void ConnectToPlayer()

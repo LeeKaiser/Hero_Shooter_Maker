@@ -44,10 +44,11 @@ public class AIProcess : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(ScanTimeInterval);
             //step 1: run object detection
             yield return new WaitForSeconds(Random.Range(0.0f , 0.1f));
             objectDetection.RadiusScanAll();
+            
+            yield return new WaitForSeconds(ScanTimeInterval);
             objectDetection.ElapseExpirationTime(ScanTimeInterval);
 
             //step 2: make decision
