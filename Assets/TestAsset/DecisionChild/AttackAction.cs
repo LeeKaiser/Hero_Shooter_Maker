@@ -1,6 +1,7 @@
 using UnityEngine;
 using AbilityClassification;
 using System.Collections.Generic;
+using InputOptions;
 [CreateAssetMenu(menuName = "AIAction/Attack")]
 public class AttackAction : AIAction
 {
@@ -15,6 +16,8 @@ public class AttackAction : AIAction
     float distanceFromEnemy = 12f;
     float randomAngleTweak = 10f;
     float randomDistanceTweak = 2f;
+
+    
     public override void DetermineMovement()
     {
         if (!(Detection.GetCurrentContext().KnownEnemyList == null))
@@ -50,35 +53,44 @@ public class AttackAction : AIAction
         targetPosition.y += heightAdjustment;
         AimTarget.position = targetPosition;
     }
-    public override void MakeInput()
+    public override void DetermineInput()
     {
-        //attempt to shoot a damage attack
-
-        //get the attack from the self's ability manager
-        AbilityManager abilManager = Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.GetComponent<AbilityManager>();
-        Ability abilToUse = null;
-        float bestCooldown = 0;
-        foreach (Ability abil in abilManager.GetAbilList())
+        if (abilityToUse == null)
         {
-            //assumes that active abilities have active ability classification and has input tied to it
-            if (abil.CurrentAbilClass.HasFlag(AbilityClass.Damage) && abil.CurrentAbilClass.HasFlag(AbilityClass.Damage))
+            //attempt to shoot a damage attack
+
+            //get the attack from the self's ability manager
+            AbilityManager abilManager = Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.GetComponent<AbilityManager>();
+            //abilToUse = null;
+            float bestCooldown = 0;
+            foreach (Ability abil in abilManager.GetAbilList())
             {
-                float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
-                if (abilCooldown > bestCooldown)
+                //assumes that active abilities have active ability classification and has input tied to it
+                if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(AbilityClass.Damage))
                 {
-                    abilToUse = abil;
+                    float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
+                    if (abilCooldown > bestCooldown)
+                    {
+                        
+                        abilityToUse = abil;
+                        abilityInput = abilManager.AbiltyToInputDictionary[abilityToUse];
+                        switch (abilityInput.ComboInputType)
+                        {
+                            case InputType.Hold:
+                                inputHoldTime = 99f;
+                                break;
+                            case InputType.Release:
+                                inputHoldTime = abilityToUse.Stats.UsePerSec;
+                                break;
+                            default:
+                                inputHoldTime = 0.2f;
+                                break;
+                        }
+                    }
                 }
+                
             }
-            
         }
         
-        //if there is an ability available, call the input for it
-        //TODO: rework to use correct input type
-        if (!(abilToUse == null))
-        {
-            
-            InputCall.AddHoldInput(abilManager.AbiltyToInputDictionary[abilToUse].InputCombo);
-            
-        }
     }
 }

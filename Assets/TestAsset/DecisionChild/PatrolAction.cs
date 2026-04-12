@@ -25,7 +25,7 @@ public class PatrolAction : AIAction
         AimTarget.position = MoveTarget.position;
         
     }
-    public override void MakeInput()
+    public override void DetermineInput()
     {
         
     }
