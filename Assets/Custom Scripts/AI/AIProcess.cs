@@ -35,6 +35,14 @@ public class AIProcess : MonoBehaviour
         
     }
 
+    void Update()
+    {
+        if (actionRunTime != null)
+        {
+            actionRunTime.MakeInput();
+        }
+    }
+
     void OnEnable()
     {
         StartCoroutine(WaitThenScan());
@@ -55,6 +63,16 @@ public class AIProcess : MonoBehaviour
             AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
             if (currentAction != chosenAction)
             {
+                //finish using an action it was using
+                if (actionRunTime != null)
+                {
+                    if (actionRunTime.HoldingInput && actionRunTime.abilityToUse != null)
+                    {
+                        actionRunTime.ReleaseInput();
+                    }
+                }
+                
+                
                 currentAction = chosenAction;
                 actionRunTime = Instantiate(currentAction);
             }
@@ -63,7 +81,7 @@ public class AIProcess : MonoBehaviour
             //step 3: act on decision
             actionRunTime.DetermineMovement();
             actionRunTime.DetermineAim();
-            actionRunTime.MakeInput();
+            actionRunTime.DetermineInput();
         }
     }
 }
