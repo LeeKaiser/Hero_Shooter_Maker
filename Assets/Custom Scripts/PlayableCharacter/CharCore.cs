@@ -87,16 +87,26 @@ public class CharCore : MonoBehaviour
     //causes the character to take damage
     public int DealDamage(int damage, CharCore damageDealer)
     {
+        if (hitPointsCurrent <= 0)
+        {
+            return 0;
+        }
         int damageDealt = (int)(damage * damageTakeMult);
+        
         hitPointsCurrent -= damageDealt;
+
+
         PlayerTakeDamage playerTakeDamageEvent = new PlayerTakeDamage();
         playerTakeDamageEvent.PlayerIdentity = this;
         playerTakeDamageEvent.DamageDealer = damageDealer;
         playerTakeDamageEvent.Damage = damageDealt;
         EventBus<PlayerTakeDamage>.Invoke(playerTakeDamageEvent);
+
+
         if (hitPointsCurrent <= 0)
         {
             Defeat(damageDealer);
+            hitPointsCurrent = 0;
         }
 
         return damageDealt;
