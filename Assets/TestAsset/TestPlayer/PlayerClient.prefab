@@ -198,6 +198,7 @@ MonoBehaviour:
   CharacterReference: {fileID: 0}
   PlayerCamera: {fileID: 934412128509908987}
   DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
+  HealNumberPrefab: {fileID: 7788472276864311997, guid: d9d8c53600cb145749bf7ed1507fd230, type: 3}
 --- !u!1 &2115592557977617702
 GameObject:
   m_ObjectHideFlags: 0

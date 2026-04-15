@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4117115725492988505}
   - component: {fileID: 2371623512047102482}
   - component: {fileID: 4677647275391394857}
+  - component: {fileID: 1849800936458623266}
   m_Layer: 16
   m_Name: test attack
   m_TagString: Untagged
@@ -158,7 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 35
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +183,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
+  parentInfo: {fileID: 0}
 --- !u!114 &2371623512047102482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +220,20 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+--- !u!114 &1849800936458623266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
+  MaxHits: 1
+  BaseHealing: 25
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0
