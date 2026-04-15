@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using PlayerEvents;
 
-public class ApplyDamage : MonoBehaviour
+public class ApplyHealing : MonoBehaviour
 {
     public int MaxHits = 1;
-    public int BaseDamage;
+    public int BaseHealing;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
@@ -29,25 +29,25 @@ public class ApplyDamage : MonoBehaviour
         while (true)
         {
             yield return new WaitForFixedUpdate();
-            if (info.EnemyHit.Count > 0)
+            if (info.AllyHit.Count > 0)
             {
-                foreach(var target in info.EnemyHit)
+                foreach(var target in info.AllyHit)
                 {
                     if (MaxHits <= 0)
                     {
                         break;
                     }
-                    CharCore enemy = target.transform.parent.GetComponent<CharCore>();
-                    if (alreadyHitPlayers.Contains(enemy))
+                    CharCore ally = target.transform.parent.GetComponent<CharCore>();
+                    if (alreadyHitPlayers.Contains(ally))
                     {
                         continue;
                     }
-                    int damageDealt = (int) (BaseDamage * info.OwningPlayer.GetDamageMult());
-                    // deal damage to enemy player
-                    damageDealt = enemy.DealDamage(damageDealt, info.OwningPlayer);
+                    int healthHealed = (int) (BaseHealing /** info.OwningPlayer.GetDamageMult()*/);
+                    // heal ally
+                    healthHealed = ally.HealHealth(healthHealed, info.OwningPlayer);
 
                     //add to already hit player so that it does not continuously hit the player.
-                    alreadyHitPlayers.Add(enemy);
+                    alreadyHitPlayers.Add(ally);
                     MaxHits -= 1;
                 }
                 

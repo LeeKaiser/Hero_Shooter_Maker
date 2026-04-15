@@ -112,15 +112,23 @@ public class CharCore : MonoBehaviour
         return damageDealt;
     }
 
-    public int HealHealth(int healing)
+    public int HealHealth(int healing, CharCore healer)
     {
+        if (hitPointsCurrent == currentStats.HitPointsBase)
+        {
+            return 0;
+        }
         int healthHealed = (int)(healing * healingMult);
+        
         hitPointsCurrent += healthHealed;
+
         PlayerHealHealth PlayerHealHealthEvent = new PlayerHealHealth();
         PlayerHealHealthEvent.PlayerIdentity = this;
+        PlayerHealHealthEvent.Healer = healer;
         PlayerHealHealthEvent.Healing = healthHealed;
         EventBus<PlayerHealHealth>.Invoke(PlayerHealHealthEvent);
-        if (hitPointsCurrent >= currentStats.HitPointsBase)
+
+        if (hitPointsCurrent > currentStats.HitPointsBase)
         {
             hitPointsCurrent = currentStats.HitPointsBase;
         }

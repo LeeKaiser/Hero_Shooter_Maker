@@ -21,6 +21,7 @@ namespace PlayerEvents
     {
         public int Healing;
         public CharCore PlayerIdentity;
+        public CharCore Healer;
     }
 
     public struct AddNewAbility
