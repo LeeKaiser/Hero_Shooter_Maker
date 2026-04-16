@@ -8,9 +8,11 @@ public class ApplyHealing : MonoBehaviour
 {
     public int MaxHits = 1;
     public int BaseHealing;
+    public bool healSelf;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
+    
     
 
     void Start()
@@ -39,6 +41,10 @@ public class ApplyHealing : MonoBehaviour
                     }
                     CharCore ally = target.transform.parent.GetComponent<CharCore>();
                     if (alreadyHitPlayers.Contains(ally))
+                    {
+                        continue;
+                    }
+                    if (!healSelf && ally == info.OwningPlayer)
                     {
                         continue;
                     }
