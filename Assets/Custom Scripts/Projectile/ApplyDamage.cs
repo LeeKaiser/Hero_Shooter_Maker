@@ -8,6 +8,7 @@ public class ApplyDamage : MonoBehaviour
 {
     public int MaxHits = 1;
     public int BaseDamage;
+    public bool SpawnsObjectInInfo;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
@@ -45,6 +46,11 @@ public class ApplyDamage : MonoBehaviour
                     int damageDealt = (int) (BaseDamage * info.OwningPlayer.GetDamageMult());
                     // deal damage to enemy player
                     damageDealt = enemy.DealDamage(damageDealt, info.OwningPlayer);
+
+                    if (SpawnsObjectInInfo)
+                    {
+                        info.SpawnObject(target.point);
+                    }
 
                     //add to already hit player so that it does not continuously hit the player.
                     alreadyHitPlayers.Add(enemy);

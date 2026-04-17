@@ -57,7 +57,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 35
+  SpawnsObjectInInfo: 0
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,9 +157,10 @@ MonoBehaviour:
     m_Bits: 0
   ProjectileLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 65536
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 4590517186784251951, guid: 7a374eb1b455246d7b18b6fb89099e9c, type: 3}
 --- !u!114 &2371623512047102482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,9 +176,9 @@ MonoBehaviour:
   Speed: 50
   Gravity: 9.8
   EnemyHitRads: 0.25
-  AllyHitRads: 0.5
+  AllyHitRads: 0.25
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.34
+  ProjectileHitRads: 0
   Range: 50
 --- !u!114 &4677647275391394857
 MonoBehaviour:
@@ -193,11 +195,10 @@ MonoBehaviour:
   MaxHitsObstacle: 1
   MaxHitsEnemy: 1
   MaxHitsAlly: 1
-  MaxHitsProjectile: 1
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
-  DestroyFromProjectiles: 1
+  SpawnsObjectInInfo: 1
 --- !u!114 &1849800936458623266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
   m_Name: 
@@ -213,6 +214,7 @@ MonoBehaviour:
   MaxHits: 1
   BaseHealing: 25
   healSelf: 0
+  SpawnsObjectInInfo: 0
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0

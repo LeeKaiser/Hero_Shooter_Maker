@@ -19,6 +19,8 @@ public class DestroyOnCollision : MonoBehaviour
     [Tooltip("Gets destroyed from allies")]
     public bool DestroyFromAlly = false;
 
+    public bool SpawnsObjectInInfo;
+
     int totalHits;
     ProjectileInfo info;
     
@@ -57,6 +59,8 @@ public class DestroyOnCollision : MonoBehaviour
                                 closestPoint = target.point;
                             }
                         }
+
+                        
                     }
                 }
             }
@@ -67,6 +71,10 @@ public class DestroyOnCollision : MonoBehaviour
             if (doDestroy && closestPoint != null)
             {
                 info.DestroySelf(closestPoint ?? transform.position);
+                if (SpawnsObjectInInfo)
+                {
+                    info.SpawnObject(closestPoint ?? transform.position);
+                }
             }
         }
         
