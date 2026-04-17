@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.77
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1031,7 +1031,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
       cycleCount: 1
-      repeatInterval: 0.01
+      repeatInterval: 0.5
       probability: 1
   SizeModule:
     enabled: 0
@@ -5024,6 +5024,7 @@ MonoBehaviour:
   MaxHits: 99
   BaseDamage: 35
   SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
 --- !u!114 &4492577754812976560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5036,7 +5037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d9915f7e6284b10807929263d84e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaOfEffectCircle
-  EnemyHitRads: 1
+  EnemyHitRads: 5
   AllyHitRads: 0
   ObstacleHitRads: 0
   ProjectileHitRads: 0
