@@ -6,13 +6,14 @@ public class ProjectileInfo : MonoBehaviour
     public CharCore OwningPlayer;
     public TeamManager AttackAllegience;
 
-    public LayerMask GroundLayer, TeamLayer, EnemyLayer;
+    public LayerMask GroundLayer, TeamLayer, EnemyLayer, ProjectileLayer;
     public GameObject DestroyEffect;
     public ProjectileInfo parentInfo;
 
     public List<RaycastHit> EnemyHit = new List<RaycastHit>();
     public List<RaycastHit> AllyHit = new List<RaycastHit>();
     public List<RaycastHit> ObstacleHit = new List<RaycastHit>();
+    public List<RaycastHit> ProjectileHit = new List<RaycastHit>();
     
     void Start()
     {

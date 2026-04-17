@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 373151539816974714}
   - component: {fileID: 3312539721600614121}
   - component: {fileID: 7656086961707946787}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &879215752932139117
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +184,7 @@ GameObject:
   - component: {fileID: 7122589707766034731}
   - component: {fileID: 4534453144506021720}
   - component: {fileID: 7403247678979841375}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &906888687413675450
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,7 +350,7 @@ GameObject:
   - component: {fileID: 4745195952860392967}
   - component: {fileID: 8339746147506097760}
   - component: {fileID: 8959075659643417347}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +463,7 @@ GameObject:
   - component: {fileID: 7650259839480080939}
   - component: {fileID: 7582921637361064186}
   - component: {fileID: 3020129872195075066}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +579,7 @@ GameObject:
   - component: {fileID: 5105808265558204146}
   - component: {fileID: 8599730453522170663}
   - component: {fileID: 2577952926655028739}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,7 +733,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &3841272283943029367
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +748,7 @@ GameObject:
   - component: {fileID: 4283128102135713051}
   - component: {fileID: 1126677993518156926}
   - component: {fileID: 6159474484787143881}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -905,7 +902,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &4659882285402106530
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +914,7 @@ GameObject:
   - component: {fileID: 5371022967859729703}
   - component: {fileID: 6552060353440103656}
   - component: {fileID: 6817990188503149677}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1031,7 +1027,7 @@ GameObject:
   - component: {fileID: 7202996786526268525}
   - component: {fileID: 135186257049692883}
   - component: {fileID: 8010179118895290420}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1144,7 +1140,7 @@ GameObject:
   - component: {fileID: 4011290663022889131}
   - component: {fileID: 2688963002014866165}
   - component: {fileID: 7292941744512360637}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1256,7 @@ GameObject:
   - component: {fileID: 8964141544525860163}
   - component: {fileID: 5545135824159607439}
   - component: {fileID: 8255178760862186936}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &7577642772685265163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1425,7 @@ GameObject:
   - component: {fileID: 6968740360587453433}
   - component: {fileID: 6850420510224136368}
   - component: {fileID: 9082652591988430266}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1584,7 +1579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}
 --- !u!1 &7711114759838358987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1591,7 @@ GameObject:
   - component: {fileID: 3560334142900390761}
   - component: {fileID: 2870396410195363516}
   - component: {fileID: 5555041119999028287}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1710,7 +1704,7 @@ GameObject:
   - component: {fileID: 5607564301353417618}
   - component: {fileID: 5293544364378090534}
   - component: {fileID: 5519590333101079619}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: forward direction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1822,7 +1816,7 @@ GameObject:
   - component: {fileID: 754030294089208146}
   - component: {fileID: 1521098192453365964}
   - component: {fileID: 6133658909525450553}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: ShotgunAttackGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1904,7 +1898,7 @@ GameObject:
   - component: {fileID: 7953213602278995177}
   - component: {fileID: 223193087327266981}
   - component: {fileID: 4274253204500748955}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: projectile (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2058,4 +2052,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 9
-  DamageNumberPrefab: {fileID: 7788472276864311997, guid: 246e93001206b4cc8a129ba4134e897e, type: 3}

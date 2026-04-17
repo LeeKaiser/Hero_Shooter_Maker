@@ -10,6 +10,7 @@ public class ProjectilePhysics : MonoBehaviour
     public float EnemyHitRads = 0.25f;
     public float AllyHitRads = 0.25f;
     public float ObstacleHitRads = 0.25f;
+    public float ProjectileHitRads = 0.25f;
     public float Range = 10f;
     
     Vector3 velocity;
@@ -40,13 +41,14 @@ public class ProjectilePhysics : MonoBehaviour
         info.ObstacleHit = Physics.SphereCastAll(transform.position, ObstacleHitRads, velocity.normalized, distanceTraveled, info.GroundLayer).ToList();
         info.EnemyHit = Physics.SphereCastAll(transform.position, EnemyHitRads, velocity.normalized, distanceTraveled, info.EnemyLayer).ToList();
         info.AllyHit = Physics.SphereCastAll(transform.position, AllyHitRads, velocity.normalized, distanceTraveled, info.TeamLayer).ToList();
-
+        info.ProjectileHit = Physics.SphereCastAll(transform.position, ProjectileHitRads, velocity.normalized, distanceTraveled, info.ProjectileLayer).ToList();
         //report to parent projectileinfo if it exists
         if (info.parentInfo != null)
         {
             info.parentInfo.ObstacleHit.AddRange(info.ObstacleHit);
             info.parentInfo.EnemyHit.AddRange(info.EnemyHit);
             info.parentInfo.AllyHit.AddRange(info.EnemyHit);
+            info.parentInfo.ProjectileHit.AddRange(info.ProjectileHit);
         }
         transform.position = nextPosition;
 
@@ -61,6 +63,8 @@ public class ProjectilePhysics : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, AllyHitRads);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, EnemyHitRads);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, ProjectileHitRads);
     }
 
 }
