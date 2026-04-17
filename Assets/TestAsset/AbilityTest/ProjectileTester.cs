@@ -8,13 +8,19 @@ public class ProjectileTester : MonoBehaviour
     public CharCore TestOwner;
     IEnumerator SpawnProjectile()
     {
-        GameObject attackObj = Instantiate(SubjectProjectile, transform.position, transform.rotation);
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
 
-        ProjectileInfo atkInfo = attackObj.GetComponent<ProjectileInfo>();
-        atkInfo.OwningPlayer = TestOwner;
-        atkInfo.AttackAllegience = TestOwner.PlayerAllegience;
-        yield return new WaitForSeconds(1);
-        StartCoroutine(SpawnProjectile());
+            GameObject attackObj = Instantiate(SubjectProjectile, transform.position, transform.rotation);
+
+            ProjectileInfo atkInfo = attackObj.GetComponent<ProjectileInfo>();
+            if (atkInfo != null)
+            {
+                atkInfo.OwningPlayer = TestOwner;
+                atkInfo.AttackAllegience = TestOwner.PlayerAllegience;
+            }
+        }
     }
 
     void Start()

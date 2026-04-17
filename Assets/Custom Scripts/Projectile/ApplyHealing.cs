@@ -9,6 +9,7 @@ public class ApplyHealing : MonoBehaviour
     public int MaxHits = 1;
     public int BaseHealing;
     public bool healSelf;
+    public bool SpawnsObjectInInfo;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
@@ -51,6 +52,11 @@ public class ApplyHealing : MonoBehaviour
                     int healthHealed = (int) (BaseHealing /** info.OwningPlayer.GetDamageMult()*/);
                     // heal ally
                     healthHealed = ally.HealHealth(healthHealed, info.OwningPlayer);
+
+                    if (SpawnsObjectInInfo)
+                    {
+                        info.SpawnObject(target.point);
+                    }
 
                     //add to already hit player so that it does not continuously hit the player.
                     alreadyHitPlayers.Add(ally);

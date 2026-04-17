@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5703548429166304260}
-  - component: {fileID: 6170183225231570956}
   - component: {fileID: 7469915885949553222}
   - component: {fileID: 708839473188895882}
   - component: {fileID: 3270334532067908348}
@@ -41,33 +40,6 @@ Transform:
   - {fileID: 8286498065118671863}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6170183225231570956
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590517186784251951}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!135 &7469915885949553222
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -83,7 +55,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
@@ -159,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
   BaseDamage: 35
+  SpawnsObjectInInfo: 0
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,8 +155,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 65536
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 4590517186784251951, guid: 7a374eb1b455246d7b18b6fb89099e9c, type: 3}
 --- !u!114 &2371623512047102482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,8 +176,9 @@ MonoBehaviour:
   Speed: 50
   Gravity: 9.8
   EnemyHitRads: 0.25
-  AllyHitRads: 0.5
+  AllyHitRads: 0.25
   ObstacleHitRads: 0.125
+  ProjectileHitRads: 0
   Range: 50
 --- !u!114 &4677647275391394857
 MonoBehaviour:
@@ -220,6 +198,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 1
 --- !u!114 &1849800936458623266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,13 +206,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
   MaxHits: 1
   BaseHealing: 25
+  healSelf: 0
+  SpawnsObjectInInfo: 0
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0
