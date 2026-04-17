@@ -6,9 +6,14 @@ using PlayerEvents;
 
 public class ApplyDamage : MonoBehaviour
 {
+    [Tooltip("number of targets it can hit at a time")]
     public int MaxHits = 1;
+    [Tooltip("damage it deals")]
     public int BaseDamage;
+    [Tooltip("if true, summon an object in projectile info ObjectToSpawn variable")]
     public bool SpawnsObjectInInfo;
+    [Tooltip("resets max hit every hit reset time. set to 0 if you want no reset.")]
+    public float HitResetTime = 0.5f;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
@@ -18,11 +23,24 @@ public class ApplyDamage : MonoBehaviour
     {
         info = GetComponent<ProjectileInfo>();
         StartCoroutine(CheckForCollision());
+        StartCoroutine(ResetHits());
     }
     
-    void ResetHitPlayers()
+    public void ResetHitPlayers()
     {
         alreadyHitPlayers.Clear();
+    }
+
+    IEnumerator ResetHits()
+    {
+        if (HitResetTime != 0f)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(HitResetTime);
+                ResetHitPlayers();
+            }
+        }
     }
 
     IEnumerator CheckForCollision()

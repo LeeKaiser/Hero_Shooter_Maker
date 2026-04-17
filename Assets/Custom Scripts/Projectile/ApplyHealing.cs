@@ -6,10 +6,16 @@ using PlayerEvents;
 
 public class ApplyHealing : MonoBehaviour
 {
+    [Tooltip("number of targets it can hit at a time")]
     public int MaxHits = 1;
+    [Tooltip("amount of healing applied")]
     public int BaseHealing;
+    [Tooltip("Set to true if healing should apply to self")]
     public bool healSelf;
+    [Tooltip("if true, summon an object in projectile info ObjectToSpawn variable")]
     public bool SpawnsObjectInInfo;
+    [Tooltip("resets max hit every hit reset time. set to 0 if you want no reset.")]
+    public float HitResetTime;
 
     ProjectileInfo info;
     List<CharCore> alreadyHitPlayers = new List<CharCore>();
@@ -20,12 +26,27 @@ public class ApplyHealing : MonoBehaviour
     {
         info = GetComponent<ProjectileInfo>();
         StartCoroutine(CheckForCollision());
+        StartCoroutine(ResetHits());
     }
     
-    void ResetHitPlayers()
+    public void ResetHitPlayers()
     {
         alreadyHitPlayers.Clear();
     }
+
+    IEnumerator ResetHits()
+    {
+        if (HitResetTime != 0f)
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(HitResetTime);
+                ResetHitPlayers();
+            }
+        }
+    }
+
+    
 
     IEnumerator CheckForCollision()
     {
