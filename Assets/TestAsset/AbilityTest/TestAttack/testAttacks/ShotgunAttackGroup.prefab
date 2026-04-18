@@ -117,8 +117,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &373151539816974714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +140,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &3312539721600614121
 MonoBehaviour:
@@ -155,6 +160,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &7656086961707946787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +174,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &879215752932139117
 GameObject:
@@ -286,8 +297,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &7122589707766034731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,6 +320,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &4534453144506021720
 MonoBehaviour:
@@ -324,6 +340,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &7403247678979841375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +354,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &906888687413675450
 GameObject:
@@ -681,8 +703,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &5105808265558204146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,6 +726,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &8599730453522170663
 MonoBehaviour:
@@ -719,6 +746,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &2577952926655028739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,6 +760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &3841272283943029367
 GameObject:
@@ -850,8 +883,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &4283128102135713051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -869,6 +906,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &1126677993518156926
 MonoBehaviour:
@@ -888,6 +926,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &6159474484787143881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -901,6 +940,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &4659882285402106530
 GameObject:
@@ -1358,8 +1402,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &8964141544525860163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1377,6 +1425,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &5545135824159607439
 MonoBehaviour:
@@ -1396,6 +1445,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &8255178760862186936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,6 +1459,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &7577642772685265163
 GameObject:
@@ -1527,8 +1582,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &6968740360587453433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1546,6 +1605,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &6850420510224136368
 MonoBehaviour:
@@ -1565,6 +1625,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &9082652591988430266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,6 +1639,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9
 --- !u!1 &7711114759838358987
 GameObject:
@@ -1881,8 +1947,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 8588124688808932030, guid: 14129a49420f441d3b92de501bc0a5ed, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!1 &8962699898292893361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,8 +2070,12 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  ProjectileLayer:
+    serializedVersion: 2
+    m_Bits: 0
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
+  ObjectToSpawn: {fileID: 0}
 --- !u!114 &7953213602278995177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2019,6 +2093,7 @@ MonoBehaviour:
   EnemyHitRads: 0.2
   AllyHitRads: 0.1
   ObstacleHitRads: 0.1
+  ProjectileHitRads: 0.25
   Range: 30
 --- !u!114 &223193087327266981
 MonoBehaviour:
@@ -2038,6 +2113,7 @@ MonoBehaviour:
   DestroyFromObstacle: 1
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
+  SpawnsObjectInInfo: 0
 --- !u!114 &4274253204500748955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2051,4 +2127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
   BaseDamage: 9

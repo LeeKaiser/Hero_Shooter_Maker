@@ -2837,7 +2837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62ab93e97808a42e5b2db6d8213454e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileTester
-  SubjectProjectile: {fileID: 4590517186784251951, guid: 42fda6020cba045fb8c48140389144a3, type: 3}
+  SubjectProjectile: {fileID: 4654230464608969014, guid: 98c9111fcb68c450bbd0bd5fe97b875c, type: 3}
   TestOwner: {fileID: 1049004924}
 --- !u!4 &1229423888
 Transform:
