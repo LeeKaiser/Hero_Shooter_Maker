@@ -285,9 +285,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 5
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 5
 --- !u!1 &4654230464608969014
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,9 +391,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 99
-  BaseDamage: 35
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
+  BaseDamage: 35
 --- !u!1 &5107475467614177346
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,9 +592,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 5
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 5
 --- !u!1 &5218061893704842650
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,9 +793,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 5
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 5
 --- !u!1 &7545246783684402632
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,9 +994,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 5
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 5
 --- !u!1 &8296561053420629022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 5
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 5

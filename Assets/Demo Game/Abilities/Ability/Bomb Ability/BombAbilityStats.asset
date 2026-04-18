@@ -15,7 +15,7 @@ MonoBehaviour:
   AbilityName: Bomb
   AbilityUIPrefab: {fileID: 5694682100280509937, guid: eb80073631a1045f5817d540ddd2b811, type: 3}
   MaxCharge: 1
-  ChargePointsRequired: 1200
+  ChargePointsRequired: 100
   ChargePointsPerSec: 100
   ChargeGainPerFullRecharge: 1
   CanInterruptOthers: 0

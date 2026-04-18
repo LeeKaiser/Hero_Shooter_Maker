@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class ApplyStatus : MonoBehaviour
+public class ApplyStatus : ApplyEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject Effect;
+    protected override void ActivateEffect(CharCore targetPlayer)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        targetPlayer.GetComponent<StatusEffectManager>().AddNewEffect(Effect);
     }
 }

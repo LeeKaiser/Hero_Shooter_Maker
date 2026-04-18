@@ -33,14 +33,21 @@ public class AIMovement : MonoBehaviour
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
-        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
+        
         AimTarget = playerReference.transform.Find("AimTarget").transform;
         MoveTarget = playerReference.transform.Find("MoveTarget").transform;
+    }
+
+    void OnEnable()
+    {
+        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
+        EventBus<PlayerGrounded>.Subscribe(PauseNavmeshWhenAirborne);
     }
 
     void OnDisable()
     {
         EventBus<PlayerLandOnGround>.Unsubscribe(UnpauseNavmeshOnLanding);
+        EventBus<PlayerGrounded>.Unsubscribe(PauseNavmeshWhenAirborne);
     }
 
     void Update()
@@ -65,10 +72,25 @@ public class AIMovement : MonoBehaviour
         
     }
 
+    public void PauseNavmeshWhenAirborne(PlayerGrounded landOnGroundInfo)
+    {
+        if (landOnGroundInfo.playerIdentity == playerReference && !landOnGroundInfo.grounded )
+        {
+            PauseNavmesh();
+        }
+        
+    }
+
     void UnpauseNavmesh()
     {
         agent.enabled = true;
         agent.autoTraverseOffMeshLink = true;
+    }
+
+    public void PauseNavmesh()
+    {
+        agent.autoTraverseOffMeshLink = false;
+        agent.enabled = false;
     }
 
     //makes an artificial input to the agent's input file.

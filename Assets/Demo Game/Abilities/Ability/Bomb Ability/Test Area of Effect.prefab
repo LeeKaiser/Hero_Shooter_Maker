@@ -4909,6 +4909,8 @@ GameObject:
   - component: {fileID: 9041585344030101150}
   - component: {fileID: 4492577754812976560}
   - component: {fileID: 6962356442678219277}
+  - component: {fileID: 8543142562597779374}
+  - component: {fileID: 6723766419962104061}
   m_Layer: 16
   m_Name: Test Area of Effect
   m_TagString: Untagged
@@ -5022,9 +5024,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 99
-  BaseDamage: 50
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
+  BaseDamage: 1
 --- !u!114 &4492577754812976560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5038,7 +5043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaOfEffectCircle
   EnemyHitRads: 3
-  AllyHitRads: 0
+  AllyHitRads: 3
   ObstacleHitRads: 0
   ProjectileHitRads: 0
   duration: 0.2
@@ -5071,3 +5076,41 @@ MonoBehaviour:
   DestroyEffect: {fileID: 0}
   parentInfo: {fileID: 0}
   ObjectToSpawn: {fileID: 0}
+--- !u!114 &8543142562597779374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14256c0d10ebd4287b8ec052fb854dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyStatus
+  MaxHits: 99
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  Effect: {fileID: 1030073838842322820, guid: 3b813830f732e4d6096f5712109a3233, type: 3}
+--- !u!114 &6723766419962104061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590517186784251951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c0b6b4bceee4f61b8a646aef45cd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyDisplacement
+  MaxHits: 99
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  DisplacementEffect: {fileID: 3445692256928562888, guid: 3215d4ff771664b60af8a82dce242867, type: 3}
