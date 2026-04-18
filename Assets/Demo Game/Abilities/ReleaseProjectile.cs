@@ -4,11 +4,11 @@ public class ReleaseProjectile : ActiveAbility
 {
     [Header("Custom variables")]
     public GameObject attackPrefab;
-    
+    public float Bloom;
     Transform attackPoint;
     Transform targetPoint;
 
-    
+    //TODO: implement sound, effects, and animation systems
     
     protected override void Startup(){
         attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
@@ -35,10 +35,14 @@ public class ReleaseProjectile : ActiveAbility
         }
 
         InterruptReload();
-        
+
+        //determine bloom
+        Vector3 randomAimDirection = new Vector3(Random.Range(-1f, 1f),Random.Range(-1f, 1f),0);
+        float randomRotation = Random.Range(-Bloom, Bloom);
         //instantiate projectile
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
         attackObj.transform.LookAt(targetPoint);
+        attackObj.transform.rotation = attackObj.transform.rotation * Quaternion.AngleAxis(randomRotation, randomAimDirection);
 
         //set projectile settings
         ProjectileInfo atkInfo = attackObj.GetComponent<ProjectileInfo>();
