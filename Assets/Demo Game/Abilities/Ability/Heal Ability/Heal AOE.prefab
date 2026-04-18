@@ -41,14 +41,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218015253962963770}
   serializedVersion: 8
-  lengthInSec: 0.5
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -1366,7 +1366,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.41189036, g: 0.9811321, b: 0.5139378, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4906,13 +4906,11 @@ GameObject:
   - component: {fileID: 7469915885949553222}
   - component: {fileID: 708839473188895882}
   - component: {fileID: 3270334532067908348}
-  - component: {fileID: 9041585344030101150}
   - component: {fileID: 4492577754812976560}
   - component: {fileID: 6962356442678219277}
-  - component: {fileID: 8543142562597779374}
-  - component: {fileID: 6723766419962104061}
+  - component: {fileID: 6604180702719361411}
   m_Layer: 16
-  m_Name: Test Area of Effect
+  m_Name: Heal AOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5011,25 +5009,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &9041585344030101150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 99
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 0
-  BaseDamage: 30
 --- !u!114 &4492577754812976560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5042,11 +5021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d9915f7e6284b10807929263d84e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaOfEffectCircle
-  EnemyHitRads: 3
+  EnemyHitRads: 0
   AllyHitRads: 3
   ObstacleHitRads: 0
   ProjectileHitRads: 0
-  duration: 0.2
+  duration: 4
 --- !u!114 &6962356442678219277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5076,7 +5055,7 @@ MonoBehaviour:
   DestroyEffect: {fileID: 0}
   parentInfo: {fileID: 0}
   ObjectToSpawn: {fileID: 0}
---- !u!114 &8543142562597779374
+--- !u!114 &6604180702719361411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5085,32 +5064,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4590517186784251951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14256c0d10ebd4287b8ec052fb854dfe, type: 3}
+  m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyStatus
-  MaxHits: 99
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
+  MaxHits: 1
   SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
+  HitResetTime: 0.3
+  ApplyToEnemy: 0
+  ApplyToAllies: 1
   ApplyToSelf: 1
-  Effect: {fileID: 1030073838842322820, guid: 3b813830f732e4d6096f5712109a3233, type: 3}
---- !u!114 &6723766419962104061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c0b6b4bceee4f61b8a646aef45cd4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDisplacement
-  MaxHits: 99
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  DisplacementEffect: {fileID: 3445692256928562888, guid: 3215d4ff771664b60af8a82dce242867, type: 3}
+  BaseHealing: 25

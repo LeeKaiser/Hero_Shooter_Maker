@@ -189,4 +189,5 @@ public class CharCore : MonoBehaviour
 
     public int GetHitPointsCurrent(){return hitPointsCurrent;}
     public int GetHitPointsBase() {return currentStats.HitPointsBase;}
+    public void SetGravityMult(float gravChange){GravityMult += gravChange;}
 }
