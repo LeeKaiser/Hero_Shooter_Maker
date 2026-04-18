@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: AutomaticAttackStats
   m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
   AbilityName: Automatic
-  AbilityUIPrefab: {fileID: 0}
-  MaxCharge: 15
+  AbilityUIPrefab: {fileID: 5694682100280509937, guid: eb80073631a1045f5817d540ddd2b811, type: 3}
+  MaxCharge: 30
   ChargePointsRequired: 200
   ChargePointsPerSec: 100
-  ChargeGainPerFullRecharge: 15
+  ChargeGainPerFullRecharge: 30
   CanInterruptOthers: 0
   MaxChargeTime: 0
-  UsePerSec: 5
+  UsePerSec: 8
