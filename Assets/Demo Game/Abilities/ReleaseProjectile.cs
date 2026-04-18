@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackTest : ActiveAbility
+public class ReleaseProjectile : ActiveAbility
 {
     [Header("Custom variables")]
     public GameObject attackPrefab;
