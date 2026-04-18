@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
 
 public class AttackTest : ActiveAbility
 {
@@ -10,7 +8,7 @@ public class AttackTest : ActiveAbility
     Transform attackPoint;
     Transform targetPoint;
 
-    private float currentAttackPause = 0;
+    
     
     protected override void Startup(){
         attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
@@ -35,16 +33,8 @@ public class AttackTest : ActiveAbility
         {
             return;
         }
-        //if attacked is currently limited by attackrate, 
-        if (currentAttackPause > 0)
-        {
-            return;
-        }
 
         InterruptReload();
-
-        //limit fire rate
-        currentAttackPause = 1 / Stats.UsePerSec;
         
         //instantiate projectile
         GameObject attackObj = Instantiate(attackPrefab, attackPoint.position, attackPoint.rotation);
@@ -57,15 +47,6 @@ public class AttackTest : ActiveAbility
 
         //use a charge
         ConsumeCharge(1);
-    }
-
-    void Update()
-    {
-        if (currentAttackPause > 0)
-        {
-            currentAttackPause -= Time.deltaTime;
-        }
-        
     }
 
 

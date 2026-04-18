@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
   input: {fileID: 11400000, guid: 580000b478e054fe686e22ae19a0bf22, type: 2}
-  ability: {fileID: 4938865011410206441, guid: 28b85f2d6ba704bd4b889a8779e53f56, type: 3}
+  ability: {fileID: 4938865011410206441, guid: 779e094f644234fa890b887d937f6eda, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &267680209
 MonoBehaviour:
@@ -1354,9 +1354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack 2
-
-'
+  m_text: CloseRange
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1488,7 +1486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
   input: {fileID: 11400000, guid: 580000b478e054fe686e22ae19a0bf22, type: 2}
-  ability: {fileID: 4938865011410206441, guid: 28b85f2d6ba704bd4b889a8779e53f56, type: 3}
+  ability: {fileID: 4938865011410206441, guid: b22ce7f29cc574c69b107e0b90032d0d, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &900319371
 MonoBehaviour:
@@ -1637,7 +1635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
   input: {fileID: 11400000, guid: ea681e3ba927c496eb69c09848d92164, type: 2}
-  ability: {fileID: 3730818670177475063, guid: a707a2a9516444c33902ac7ba5221723, type: 3}
+  ability: {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &1017987754
 MonoBehaviour:
@@ -2730,7 +2728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ability 1
+  m_text: Bomb
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3002,7 +3000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack 1
+  m_text: Automatic
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

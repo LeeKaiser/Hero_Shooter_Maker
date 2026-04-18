@@ -246,7 +246,8 @@ namespace StarterAssets
 
 
             // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x, 0.0f, _controller.velocity.z).magnitude;
+            float currentHorizontalSpeed = new Vector3(_controller.velocity.x - (_externalForceDirection.x * _externalForceVelocity), 
+                0.0f, _controller.velocity.z - (_externalForceDirection.z * _externalForceVelocity)).magnitude;
 
             float speedOffset = 0.1f;
 
@@ -276,14 +277,15 @@ namespace StarterAssets
 
             // move the player
             //external force
-            Vector3 allMovement = _externalForceDirection.normalized * _externalForceVelocity;
+            Vector3 baseMovement = Vector3.zero;
             //movement
-            if (!_horizontalMovementPause) {allMovement += _currentDirection.normalized * _speed;}
-            if (!_verticalMovementPause) {allMovement += Vector3.up * _verticalVelocity;}
-
-            allMovement = allMovement * Time.deltaTime;
+            if (!_horizontalMovementPause) {baseMovement += _currentDirection.normalized * _speed;}
+            if (!_verticalMovementPause) {baseMovement += Vector3.up * _verticalVelocity;}
             
-            _controller.Move(allMovement);
+            Vector3 externalMovement = _externalForceDirection.normalized * _externalForceVelocity;
+            Vector3 allMovement = baseMovement + externalMovement;
+
+            _controller.Move(allMovement.normalized * allMovement.magnitude * Time.deltaTime);
             
 
             // update animator if using character

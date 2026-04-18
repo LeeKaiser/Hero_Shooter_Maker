@@ -41,8 +41,7 @@ public class AbilityManager : MonoBehaviour
         {
             ability.ActivateReload();
             ability.ReloadOverTime(Time.deltaTime);
-            //call ability's ui to update
-            
+            ability.ProgressUnpause(Time.deltaTime);
         }
     }
 

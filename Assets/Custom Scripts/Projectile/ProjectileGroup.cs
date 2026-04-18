@@ -34,6 +34,8 @@ public class ProjectileGroup : MonoBehaviour
     //destroy self when all child projectile is destroyed
     void FixedUpdate()
     {
+        ProjectilesInGroup.RemoveAll(item => item == null);
+
         if (ProjectilesInGroup.Count <= 0)
         {
             info.DestroySelf(transform.position);

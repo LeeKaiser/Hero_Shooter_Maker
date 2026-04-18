@@ -5022,9 +5022,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 99
-  BaseDamage: 35
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 0
+  BaseDamage: 35
 --- !u!114 &4492577754812976560
 MonoBehaviour:
   m_ObjectHideFlags: 0

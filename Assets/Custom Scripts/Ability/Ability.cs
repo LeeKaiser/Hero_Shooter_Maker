@@ -33,7 +33,8 @@ public abstract class Ability: MonoBehaviour
 
     protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
-
+    private float currentAbilityPause = 0;
+    private bool abilityIsPaused;
     protected AbilityUI AbilityUIReference; //reference to ability's UI
 
     void Start()
@@ -58,11 +59,22 @@ public abstract class Ability: MonoBehaviour
         {
             currentCharge = 0;
         }
+        if (Stats.UsePerSec == 0)
+        {
+            currentAbilityPause = 0;
+        }
+        else
+        {
+            currentAbilityPause = 1 / Stats.UsePerSec;
+        }
+        
+        abilityIsPaused = true;
+        
     }
 
     protected virtual bool CanActivate()
     {
-        return !isActive && manager.CanUseAbility(this) && currentCharge >= 1;
+        return !isActive && manager.CanUseAbility(this) && currentCharge >= 1 && !abilityIsPaused;
     }
 
     //when ability is missing any charge, set recharge in progress to true
@@ -108,6 +120,19 @@ public abstract class Ability: MonoBehaviour
     {
         float newCharge = Stats.ChargePointsPerSec * TimeElapsed;
         RecoverChargePoint(newCharge);
+    }
+
+    public void ProgressUnpause(float TimeElapsed)
+    {
+        if (currentAbilityPause > 0)
+        {
+            currentAbilityPause -= TimeElapsed;
+        }
+        if (currentAbilityPause <= 0)
+        {
+            abilityIsPaused = false;
+        }
+        
     }
 
     public void InterruptReload()
