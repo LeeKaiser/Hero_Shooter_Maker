@@ -304,8 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  input: {fileID: 11400000, guid: 09bf2f30f2613445b9435a774f0250cc, type: 2}
-  ability: {fileID: 1026491948437105611, guid: 8b2ae8d0f395b4e579f0764ced01f9a1, type: 3}
+  input: {fileID: 11400000, guid: ea681e3ba927c496eb69c09848d92164, type: 2}
+  ability: {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &88707910
 MonoBehaviour:
@@ -1833,9 +1833,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ability 3
-
-'
+  m_text: Dash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2212,7 +2210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
   input: {fileID: 11400000, guid: ea681e3ba927c496eb69c09848d92164, type: 2}
-  ability: {fileID: 3730818670177475063, guid: a707a2a9516444c33902ac7ba5221723, type: 3}
+  ability: {fileID: 4938865011410206441, guid: 5780ed7f34ef4445794e45df444d96f5, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &1502043454
 MonoBehaviour:
@@ -2535,8 +2533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  input: {fileID: 11400000, guid: 09bf2f30f2613445b9435a774f0250cc, type: 2}
-  ability: {fileID: 1026491948437105611, guid: 8b2ae8d0f395b4e579f0764ced01f9a1, type: 3}
+  input: {fileID: 11400000, guid: ea681e3ba927c496eb69c09848d92164, type: 2}
+  ability: {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
   loader: {fileID: 1126120051}
 --- !u!114 &2002198359
 MonoBehaviour:
@@ -2864,7 +2862,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ability 2
+  m_text: Heal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3215,9 +3213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ability 4
-
-'
+  m_text: Shield
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

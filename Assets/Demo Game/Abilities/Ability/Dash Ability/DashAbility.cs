@@ -55,7 +55,7 @@ public class DashAbility : ActiveAbility
         playerMovement.ApplyExternalForce(direction, DashSpeed);
         playerMovement.SetVerticalMovementPause(true);
         playerMovement.SetHorizontalMovementPause(true);
-        playerReference.SetGravityMult(-1);
+        playerReference.ModifyGravityMult(-1);
 
         //limit fire rate
         currentAttackPause = 1 / Stats.UsePerSec;
@@ -73,7 +73,7 @@ public class DashAbility : ActiveAbility
                 playerMovement.SetHorizontalMovementPause(false);
                 playerMovement.ApplyExternalForce(Vector3.zero, 0);
                 playerMovement.ResetCharacterVelocity();
-                playerReference.SetGravityMult(1);
+                playerReference.ModifyGravityMult(1);
                 manager.NotifyAbilityEnded(this);
             }
         }

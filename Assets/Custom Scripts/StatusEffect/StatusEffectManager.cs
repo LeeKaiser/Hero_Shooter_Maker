@@ -34,8 +34,8 @@ public class StatusEffectManager : MonoBehaviour
     public void AddNewEffect(GameObject newEffect)
     {
         // Make a copy of the prefab and attach it to the player
-        GameObject EffectObj = Instantiate(newEffect, transform);
-
+        GameObject EffectObj = Instantiate(newEffect, playerReference.PlayerArmature.transform.position, playerReference.PlayerArmature.transform.rotation, playerReference.PlayerArmature.transform);
+        EffectObj.transform.position += Vector3.up * (playerReference.PlayerArmature.GetComponent<CharacterController>().height / 2);
         // Grab the Ability script on that prefab
         StatusEffect effect = EffectObj.GetComponent<StatusEffect>();
         if (effect == null)

@@ -170,24 +170,19 @@ public class CharCore : MonoBehaviour
         }
     }
 
-    public void ModifyForwardSpeed(float speedMod)
-    {
-        forwardSpeedMult += speedMod;
-    }
+    public void ModifyForwardSpeed(float speedMod){forwardSpeedMult += speedMod;}
 
-    public void ModifyStrafeSpeed(float speedMod)
-    {
-        strafeSpeedMult += speedMod;
-    }
+    public void ModifyStrafeSpeed(float speedMod){strafeSpeedMult += speedMod;}
 
-    public void ModifyBackwardSpeed(float speedMod)
-    {
-        backwardSpeedMult += speedMod;
-    }
+    public void ModifyBackwardSpeed(float speedMod){ backwardSpeedMult += speedMod;}
+
+    public void ModifyGravityMult(float gravChange){GravityMult += gravChange;}
+    public void ModifyDamageTakeMult(float damageMod){damageTakeMult += damageMod;}
+    public void ModifyDamageDealMult(float damageMod){damageDealMult += damageMod;}
 
     public float GetDamageMult(){return damageDealMult;}
 
     public int GetHitPointsCurrent(){return hitPointsCurrent;}
     public int GetHitPointsBase() {return currentStats.HitPointsBase;}
-    public void SetGravityMult(float gravChange){GravityMult += gravChange;}
+    
 }
