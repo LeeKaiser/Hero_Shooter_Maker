@@ -29,6 +29,11 @@ public class PlayerClient : MonoBehaviour
         }
     }
 
+    void GeneratePlayer()
+    {
+        
+    }
+
     public void ConnectToPlayer()
     {
         Transform cameraRoot = CharacterReference.PlayerArmature.transform.Find("PlayerCameraRoot");

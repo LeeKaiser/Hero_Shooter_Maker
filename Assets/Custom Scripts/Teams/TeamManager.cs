@@ -6,7 +6,7 @@ using System.Collections;
 
 public class TeamManager : MonoBehaviour
 {
-    [SerializeField] private CharCore[] TeamMembers;
+    public CharCore[] TeamMembers;
     public Transform[] SpawnPositions;
 
     public LayerMask TeamLayer;
@@ -16,14 +16,21 @@ public class TeamManager : MonoBehaviour
 
     void Awake()
     {
-        EventBus<PlayerDead>.Subscribe(SpawnPlayer);
+        
         TeamLayer = 1 << gameObject.layer;
         EnemyLayer = ~TeamLayer & EnemyLayer;
         AssignTeam();
+       
+    }
+    void OnEnable()
+    {
+        //TODO: spawn in all players at correct spawn location
+        EventBus<PlayerDead>.Subscribe(SpawnPlayer);
     }
     void OnDisable()
     {
         EventBus<PlayerDead>.Unsubscribe(SpawnPlayer);
+        //TODO: disable all players to reset them for next round
     }
     public void SpawnPlayer(PlayerDead defeatedPlayer)
     {
