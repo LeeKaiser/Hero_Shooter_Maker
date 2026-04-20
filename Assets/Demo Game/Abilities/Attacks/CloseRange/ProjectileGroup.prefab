@@ -396,7 +396,7 @@ MonoBehaviour:
   ApplyToEnemy: 1
   ApplyToAllies: 0
   ApplyToSelf: 0
-  BaseDamage: 45
+  BaseDamage: 40
 --- !u!1 &5107475467614177346
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ public class RegenPassive : Ability
     {
         InterruptReload();
         ConsumeCharge(1);
+        playerReference.MovementStyle = MovementStyles.MovementStyle.AlwaysFaceForward;
     }
 
     void Update()
@@ -42,6 +43,7 @@ public class RegenPassive : Ability
             playerReference.HealHealth(regenAmount, playerReference);
             currentAbilityPause = 1 / Stats.UsePerSec;
             abilityIsPaused = true;
+            playerReference.MovementStyle = MovementStyles.MovementStyle.FaceMovement;
         }
     }
 
