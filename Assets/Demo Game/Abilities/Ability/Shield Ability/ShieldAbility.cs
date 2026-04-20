@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using PlayerEvents;
 
 public class ShieldAbility : ActiveAbility
 {
@@ -32,6 +33,12 @@ public class ShieldAbility : ActiveAbility
         InterruptReload();
         playerReference.GetComponent<StatusEffectManager>().AddNewEffect(ShieldPrefab);
         ConsumeCharge(1);
+
+        //invoke used ability
+        UseAbility usedAbilEvent = new UseAbility();
+        usedAbilEvent.PlayerIdentity = playerReference;
+        usedAbilEvent.UsedAbility = this;
+        EventBus<UseAbility>.Invoke(usedAbilEvent);
     }
 
     public override void Cleanup()

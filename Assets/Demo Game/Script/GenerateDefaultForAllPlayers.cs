@@ -20,6 +20,14 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
 
                     a.AddToAssember(newInfo, Random.Range(0,highestIndex));
                 }
+
+                PassiveAbilitySlotManagement[] passiveSlots = Object.FindObjectsByType<PassiveAbilitySlotManagement>(FindObjectsSortMode.None);
+                foreach (PassiveAbilitySlotManagement a in passiveSlots)
+                {
+                    int highestIndex = a.allAbilities.Count;
+
+                    a.AddToAssember(newInfo, Random.Range(0,highestIndex));
+                }
                 character.GetComponent<CharAssembler>().assembleInfo = newInfo;
             } 
         }

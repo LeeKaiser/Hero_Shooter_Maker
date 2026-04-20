@@ -33,8 +33,8 @@ public abstract class Ability: MonoBehaviour
 
     protected AbilityManager manager; //reference to ability manager
     protected bool isActive = false; // 
-    private float currentAbilityPause = 0;
-    private bool abilityIsPaused;
+    protected float currentAbilityPause = 0;
+    protected bool abilityIsPaused;
     protected AbilityUI AbilityUIReference; //reference to ability's UI
 
     void Start()

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using StarterAssets;
+using PlayerEvents;
 
 public class DashAbility : ActiveAbility
 {
@@ -59,6 +60,12 @@ public class DashAbility : ActiveAbility
 
         //limit fire rate
         currentAttackPause = 1 / Stats.UsePerSec;
+
+        //invoke used ability
+        UseAbility usedAbilEvent = new UseAbility();
+        usedAbilEvent.PlayerIdentity = playerReference;
+        usedAbilEvent.UsedAbility = this;
+        EventBus<UseAbility>.Invoke(usedAbilEvent);
     }
 
     // Update is called once per frame
