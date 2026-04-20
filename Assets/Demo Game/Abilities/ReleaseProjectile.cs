@@ -1,4 +1,5 @@
 using UnityEngine;
+using PlayerEvents;
 
 public class ReleaseProjectile : ActiveAbility
 {
@@ -51,6 +52,12 @@ public class ReleaseProjectile : ActiveAbility
 
         //use a charge
         ConsumeCharge(1);
+
+        //invoke used ability
+        UseAbility usedAbilEvent = new UseAbility();
+        usedAbilEvent.PlayerIdentity = playerReference;
+        usedAbilEvent.UsedAbility = this;
+        EventBus<UseAbility>.Invoke(usedAbilEvent);
     }
 
 

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4932417b3b5a94e0591b157fb2f26d44, type: 3}
+  m_Name: RegenStats
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
+  AbilityName: regen passive
+  AbilityUIPrefab: {fileID: 4938865011410206441, guid: 32e428d8b9c624053a1c76d2ad34f222, type: 3}
+  MaxCharge: 1
+  ChargePointsRequired: 300
+  ChargePointsPerSec: 100
+  ChargeGainPerFullRecharge: 1
+  CanInterruptOthers: 0
+  MaxChargeTime: 0
+  UsePerSec: 1.5

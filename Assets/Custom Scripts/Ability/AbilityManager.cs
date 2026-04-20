@@ -119,6 +119,33 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
+    public void RemoveAbility(Ability ability)
+    {
+        //remove on ability list, ability class dictionary, and ability input dictionary
+        if (abilitiesList.Contains(ability))
+        {
+            abilitiesList.Remove(ability);
+            foreach(AbilityClass a in Enum.GetValues(typeof(AbilityClass)))
+            {
+                if (a == AbilityClass.None)
+                {
+                    continue;
+
+                }
+
+                else if (ability.CurrentAbilClass.HasFlag(a))
+                {
+                    AbilityClassDictionary[a] -= 1;
+                }
+            }
+            if (AbiltyToInputDictionary.ContainsKey(ability))
+            {
+                AbiltyToInputDictionary.Remove(ability);
+            }
+            Destroy(ability.gameObject);
+        }
+    }
+
     public void SetupInput(Ability ability, ActiveAbilityID abilID, InputUnit abilInput)
     {
         EventCaller.InputDict.Add(abilInput, abilID);

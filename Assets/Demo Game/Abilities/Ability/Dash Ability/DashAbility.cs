@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using StarterAssets;
+using PlayerEvents;
 
 public class DashAbility : ActiveAbility
 {
@@ -55,10 +56,16 @@ public class DashAbility : ActiveAbility
         playerMovement.ApplyExternalForce(direction, DashSpeed);
         playerMovement.SetVerticalMovementPause(true);
         playerMovement.SetHorizontalMovementPause(true);
-        playerReference.SetGravityMult(-1);
+        playerReference.ModifyGravityMult(-1);
 
         //limit fire rate
         currentAttackPause = 1 / Stats.UsePerSec;
+
+        //invoke used ability
+        UseAbility usedAbilEvent = new UseAbility();
+        usedAbilEvent.PlayerIdentity = playerReference;
+        usedAbilEvent.UsedAbility = this;
+        EventBus<UseAbility>.Invoke(usedAbilEvent);
     }
 
     // Update is called once per frame
@@ -73,7 +80,7 @@ public class DashAbility : ActiveAbility
                 playerMovement.SetHorizontalMovementPause(false);
                 playerMovement.ApplyExternalForce(Vector3.zero, 0);
                 playerMovement.ResetCharacterVelocity();
-                playerReference.SetGravityMult(1);
+                playerReference.ModifyGravityMult(1);
                 manager.NotifyAbilityEnded(this);
             }
         }

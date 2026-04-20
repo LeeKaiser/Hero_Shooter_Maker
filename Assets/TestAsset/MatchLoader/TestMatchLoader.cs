@@ -4,11 +4,16 @@ using UnityEngine.SceneManagement;
 public class TestMatchLoader : MonoBehaviour
 {
     public CharAssembleInfo CharAssemble;
+    public PlayerClient client;
 
-    public void AddActiveAbility(InputUnit input, GameObject ability)
+    void Start()
+    {
+        CharAssemble = client.CharacterReference.GetComponent<CharAssembler>().assembleInfo;
+    }
+    public void AddActiveAbility(ActiveAbilityGroup ability)
     {
         
-        CharAssemble.ActiveAbilityInput.Add(input,ability);
+        CharAssemble.ActiveAbilityList.Add(ability);
     }
 
     public void LoadMatch()
