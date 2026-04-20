@@ -105,7 +105,6 @@ GameObject:
   - component: {fileID: 5768423973182925592}
   - component: {fileID: 9192183406734142732}
   - component: {fileID: 1218578076016040419}
-  - component: {fileID: 4536298081332193613}
   m_Layer: 16
   m_Name: Attack Projectile (4)
   m_TagString: Untagged
@@ -251,7 +250,7 @@ MonoBehaviour:
   EnemyHitRads: 0.5
   AllyHitRads: 0.5
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.5
+  ProjectileHitRads: 0
   Range: 4
 --- !u!114 &1218578076016040419
 MonoBehaviour:
@@ -272,25 +271,6 @@ MonoBehaviour:
   DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 0
---- !u!114 &4536298081332193613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3486608437554455197}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 1
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  BaseDamage: 5
 --- !u!1 &4654230464608969014
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +283,8 @@ GameObject:
   - component: {fileID: 2790366069743162964}
   - component: {fileID: 5476207225777258085}
   - component: {fileID: 588450856709039600}
+  - component: {fileID: 8630015255865465095}
+  - component: {fileID: 3238732599138534145}
   m_Layer: 16
   m_Name: ProjectileGroup
   m_TagString: Untagged
@@ -397,6 +379,43 @@ MonoBehaviour:
   ApplyToAllies: 0
   ApplyToSelf: 0
   BaseDamage: 40
+--- !u!114 &8630015255865465095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654230464608969014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86c835fcfb0a4b36bd99fc6c5c028c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InvokeOnHitAttack
+  MaxHits: 99
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 1
+  ApplyToSelf: 0
+--- !u!114 &3238732599138534145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4654230464608969014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
+  MaxHits: 1
+  SpawnsObjectInInfo: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 0
+  ApplyToAllies: 1
+  ApplyToSelf: 0
+  BaseHealing: 5
 --- !u!1 &5107475467614177346
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +431,6 @@ GameObject:
   - component: {fileID: 5607050033198609883}
   - component: {fileID: 2640514154884202047}
   - component: {fileID: 1021484119881018774}
-  - component: {fileID: 2233585852860362009}
   m_Layer: 16
   m_Name: Attack Projectile (2)
   m_TagString: Untagged
@@ -558,7 +576,7 @@ MonoBehaviour:
   EnemyHitRads: 0.5
   AllyHitRads: 0.5
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.5
+  ProjectileHitRads: 0
   Range: 4
 --- !u!114 &1021484119881018774
 MonoBehaviour:
@@ -579,25 +597,6 @@ MonoBehaviour:
   DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 0
---- !u!114 &2233585852860362009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107475467614177346}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 1
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  BaseDamage: 5
 --- !u!1 &5218061893704842650
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +612,6 @@ GameObject:
   - component: {fileID: 738496204772452124}
   - component: {fileID: 9219291994684773028}
   - component: {fileID: 5787689042838096596}
-  - component: {fileID: 8053201658088721299}
   m_Layer: 16
   m_Name: Attack Projectile (1)
   m_TagString: Untagged
@@ -759,7 +757,7 @@ MonoBehaviour:
   EnemyHitRads: 0.5
   AllyHitRads: 0.5
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.5
+  ProjectileHitRads: 0
   Range: 4
 --- !u!114 &5787689042838096596
 MonoBehaviour:
@@ -780,25 +778,6 @@ MonoBehaviour:
   DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 0
---- !u!114 &8053201658088721299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5218061893704842650}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 1
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  BaseDamage: 5
 --- !u!1 &7545246783684402632
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +793,6 @@ GameObject:
   - component: {fileID: 1208352428138313242}
   - component: {fileID: 6703413309223287289}
   - component: {fileID: 4711720559312015410}
-  - component: {fileID: 7864876840672064893}
   m_Layer: 16
   m_Name: Attack Projectile
   m_TagString: Untagged
@@ -960,7 +938,7 @@ MonoBehaviour:
   EnemyHitRads: 0.5
   AllyHitRads: 0.5
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.5
+  ProjectileHitRads: 0
   Range: 4
 --- !u!114 &4711720559312015410
 MonoBehaviour:
@@ -981,25 +959,6 @@ MonoBehaviour:
   DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 0
---- !u!114 &7864876840672064893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7545246783684402632}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 1
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  BaseDamage: 5
 --- !u!1 &8296561053420629022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +974,6 @@ GameObject:
   - component: {fileID: 3048518576655520691}
   - component: {fileID: 548363328345999905}
   - component: {fileID: 8025759859162602117}
-  - component: {fileID: 4030525188229952147}
   m_Layer: 16
   m_Name: Attack Projectile (3)
   m_TagString: Untagged
@@ -1161,7 +1119,7 @@ MonoBehaviour:
   EnemyHitRads: 0.5
   AllyHitRads: 0.5
   ObstacleHitRads: 0.125
-  ProjectileHitRads: 0.5
+  ProjectileHitRads: 0
   Range: 4
 --- !u!114 &8025759859162602117
 MonoBehaviour:
@@ -1182,22 +1140,3 @@ MonoBehaviour:
   DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 0
---- !u!114 &4030525188229952147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296561053420629022}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
-  MaxHits: 1
-  SpawnsObjectInInfo: 0
-  HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
-  ApplyToSelf: 1
-  BaseDamage: 5
