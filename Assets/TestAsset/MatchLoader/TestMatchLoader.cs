@@ -10,10 +10,10 @@ public class TestMatchLoader : MonoBehaviour
     {
         CharAssemble = client.CharacterReference.GetComponent<CharAssembler>().assembleInfo;
     }
-    public void AddActiveAbility(InputUnit input, GameObject ability)
+    public void AddActiveAbility(ActiveAbilityGroup ability)
     {
         
-        CharAssemble.ActiveAbilityInput.Add(input,ability);
+        CharAssemble.ActiveAbilityList.Add(ability);
     }
 
     public void LoadMatch()

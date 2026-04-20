@@ -18,12 +18,9 @@ public class CharAssembler : MonoBehaviour
     void Start()
     {
         //tie actives to input
-        foreach (KeyValuePair<InputUnit,GameObject> abil in assembleInfo.ActiveAbilityInput)
+        foreach (ActiveAbilityGroup abil in assembleInfo.ActiveAbilityList)
         {
-            GameObject AbilityObject = Instantiate(abil.Value, this.transform);
-            ActiveAbility activeAbility = AbilityObject.GetComponent<ActiveAbility>();
-            activeAbility.AbilityID = new ActiveAbilityID();
-            abilityManager.SetupInput(activeAbility, activeAbility.AbilityID, abil.Key);
+            abil.AddAllAbilities(abilityManager);
         }
         //add other abilities
         foreach (GameObject abil in assembleInfo.OtherAbilities)

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a281a002676465390dea6c6fe391f7, type: 3}
+  m_Name: BombActiveSlot2
+  m_EditorClassIdentifier: Assembly-CSharp::ActiveAbilityGroup
+  AbilityList:
+  - {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
+  InputList:
+  - {fileID: 11400000, guid: 1c1fd533d126d4b43b93fec1fcd64a5a, type: 2}

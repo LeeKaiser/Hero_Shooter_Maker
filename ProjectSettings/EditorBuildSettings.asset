@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo Game/Scenes/PreMatchScreen.unity
     guid: 6e14d05f4750c40a284d923634c0e982
+  - enabled: 1
+    path: Assets/Demo Game/Scenes/MatchScene.unity
+    guid: 02ba3fa642f3646b090bd631cc1e030a
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
