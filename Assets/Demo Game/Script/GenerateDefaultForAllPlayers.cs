@@ -11,9 +11,17 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
         {
             foreach (CharCore character in teams.TeamMembers)
             {
-                character.GetComponent<CharAssembler>().assembleInfo = Instantiate(defaultInfo);
+                CharAssembleInfo newInfo = Instantiate(defaultInfo);
+                //for this demo, generate random selection of attack and abilities for all players
+                AbilitySlotManagement[] slots = Object.FindObjectsByType<AbilitySlotManagement>(FindObjectsSortMode.None);
+                foreach (AbilitySlotManagement a in slots)
+                {
+                    int highestIndex = a.allActiveAbilities.Count;
 
-            }
+                    a.AddToAssember(newInfo, Random.Range(0,highestIndex));
+                }
+                character.GetComponent<CharAssembler>().assembleInfo = newInfo;
+            } 
         }
     }
 
