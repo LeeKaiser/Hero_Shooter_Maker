@@ -170,6 +170,8 @@ public class CharCore : MonoBehaviour
         }
     }
 
+    public void ModifyMaxHealth(int health){currentStats.HitPointsBase += health;}
+
     public void ModifyForwardSpeed(float speedMod){forwardSpeedMult += speedMod;}
 
     public void ModifyStrafeSpeed(float speedMod){strafeSpeedMult += speedMod;}

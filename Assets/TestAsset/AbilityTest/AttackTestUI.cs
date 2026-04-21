@@ -9,6 +9,8 @@ public class AttackTestUI : AbilityUI
     public TMP_Text maxCharge;
     public Slider chargeProgress;
 
+    
+
     public override void Initialize()
     {
         if (AbilityReference == null)
@@ -28,4 +30,5 @@ public class AttackTestUI : AbilityUI
         chargeRemaining.text = AbilityReference.GetCurrentCharge() + "";
         chargeProgress.value = AbilityReference.GetChargePointProgress();
     }
+
 }

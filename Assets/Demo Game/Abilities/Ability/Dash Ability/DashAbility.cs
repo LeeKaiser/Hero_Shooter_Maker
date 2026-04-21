@@ -13,6 +13,7 @@ public class DashAbility : ActiveAbility
     public float DashSpeed;
     [Tooltip("if set to true, player dashes in movement direction, if set to false, dash to look direction")]
     public bool DashMoveDirection = false;
+    public GameObject DashEffect;
 
     Transform targetPoint;
     ThirdPersonController playerMovement;
@@ -57,6 +58,8 @@ public class DashAbility : ActiveAbility
         playerMovement.SetVerticalMovementPause(true);
         playerMovement.SetHorizontalMovementPause(true);
         playerReference.ModifyGravityMult(-1);
+        GameObject newDashEffect = Instantiate(DashEffect, playerReference.PlayerArmature.transform.position, transform.rotation, playerReference.PlayerArmature.transform);
+        Destroy(newDashEffect,1);
 
         //limit fire rate
         currentAttackPause = 1 / Stats.UsePerSec;

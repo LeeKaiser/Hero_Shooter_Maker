@@ -26,6 +26,7 @@ public class CharAssembler : MonoBehaviour
         foreach (GameObject abil in assembleInfo.OtherAbilities)
         {
             GameObject AbilityObject = Instantiate(abil, this.transform);
+            AbilityObject.SetActive(true);
         }
     }
     

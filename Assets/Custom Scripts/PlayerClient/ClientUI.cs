@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using PlayerEvents;
+using UnityEngine.UI;
 
 public class ClientUI : MonoBehaviour
 {
@@ -53,9 +54,18 @@ public class ClientUI : MonoBehaviour
         {
             abilUIScript.AbilityReference = ability;
             abilUIScript.Initialize();
+            ability.SetAbilityUI(abilUIScript);
+
+            //change UI position if overlapping
+            AbilityUI[] childUIs = GetComponentsInChildren<AbilityUI>(false);
+            foreach(AbilityUI uis in childUIs)
+            {
+                abilUIScript.ShiftIfOverlapping(uis.GetComponent<RectTransform>());
+            }
+
+            AbilitiesInUI.Add(ability);
         }
-        ability.SetAbilityUI(abilUIScript);
-        AbilitiesInUI.Add(ability);
+        
     }
 
     void OnEnable()

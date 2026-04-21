@@ -85,7 +85,7 @@ public class ClientDamageNumber : MonoBehaviour
                 Vector3 damageNumPos = CharacterReference.PlayerArmature.transform.position;
                 damageNumPos.y += CharacterReference.PlayerArmature.GetComponent<CharacterController>().height;
                 damageNumPos += new Vector3(Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f),Random.Range(-0.3f,0.3f));
-                GameObject damageNoVis = Instantiate(DamageNumberPrefab, damageNumPos , Quaternion.identity);
+                GameObject damageNoVis = Instantiate(HealNumberPrefab, damageNumPos , Quaternion.identity);
                 damageNoVis.GetComponent<DamageNumberScript>().Init(PlayerCamera, ""+character.Value);
             }
             

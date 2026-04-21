@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4117115725492988505}
   - component: {fileID: 2371623512047102482}
   - component: {fileID: 4677647275391394857}
-  - component: {fileID: 1849800936458623266}
+  - component: {fileID: 2781575197679933573}
   m_Layer: 16
   m_Name: AttackProjectile
   m_TagString: Untagged
@@ -203,7 +203,7 @@ MonoBehaviour:
   DestroyFromEnemy: 1
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 1
---- !u!114 &1849800936458623266
+--- !u!114 &2781575197679933573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,16 +212,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4590517186784251951}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
+  m_Script: {fileID: 11500000, guid: e86c835fcfb0a4b36bd99fc6c5c028c0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
-  MaxHits: 1
+  m_EditorClassIdentifier: Assembly-CSharp::InvokeOnHitAttack
+  MaxHits: 99
   SpawnsObjectInInfo: 0
-  HitResetTime: 0
-  ApplyToEnemy: 0
+  HitResetTime: 0.5
+  ApplyToEnemy: 1
   ApplyToAllies: 1
   ApplyToSelf: 0
-  BaseHealing: 0
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0

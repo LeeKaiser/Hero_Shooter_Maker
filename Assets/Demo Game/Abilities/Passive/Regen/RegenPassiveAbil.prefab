@@ -46,5 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RegenPassive
   Stats: {fileID: 11400000, guid: 18ed0f109a3e7407fa1ff93c314e63e7, type: 2}
   CurrentAbilClass: 16
-  timeUntilRegen: 0
   regenAmount: 10

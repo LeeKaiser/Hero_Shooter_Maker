@@ -6,7 +6,7 @@ public class ApplyDisplacement : ApplyEffect
     protected override void ActivateEffect(CharCore targetPlayer)
     {
         DisplacementEffect.sourcePosition = transform.position;
-        targetPlayer.GetComponent<StatusEffectManager>().AddNewEffect(DisplacementEffect.gameObject);
+        targetPlayer.GetComponent<StatusEffectManager>().AddNewEffect(DisplacementEffect.gameObject, info.OwningPlayer);
 
     }
 }

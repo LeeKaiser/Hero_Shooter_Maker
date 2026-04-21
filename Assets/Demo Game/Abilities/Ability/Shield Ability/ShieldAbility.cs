@@ -31,7 +31,7 @@ public class ShieldAbility : ActiveAbility
         }
 
         InterruptReload();
-        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(ShieldPrefab);
+        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(ShieldPrefab, playerReference);
         ConsumeCharge(1);
 
         //invoke used ability

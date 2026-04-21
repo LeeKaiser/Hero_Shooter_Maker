@@ -47,7 +47,7 @@ public class ProjectilePhysics : MonoBehaviour
         {
             info.parentInfo.ObstacleHit.AddRange(info.ObstacleHit);
             info.parentInfo.EnemyHit.AddRange(info.EnemyHit);
-            info.parentInfo.AllyHit.AddRange(info.EnemyHit);
+            info.parentInfo.AllyHit.AddRange(info.AllyHit);
             info.parentInfo.ProjectileHit.AddRange(info.ProjectileHit);
         }
         transform.position = nextPosition;
