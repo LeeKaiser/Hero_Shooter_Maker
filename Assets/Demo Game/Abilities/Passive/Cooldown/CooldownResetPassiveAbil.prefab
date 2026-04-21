@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 2800742771717196102}
+  - component: {fileID: -3562549263342130075}
   m_Layer: 6
-  m_Name: RegenPassiveAbil
+  m_Name: CooldownResetPassiveAbil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2800742771717196102
+--- !u!114 &-3562549263342130075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938865011410206441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9e743ab7fdf4809a3e4dbf29b95177, type: 3}
+  m_Script: {fileID: 11500000, guid: 41d2cfdafb84a439a80c09d62c09c0d0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RegenPassive
-  Stats: {fileID: 11400000, guid: 18ed0f109a3e7407fa1ff93c314e63e7, type: 2}
-  CurrentAbilClass: 16
-  regenAmount: 10
+  m_EditorClassIdentifier: Assembly-CSharp::CooldownResetPassive
+  Stats: {fileID: 11400000, guid: 158be5fb2f7dc4fcfb2b09db676ae75c, type: 2}
+  CurrentAbilClass: 32
+  RechargePercent: 0.15

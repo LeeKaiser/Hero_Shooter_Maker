@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac5a2720a9bf401594f3c85892612ff, type: 3}
   m_Name: PoisonStatusStat
   m_EditorClassIdentifier: Assembly-CSharp::StatusEffectStats
-  EffectDuration: 0
+  EffectDuration: 2
   ExpireViaTime: 1
-  effectCategory: 0
+  effectCategory: 2
   DeleteOnExpire: 1
-  DoesStack: 1
+  DoesStack: 0

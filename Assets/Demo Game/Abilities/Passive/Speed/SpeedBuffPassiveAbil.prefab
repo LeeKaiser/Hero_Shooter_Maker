@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 2800742771717196102}
+  - component: {fileID: 2467127182696777037}
   m_Layer: 6
-  m_Name: RegenPassiveAbil
+  m_Name: SpeedBuffPassiveAbil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2800742771717196102
+--- !u!114 &2467127182696777037
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938865011410206441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9e743ab7fdf4809a3e4dbf29b95177, type: 3}
+  m_Script: {fileID: 11500000, guid: cf63f859f66fe441b919830799389a39, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RegenPassive
-  Stats: {fileID: 11400000, guid: 18ed0f109a3e7407fa1ff93c314e63e7, type: 2}
-  CurrentAbilClass: 16
-  regenAmount: 10
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedBuffPassive
+  Stats: {fileID: 11400000, guid: 38260808cdced4227b65439dc20efe09, type: 2}
+  CurrentAbilClass: 0
+  ExtraMaxHP: 0
