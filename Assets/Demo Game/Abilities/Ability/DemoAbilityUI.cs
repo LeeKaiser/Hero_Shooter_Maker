@@ -2,14 +2,11 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class AttackTestUI : AbilityUI
+public class DemoAbilityUI : AbilityUI
 {
     public TMP_Text abilityName;
     public TMP_Text chargeRemaining;
-    public TMP_Text maxCharge;
     public Slider chargeProgress;
-
-    
 
     public override void Initialize()
     {
@@ -19,7 +16,6 @@ public class AttackTestUI : AbilityUI
         }
         abilityName.text = AbilityReference.Stats.AbilityName;
         chargeRemaining.text = AbilityReference.GetCurrentCharge() + "";
-        maxCharge.text = AbilityReference.Stats.MaxCharge + "";
         chargeProgress.maxValue = AbilityReference.Stats.ChargePointsRequired;
         chargeProgress.value = AbilityReference.GetChargePointProgress();
         

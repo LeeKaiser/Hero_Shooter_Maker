@@ -49,3 +49,4 @@ MonoBehaviour:
   DashDistance: 4
   DashSpeed: 16
   DashMoveDirection: 1
+  DashEffect: {fileID: 4938865011410206441, guid: 88a923749a1524462a64dcf25a2d6b4d, type: 3}

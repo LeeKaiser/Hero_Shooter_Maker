@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dash Stats
   m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
   AbilityName: Dash
-  AbilityUIPrefab: {fileID: 5694682100280509937, guid: eb80073631a1045f5817d540ddd2b811, type: 3}
+  AbilityUIPrefab: {fileID: 5694682100280509937, guid: fd3c95a9de7d848ccbf424ad4aecc159, type: 3}
   MaxCharge: 2
   ChargePointsRequired: 500
   ChargePointsPerSec: 100

@@ -33,8 +33,6 @@ public class PassiveAbilitySlotManagement : MonoBehaviour
         }
         
         //add ability at index
-        Debug.Log(index);
-        Debug.Log(allAbilities.Count);
         assemble.OtherAbilities.Add(allAbilitiesCopy[index]);
     }
 }

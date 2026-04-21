@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpeedBuffPassive
   Stats: {fileID: 11400000, guid: 38260808cdced4227b65439dc20efe09, type: 2}
   CurrentAbilClass: 0
-  ExtraMaxHP: 0
+  ExtraSpeedMult: 0.25

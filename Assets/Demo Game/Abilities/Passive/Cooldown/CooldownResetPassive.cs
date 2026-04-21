@@ -24,8 +24,8 @@ public class CooldownResetPassive : Ability
         {
             if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active))
             {
-                float chargeAmount = (abil.Stats.MaxCharge / abil.Stats.ChargeGainPerFullRecharge) * abil.Stats.ChargePointsRequired * RechargePercent;
-                Debug.Log($"chargeAmount: {chargeAmount}, ability: {abil}" );
+                float chargeAmount = (abil.Stats.MaxCharge / abil.Stats.ChargeGainPerFullRecharge) * 
+                    abil.Stats.ChargePointsRequired * RechargePercent;
                 abil.RecoverChargePoint(chargeAmount);
             }
         }

@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 6355035046825791271}
   - component: {fileID: 1646099405858701527}
   m_Layer: 6
-  m_Name: RegenUI
+  m_Name: AttackUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -408,9 +408,9 @@ RectTransform:
   - {fileID: 6583542400915179971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 123, y: 72}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -133, y: 72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646099405858701527
@@ -425,7 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36408fea8355488f8578ea4d9fce622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackTestUI
-  AbilityReference: {fileID: 0}
+  abilityRef: {fileID: 0}
   abilityName: {fileID: 4376929249614555908}
   chargeRemaining: {fileID: 2870035484266830564}
   maxCharge: {fileID: 6893994419249439565}

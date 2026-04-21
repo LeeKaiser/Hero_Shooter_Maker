@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932417b3b5a94e0591b157fb2f26d44, type: 3}
   m_Name: emptyStats
   m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
-  AbilityName: Defense
+  AbilityName: Speed
   AbilityUIPrefab: {fileID: 5694682100280509937, guid: eb80073631a1045f5817d540ddd2b811, type: 3}
   MaxCharge: 1
   ChargePointsRequired: 100

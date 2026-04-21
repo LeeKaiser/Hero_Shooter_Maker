@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CloseRangeAttackStats
   m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
   AbilityName: Close Range
-  AbilityUIPrefab: {fileID: 5694682100280509937, guid: eb80073631a1045f5817d540ddd2b811, type: 3}
+  AbilityUIPrefab: {fileID: 5694682100280509937, guid: e4a953c1ef13e4abfbed61c99976a534, type: 3}
   MaxCharge: 5
   ChargePointsRequired: 80
   ChargePointsPerSec: 100

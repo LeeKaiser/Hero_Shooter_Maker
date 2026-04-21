@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealerPassive
   Stats: {fileID: 11400000, guid: 314cd40cfc60a45d1be55a67745fa488, type: 2}
   CurrentAbilClass: 12
-  HealPercentage: 0.35
+  HealPercentage: 0.5
