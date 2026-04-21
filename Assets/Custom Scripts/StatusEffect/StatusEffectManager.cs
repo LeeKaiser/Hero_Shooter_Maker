@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using StarterAssets;
 using System;
+using System.Linq;
 
 [System.Flags]
     public enum EffectCategory
@@ -31,21 +32,39 @@ public class StatusEffectManager : MonoBehaviour
     }
 
     //get effect
-    public void AddNewEffect(GameObject newEffect)
+    public void AddNewEffect(GameObject newEffect, CharCore owningPlayer)
     {
+        //filter out non stacking effect
+        StatusEffect effect = newEffect.GetComponent<StatusEffect>();
+        if (!effect.Stats.DoesStack)
+        {
+            //check if list already has a status effect of same type
+            StatusEffect existing = statusEffectList.FirstOrDefault(e => e.GetType().IsAssignableFrom(effect.GetType()));
+            if (existing != null)
+            {
+                //if duration of new is longer than remaining duration, reset duration
+                if (existing.GetDuration() < effect.Stats.EffectDuration)
+                {
+                    existing.SetDuration(effect.Stats.EffectDuration);
+                    return;
+                }
+            }
+        }
+
         // Make a copy of the prefab and attach it to the player
         GameObject EffectObj = Instantiate(newEffect, playerReference.PlayerArmature.transform.position, playerReference.PlayerArmature.transform.rotation, playerReference.PlayerArmature.transform);
         EffectObj.transform.position += Vector3.up * (playerReference.PlayerArmature.GetComponent<CharacterController>().height / 2);
         // Grab the Ability script on that prefab
-        StatusEffect effect = EffectObj.GetComponent<StatusEffect>();
+         effect = EffectObj.GetComponent<StatusEffect>();
         if (effect == null)
         {
             Debug.LogError("The prefab does not have an status effect component!");
             return;
         }
 
-        effect.SetAffectedPlayer(playerReference);
+        effect.SetAffectedPlayer(playerReference,owningPlayer);
         effect.ApplyEffect();
+
         statusEffectList.Add(effect);
     }
 

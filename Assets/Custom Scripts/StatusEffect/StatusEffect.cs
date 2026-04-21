@@ -8,6 +8,7 @@ public abstract class StatusEffect : MonoBehaviour
     protected float RemainingDuration;
 
     protected CharCore AffectedPlayer;
+    protected CharCore OwningPlayer;
 
     protected bool Active = true; //is active
 
@@ -33,13 +34,21 @@ public abstract class StatusEffect : MonoBehaviour
 
     }
 
+    public void SetDuration(float duration)
+    {
+        RemainingDuration = duration;
+    }
+
+    public float GetDuration(){return RemainingDuration;}
+
     public bool CurrentlyActive()
     {
         return Active;
     }
 
-    public void SetAffectedPlayer(CharCore player)
+    public void SetAffectedPlayer(CharCore player, CharCore owningPlayer)
     {
         AffectedPlayer = player;
+        OwningPlayer = owningPlayer;
     }
 }

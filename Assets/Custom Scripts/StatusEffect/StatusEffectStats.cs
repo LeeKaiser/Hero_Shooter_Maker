@@ -19,4 +19,7 @@ public class StatusEffectStats : ScriptableObject
 
     [Tooltip("if true, status effect object is deleted from the game when it expires")]
     public bool DeleteOnExpire = true;
+
+    [Tooltip("if true, status effect can be applied to player that already has this effect")]
+    public bool DoesStack = true;
 }

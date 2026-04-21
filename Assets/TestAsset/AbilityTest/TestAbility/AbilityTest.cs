@@ -33,7 +33,7 @@ public class AbilityTest : ActiveAbility
         }
 
         InterruptReload();
-        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab);
+        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab, playerReference);
         ConsumeCharge(1);
     }
 
