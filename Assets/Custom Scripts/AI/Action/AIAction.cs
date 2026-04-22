@@ -9,7 +9,7 @@ public abstract class AIAction : ScriptableObject
     public Transform MoveTarget;
     public Transform AimTarget;
     public ObjectDetection Detection;
-    public InputEventCaller InputCall;
+    public InputConverter InputConvert;
     public AIMovement Movement;
 
     public Ability abilityToUse = null;
@@ -19,12 +19,12 @@ public abstract class AIAction : ScriptableObject
     //  while holding input is true, continuously make hold input, 
     // when changing from holding input from true to false, make release input
 
-    public void Init(Transform movement, Transform aim, ObjectDetection detection, InputEventCaller input, AIMovement move)
+    public void Init(Transform movement, Transform aim, ObjectDetection detection, InputConverter input, AIMovement move)
     {
         MoveTarget = movement;
         AimTarget = aim;
         Detection = detection;
-        InputCall = input;
+        InputConvert = input;
         Movement = move;
     }
 
@@ -53,18 +53,18 @@ public abstract class AIAction : ScriptableObject
     public void PressInput()
     {
         HoldingInput = true;
-        InputCall.AddPressInput(abilityInput.InputCombo);
+        InputConvert.AddPressInput(abilityInput.InputCombo);
     }
 
     public void HoldInput()
     {
-        InputCall.AddHoldInput(abilityInput.InputCombo);
+        InputConvert.AddHoldInput(abilityInput.InputCombo);
     }
 
     public void ReleaseInput()
     {
         HoldingInput = false;
-        InputCall.AddReleaseInput(abilityInput.InputCombo);
+        InputConvert.AddReleaseInput(abilityInput.InputCombo);
     }
 
     public abstract void DetermineMovement();

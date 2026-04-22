@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.AI;
-using StarterAssets;
 using MovementInputEvents;
 
 /*
@@ -20,7 +19,7 @@ public class AIMovement : MonoBehaviour
     public Transform AimTarget;
     public Transform MoveTarget;
 
-    private StarterAssetsInputs movementInput;
+    private InputConverter inputConvert;
 
     private Vector3 agentDirection;
     private float navmeshPause = 0;
@@ -29,7 +28,7 @@ public class AIMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         playerReference = GetComponentInParent<CharCore>();
-        movementInput = GetComponent<StarterAssetsInputs>();
+        inputConvert = GetComponent<InputConverter>();
         agent.updateRotation = false;
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
@@ -144,8 +143,8 @@ public class AIMovement : MonoBehaviour
         
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
-        movementInput.JumpInput(inputJump);
-        movementInput.MoveInput(agentInput);
+        inputConvert.JumpInput(inputJump);
+        inputConvert.MoveInput(agentInput);
     }
 
     

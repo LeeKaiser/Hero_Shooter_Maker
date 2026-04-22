@@ -13,7 +13,7 @@ public class AIProcess : MonoBehaviour
     [SerializeField] private ObjectDetection objectDetection;
     //[SerializeField] private BehaviorGraph currentBehavior;
     [SerializeField] private AIAction currentAction;
-    [SerializeField] private InputEventCaller inputCall;
+    [SerializeField] private InputConverter inputConvert;
     [SerializeField] private AIMovement movement;
 
     private DecisionTree decisionTreeRuntime;
@@ -30,7 +30,7 @@ public class AIProcess : MonoBehaviour
         //step 0: start
         objectDetection = GetComponent<ObjectDetection>();
         movement = GetComponent<AIMovement>();
-        
+        inputConvert = GetComponent<InputConverter>();
         decisionTreeRuntime = Instantiate(decisionTree);
         
     }
@@ -76,7 +76,7 @@ public class AIProcess : MonoBehaviour
                 currentAction = chosenAction;
                 actionRunTime = Instantiate(currentAction);
             }
-            actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputCall, movement);
+            actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputConvert, movement);
 
             //step 3: act on decision
             actionRunTime.DetermineMovement();

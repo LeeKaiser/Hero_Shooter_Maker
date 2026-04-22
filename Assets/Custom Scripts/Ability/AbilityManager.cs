@@ -22,7 +22,7 @@ public class AbilityManager : MonoBehaviour
     public Dictionary <AbilityClass, int> AbilityClassDictionary = new Dictionary<AbilityClass, int>();
 
     public Dictionary <Ability, InputUnit> AbiltyToInputDictionary = new Dictionary<Ability, InputUnit>();
-    public InputEventCaller EventCaller;
+    public InputConverter InputConvert;
 
     void Awake()
     {
@@ -31,7 +31,7 @@ public class AbilityManager : MonoBehaviour
             if (a == AbilityClass.None) continue;
             AbilityClassDictionary[a] = 0;
         }
-        EventCaller = transform.Find("PlayerArmature").GetComponent<InputEventCaller>();
+        InputConvert = PlayerReference.PlayerArmature.GetComponent<InputConverter>();
     }
 
     void Update()
@@ -148,7 +148,7 @@ public class AbilityManager : MonoBehaviour
 
     public void SetupInput(Ability ability, ActiveAbilityID abilID, InputUnit abilInput)
     {
-        EventCaller.InputDict.Add(abilInput, abilID);
+        InputConvert.InputDict.Add(abilInput, abilID);
         AbiltyToInputDictionary.Add(ability, abilInput);
     }
 }
