@@ -201,7 +201,7 @@ public class DecisionTreeEditorWindow : EditorWindow
                 if (GUILayout.Button("Add Yes Node"))
                 {
                     newNode = CreateNode();
-                    
+                    currentDecisionTreeNode = node;
                     isAddYes = true;
                 }
             }
@@ -212,6 +212,7 @@ public class DecisionTreeEditorWindow : EditorWindow
                 if (GUILayout.Button("Add No Node"))
                 {
                     newNode = CreateNode();
+                    currentDecisionTreeNode = node;
                     
                 }
             }

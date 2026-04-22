@@ -1,8 +1,9 @@
 using UnityEngine;
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
+#endif
 using System.Collections.Generic;
 using System;
-using StarterAssets;
 using InputOptions;
 /*
 InputListener
@@ -12,8 +13,8 @@ public class InputListener : MonoBehaviour
 {
     
     private PlayerInput playerInput;
-    private InputEventCaller inputRead;
     protected Dictionary<InputAction, InputEnum> inputDict = new Dictionary<InputAction, InputEnum>();
+    private InputConverter inputConvert;
     
     void Awake()
     {
@@ -51,6 +52,28 @@ public class InputListener : MonoBehaviour
         inputDict.Add(playerInput.actions["Misc[O]"],InputEnum.MiscO );
         inputDict.Add(playerInput.actions["Misc[M]"],InputEnum.MiscM );
     }
+
+    public void SetInputConverter(InputConverter inConvert){inputConvert = inConvert;}
+
+    #if ENABLE_INPUT_SYSTEM
+    public void OnMove(InputValue value)
+    {
+        inputConvert.MoveInput(value.Get<Vector2>());
+    }
+
+    public void OnLook(InputValue value)
+    {
+        if(inputConvert.cursorInputForLook)
+        {
+            inputConvert.LookInput(value.Get<Vector2>());
+        }
+    }
+
+    public void OnJump(InputValue value)
+    {
+        inputConvert.JumpInput(value.isPressed);
+    }
+    #endif
     
     void Update()
     {
@@ -58,23 +81,16 @@ public class InputListener : MonoBehaviour
         {
             if (x.Key.WasPressedThisFrame())
             {
-                inputRead.AddPressInput(x.Value);
+                inputConvert.AddPressInput(x.Value);
             }
             if (x.Key.IsPressed())
             {
-                inputRead.AddHoldInput(x.Value);
+                inputConvert.AddHoldInput(x.Value);
             }
             if (x.Key.WasReleasedThisFrame())
             {
-                inputRead.AddReleaseInput(x.Value);
+                inputConvert.AddReleaseInput(x.Value);
             }
         }
-    }
-    
-    public void SetInputAction(InputEventCaller input)
-    {
-        inputRead = input;
-    }
-    
-    
+    }    
 }

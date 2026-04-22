@@ -38,7 +38,7 @@ public class CameraControls : MonoBehaviour
     // cinemachine
     private float _cinemachineTargetYaw;
     private float _cinemachineTargetPitch;
-    private StarterAssetsInputs _input;
+    private InputConverter _input;
     private GameObject _cameraGameObj;
     private Camera _mainCamera;
     private const float _threshold = 0.01f;
@@ -57,7 +57,7 @@ public class CameraControls : MonoBehaviour
     
     void Start()
     {
-        _input = GetComponent<StarterAssetsInputs>();
+        _input = GetComponent<InputConverter>();
         _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
     }
 

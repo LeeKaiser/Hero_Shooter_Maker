@@ -148,8 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilitiesList: []
   PlayerReference: {fileID: 2752219482786120103}
-  PlayerCanvas: {fileID: 0}
-  EventCaller: {fileID: 0}
+  InputConvert: {fileID: 0}
 --- !u!114 &7274215674998390361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,9 +637,6 @@ PrefabInstance:
       addedObject: {fileID: 1882099305404397499}
     - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4959994725332064017}
-    - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 7109724660721372481}
     - targetCorrespondingSourceObject: {fileID: 4416926081852918481, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       insertIndex: -1
@@ -687,7 +683,7 @@ MonoBehaviour:
   decisionTree: {fileID: 11400000, guid: 1b5dd972c49fc4ff1aaf737d0d848d52, type: 2}
   objectDetection: {fileID: 5118836739238029101}
   currentAction: {fileID: 0}
-  inputCall: {fileID: 4959994725332064017}
+  inputConvert: {fileID: 0}
   movement: {fileID: 0}
   AimTarget: {fileID: 2502441231928985280}
   MoveTarget: {fileID: 3312555172618419675}
@@ -743,18 +739,6 @@ MonoBehaviour:
   ClickLayers:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &4959994725332064017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7308121963934228878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f847eee0933c4eec8da13223b00cd35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputEventCaller
 --- !u!195 &7109724660721372481
 NavMeshAgent:
   m_ObjectHideFlags: 0

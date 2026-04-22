@@ -11,8 +11,6 @@ controls movement
 code based on the Starter Assets package
 */
 
-namespace StarterAssets
-{
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM 
     //[RequireComponent(typeof(PlayerInput))]
@@ -114,7 +112,7 @@ namespace StarterAssets
 #endif
         private Animator _animator;
         private CharacterController _controller;
-        private StarterAssetsInputs _input;
+        private InputConverter _input;
         private bool _hasAnimator;
         private bool IsCurrentDeviceMouse
         {
@@ -139,7 +137,7 @@ namespace StarterAssets
         {   
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
-            _input = GetComponent<StarterAssetsInputs>();
+            _input = GetComponent<InputConverter>();
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -508,4 +506,3 @@ namespace StarterAssets
 
         public Vector3 GetCurrentDirection(){return _currentDirection;}
     }
-}
