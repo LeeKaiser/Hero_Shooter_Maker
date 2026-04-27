@@ -32,13 +32,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  ChildYesNode: {fileID: 5984552882973638823}
+  ChildYesNode: {fileID: 0}
   ChildNoNode: {fileID: 0}
   ParentNodes:
   - {fileID: -819633417283515482}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
+  IsAction: 1
   ParameterFloat: 0
   EditorPosition: {x: 475.5432, y: 353.06128}
 --- !u!114 &11400000
@@ -58,27 +58,6 @@ MonoBehaviour:
   - {fileID: -819633417283515482}
   - {fileID: 3945503231547559122}
   - {fileID: -511588644610987827}
-  - {fileID: 5984552882973638823}
---- !u!114 &3317318651863636812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  ChildYesNode: {fileID: 0}
-  ChildNoNode: {fileID: 0}
-  ParentNodes: []
-  NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
-  ParameterFloat: 0
-  EditorPosition: {x: 0, y: 0}
 --- !u!114 &3945503231547559122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,28 +75,7 @@ MonoBehaviour:
   ParentNodes:
   - {fileID: -819633417283515482}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
+  IsAction: 1
   ParameterFloat: 0
   EditorPosition: {x: 813.1653, y: 353.06146}
---- !u!114 &5984552882973638823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
-  ChildYesNode: {fileID: 0}
-  ChildNoNode: {fileID: 0}
-  ParentNodes:
-  - {fileID: -511588644610987827}
-  NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
-  ParameterFloat: 0
-  EditorPosition: {x: 275.5432, y: 503.06128}

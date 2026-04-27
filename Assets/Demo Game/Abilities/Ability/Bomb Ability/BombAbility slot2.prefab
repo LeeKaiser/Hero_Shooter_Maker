@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 5620641538602010095}
+  - component: {fileID: 63197182628784865}
   m_Layer: 6
-  m_Name: CloseRangeAttack
+  m_Name: BombAbility slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5620641538602010095
+--- !u!114 &63197182628784865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd88a949065224bad8c5933df2c7412f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
-  Stats: {fileID: 11400000, guid: 3288b1c6d0e0544b086f9eaf359553e5, type: 2}
-  CurrentAbilClass: 3
+  Stats: {fileID: 11400000, guid: d1563bdaeac7541778243ff3a8ba3e73, type: 2}
+  CurrentAbilClass: 1539
   MinimumRange: 0
-  MaximumRange: 4
-  AssociatedInput: {fileID: 11400000, guid: 1cc1ed8e7b0084ddd89c32121fb41148, type: 2}
-  attackPrefab: {fileID: 4654230464608969014, guid: 9f511b407e1614802b564e7fa48da24c, type: 3}
+  MaximumRange: 7
+  AssociatedInput: {fileID: 11400000, guid: 1c1fd533d126d4b43b93fec1fcd64a5a, type: 2}
+  attackPrefab: {fileID: 4590517186784251951, guid: ddf4b87503d3e47c6be1081c40d983b2, type: 3}
   Bloom: 0

@@ -16,14 +16,6 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
                 AbilitySlotManagement[] slots = Object.FindObjectsByType<AbilitySlotManagement>(FindObjectsSortMode.None);
                 foreach (AbilitySlotManagement a in slots)
                 {
-                    int highestIndex = a.allActiveAbilities.Count;
-
-                    a.AddToAssember(newInfo, Random.Range(0,highestIndex));
-                }
-
-                PassiveAbilitySlotManagement[] passiveSlots = Object.FindObjectsByType<PassiveAbilitySlotManagement>(FindObjectsSortMode.None);
-                foreach (PassiveAbilitySlotManagement a in passiveSlots)
-                {
                     int highestIndex = a.allAbilities.Count;
 
                     a.AddToAssember(newInfo, Random.Range(0,highestIndex));

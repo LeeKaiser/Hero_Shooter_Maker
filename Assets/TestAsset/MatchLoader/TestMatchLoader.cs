@@ -10,11 +10,7 @@ public class TestMatchLoader : MonoBehaviour
     {
         CharAssemble = client.CharacterReference.GetComponent<CharAssembler>().assembleInfo;
     }
-    public void AddActiveAbility(ActiveAbilityGroup ability)
-    {
-        
-        CharAssemble.ActiveAbilityList.Add(ability);
-    }
+    
 
     public void LoadMatch()
     {

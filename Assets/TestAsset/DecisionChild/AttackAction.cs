@@ -69,11 +69,11 @@ public class AttackAction : AIAction
                 if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(AbilityClass.Damage))
                 {
                     float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
-                    if (abilCooldown > bestCooldown)
+                    if (abilCooldown > bestCooldown && abilManager.AbiltyToInputDictionary.ContainsKey(abil))
                     {
                         
                         abilityToUse = abil;
-                        abilityInput = abilManager.AbiltyToInputDictionary[abilityToUse];
+                        abilityInput = abilManager.AbiltyToInputDictionary[abil];
                         switch (abilityInput.ComboInputType)
                         {
                             case InputType.Hold:

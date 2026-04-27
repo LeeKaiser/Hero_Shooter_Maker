@@ -11,6 +11,7 @@ public class ShieldAbility : ActiveAbility
     protected override void Startup()
     {
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
+        SetUpInput();
     }
 
     public void executeAbility(ActiveAbilityID inputEventInfo)

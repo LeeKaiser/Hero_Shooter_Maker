@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: -4460415178055275726}
+  - component: {fileID: 63197182628784865}
   m_Layer: 6
-  m_Name: Dash
+  m_Name: HealAbility Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4460415178055275726
+--- !u!114 &63197182628784865
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,12 +41,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938865011410206441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe6ce429876524ed1826b926e546cf07, type: 3}
+  m_Script: {fileID: 11500000, guid: bd88a949065224bad8c5933df2c7412f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
-  Stats: {fileID: 11400000, guid: cebae4bbc0ff24cbcbf6aa1a33ef1d87, type: 2}
-  CurrentAbilClass: 5507
-  DashDistance: 4
-  DashSpeed: 16
-  DashMoveDirection: 1
-  DashEffect: {fileID: 4938865011410206441, guid: 88a923749a1524462a64dcf25a2d6b4d, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
+  Stats: {fileID: 11400000, guid: 9970b6ecc53ac4aa68dafbfaca98dfe2, type: 2}
+  CurrentAbilClass: 3135
+  MinimumRange: 0
+  MaximumRange: 7
+  AssociatedInput: {fileID: 11400000, guid: 1c1fd533d126d4b43b93fec1fcd64a5a, type: 2}
+  attackPrefab: {fileID: 4590517186784251951, guid: a730679cc3b7f4b1abc1b5033dbff640, type: 3}
+  Bloom: 0

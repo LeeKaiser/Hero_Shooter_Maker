@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 424128067573819710}
   - component: {fileID: -8861965632418637263}
   m_Layer: 6
-  m_Name: Shield
+  m_Name: ShieldAbility Slot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShieldAbility
   Stats: {fileID: 11400000, guid: 528e1e6df0f8949b6842a20c558a23ec, type: 2}
   CurrentAbilClass: 5683
+  MinimumRange: 0
+  MaximumRange: 0
+  AssociatedInput: {fileID: 11400000, guid: 1c1fd533d126d4b43b93fec1fcd64a5a, type: 2}
   ShieldPrefab: {fileID: 4938865011410206441, guid: fe6448610c7b344ada3580e0b9954e2e, type: 3}

@@ -46,5 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
   Stats: {fileID: 11400000, guid: 18df38c270e5f46f4ad9614e9eb6057f, type: 2}
   CurrentAbilClass: 3
+  MinimumRange: 0
+  MaximumRange: 20
+  AssociatedInput: {fileID: 11400000, guid: e26f3625434584e4489d73e94031a987, type: 2}
   attackPrefab: {fileID: 4590517186784251951, guid: 11c788267cb2d4a38bdd12f45c3a76ae, type: 3}
   Bloom: 3
