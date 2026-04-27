@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 5620641538602010095}
+  - component: {fileID: -4460415178055275726}
   m_Layer: 6
-  m_Name: CloseRangeAttack
+  m_Name: DashAbility Slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5620641538602010095
+--- !u!114 &-4460415178055275726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938865011410206441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd88a949065224bad8c5933df2c7412f, type: 3}
+  m_Script: {fileID: 11500000, guid: fe6ce429876524ed1826b926e546cf07, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
-  Stats: {fileID: 11400000, guid: 3288b1c6d0e0544b086f9eaf359553e5, type: 2}
-  CurrentAbilClass: 3
+  m_EditorClassIdentifier: Assembly-CSharp::DashAbility
+  Stats: {fileID: 11400000, guid: cebae4bbc0ff24cbcbf6aa1a33ef1d87, type: 2}
+  CurrentAbilClass: 5507
   MinimumRange: 0
   MaximumRange: 4
-  AssociatedInput: {fileID: 11400000, guid: 1cc1ed8e7b0084ddd89c32121fb41148, type: 2}
-  attackPrefab: {fileID: 4654230464608969014, guid: 9f511b407e1614802b564e7fa48da24c, type: 3}
-  Bloom: 0
+  AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
+  DashDistance: 4
+  DashSpeed: 16
+  DashMoveDirection: 1
+  DashEffect: {fileID: 4938865011410206441, guid: 88a923749a1524462a64dcf25a2d6b4d, type: 3}

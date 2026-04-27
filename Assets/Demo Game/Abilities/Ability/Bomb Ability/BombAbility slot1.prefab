@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 424128067573819710}
   - component: {fileID: 63197182628784865}
   m_Layer: 6
-  m_Name: BombAbility
+  m_Name: BombAbility slot1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,5 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
   Stats: {fileID: 11400000, guid: d1563bdaeac7541778243ff3a8ba3e73, type: 2}
   CurrentAbilClass: 1539
+  MinimumRange: 0
+  MaximumRange: 7
+  AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
   attackPrefab: {fileID: 4590517186784251951, guid: ddf4b87503d3e47c6be1081c40d983b2, type: 3}
   Bloom: 0

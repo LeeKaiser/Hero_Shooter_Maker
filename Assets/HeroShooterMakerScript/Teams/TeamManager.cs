@@ -14,6 +14,9 @@ public class TeamManager : MonoBehaviour
 
     public int SpawnTime;
 
+    public int Points;
+    [SerializeField] private int pointsToWin;
+
     void Awake()
     {
         

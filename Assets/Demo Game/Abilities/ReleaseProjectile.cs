@@ -15,6 +15,7 @@ public class ReleaseProjectile : ActiveAbility
         attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
         targetPoint = playerReference.transform.Find("AimTarget").transform;
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
+        SetUpInput();
     }
 
     public void executeAbility(ActiveAbilityID inputEventInfo)

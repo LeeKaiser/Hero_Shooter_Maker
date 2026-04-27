@@ -1,30 +1,38 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-//manages group of active abilitiy groups and only allows one of them to be added to the character at a time
 public class AbilitySlotManagement : MonoBehaviour
 {
-    
-    public List<ActiveAbilityGroup> allActiveAbilities = new List<ActiveAbilityGroup>();
+    public List<GameObject> allAbilities = new List<GameObject>();
+    [SerializeField] List<GameObject> allAbilitiesCopy = new List<GameObject>();
 
+    void Awake()
+    {
+        foreach (GameObject abil in allAbilities)
+        {
+            GameObject abilCopy = Instantiate(abil);
+            DontDestroyOnLoad(abilCopy);
+            abilCopy.SetActive(false);
+            allAbilitiesCopy.Add(abilCopy);
+        }
+    }
     public void AddToAssember(CharAssembleInfo assemble, int index)
     {
         //check if it has ability that belongs to its own slot, remove it if it finds one
-        ActiveAbilityGroup toRemove = null;
-        foreach (ActiveAbilityGroup active in assemble.ActiveAbilityList)
+        GameObject toRemove = null;
+        foreach (GameObject abil in assemble.Abilities)
         {
-            if (allActiveAbilities.Contains(active))
+            if (allAbilitiesCopy.Contains(abil))
             {
-                toRemove = active;
+                toRemove = abil;
             }
         }
         if (toRemove != null)
         {
-            assemble.ActiveAbilityList.Remove(toRemove);
+            assemble.Abilities.Remove(toRemove);
         }
         
         //add ability at index
-        assemble.ActiveAbilityList.Add(allActiveAbilities[index]);
+        assemble.Abilities.Add(allAbilitiesCopy[index]);
     }
-
 }

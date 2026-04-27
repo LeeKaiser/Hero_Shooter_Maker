@@ -7,8 +7,7 @@ public class CharAssembleInfo : ScriptableObject
 {
     public CharStats Stats;
     
-    public List<ActiveAbilityGroup> ActiveAbilityList = new List<ActiveAbilityGroup>(); // gameobject must have child of ability component
-    public List<GameObject> OtherAbilities = new List<GameObject>() ; // gameobject must have child of ability component
+    public List<GameObject> Abilities = new List<GameObject>() ; // gameobject must have child of ability component
 
 
 }

@@ -23,6 +23,7 @@ public class DashAbility : ActiveAbility
         targetPoint = playerReference.transform.Find("AimTarget").transform;
         EventBus<ActiveAbilityID>.Subscribe(ExecuteAbility);
         playerMovement = playerReference.PlayerMovement;
+        SetUpInput();
     }
 
     public void ExecuteAbility(ActiveAbilityID inputEventInfo)
