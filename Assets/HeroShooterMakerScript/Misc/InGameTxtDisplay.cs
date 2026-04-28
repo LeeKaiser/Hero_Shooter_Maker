@@ -23,7 +23,7 @@ public class InGameTxtDisplay : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
         if (!(playerCam == null))
         {

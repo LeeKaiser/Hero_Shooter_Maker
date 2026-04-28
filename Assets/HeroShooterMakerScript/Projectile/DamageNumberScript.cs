@@ -14,7 +14,7 @@ public class DamageNumberScript : InGameTxtDisplay
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         base.Update();
         remainingDuration -= Time.deltaTime;

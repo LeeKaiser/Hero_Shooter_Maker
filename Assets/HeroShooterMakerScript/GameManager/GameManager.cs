@@ -14,6 +14,16 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
     }
+
+    void OnEnable()
+    {
+        EventBus<TeamCompleteObjective>.Subscribe(DeclareWinner);
+    }
+
+    void OnDisable()
+    {
+        EventBus<TeamCompleteObjective>.Unsubscribe(DeclareWinner);
+    }
     public void GenerateMatch()
     {
         //load in map
@@ -39,4 +49,16 @@ public class GameManager : MonoBehaviour
             team.gameObject.SetActive(false);
         }
     }
+
+    //event called when a team completes their objective
+    public void DeclareWinner(TeamCompleteObjective teamComplete)
+    {
+        //something to show team winning
+        Invoke("StopMatch", 5);
+    }
+}
+
+public struct TeamCompleteObjective
+{
+    public TeamManager TeamIdentity;
 }

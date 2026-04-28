@@ -14,8 +14,8 @@ public class TeamManager : MonoBehaviour
 
     public int SpawnTime;
 
-    public int Points;
-    [SerializeField] private int pointsToWin;
+    private int points;
+    public int PointsToWin;
 
     void Awake()
     {
@@ -29,10 +29,12 @@ public class TeamManager : MonoBehaviour
     {
         //TODO: spawn in all players at correct spawn location
         EventBus<PlayerDead>.Subscribe(SpawnPlayer);
+        EventBus<TeamGetPoint>.Subscribe(GetPoints);
     }
     void OnDisable()
     {
         EventBus<PlayerDead>.Unsubscribe(SpawnPlayer);
+        EventBus<TeamGetPoint>.Subscribe(GetPoints);
         //TODO: disable all players to reset them for next round
     }
     public void SpawnPlayer(PlayerDead defeatedPlayer)
@@ -59,4 +61,29 @@ public class TeamManager : MonoBehaviour
         spawnPlayer.Spawn(SpawnPositions[randomSpawnIndex].position);
         
     }
+
+    public void GetPoints(TeamGetPoint getPoint)
+    {
+        if (getPoint.TeamIdentity != this)
+        {
+            return;
+        }
+        else
+        {
+            points += getPoint.pointQuantity;
+            Debug.Log("GotPoints: " + this);
+            if (points >= PointsToWin)
+            {
+                TeamCompleteObjective completeObjective = new TeamCompleteObjective();
+                completeObjective.TeamIdentity = this;
+                EventBus<TeamCompleteObjective>.Invoke(completeObjective);
+            }
+        }
+    }
+}
+
+public struct TeamGetPoint
+{
+    public TeamManager TeamIdentity;
+    public int pointQuantity;
 }
