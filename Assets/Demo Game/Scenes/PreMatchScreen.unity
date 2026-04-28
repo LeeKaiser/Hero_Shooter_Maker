@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 34146781}
   - component: {fileID: 34146780}
   - component: {fileID: 34146779}
-  - component: {fileID: 34146778}
   - component: {fileID: 34146777}
   m_Layer: 5
   m_Name: Ability 5
@@ -174,23 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 4
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &34146778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34146775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &34146779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +425,6 @@ GameObject:
   - component: {fileID: 88707912}
   - component: {fileID: 88707911}
   - component: {fileID: 88707910}
-  - component: {fileID: 88707909}
   - component: {fileID: 88707913}
   m_Layer: 5
   m_Name: Ability 4
@@ -471,20 +453,6 @@ RectTransform:
   m_AnchoredPosition: {x: 82.38208, y: -12.59552}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &88707909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88707907}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &88707910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,9 +561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 3
-  abilitySlot: {fileID: 331417272}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 331417274}
 --- !u!1 &107714649
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +574,6 @@ GameObject:
   - component: {fileID: 107714655}
   - component: {fileID: 107714654}
   - component: {fileID: 107714653}
-  - component: {fileID: 107714652}
   - component: {fileID: 107714651}
   m_Layer: 5
   m_Name: Ability 6
@@ -651,23 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 5
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &107714652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 107714649}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &107714653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,7 +1084,6 @@ GameObject:
   - component: {fileID: 267680211}
   - component: {fileID: 267680210}
   - component: {fileID: 267680209}
-  - component: {fileID: 267680208}
   - component: {fileID: 267680212}
   m_Layer: 5
   m_Name: Attack 2
@@ -1164,20 +1112,6 @@ RectTransform:
   m_AnchoredPosition: {x: 81, y: -2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &267680208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267680206}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 779e094f644234fa890b887d937f6eda, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &267680209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,9 +1220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 1
-  abilitySlot: {fileID: 499449454}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 499449456}
 --- !u!114 &291148968 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1116666608703065558, guid: 2876b178894b04f05b30c0b4b65da4dd, type: 3}
@@ -1472,7 +1404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 331417273}
-  - component: {fileID: 331417272}
+  - component: {fileID: 331417274}
   m_Layer: 0
   m_Name: ability slot 1
   m_TagString: Untagged
@@ -1480,23 +1412,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &331417272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 331417271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73354c1d3ada040498e864d4a1282818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AbilitySlotManagement
-  allActiveAbilities:
-  - {fileID: 11400000, guid: 0f51da80c9e044b749d8c0791f995e72, type: 2}
-  - {fileID: 11400000, guid: 7a509d22b73e64e9ea99624f2615b820, type: 2}
-  - {fileID: 11400000, guid: d7a4d1ad84a4a4db38c5e590369baa9a, type: 2}
-  - {fileID: 11400000, guid: 3eb7d4eb631714ad1ade22f711817491, type: 2}
 --- !u!4 &331417273
 Transform:
   m_ObjectHideFlags: 0
@@ -1512,6 +1427,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &331417274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 331417271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43a053a675744c018fd6b8fecd416b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveAbilitySlotManagement
+  allAbilities:
+  - {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
+  - {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
+  - {fileID: 4938865011410206441, guid: 5780ed7f34ef4445794e45df444d96f5, type: 3}
+  - {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
+  allAbilitiesCopy: []
 --- !u!1 &349666549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 499449455}
-  - component: {fileID: 499449454}
+  - component: {fileID: 499449456}
   m_Layer: 0
   m_Name: AttackSlot
   m_TagString: Untagged
@@ -1801,21 +1734,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &499449454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499449453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73354c1d3ada040498e864d4a1282818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AbilitySlotManagement
-  allActiveAbilities:
-  - {fileID: 11400000, guid: db4d4b68997ab4104b38f3c3f3588651, type: 2}
-  - {fileID: 11400000, guid: 68bd9fa8055144053b5db2dcf1f887c6, type: 2}
 --- !u!4 &499449455
 Transform:
   m_ObjectHideFlags: 0
@@ -1831,6 +1749,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &499449456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499449453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43a053a675744c018fd6b8fecd416b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveAbilitySlotManagement
+  allAbilities:
+  - {fileID: 4938865011410206441, guid: b22ce7f29cc574c69b107e0b90032d0d, type: 3}
+  - {fileID: 4938865011410206441, guid: 779e094f644234fa890b887d937f6eda, type: 3}
+  allAbilitiesCopy: []
 --- !u!1 &513843115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1777,6 @@ GameObject:
   - component: {fileID: 513843121}
   - component: {fileID: 513843120}
   - component: {fileID: 513843119}
-  - component: {fileID: 513843118}
   - component: {fileID: 513843117}
   m_Layer: 5
   m_Name: Ability 1
@@ -1886,23 +1819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 0
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &513843118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513843115}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &513843119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2308,7 +2225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671118510}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: select slots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2547,7 +2464,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 723451748}
-  - component: {fileID: 723451747}
+  - component: {fileID: 723451749}
   m_Layer: 0
   m_Name: ability slot 2
   m_TagString: Untagged
@@ -2555,23 +2472,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &723451747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 723451746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73354c1d3ada040498e864d4a1282818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AbilitySlotManagement
-  allActiveAbilities:
-  - {fileID: 11400000, guid: a8935b700914248099026f29ce20227b, type: 2}
-  - {fileID: 11400000, guid: eb9b4357614fb40a6b9b222d262816f9, type: 2}
-  - {fileID: 11400000, guid: 9d3442e38234446149dd6a6a78a226e8, type: 2}
-  - {fileID: 11400000, guid: 36bf823243eee4b9684a5eead166a756, type: 2}
 --- !u!4 &723451748
 Transform:
   m_ObjectHideFlags: 0
@@ -2587,6 +2487,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723451749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723451746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43a053a675744c018fd6b8fecd416b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveAbilitySlotManagement
+  allAbilities:
+  - {fileID: 4938865011410206441, guid: 0664433af57ff4559be550de93c0df5f, type: 3}
+  - {fileID: 4938865011410206441, guid: 4af78ec6eb1fc4a319bfa83d4ec366ed, type: 3}
+  - {fileID: 4938865011410206441, guid: 72477a6dc5668490ca0014a195ac7a8e, type: 3}
+  - {fileID: 4938865011410206441, guid: bdb6e0efa277849d3bc1cc267f1cb15d, type: 3}
+  allAbilitiesCopy: []
 --- !u!1001 &732197054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3245,7 +3163,6 @@ GameObject:
   - component: {fileID: 900319373}
   - component: {fileID: 900319372}
   - component: {fileID: 900319371}
-  - component: {fileID: 900319370}
   - component: {fileID: 900319374}
   m_Layer: 5
   m_Name: Attack 1
@@ -3274,20 +3191,6 @@ RectTransform:
   m_AnchoredPosition: {x: -81.5, y: -2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &900319370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 900319368}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: b22ce7f29cc574c69b107e0b90032d0d, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &900319371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,9 +3299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 0
-  abilitySlot: {fileID: 499449454}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 499449456}
 --- !u!1 &944855604
 GameObject:
   m_ObjectHideFlags: 0
@@ -3613,7 +3514,6 @@ GameObject:
   - component: {fileID: 990885134}
   - component: {fileID: 990885133}
   - component: {fileID: 990885132}
-  - component: {fileID: 990885131}
   - component: {fileID: 990885130}
   m_Layer: 5
   m_Name: Ability 2
@@ -3656,23 +3556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 1
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &990885131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990885128}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 5780ed7f34ef4445794e45df444d96f5, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &990885132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3779,7 +3663,6 @@ GameObject:
   - component: {fileID: 1017987756}
   - component: {fileID: 1017987755}
   - component: {fileID: 1017987754}
-  - component: {fileID: 1017987753}
   - component: {fileID: 1017987757}
   m_Layer: 5
   m_Name: Ability 1
@@ -3808,20 +3691,6 @@ RectTransform:
   m_AnchoredPosition: {x: -80.11792, y: 16.90448}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1017987753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017987751}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &1017987754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3930,9 +3799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 0
-  abilitySlot: {fileID: 331417272}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 331417274}
 --- !u!1 &1126120050
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,7 +4120,6 @@ GameObject:
   - component: {fileID: 1331942563}
   - component: {fileID: 1331942562}
   - component: {fileID: 1331942561}
-  - component: {fileID: 1331942560}
   - component: {fileID: 1331942559}
   m_Layer: 5
   m_Name: Ability 2
@@ -4296,23 +4162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 1
-  abilitySlot: {fileID: 723451747}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
---- !u!114 &1331942560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1331942557}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 723451749}
 --- !u!114 &1331942561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4419,7 +4269,6 @@ GameObject:
   - component: {fileID: 1346631781}
   - component: {fileID: 1346631780}
   - component: {fileID: 1346631779}
-  - component: {fileID: 1346631778}
   - component: {fileID: 1346631777}
   m_Layer: 5
   m_Name: Ability 4
@@ -4462,23 +4311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 3
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &1346631778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346631775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &1346631779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4857,7 +4690,6 @@ GameObject:
   - component: {fileID: 1502043456}
   - component: {fileID: 1502043455}
   - component: {fileID: 1502043454}
-  - component: {fileID: 1502043453}
   - component: {fileID: 1502043457}
   m_Layer: 5
   m_Name: Ability 3
@@ -4886,20 +4718,6 @@ RectTransform:
   m_AnchoredPosition: {x: 82.38208, y: 16.90448}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1502043453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502043451}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 5780ed7f34ef4445794e45df444d96f5, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &1502043454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5008,9 +4826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 2
-  abilitySlot: {fileID: 331417272}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 331417274}
 --- !u!1 &1603062538
 GameObject:
   m_ObjectHideFlags: 0
@@ -5023,7 +4839,6 @@ GameObject:
   - component: {fileID: 1603062544}
   - component: {fileID: 1603062543}
   - component: {fileID: 1603062542}
-  - component: {fileID: 1603062541}
   - component: {fileID: 1603062540}
   m_Layer: 5
   m_Name: Ability 4
@@ -5066,23 +4881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 3
-  abilitySlot: {fileID: 723451747}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
---- !u!114 &1603062541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603062538}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 723451749}
 --- !u!114 &1603062542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5970,7 +5769,6 @@ GameObject:
   - component: {fileID: 2002198361}
   - component: {fileID: 2002198360}
   - component: {fileID: 2002198359}
-  - component: {fileID: 2002198358}
   - component: {fileID: 2002198362}
   m_Layer: 5
   m_Name: Ability 2
@@ -5999,20 +5797,6 @@ RectTransform:
   m_AnchoredPosition: {x: -80.11792, y: -12.59552}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2002198358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2002198356}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
-  loader: {fileID: 1126120051}
 --- !u!114 &2002198359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6121,9 +5905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 1
-  abilitySlot: {fileID: 331417272}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
+  abilitySlot: {fileID: 331417274}
 --- !u!1 &2022557981
 GameObject:
   m_ObjectHideFlags: 0
@@ -6274,7 +6056,6 @@ GameObject:
   - component: {fileID: 2024429869}
   - component: {fileID: 2024429868}
   - component: {fileID: 2024429867}
-  - component: {fileID: 2024429866}
   - component: {fileID: 2024429865}
   m_Layer: 5
   m_Name: Ability 1
@@ -6317,23 +6098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 0
-  abilitySlot: {fileID: 723451747}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
---- !u!114 &2024429866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024429863}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 723451749}
 --- !u!114 &2024429867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6752,7 +6517,6 @@ GameObject:
   - component: {fileID: 2049099396}
   - component: {fileID: 2049099395}
   - component: {fileID: 2049099394}
-  - component: {fileID: 2049099393}
   - component: {fileID: 2049099392}
   m_Layer: 5
   m_Name: Ability 3
@@ -6795,23 +6559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 2
-  abilitySlot: {fileID: 723451747}
-  passiveSlot: {fileID: 0}
-  AddPassive: 0
---- !u!114 &2049099393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2049099390}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: 5780ed7f34ef4445794e45df444d96f5, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 723451749}
 --- !u!114 &2049099394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7094,7 +6842,6 @@ GameObject:
   - component: {fileID: 2121995654}
   - component: {fileID: 2121995653}
   - component: {fileID: 2121995652}
-  - component: {fileID: 2121995651}
   - component: {fileID: 2121995650}
   m_Layer: 5
   m_Name: Ability 3
@@ -7137,23 +6884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClientAbilityButton
   matchLoader: {fileID: 1126120051}
   abilityIndex: 2
-  abilitySlot: {fileID: 0}
-  passiveSlot: {fileID: 631969639}
-  AddPassive: 1
---- !u!114 &2121995651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121995648}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b862b28cfcb7c4f1ba1023d2a87f2ec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AddAbilityButton
-  ability: {fileID: 4938865011410206441, guid: b07e6d951f43a474fac44dd4f18c5b11, type: 3}
-  loader: {fileID: 1126120051}
+  abilitySlot: {fileID: 631969639}
 --- !u!114 &2121995652
 MonoBehaviour:
   m_ObjectHideFlags: 0
