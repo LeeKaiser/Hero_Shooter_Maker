@@ -6,6 +6,11 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        GenerateRandomDefault();
+    }
+
+    public void GenerateRandomDefault()
+    {
         GameManager manager = GetComponent<GameManager>();
         foreach (TeamManager teams in manager.TeamsInMatch)
         {
@@ -13,7 +18,7 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
             {
                 CharAssembleInfo newInfo = Instantiate(defaultInfo);
                 //for this demo, generate random selection of attack and abilities for all players
-                AbilitySlotManagement[] slots = Object.FindObjectsByType<AbilitySlotManagement>(FindObjectsSortMode.None);
+                AbilitySlotManagement[] slots = Object.FindObjectsByType<AbilitySlotManagement>();
                 foreach (AbilitySlotManagement a in slots)
                 {
                     int highestIndex = a.allAbilities.Count;
@@ -23,11 +28,5 @@ public class GenerateDefaultForAllPlayers : MonoBehaviour
                 character.GetComponent<CharAssembler>().assembleInfo = newInfo;
             } 
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

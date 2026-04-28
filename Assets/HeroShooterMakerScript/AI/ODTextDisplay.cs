@@ -13,7 +13,7 @@ public class ODTextDisplay : InGameTxtDisplay
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         if (x > 0)
         {
