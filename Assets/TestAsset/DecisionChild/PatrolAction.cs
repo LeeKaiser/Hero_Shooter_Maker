@@ -13,8 +13,8 @@ public class PatrolAction : AIAction
         if (!(Detection.GetCurrentContext().FocusPOI == null))
         {
             Vector3 nextDestination = Detection.GetCurrentContext().FocusPOI.transform.position;
-            nextDestination.x = nextDestination.x + Random.Range(-10,10);
-            nextDestination.z = nextDestination.z + Random.Range(-10,10);
+            nextDestination.x = nextDestination.x + Random.Range(-5,5);
+            nextDestination.z = nextDestination.z + Random.Range(-5,5);
             //Debug.Log(nextDestination);
             MoveTarget.position = nextDestination;
             Movement.MoveToLocation();

@@ -71,7 +71,7 @@ public class TeamManager : MonoBehaviour
         else
         {
             points += getPoint.pointQuantity;
-            Debug.Log("GotPoints: " + this);
+            Debug.Log("GotPoints: " + this + "current points: " + points);
             if (points >= PointsToWin)
             {
                 TeamCompleteObjective completeObjective = new TeamCompleteObjective();
