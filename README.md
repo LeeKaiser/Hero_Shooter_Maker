@@ -4,7 +4,7 @@ Replicates basic system seen in videogames based on Hero Shooter and MOBA Genres
 
 ### Install Guide: 
 
-Made on Unity editor version 6000.2.10f1
+Made on Unity editor version 6000.4.2f1
 
 Made on MacOS (theoretically should work on Windows as well)
 
