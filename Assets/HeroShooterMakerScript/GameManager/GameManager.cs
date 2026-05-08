@@ -54,7 +54,8 @@ public class GameManager : MonoBehaviour
     public void DeclareWinner(TeamCompleteObjective teamComplete)
     {
         //something to show team winning
-        Invoke("StopMatch", 5);
+        Debug.Log("GameOver: " + teamComplete.TeamIdentity + "Won");
+        StopMatch();
     }
 }
 
