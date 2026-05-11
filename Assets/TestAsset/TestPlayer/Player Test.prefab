@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
   ScanRads: 30
-  PlayerReference: {fileID: 0}
+  PlayerReference: {fileID: 3772487131666148388}
   GroundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -774,7 +774,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RevealToDetection
   ScanRads: 30
-  PlayerReference: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 8

@@ -11,8 +11,6 @@ public class RevealToDetection : MonoBehaviour
 {
     [Tooltip("radius/distance at which AI can detect object")]
     public float ScanRads = 30;
-    [Tooltip("reference to self")]
-    public GameObject PlayerReference;
     [Tooltip("mask for detecting objects")]
     public LayerMask GroundMask, TeamMask, EnemyMask;
     [Tooltip("maximum amount of object that can be detected by AI")]

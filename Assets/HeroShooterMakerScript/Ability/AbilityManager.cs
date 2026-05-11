@@ -31,6 +31,10 @@ public class AbilityManager : MonoBehaviour
             if (a == AbilityClass.None) continue;
             AbilityClassDictionary[a] = 0;
         }
+        
+    }
+    void Start()
+    {
         InputConvert = PlayerReference.PlayerArmature.GetComponent<InputConverter>();
     }
 
