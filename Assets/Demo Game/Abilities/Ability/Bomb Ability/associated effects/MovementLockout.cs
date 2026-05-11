@@ -9,10 +9,7 @@ public class MovementLockout : StatusEffect
         AffectedPlayer.PlayerMovement.SetHorizontalMovementPause(true);
         
         AIMovement aimovement = AffectedPlayer.PlayerArmature.GetComponent<AIMovement>();
-        if (aimovement != null && aimovement.enabled)
-        {
-            aimovement.PauseNavmesh();
-        }
+        
         
     }
 

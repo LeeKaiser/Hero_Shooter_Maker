@@ -9,6 +9,8 @@ public class PatrolAction : AIAction
     public ObjectDetection Detection;
     public InputEventCaller InputCall;
     */
+
+    public float destinationSpread;
     public override void DetermineMovement()
     {
         //determine place to go
@@ -27,7 +29,6 @@ public class PatrolAction : AIAction
                 if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                 {
                     nextDestination = potentialTarget.Key.PlayerArmature.transform.position;
-                    Debug.Log(nextDestination);
                     highestVuln = potentialTarget.Value.VulnerabilityValue;
                 }
             }
@@ -40,8 +41,8 @@ public class PatrolAction : AIAction
         }
 
         //choose a random position and move to it
-        nextDestination.x = nextDestination.x + Random.Range(-5,5);
-        nextDestination.z = nextDestination.z + Random.Range(-5,5);
+        nextDestination.x = nextDestination.x + Random.Range(-destinationSpread,destinationSpread);
+        nextDestination.z = nextDestination.z + Random.Range(-destinationSpread,destinationSpread);
         //Debug.Log(nextDestination);
         MoveTarget.position = nextDestination;
         Movement.MoveToLocation();

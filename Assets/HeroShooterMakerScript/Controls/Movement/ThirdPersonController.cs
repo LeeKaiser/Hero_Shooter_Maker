@@ -3,6 +3,7 @@
 using UnityEngine.InputSystem;
 #endif
 using MovementInputEvents;
+using UnityEngine.AI;
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
 /*
@@ -126,6 +127,7 @@ code based on the Starter Assets package
             }
         }
 
+        private NavMeshAgent _agent;
 
         private void Awake()
         {
@@ -149,16 +151,24 @@ code based on the Starter Assets package
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.updateRotation = false;
+            _agent.updatePosition = false;
         }
 
         private void Update()
         {
             if (IsActive){
                 _hasAnimator = TryGetComponent(out _animator);
-
+                CheckForLedgeDrop();
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
+            }
+
+            if (_agent.enabled)
+            {
+                _agent.nextPosition = transform.position;
             }
             
         }
@@ -186,6 +196,19 @@ code based on the Starter Assets package
             _externalForceDirection = direction;
             _externalForceVelocity = velocity;
         }
+
+        private void CheckForLedgeDrop()
+        {
+            if (!_agent.enabled) return;
+
+            float yDifference = transform.position.y - _agent.nextPosition.y;
+
+            // transform is above where navmesh wants to snap us = we've walked off an edge
+            if (yDifference > 0.2f || _agent.isOnOffMeshLink)
+            {
+                DisableAgent();
+            }
+        }
         private void GroundedCheck()
         {
             // set sphere position, with offset
@@ -195,12 +218,14 @@ code based on the Starter Assets package
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
                 QueryTriggerInteraction.Ignore);
             if (!Grounded)
-                {
-                    //do this again cayote time later
-                    Invoke("SecondGroundCheck", JumpForgivenessTime);
-                }
+            {
+                //do this again cayote time later
+                Invoke("SecondGroundCheck", JumpForgivenessTime);
+                
+            }
             else{
                 CanJump = true;
+                EnableAgent();
             }
 
             // update animator if using character
@@ -502,6 +527,18 @@ code based on the Starter Assets package
         public void ResetCharacterVelocity()
         {
             _controller.Move(Vector3.zero);
+        }
+
+        public void DisableAgent()
+        {
+            _agent.autoTraverseOffMeshLink = false;
+            _agent.enabled = false;
+        }
+
+        public void EnableAgent()
+        {
+            _agent.autoTraverseOffMeshLink = true;
+            _agent.enabled = true;
         }
 
         public Vector3 GetCurrentDirection(){return _currentDirection;}

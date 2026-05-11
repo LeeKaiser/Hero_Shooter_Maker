@@ -29,7 +29,7 @@ public class AIMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerReference = GetComponentInParent<CharCore>();
         inputConvert = GetComponent<InputConverter>();
-        agent.updateRotation = false;
+        
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
         
@@ -39,58 +39,18 @@ public class AIMovement : MonoBehaviour
 
     void OnEnable()
     {
-        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
-        EventBus<PlayerGrounded>.Subscribe(PauseNavmeshWhenAirborne);
     }
 
     void OnDisable()
     {
-        EventBus<PlayerLandOnGround>.Unsubscribe(UnpauseNavmeshOnLanding);
-        EventBus<PlayerGrounded>.Unsubscribe(PauseNavmeshWhenAirborne);
     }
 
     void Update()
     {
         AgentMovement();
-        if (navmeshPause >= 0)
-        {
-            navmeshPause -= Time.deltaTime;
-            if (navmeshPause <= 0)
-            {
-                UnpauseNavmesh();
-            }
-        }
     }
 
-    public void UnpauseNavmeshOnLanding(PlayerLandOnGround landOnGroundInfo)
-    {
-        if (landOnGroundInfo.playerIdentity == playerReference)
-        {
-            UnpauseNavmesh();
-        }
-        
-    }
-
-    public void PauseNavmeshWhenAirborne(PlayerGrounded landOnGroundInfo)
-    {
-        if (landOnGroundInfo.playerIdentity == playerReference && !landOnGroundInfo.grounded )
-        {
-            PauseNavmesh();
-        }
-        
-    }
-
-    void UnpauseNavmesh()
-    {
-        agent.enabled = true;
-        agent.autoTraverseOffMeshLink = true;
-    }
-
-    public void PauseNavmesh()
-    {
-        agent.autoTraverseOffMeshLink = false;
-        agent.enabled = false;
-    }
+    
 
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
@@ -113,13 +73,12 @@ public class AIMovement : MonoBehaviour
             {
                 inputJump = true;
             }
-            agent.enabled = false;
-            agent.autoTraverseOffMeshLink = false;
             navmeshPause = t + 0.1f;
 
             //temporary fix to ai freezing at ledges, implement an actual fix in the future
             if (agentDirection == Vector3.zero)
             {
+                Debug.Log("fixed input to 1z");
                 agentDirection.z = 1;
             }
         }
