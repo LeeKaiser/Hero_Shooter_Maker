@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stats: {fileID: 0}
   PlayerAllegience: {fileID: 0}
-  MovementStyle: 0
+  MovementStyle: 1
   PlayerMovement: {fileID: 0}
   AbilityManage: {fileID: 0}
   PlayerArmature: {fileID: 0}
@@ -428,6 +428,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: RotationSmoothTime
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918490, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 9
       objectReference: {fileID: 0}
@@ -701,7 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
   ScanRads: 30
-  PlayerReference: {fileID: 0}
+  PlayerReference: {fileID: 3772487131666148388}
   GroundMask:
     serializedVersion: 2
     m_Bits: 8
@@ -774,7 +778,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RevealToDetection
   ScanRads: 30
-  PlayerReference: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 8

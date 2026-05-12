@@ -22,14 +22,14 @@ public class AIMovement : MonoBehaviour
     private InputConverter inputConvert;
 
     private Vector3 agentDirection;
-    private float navmeshPause = 0;
+    private Vector3 previousMovement;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerReference = GetComponentInParent<CharCore>();
         inputConvert = GetComponent<InputConverter>();
-        agent.updateRotation = false;
+        
         //set agent's speed to neglegable amount that is above 0 in order to find the direction that agent should move on its pathfinding
         agent.speed = 0.01f;
         
@@ -39,94 +39,49 @@ public class AIMovement : MonoBehaviour
 
     void OnEnable()
     {
-        EventBus<PlayerLandOnGround>.Subscribe(UnpauseNavmeshOnLanding);
-        EventBus<PlayerGrounded>.Subscribe(PauseNavmeshWhenAirborne);
     }
 
     void OnDisable()
     {
-        EventBus<PlayerLandOnGround>.Unsubscribe(UnpauseNavmeshOnLanding);
-        EventBus<PlayerGrounded>.Unsubscribe(PauseNavmeshWhenAirborne);
     }
 
     void Update()
     {
         AgentMovement();
-        if (navmeshPause >= 0)
-        {
-            navmeshPause -= Time.deltaTime;
-            if (navmeshPause <= 0)
-            {
-                UnpauseNavmesh();
-            }
-        }
     }
 
-    public void UnpauseNavmeshOnLanding(PlayerLandOnGround landOnGroundInfo)
-    {
-        if (landOnGroundInfo.playerIdentity == playerReference)
-        {
-            UnpauseNavmesh();
-        }
-        
-    }
-
-    public void PauseNavmeshWhenAirborne(PlayerGrounded landOnGroundInfo)
-    {
-        if (landOnGroundInfo.playerIdentity == playerReference && !landOnGroundInfo.grounded )
-        {
-            PauseNavmesh();
-        }
-        
-    }
-
-    void UnpauseNavmesh()
-    {
-        agent.enabled = true;
-        agent.autoTraverseOffMeshLink = true;
-    }
-
-    public void PauseNavmesh()
-    {
-        agent.autoTraverseOffMeshLink = false;
-        agent.enabled = false;
-    }
+    
 
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
+        Debug.Log(agentDirection);
+
         //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
         // this is currently determined based on if navmesh link destination is positioned within jump trajectory
         bool inputJump = false;
         if (agent.isOnOffMeshLink)
         {
-            
             OffMeshLinkData data = agent.currentOffMeshLinkData;
             Vector3 endPos = data.endPos - transform.position;
             float vertDist = endPos.y;
             endPos.y = 0;
             float horizDist = endPos.magnitude;
             float t = horizDist / playerReference.GetForwardSpeed();
-            float y = -0.5f * playerReference.GetGravity() * t * t;
+            float y = 0.5f * playerReference.GetGravity() * t * t;
             if (y < vertDist)
             {
                 inputJump = true;
             }
-            agent.enabled = false;
-            agent.autoTraverseOffMeshLink = false;
-            navmeshPause = t + 0.1f;
 
-            //temporary fix to ai freezing at ledges, implement an actual fix in the future
-            if (agentDirection == Vector3.zero)
-            {
-                agentDirection.z = 1;
-            }
+            
         }
 
         //set agent's movement input        
         if (agent.enabled)
         {
+            Debug.Log("setting direction");
             switch (playerReference.MovementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
@@ -141,8 +96,18 @@ public class AIMovement : MonoBehaviour
             }
         }
         
+        if (agentDirection == Vector3.zero)
+        {
+            agentDirection = previousMovement;
+        }
+        else
+        {
+            previousMovement = agentDirection;
+        }
+        Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
+        Debug.Log(agentInput);
         inputConvert.JumpInput(inputJump);
         inputConvert.MoveInput(agentInput);
     }
