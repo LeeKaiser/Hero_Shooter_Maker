@@ -56,6 +56,7 @@ public class AIMovement : MonoBehaviour
     public void AgentMovement()
     {
         Debug.Log(agentDirection);
+        Vector3 pathfindingDirection = agent.velocity.normalized;
 
         //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
@@ -75,27 +76,27 @@ public class AIMovement : MonoBehaviour
                 inputJump = true;
             }
 
-            
+            //set pathfinding direction towards direction of end point
+            pathfindingDirection = endPos.normalized;
         }
 
-        //set agent's movement input        
         if (agent.enabled)
         {
-            Debug.Log("setting direction");
+            //set agent's movement input        
             switch (playerReference.MovementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    agentDirection = transform.InverseTransformDirection(agent.velocity.normalized);
+                    agentDirection = transform.InverseTransformDirection(pathfindingDirection);
                     break;
                 default:
                     Vector3 agentLookVect = AimTarget.position - transform.position;
                     agentLookVect = agentLookVect.normalized; //direction agent is aiming at
-                    Vector3 agentMoveVect = agent.velocity.normalized; //direction agent moves in world space
+                    Vector3 agentMoveVect = pathfindingDirection; //direction agent moves in world space
                     agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * agentMoveVect;
                     break;
             }
+            
         }
-        
         if (agentDirection == Vector3.zero)
         {
             agentDirection = previousMovement;
