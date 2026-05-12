@@ -164,11 +164,24 @@ code based on the Starter Assets package
                 JumpAndGravity();
                 GroundedCheck();
                 Move();
+
+                
             }
 
             if (_agent.enabled)
             {
-                _agent.nextPosition = transform.position;
+                //
+                Vector3 diff = _agent.nextPosition - transform.position;
+                diff.y = 0;
+
+                if (diff.sqrMagnitude > 0.1f * 0.1f)
+                {
+                    _agent.Warp(transform.position);
+                }
+                else
+                {
+                    _agent.nextPosition = transform.position;
+                }
             }
             
         }

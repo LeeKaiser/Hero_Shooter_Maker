@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ec85e0f5ada4a799e4e4a644f7f48d, type: 3}
   m_Name: New Patrol Action
   m_EditorClassIdentifier: Assembly-CSharp::PatrolAction
-  movementDestination: {fileID: 0}
-  aimTarget: {fileID: 0}
-  objectDetection: {fileID: 0}
-  inputCall: {fileID: 0}
+  MoveTarget: {fileID: 0}
+  AimTarget: {fileID: 0}
+  Detection: {fileID: 0}
+  InputConvert: {fileID: 0}
+  Movement: {fileID: 0}
+  abilityToUse: {fileID: 0}
+  HoldingInput: 0
+  destinationSpread: 1

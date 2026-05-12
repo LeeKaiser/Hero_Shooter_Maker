@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TestPlayableCharacter
   m_EditorClassIdentifier: 
   HitPointsBase: 100
-  ForwardSpeedBase: 4
-  BackwardSpeedBase: 3
-  StrafeSpeedBase: 3
+  ForwardSpeedBase: 6
+  BackwardSpeedBase: 5
+  StrafeSpeedBase: 5
   JumpHeightBase: 1.2
   GravityBase: -15

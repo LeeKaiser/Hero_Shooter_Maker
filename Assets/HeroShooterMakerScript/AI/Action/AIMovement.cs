@@ -22,7 +22,7 @@ public class AIMovement : MonoBehaviour
     private InputConverter inputConvert;
 
     private Vector3 agentDirection;
-    private float navmeshPause = 0;
+    private Vector3 previousMovement;
 
     void Start()
     {
@@ -55,37 +55,33 @@ public class AIMovement : MonoBehaviour
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
+        Debug.Log(agentDirection);
+
         //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
         // this is currently determined based on if navmesh link destination is positioned within jump trajectory
         bool inputJump = false;
         if (agent.isOnOffMeshLink)
         {
-            
             OffMeshLinkData data = agent.currentOffMeshLinkData;
             Vector3 endPos = data.endPos - transform.position;
             float vertDist = endPos.y;
             endPos.y = 0;
             float horizDist = endPos.magnitude;
             float t = horizDist / playerReference.GetForwardSpeed();
-            float y = -0.5f * playerReference.GetGravity() * t * t;
+            float y = 0.5f * playerReference.GetGravity() * t * t;
             if (y < vertDist)
             {
                 inputJump = true;
             }
-            navmeshPause = t + 0.1f;
 
-            //temporary fix to ai freezing at ledges, implement an actual fix in the future
-            if (agentDirection == Vector3.zero)
-            {
-                Debug.Log("fixed input to 1z");
-                agentDirection.z = 1;
-            }
+            
         }
 
         //set agent's movement input        
         if (agent.enabled)
         {
+            Debug.Log("setting direction");
             switch (playerReference.MovementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
@@ -100,8 +96,18 @@ public class AIMovement : MonoBehaviour
             }
         }
         
+        if (agentDirection == Vector3.zero)
+        {
+            agentDirection = previousMovement;
+        }
+        else
+        {
+            previousMovement = agentDirection;
+        }
+        Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
+        Debug.Log(agentInput);
         inputConvert.JumpInput(inputJump);
         inputConvert.MoveInput(agentInput);
     }
