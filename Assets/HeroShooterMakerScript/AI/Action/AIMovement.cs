@@ -23,6 +23,7 @@ public class AIMovement : MonoBehaviour
 
     private Vector3 agentDirection;
     private Vector3 previousMovement;
+    private Vector3 landingSpot;
 
     void Start()
     {
@@ -55,7 +56,7 @@ public class AIMovement : MonoBehaviour
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
-        Debug.Log(agentDirection);
+        //Debug.Log(agentDirection);
         Vector3 pathfindingDirection = agent.velocity.normalized;
 
         //when on navmesh link (on ledge or when it needs to jump), disable agent
@@ -78,8 +79,12 @@ public class AIMovement : MonoBehaviour
 
             //set pathfinding direction towards direction of end point
             pathfindingDirection = endPos.normalized;
+            landingSpot = data.endPos;
         }
-
+        Vector3 airStrafe = landingSpot - transform.position;
+        Vector3 agentLookVect = AimTarget.position - transform.position;
+        agentLookVect = agentLookVect.normalized; //direction agent is aiming at
+        airStrafe = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * airStrafe;
         if (agent.enabled)
         {
             //set agent's movement input        
@@ -89,12 +94,18 @@ public class AIMovement : MonoBehaviour
                     agentDirection = transform.InverseTransformDirection(pathfindingDirection);
                     break;
                 default:
-                    Vector3 agentLookVect = AimTarget.position - transform.position;
-                    agentLookVect = agentLookVect.normalized; //direction agent is aiming at
-                    Vector3 agentMoveVect = pathfindingDirection; //direction agent moves in world space
-                    agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * agentMoveVect;
+                    agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * pathfindingDirection;
+                    
                     break;
             }
+
+        }
+        else
+        {
+            //gradually make previous movement closer to landing spot
+            previousMovement = airStrafe;
+            agentDirection = previousMovement;
+            
             
         }
         if (agentDirection == Vector3.zero)
@@ -105,7 +116,7 @@ public class AIMovement : MonoBehaviour
         {
             previousMovement = agentDirection;
         }
-        Debug.Log(inputJump);
+        //Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
         Debug.Log(agentInput);
