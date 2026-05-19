@@ -9,6 +9,10 @@ public abstract class ActiveAbility : Ability
 
     public InputUnit AssociatedInput;
 
+    [Header("AI relevant information")]
+    public bool UseWhenObscured = false;
+    public bool UseWhenOutOfRange = false;
+
     //SetUpInput
     //sets up the input and ability connection
     public void SetUpInput()

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64dfe681b8f84423580dd1d899fc8af8, type: 3}
+  m_Name: AITestSubject
+  m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
+  Stats: {fileID: 11400000, guid: 91416d36eb03940b1a4e428ffabeaf7f, type: 2}
+  Abilities:
+  - {fileID: 4938865011410206441, guid: 9a4e756fa05c4441784c239799fa3fd9, type: 3}
+  - {fileID: 4938865011410206441, guid: 666b1cb8aea5e45d298f1ce64995d838, type: 3}

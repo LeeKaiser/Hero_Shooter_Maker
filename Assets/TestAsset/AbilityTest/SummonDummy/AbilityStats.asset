@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4932417b3b5a94e0591b157fb2f26d44, type: 3}
-  m_Name: TestAttackStats
-  m_EditorClassIdentifier: 
-  AbilityName: Test Attack
-  AbilityUIPrefab: {fileID: 5694682100280509937, guid: 66e3a075af105480da743b359ae7f390, type: 3}
-  MaxCharge: 10
-  ChargePointsRequired: 10
+  m_Name: AbilityStats
+  m_EditorClassIdentifier: Assembly-CSharp::AbilityStats
+  AbilityName: 
+  AbilityUIPrefab: {fileID: 5694682100280509937, guid: c0ec32b642fed4ac4bf09717306ffb2a, type: 3}
+  MaxCharge: 1
+  ChargePointsRequired: 100
   ChargePointsPerSec: 100
   ChargeGainPerFullRecharge: 1
   CanInterruptOthers: 0
-  MaxChargeTime: 0.1
-  UsePerSec: 6
+  MaxChargeTime: 0
+  UsePerSec: 0

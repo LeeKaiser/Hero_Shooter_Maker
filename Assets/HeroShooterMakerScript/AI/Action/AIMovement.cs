@@ -82,6 +82,7 @@ public class AIMovement : MonoBehaviour
             landingSpot = data.endPos;
         }
         Vector3 airStrafe = landingSpot - transform.position;
+        airStrafe.y = 0;
         Vector3 agentLookVect = AimTarget.position - transform.position;
         agentLookVect = agentLookVect.normalized; //direction agent is aiming at
         airStrafe = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * airStrafe;
@@ -102,10 +103,11 @@ public class AIMovement : MonoBehaviour
         }
         else
         {
-            //gradually make previous movement closer to landing spot
-            previousMovement = airStrafe;
-            agentDirection = previousMovement;
+            //while jumping, adjust direction to landing spot if far from it
+            previousMovement = Vector3.Lerp(previousMovement.normalized, airStrafe.normalized, 5f * Time.deltaTime);
             
+            agentDirection = previousMovement;
+            Debug.Log(agentDirection);
             
         }
         if (agentDirection == Vector3.zero)
@@ -119,7 +121,7 @@ public class AIMovement : MonoBehaviour
         //Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
-        Debug.Log(agentInput);
+        //Debug.Log(agentInput);
         inputConvert.JumpInput(inputJump);
         inputConvert.MoveInput(agentInput);
     }
