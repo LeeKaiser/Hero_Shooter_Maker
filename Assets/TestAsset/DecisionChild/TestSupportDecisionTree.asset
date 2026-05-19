@@ -15,7 +15,7 @@ MonoBehaviour:
   ChildYesNode: {fileID: 5644611274319498579}
   ChildNoNode: {fileID: -3862533942889065745}
   ParentNodes: []
-  NodeCondition: 2
+  NodeCondition: 0
   Action: {fileID: 0}
   IsAction: 0
   ParameterFloat: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
   Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 796, y: 325}
+  EditorPosition: {x: 828, y: 321}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
   ParentNodes:
   - {fileID: -9218309207522908596}
   NodeCondition: 0
-  Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
+  Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 544, y: 325}
+  EditorPosition: {x: 520, y: 326}

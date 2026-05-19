@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 7017424567233220101}
   m_Layer: 6
-  m_Name: Attack test
+  m_Name: empty object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,23 +31,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7017424567233220101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938865011410206441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0991a46add759491897037072d66ae89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: f0a9d6379981f45979884119eacc0331, type: 2}
-  CurrentAbilClass: 3
-  MinimumRange: 0
-  MaximumRange: 14
-  AssociatedInput: {fileID: 11400000, guid: babb21c02eb464c6292994eb1955dba6, type: 2}
-  UseWhenObscured: 0
-  UseWhenOutOfRange: 0
-  attackPrefab: {fileID: 4590517186784251951, guid: 42fda6020cba045fb8c48140389144a3, type: 3}

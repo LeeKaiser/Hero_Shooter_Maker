@@ -12,12 +12,16 @@ public abstract class AIAction : ScriptableObject
     public InputConverter InputConvert;
     public AIMovement Movement;
 
-    public Ability abilityToUse = null;
+    public ActiveAbility abilityToUse = null;
     protected InputUnit abilityInput = null;
     protected float inputHoldTime;
     public bool HoldingInput = false; //if AI was not holding input, first press then set holding input to true. 
     //  while holding input is true, continuously make hold input, 
     // when changing from holding input from true to false, make release input
+
+    protected GameObject targetPlayer = null;
+    protected GameObject playerArmature;
+    public LayerMask obstacleMask;          // What counts as cover geometry
 
     public void Init(Transform movement, Transform aim, ObjectDetection detection, InputConverter input, AIMovement move)
     {
@@ -26,28 +30,56 @@ public abstract class AIAction : ScriptableObject
         Detection = detection;
         InputConvert = input;
         Movement = move;
+        playerArmature = Detection.GetCurrentContext().SelfSummary.SummarizedPlayerCharCore.PlayerArmature;
     }
 
     public void MakeInput()
     {
         if (abilityToUse != null)
         {
-            if (!HoldingInput)
+            //check if it should be used
+            bool canUse = true; 
+            if (targetPlayer != null)
             {
-                PressInput();
+                Vector3 targetPos = targetPlayer.transform.position;
+                targetPos.y += 1;
+                Vector3 playerPos = playerArmature.transform.position;
+                playerPos.y += 1;
+                Vector3 direction = targetPos - playerPos;
+                if (!abilityToUse.UseWhenObscured )
+                {
+                    canUse = !Physics.Raycast(playerPos, direction.normalized, direction.magnitude, obstacleMask);
+                }
+                if (!abilityToUse.UseWhenOutOfRange)
+                {
+                    canUse = direction.magnitude <= abilityToUse.MaximumRange && direction.magnitude >= abilityToUse.MinimumRange;
+                }
             }
-            else if (inputHoldTime > 0)
+            
+            if (canUse)
             {
-                HoldInput();
+                if (!HoldingInput)
+                {
+                    PressInput();
+                }
+                else if (inputHoldTime > 0)
+                {
+                    HoldInput();
+                }
+                else if (inputHoldTime <= 0 || abilityToUse.GetCurrentCharge() <= 0)
+                {
+                    ReleaseInput();
+                    abilityToUse = null;
+                    abilityInput = null;
+                }
             }
-            else if (inputHoldTime <= 0 || abilityToUse.GetCurrentCharge() <= 0)
+
+            else
             {
-                ReleaseInput();
-                abilityToUse = null;
-                abilityInput = null;
+                Debug.Log("Can't use abil");
             }
-            inputHoldTime -= Time.deltaTime;
         }
+        inputHoldTime -= Time.deltaTime;
     }
 
     public void PressInput()

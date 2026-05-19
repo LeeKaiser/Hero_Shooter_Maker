@@ -2,20 +2,27 @@ using UnityEngine;
 using AbilityClassification;
 using System.Collections.Generic;
 using InputOptions;
-[CreateAssetMenu(menuName = "AIAction/Attack")]
-public class AttackAction : AIAction
+[CreateAssetMenu(menuName = "AIAction/AbilityAtEnemy")]
+public class UseAbilityAtEnemy : AIAction
 {
     /*
     public Transform MoveTarget;
     public Transform AimTarget;
     public ObjectDetection Detection;
     public InputEventCaller InputCall;
+
+    public ActiveAbility abilityToUse = null;
+    protected InputUnit abilityInput = null;
+    protected float inputHoldTime;
+    public bool HoldingInput = false; 
     */
 
-    GameObject targetEnemy = null;
-    float distanceFromEnemy = 12f;
-    float randomAngleTweak = 10f;
-    float randomDistanceTweak = 2f;
+    public AbilityClass PerferedAbilityClass;
+
+    
+    protected float distanceFromEnemy = 12f;
+    protected float randomAngleTweak = 10f;
+    protected float randomDistanceTweak = 2f;
 
     
     public override void DetermineMovement()
@@ -23,22 +30,29 @@ public class AttackAction : AIAction
         if (!(Detection.GetCurrentContext().KnownEnemyList == null))
         {
             // identify weakest enemy
-            if (targetEnemy == null)
+            if (targetPlayer == null)
             {
                 float highestVuln = 0;
                 foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
                 {
                     if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                     {
-                        targetEnemy = potentialTarget.Key.PlayerArmature;
+                        targetPlayer = potentialTarget.Key.PlayerArmature;
                         highestVuln = potentialTarget.Value.VulnerabilityValue;
                     }
                 }
             }
 
-            Vector3 nextDestination = targetEnemy.transform.position;
+            //set distance based on ability to use
+            if (abilityToUse != null)
+            {
+                distanceFromEnemy = abilityToUse.MinimumRange + ((abilityToUse.MaximumRange - abilityToUse.MinimumRange) / 2);
+                randomDistanceTweak = abilityToUse.MaximumRange - abilityToUse.MinimumRange;
+            }
 
-            Vector3 enemyToSelf =  Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.transform.position - targetEnemy.transform.position;
+            Vector3 nextDestination = targetPlayer.transform.position;
+
+            Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
             Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
             nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
             //Debug.Log(nextDestination);
@@ -48,8 +62,8 @@ public class AttackAction : AIAction
     }
     public override void DetermineAim()
     {
-        Vector3 targetPosition = targetEnemy.transform.position;
-        float heightAdjustment = targetEnemy.GetComponent<CharacterController>().height * 0.8f;
+        Vector3 targetPosition = targetPlayer.transform.position;
+        float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
         targetPosition.y += heightAdjustment;
         AimTarget.position = targetPosition;
     }
@@ -66,13 +80,13 @@ public class AttackAction : AIAction
             foreach (Ability abil in abilManager.GetAbilList())
             {
                 //assumes that active abilities have active ability classification and has input tied to it
-                if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(AbilityClass.Damage))
+                if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(PerferedAbilityClass))
                 {
                     float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
                     if (abilCooldown > bestCooldown && abilManager.AbiltyToInputDictionary.ContainsKey(abil))
                     {
                         
-                        abilityToUse = abil;
+                        abilityToUse = (ActiveAbility)abil;
                         abilityInput = abilManager.AbiltyToInputDictionary[abil];
                         switch (abilityInput.ComboInputType)
                         {
@@ -93,4 +107,6 @@ public class AttackAction : AIAction
         }
         
     }
+
+    
 }

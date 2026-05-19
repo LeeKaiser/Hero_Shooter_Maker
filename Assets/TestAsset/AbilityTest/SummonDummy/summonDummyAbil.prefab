@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 424128067573819710}
   - component: {fileID: 7017424567233220101}
   m_Layer: 6
-  m_Name: Attack test
+  m_Name: summonDummyAbil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0991a46add759491897037072d66ae89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: f0a9d6379981f45979884119eacc0331, type: 2}
-  CurrentAbilClass: 3
+  Stats: {fileID: 11400000, guid: 14fb66649399c4e6da382788b9603f73, type: 2}
+  CurrentAbilClass: 0
   MinimumRange: 0
-  MaximumRange: 14
-  AssociatedInput: {fileID: 11400000, guid: babb21c02eb464c6292994eb1955dba6, type: 2}
-  UseWhenObscured: 0
-  UseWhenOutOfRange: 0
-  attackPrefab: {fileID: 4590517186784251951, guid: 42fda6020cba045fb8c48140389144a3, type: 3}
+  MaximumRange: 0
+  AssociatedInput: {fileID: 11400000, guid: b8c4a544d4b0f49d5b3b4a6a7819a4bf, type: 2}
+  attackPrefab: {fileID: 4590517186784251951, guid: aeeafb0f2e0d547afbe2dce33616e08f, type: 3}

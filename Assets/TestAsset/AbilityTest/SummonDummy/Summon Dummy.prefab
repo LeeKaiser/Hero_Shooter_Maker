@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4677647275391394857}
   - component: {fileID: 1849800936458623266}
   m_Layer: 16
-  m_Name: test attack
+  m_Name: Summon Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   ApplyToEnemy: 1
   ApplyToAllies: 0
   ApplyToSelf: 0
-  BaseDamage: 10
+  BaseDamage: 35
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
     m_Bits: 65536
   DestroyEffect: {fileID: 4832272031469968205, guid: 1c2f30b0c574d468b885f8b5de4d16b3, type: 3}
   parentInfo: {fileID: 0}
-  ObjectToSpawn: {fileID: 0}
+  ObjectToSpawn: {fileID: 4570091011963483419, guid: 248f69934b860402ca855f0ab174b1ad, type: 3}
 --- !u!114 &2371623512047102482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
   m_Name: 

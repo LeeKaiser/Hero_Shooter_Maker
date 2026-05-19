@@ -23,6 +23,7 @@ public class AIMovement : MonoBehaviour
 
     private Vector3 agentDirection;
     private Vector3 previousMovement;
+    private Vector3 landingSpot;
 
     void Start()
     {
@@ -55,7 +56,8 @@ public class AIMovement : MonoBehaviour
     //makes an artificial input to the agent's input file.
     public void AgentMovement()
     {
-        Debug.Log(agentDirection);
+        //Debug.Log(agentDirection);
+        Vector3 pathfindingDirection = agent.velocity.normalized;
 
         //when on navmesh link (on ledge or when it needs to jump), disable agent
         // if destination of navmesh link required jump input, make jump input
@@ -75,27 +77,39 @@ public class AIMovement : MonoBehaviour
                 inputJump = true;
             }
 
-            
+            //set pathfinding direction towards direction of end point
+            pathfindingDirection = endPos.normalized;
+            landingSpot = data.endPos;
         }
-
-        //set agent's movement input        
+        Vector3 airStrafe = landingSpot - transform.position;
+        airStrafe.y = 0;
+        Vector3 agentLookVect = AimTarget.position - transform.position;
+        agentLookVect = agentLookVect.normalized; //direction agent is aiming at
+        airStrafe = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * airStrafe;
         if (agent.enabled)
         {
-            Debug.Log("setting direction");
+            //set agent's movement input        
             switch (playerReference.MovementStyle)
             {
                 case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    agentDirection = transform.InverseTransformDirection(agent.velocity.normalized);
+                    agentDirection = transform.InverseTransformDirection(pathfindingDirection);
                     break;
                 default:
-                    Vector3 agentLookVect = AimTarget.position - transform.position;
-                    agentLookVect = agentLookVect.normalized; //direction agent is aiming at
-                    Vector3 agentMoveVect = agent.velocity.normalized; //direction agent moves in world space
-                    agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * agentMoveVect;
+                    agentDirection = Quaternion.Inverse(Quaternion.LookRotation(agentLookVect)) * pathfindingDirection;
+                    
                     break;
             }
+
         }
-        
+        else
+        {
+            //while jumping, adjust direction to landing spot if far from it
+            previousMovement = Vector3.Lerp(previousMovement.normalized, airStrafe.normalized, 5f * Time.deltaTime);
+            
+            agentDirection = previousMovement;
+            Debug.Log(agentDirection);
+            
+        }
         if (agentDirection == Vector3.zero)
         {
             agentDirection = previousMovement;
@@ -104,10 +118,10 @@ public class AIMovement : MonoBehaviour
         {
             previousMovement = agentDirection;
         }
-        Debug.Log(inputJump);
+        //Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
-        Debug.Log(agentInput);
+        //Debug.Log(agentInput);
         inputConvert.JumpInput(inputJump);
         inputConvert.MoveInput(agentInput);
     }

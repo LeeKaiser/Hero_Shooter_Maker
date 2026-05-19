@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 6355035046825791271}
   - component: {fileID: 1646099405858701527}
   m_Layer: 6
-  m_Name: Test Attack UI
+  m_Name: AttackUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36408fea8355488f8578ea4d9fce622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackTestUI
-  positionChangeOnOverlap: {x: 0, y: 60}
+  positionChangeOnOverlap: {x: 0, y: 80}
   AbilityReference: {fileID: 0}
   abilityName: {fileID: 4376929249614555908}
   chargeRemaining: {fileID: 2870035484266830564}

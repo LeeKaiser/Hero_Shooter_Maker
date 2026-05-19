@@ -1,4 +1,5 @@
 using UnityEngine;
+using PlayerEvents;
 
 public class AttackTest : ActiveAbility
 {
@@ -14,6 +15,7 @@ public class AttackTest : ActiveAbility
         attackPoint = playerReference.PlayerArmature.transform.Find("KeyPoint1").transform;
         targetPoint = playerReference.transform.Find("AimTarget").transform;
         EventBus<ActiveAbilityID>.Subscribe(executeAbility);
+        SetUpInput();
     }
 
     public void executeAbility(ActiveAbilityID inputEventInfo)
@@ -47,6 +49,12 @@ public class AttackTest : ActiveAbility
 
         //use a charge
         ConsumeCharge(1);
+
+        //invoke used ability
+        UseAbility usedAbilEvent = new UseAbility();
+        usedAbilEvent.PlayerIdentity = playerReference;
+        usedAbilEvent.UsedAbility = this;
+        EventBus<UseAbility>.Invoke(usedAbilEvent);
     }
 
 

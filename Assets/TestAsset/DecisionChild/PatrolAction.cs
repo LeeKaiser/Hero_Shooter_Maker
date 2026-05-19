@@ -18,6 +18,12 @@ public class PatrolAction : AIAction
         //when there is no relevant place to go, move to random position near itself
         GameObject playerArmatureRef = Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().PlayerArmature;
         Vector3 nextDestination = playerArmatureRef.transform.position;
+
+        //if there is a point of interest, move somewhere around the point of interest
+        if (!(Detection.GetCurrentContext().FocusPOI == null))
+        {
+            nextDestination = Detection.GetCurrentContext().FocusPOI.transform.position;
+        }
         
         //when there is an ally around, move somewhere around that ally
         if (Detection.GetCurrentContext().KnownAllyList.Count >= 1)
@@ -34,11 +40,7 @@ public class PatrolAction : AIAction
             }
         }
 
-        //if there is a point of interest, move somewhere around the point of interest
-        if (!(Detection.GetCurrentContext().FocusPOI == null))
-        {
-            nextDestination = Detection.GetCurrentContext().FocusPOI.transform.position;
-        }
+        
 
         //choose a random position and move to it
         nextDestination.x = nextDestination.x + Random.Range(-destinationSpread,destinationSpread);
