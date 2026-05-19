@@ -19,4 +19,7 @@ MonoBehaviour:
   Movement: {fileID: 0}
   abilityToUse: {fileID: 0}
   HoldingInput: 0
-  destinationSpread: 1
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  destinationSpread: 2

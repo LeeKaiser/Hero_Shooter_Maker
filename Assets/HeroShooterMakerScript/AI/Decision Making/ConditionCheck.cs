@@ -21,6 +21,8 @@ public static class ConditionCheck
                 return TeammatePresentConditiion(context);
             case decisionCondition.Random:
                 return RandomCondition(parameterFloat);
+            case decisionCondition.TeammateLowHp:
+                return TeammateLowHpCondition(context, parameterFloat);
             default:
                 return false;
         }
@@ -55,5 +57,21 @@ public static class ConditionCheck
     private static bool RandomCondition(float parameterFloat)
     {
         return parameterFloat <= Random.Range(0f,1f);
+    }
+
+    private static bool TeammateLowHpCondition(KnownContext context, float parameterFloat)
+    {
+        if (context.KnownAllyList.Count > 0) 
+        {
+            foreach (KeyValuePair<CharCore, PlayerSummary> x in context.KnownAllyList)
+            {
+                if (x.Value.PercentHP < parameterFloat)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else{return false;}
     }
 }

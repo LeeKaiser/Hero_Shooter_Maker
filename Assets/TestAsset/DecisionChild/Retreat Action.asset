@@ -19,10 +19,10 @@ MonoBehaviour:
   Movement: {fileID: 0}
   abilityToUse: {fileID: 0}
   HoldingInput: 0
-  PerferedAbilityClass: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8
+  PerferedAbilityClass: 2
   searchRadius: 15
   behindEdgeOffset: 1
   edgeSamplesPerSearch: 20
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0

@@ -8,6 +8,7 @@ namespace DecisionCondition
         EnemyPresent,
         EnemyClose,
         TeammatePresent,
+        TeammateLowHp,
         Random,
     }
 }
