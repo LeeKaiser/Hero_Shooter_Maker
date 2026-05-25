@@ -34,12 +34,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 0}
   ChildNoNode: {fileID: 0}
-  ParentNodes: []
+  ParentNodes:
+  - {fileID: 5644611274319498579}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: da009ae08b7b8481ab8f57453f8dc4e5, type: 2}
+  IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 0, y: 0}
+  EditorPosition: {x: 631, y: 536}
 --- !u!114 &-3862533942889065745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +80,7 @@ MonoBehaviour:
   - {fileID: 5644611274319498579}
   - {fileID: -3862533942889065745}
   - {fileID: 3666572616412259005}
+  - {fileID: -7467366686930510196}
 --- !u!114 &3666572616412259005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,8 +98,8 @@ MonoBehaviour:
   ParentNodes:
   - {fileID: 5644611274319498579}
   NodeCondition: 0
-  Action: {fileID: 0}
-  IsAction: 0
+  Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
+  IsAction: 1
   ParameterFloat: 0
   EditorPosition: {x: 314, y: 541}
 --- !u!114 &5644611274319498579
@@ -113,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 3666572616412259005}
-  ChildNoNode: {fileID: 0}
+  ChildNoNode: {fileID: -7467366686930510196}
   ParentNodes:
   - {fileID: -9218309207522908596}
   NodeCondition: 5
