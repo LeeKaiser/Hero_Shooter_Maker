@@ -28,6 +28,10 @@ public class HotZoneObjective : ObjectiveSystem
         if (player != null)
         {
             TeamManager team = player.PlayerAllegience;
+            if (team == null)
+            {
+                return;
+            }
             if (!alreadyGivenPoint.ContainsKey(team))
             {
                 alreadyGivenPoint[team] = TickRate;

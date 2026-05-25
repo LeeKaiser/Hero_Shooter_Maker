@@ -3,7 +3,7 @@ using AbilityClassification;
 using System.Collections.Generic;
 using InputOptions;
 [CreateAssetMenu(menuName = "AIAction/AbilityAtEnemy")]
-public class UseAbilityAtEnemy : AIAction
+public class UseAbilityAtEnemy : PatrolAction
 {
     /*
     public Transform MoveTarget;
@@ -50,22 +50,43 @@ public class UseAbilityAtEnemy : AIAction
                 randomDistanceTweak = abilityToUse.MaximumRange - abilityToUse.MinimumRange;
             }
 
-            Vector3 nextDestination = targetPlayer.transform.position;
+            if (targetPlayer != null)
+            {
+                Vector3 nextDestination = targetPlayer.transform.position;
 
-            Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
-            Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
-            nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
+                Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
+                Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
+                nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
+                MoveTarget.position = nextDestination;
+                Movement.MoveToLocation();
+            }
             //Debug.Log(nextDestination);
-            MoveTarget.position = nextDestination;
-            Movement.MoveToLocation();
+            else
+            {
+                base.DetermineMovement();
+            }
+            
+        }
+        else
+        {
+            base.DetermineMovement();
         }
     }
     public override void DetermineAim()
     {
-        Vector3 targetPosition = targetPlayer.transform.position;
-        float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
-        targetPosition.y += heightAdjustment;
-        AimTarget.position = targetPosition;
+        if (targetPlayer != null)
+        {
+            Vector3 targetPosition = targetPlayer.transform.position;
+            float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
+            targetPosition.y += heightAdjustment;
+            AimTarget.position = targetPosition;
+        }
+
+        else
+        {
+            base.DetermineAim();
+        }
+        
     }
     public override void DetermineInput()
     {
