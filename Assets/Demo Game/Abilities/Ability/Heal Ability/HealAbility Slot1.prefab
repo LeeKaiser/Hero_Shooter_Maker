@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
   Stats: {fileID: 11400000, guid: 9970b6ecc53ac4aa68dafbfaca98dfe2, type: 2}
-  CurrentAbilClass: 3135
+  CurrentAbilClass: 3133
   MinimumRange: 0
   MaximumRange: 7
   AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
+  UseWhenObscured: 0
+  UseWhenOutOfRange: 0
   attackPrefab: {fileID: 4590517186784251951, guid: a730679cc3b7f4b1abc1b5033dbff640, type: 3}
   Bloom: 0
