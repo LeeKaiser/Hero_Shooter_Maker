@@ -106,7 +106,8 @@ public class ObjectDetection : MonoBehaviour
                 //check if its self
                 if (obj.collider.gameObject == gameObject)
                 {
-                    continue;
+                    CharCore selfReference = transform.GetComponentInParent<CharCore>();
+                    selfSummary.SetValues(selfReference, selfReference.AbilityManage, transform, transform, 999f);
                 }
                 //check if its teammate
                 else if ((1 << player.gameObject.layer) == TeamMask)

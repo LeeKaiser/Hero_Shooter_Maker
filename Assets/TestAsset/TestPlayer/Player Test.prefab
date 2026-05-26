@@ -118,7 +118,7 @@ MonoBehaviour:
   PlayerMovement: {fileID: 0}
   AbilityManage: {fileID: 0}
   PlayerArmature: {fileID: 0}
-  IsAlive: 0
+  IsAlive: 1
 --- !u!114 &4841635359554779518
 MonoBehaviour:
   m_ObjectHideFlags: 0

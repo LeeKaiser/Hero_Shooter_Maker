@@ -24,8 +24,8 @@ public static class ConditionCheck
                 return RandomCondition(parameterFloat);
             case decisionCondition.TeammateLowHp:
                 return TeammateLowHpCondition(context, parameterFloat);
-            case decisionCondition.SelfLowHp:
-                return SelfLowHpCondition(context, parameterFloat);
+            case decisionCondition.SelfRemainingHp:
+                return SelfRemainingHpCondition(context, parameterFloat);
             case decisionCondition.HasActiveAbilityOfClass:
                 return HasActiveAbilityOfClassCondition(context, parameterFloat);
             case decisionCondition.TeamHasAdvantage:
@@ -96,12 +96,12 @@ public static class ConditionCheck
 
     //self low hp 
     //if self's remaining hp percentage is lower than or equal to parameter float, return true;
-    private static bool SelfLowHpCondition(KnownContext context, float parameterFloat)
+    private static bool SelfRemainingHpCondition(KnownContext context, float parameterFloat)
     {
         if (context.SelfSummary != null) 
         {
             
-            if (context.SelfSummary.PercentHP < parameterFloat)
+            if (context.SelfSummary.PercentHP >= parameterFloat)
             {
                 return true;
             }
@@ -180,7 +180,7 @@ namespace DecisionCondition
         TeammatePresent,
         TeammateLowHp,
         TeamHasAdvantage,
-        SelfLowHp,
+        SelfRemainingHp,
         HasActiveAbilityOfClass,
         EnemyNearPointOfInterest,
         Random,

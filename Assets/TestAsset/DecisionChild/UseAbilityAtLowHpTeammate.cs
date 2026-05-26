@@ -10,19 +10,17 @@ public class UseAbilityAtLowHpTeammate : UseAbilityAtEnemy
     {
         if (!(Detection.GetCurrentContext().KnownAllyList == null))
         {
-            // identify weakest enemy
-            if (targetPlayer == null)
+            // identify weakest teammate
+            float lowestHp = 1;
+            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownAllyList)
             {
-                float lowestHp = 1;
-                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownAllyList)
+                if (potentialTarget.Value.PercentHP <= lowestHp)
                 {
-                    if (potentialTarget.Value.PercentHP <= lowestHp)
-                    {
-                        targetPlayer = potentialTarget.Key.PlayerArmature;
-                        lowestHp = potentialTarget.Value.PercentHP;
-                    }
+                    targetPlayer = potentialTarget.Key.PlayerArmature;
+                    lowestHp = potentialTarget.Value.PercentHP;
                 }
             }
+            
 
             //set distance based on ability to use
             if (abilityToUse != null)

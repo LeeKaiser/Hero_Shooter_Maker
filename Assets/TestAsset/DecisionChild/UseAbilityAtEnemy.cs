@@ -2,6 +2,7 @@ using UnityEngine;
 using AbilityClassification;
 using System.Collections.Generic;
 using InputOptions;
+using System;
 [CreateAssetMenu(menuName = "AIAction/AbilityAtEnemy")]
 public class UseAbilityAtEnemy : PatrolAction
 {
@@ -30,18 +31,16 @@ public class UseAbilityAtEnemy : PatrolAction
         if (!(Detection.GetCurrentContext().KnownEnemyList == null))
         {
             // identify weakest enemy
-            if (targetPlayer == null)
+            float highestVuln = 0;
+            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
             {
-                float highestVuln = 0;
-                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
+                if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                 {
-                    if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
-                    {
-                        targetPlayer = potentialTarget.Key.PlayerArmature;
-                        highestVuln = potentialTarget.Value.VulnerabilityValue;
-                    }
+                    targetPlayer = potentialTarget.Key.PlayerArmature;
+                    highestVuln = potentialTarget.Value.VulnerabilityValue;
                 }
             }
+            
 
             //set distance based on ability to use
             if (abilityToUse != null)
@@ -50,18 +49,18 @@ public class UseAbilityAtEnemy : PatrolAction
                 randomDistanceTweak = abilityToUse.MaximumRange - abilityToUse.MinimumRange;
             }
 
-            if (targetPlayer != null)
+            try
             {
                 Vector3 nextDestination = targetPlayer.transform.position;
 
                 Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
-                Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
-                nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
+                Quaternion randomRot = Quaternion.AngleAxis(UnityEngine.Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
+                nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + UnityEngine.Random.Range(-randomDistanceTweak,randomDistanceTweak)));
                 MoveTarget.position = nextDestination;
                 Movement.MoveToLocation();
             }
             //Debug.Log(nextDestination);
-            else
+            catch (Exception e)
             {
                 base.DetermineMovement();
             }
@@ -74,7 +73,7 @@ public class UseAbilityAtEnemy : PatrolAction
     }
     public override void DetermineAim()
     {
-        if (targetPlayer != null)
+        try
         {
             Vector3 targetPosition = targetPlayer.transform.position;
             float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
@@ -82,7 +81,7 @@ public class UseAbilityAtEnemy : PatrolAction
             AimTarget.position = targetPosition;
         }
 
-        else
+        catch(Exception e)
         {
             base.DetermineAim();
         }
