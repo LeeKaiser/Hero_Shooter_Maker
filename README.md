@@ -26,7 +26,7 @@ Alternatively run the builds in the build folder.
   - it listens for events then makes something happen. has internal cooldown that controls usage
 
 - Inventory array 
-  - holds items
+  - holds items or currency, applicable for game types involving collecting items or for upgrade systems.
 
 - Status effect array 
   - handle temporary modifications of a player
@@ -35,9 +35,6 @@ Alternatively run the builds in the build folder.
   - Primarily for making players who are not controlled by a client. Should also be applicable for making other AI controlled entity such as spawnables or npc monsters
 
 ## Match Focused Features
-- Multiplayer
-  - A match of a hero shooter game needs to be hosted from a server and accessed by clients, who control an individual character.
-
 - Teams 
   - Team objects hold players that belong to the same team, and handle team wide functions
 
@@ -46,3 +43,6 @@ Alternatively run the builds in the build folder.
 
 - Game manager 
   - Manage game wide events, match timer, etc.
+ 
+## Not Included
+- Multiplayer: This package does not include any sort of networking solution, but it should be compatible or can be modified to be compatible with most options. This package was not designed with a specific networking solution in mind. 
