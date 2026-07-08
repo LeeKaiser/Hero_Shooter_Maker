@@ -153,7 +153,7 @@ public static class ConditionCheck
     //return true if the enemy is within parameter float of a poi it is focused on
     private static bool EnemyNearPointOfInterestCondition(KnownContext context, float parameterFloat)
     {
-        if (context.KnownEnemyList.Count == 0 || context.FocusPOI == null)
+        if (context.KnownEnemyList.Count == 0 || context.focusPOIList == null)
         {
             //no enemies or point of interest detected
             return false;
@@ -163,8 +163,13 @@ public static class ConditionCheck
         foreach (KeyValuePair<CharCore, PlayerSummary> x in context.KnownEnemyList)
         {
             Vector3 enemyPosition = x.Key.PlayerArmature.transform.position;
-            float distanceFromPoint = (context.FocusPOI.transform.position - enemyPosition).magnitude;
-            if (distanceFromPoint <= parameterFloat) return true;
+            foreach (PatrolLandmark y in context.focusPOIList)
+            {
+                float distanceFromPoint = (y.transform.position - enemyPosition).magnitude;
+                if (distanceFromPoint <= parameterFloat) return true;
+            }
+            
+            
         }
         return false;
     }

@@ -34,7 +34,7 @@ public class ObjectDetection : MonoBehaviour
 
     PlayerSummary selfSummary = new PlayerSummary();
 
-    GameObject focusPOI;
+    List<PatrolLandmark> focusPOIList = new List<PatrolLandmark>();
 
     KnownContext currentContext = new KnownContext();
     private JobHandle overlapHandle;
@@ -124,8 +124,8 @@ public class ObjectDetection : MonoBehaviour
             //add other object types
             if (obj.collider.CompareTag("Point Of Interest"))
             {
-                focusPOI = obj.collider.gameObject;
-                //Debug.Log($"point of interest: {focusPOI}");
+                AddPOI(obj.collider.gameObject.GetComponent<PatrolLandmark>());
+                //Debug.Log($"point of interest: {focusPOIList}");
             }
         }
         SetContext();
@@ -169,10 +169,15 @@ public class ObjectDetection : MonoBehaviour
         }
     }
 
+    public void AddPOI(PatrolLandmark landmark)
+    {
+        focusPOIList.Add(landmark);
+    }
+
     public void SetContext()
     {
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
-        currentContext.SetPOI(focusPOI);
+        currentContext.SetPOI(focusPOIList);
     }
 
     //

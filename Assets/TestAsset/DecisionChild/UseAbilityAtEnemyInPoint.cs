@@ -8,9 +8,20 @@ public class UseAbilityAtEnemyInPoint : UseAbilityAtEnemy
     {
         if (!(Detection.GetCurrentContext().KnownEnemyList == null))
         {
-            Vector3 pointLocation;
-            if (Detection.GetCurrentContext().FocusPOI != null) pointLocation = Detection.GetCurrentContext().FocusPOI.transform.position;
-            else pointLocation = playerArmature.transform.position;
+            Vector3 pointLocation = playerArmature.transform.position;
+            if (Detection.GetCurrentContext().focusPOIList != null)
+            {
+                int highestPriority = 0;
+                foreach (PatrolLandmark x in Detection.GetCurrentContext().focusPOIList)
+                {
+                    if (x.PatrolPriority[0] > highestPriority)
+                    {
+                        pointLocation = x.transform.position;
+                        highestPriority = x.PatrolPriority[0];
+                    }
+                }
+                
+            } 
             // identify weakest enemy
             float lowestDistance = Mathf.Infinity;
             foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)

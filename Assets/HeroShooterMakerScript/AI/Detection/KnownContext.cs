@@ -12,7 +12,7 @@ public struct KnownContext
     public Dictionary <CharCore, PlayerSummary> KnownAllyList;
     public Dictionary <CharCore, PlayerSummary> KnownEnemyList;
     public PlayerSummary SelfSummary;
-    public GameObject FocusPOI;
+    public List<PatrolLandmark> focusPOIList;
 
     public void Init(GameObject pr, Dictionary <CharCore, PlayerSummary> kal, Dictionary <CharCore, PlayerSummary> kel, PlayerSummary ss)
     {
@@ -22,7 +22,7 @@ public struct KnownContext
         SelfSummary = ss;
     }
 
-    public void SetPOI(GameObject poi){FocusPOI = poi;}
+    public void SetPOI(List<PatrolLandmark> poi){focusPOIList = poi;}
 
     public string toString()
     {
@@ -42,7 +42,7 @@ public struct KnownContext
             retStr += player.Value.toString();
         }
 
-        retStr += $"point of interest: {FocusPOI}";
+        retStr += $"point of interest: {focusPOIList}";
 
         return retStr;
     }
