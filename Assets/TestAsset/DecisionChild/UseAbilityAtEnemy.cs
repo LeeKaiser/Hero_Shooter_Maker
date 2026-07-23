@@ -2,8 +2,9 @@ using UnityEngine;
 using AbilityClassification;
 using System.Collections.Generic;
 using InputOptions;
+using System;
 [CreateAssetMenu(menuName = "AIAction/AbilityAtEnemy")]
-public class UseAbilityAtEnemy : AIAction
+public class UseAbilityAtEnemy : PatrolAction
 {
     /*
     public Transform MoveTarget;
@@ -30,18 +31,16 @@ public class UseAbilityAtEnemy : AIAction
         if (!(Detection.GetCurrentContext().KnownEnemyList == null))
         {
             // identify weakest enemy
-            if (targetPlayer == null)
+            float highestVuln = 0;
+            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
             {
-                float highestVuln = 0;
-                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in Detection.GetCurrentContext().KnownEnemyList)
+                if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
                 {
-                    if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
-                    {
-                        targetPlayer = potentialTarget.Key.PlayerArmature;
-                        highestVuln = potentialTarget.Value.VulnerabilityValue;
-                    }
+                    targetPlayer = potentialTarget.Key.PlayerArmature;
+                    highestVuln = potentialTarget.Value.VulnerabilityValue;
                 }
             }
+            
 
             //set distance based on ability to use
             if (abilityToUse != null)
@@ -50,22 +49,43 @@ public class UseAbilityAtEnemy : AIAction
                 randomDistanceTweak = abilityToUse.MaximumRange - abilityToUse.MinimumRange;
             }
 
-            Vector3 nextDestination = targetPlayer.transform.position;
+            try
+            {
+                Vector3 nextDestination = targetPlayer.transform.position;
 
-            Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
-            Quaternion randomRot = Quaternion.AngleAxis(Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
-            nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + Random.Range(-randomDistanceTweak,randomDistanceTweak)));
+                Vector3 enemyToSelf =  playerArmature.transform.position - targetPlayer.transform.position;
+                Quaternion randomRot = Quaternion.AngleAxis(UnityEngine.Random.Range(-randomAngleTweak,randomAngleTweak),Vector3.up);
+                nextDestination = nextDestination + (randomRot * enemyToSelf.normalized * (distanceFromEnemy + UnityEngine.Random.Range(-randomDistanceTweak,randomDistanceTweak)));
+                MoveTarget.position = nextDestination;
+                Movement.MoveToLocation();
+            }
             //Debug.Log(nextDestination);
-            MoveTarget.position = nextDestination;
-            Movement.MoveToLocation();
+            catch (Exception e)
+            {
+                base.DetermineMovement();
+            }
+            
+        }
+        else
+        {
+            base.DetermineMovement();
         }
     }
     public override void DetermineAim()
     {
-        Vector3 targetPosition = targetPlayer.transform.position;
-        float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
-        targetPosition.y += heightAdjustment;
-        AimTarget.position = targetPosition;
+        try
+        {
+            Vector3 targetPosition = targetPlayer.transform.position;
+            float heightAdjustment = targetPlayer.GetComponent<CharacterController>().height * 0.8f;
+            targetPosition.y += heightAdjustment;
+            AimTarget.position = targetPosition;
+        }
+
+        catch(Exception e)
+        {
+            base.DetermineAim();
+        }
+        
     }
     public override void DetermineInput()
     {

@@ -103,6 +103,7 @@ public class RetreatAction : UseAbilityAtEnemy
         }
     }
 
+    //cover search created with help of Claude AI
     // Samples several points along the edge, offset behind it away from the enemy
     private List<Vector3> SampleAlongEdge(Vector3 edgePoint, Vector3 edgeNormal, Vector3 enemyPos)
     {

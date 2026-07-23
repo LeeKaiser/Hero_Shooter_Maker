@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4677647275391394857}
   - component: {fileID: 1849800936458623266}
   m_Layer: 16
-  m_Name: test attack Heal
+  m_Name: friendly damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64796d0bb381d4c87ad04dd42544a05a, type: 2}
+  - {fileID: 2100000, guid: 1d7d49d4875d04964bbdacad79cf00ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3581458583b90435ea975154dcb1e695, type: 3}
   m_Name: 
@@ -133,10 +133,10 @@ MonoBehaviour:
   MaxHits: 1
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
-  ApplyToEnemy: 1
-  ApplyToAllies: 0
+  ApplyToEnemy: 0
+  ApplyToAllies: 1
   ApplyToSelf: 0
-  BaseDamage: 20
+  BaseDamage: 10
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4590517186784251951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 330ea97872ded426599e2b4a0ec2f46b, type: 3}
   m_Name: 
@@ -222,7 +222,7 @@ MonoBehaviour:
   ApplyToEnemy: 0
   ApplyToAllies: 1
   ApplyToSelf: 0
-  BaseHealing: 20
+  BaseHealing: 25
 --- !u!1 &7967322892689922178
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 64796d0bb381d4c87ad04dd42544a05a, type: 2}
+  - {fileID: 2100000, guid: 1d7d49d4875d04964bbdacad79cf00ce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

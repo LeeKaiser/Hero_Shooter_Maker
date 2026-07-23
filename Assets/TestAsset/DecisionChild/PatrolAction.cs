@@ -18,14 +18,26 @@ public class PatrolAction : AIAction
         //when there is no relevant place to go, move to random position near itself
         GameObject playerArmatureRef = Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().PlayerArmature;
         Vector3 nextDestination = playerArmatureRef.transform.position;
-
+        int priorityIndex = Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().Stats.PatrolPriorityIndex;
         //if there is a point of interest, move somewhere around the point of interest
-        if (!(Detection.GetCurrentContext().FocusPOI == null))
+        if (!(Detection.GetCurrentContext().focusPOIList == null))
         {
-            nextDestination = Detection.GetCurrentContext().FocusPOI.transform.position;
+            int highestPriority = 0;
+            foreach (PatrolLandmark x in Detection.GetCurrentContext().focusPOIList)
+            {
+                //check if index is present or missing. default to 0 if missing
+                int usedIndex = priorityIndex;
+                if (x.PatrolPriority.Count <= usedIndex) usedIndex = 0;
+                if (x.PatrolPriority[usedIndex] > highestPriority)
+                {
+                    highestPriority = x.PatrolPriority[0];
+                    nextDestination = x.transform.position;
+                }
+            }
+            
         }
         
-        //when there is an ally around, move somewhere around that ally
+        /* //when there is an ally around, move somewhere around that ally
         if (Detection.GetCurrentContext().KnownAllyList.Count >= 1)
         {
             float highestVuln = 0;
@@ -38,9 +50,7 @@ public class PatrolAction : AIAction
                     highestVuln = potentialTarget.Value.VulnerabilityValue;
                 }
             }
-        }
-
-        
+        } */
 
         //choose a random position and move to it
         nextDestination.x = nextDestination.x + Random.Range(-destinationSpread,destinationSpread);

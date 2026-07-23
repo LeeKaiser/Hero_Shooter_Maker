@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424128067573819710}
-  - component: {fileID: 63197182628784865}
+  - component: {fileID: 7017424567233220101}
   m_Layer: 6
-  m_Name: HealAbility Slot1
+  m_Name: Damage Teammate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &63197182628784865
+--- !u!114 &7017424567233220101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,15 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938865011410206441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd88a949065224bad8c5933df2c7412f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0991a46add759491897037072d66ae89, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ReleaseProjectile
-  Stats: {fileID: 11400000, guid: 9970b6ecc53ac4aa68dafbfaca98dfe2, type: 2}
-  CurrentAbilClass: 3133
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: f0a9d6379981f45979884119eacc0331, type: 2}
+  CurrentAbilClass: 3
   MinimumRange: 0
-  MaximumRange: 7
-  AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
+  MaximumRange: 14
+  AssociatedInput: {fileID: 11400000, guid: dc9b11b2623a6424599f670a582ffd30, type: 2}
   UseWhenObscured: 0
   UseWhenOutOfRange: 0
-  attackPrefab: {fileID: 4590517186784251951, guid: a730679cc3b7f4b1abc1b5033dbff640, type: 3}
-  Bloom: 0
+  attackPrefab: {fileID: 4590517186784251951, guid: 55430ad928ea14157b482e636dbe2763, type: 3}

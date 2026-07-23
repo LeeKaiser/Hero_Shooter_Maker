@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f94cac9563dd4f34a66d47ff02cfb62, type: 3}
   m_Name: InputUnit
   m_EditorClassIdentifier: Assembly-CSharp::InputUnit
-  InputCombo: 1048576
-  ComboInputType: 2
-  Priority: 0
+  InputCombo: 4
+  ComboInputType: 1
+  Priority: 1

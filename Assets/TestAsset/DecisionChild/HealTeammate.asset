@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e68d42b6644894e15a17bb5f05384b67, type: 3}
-  m_Name: Retreat Action
-  m_EditorClassIdentifier: Assembly-CSharp::RetreatAction
+  m_Script: {fileID: 11500000, guid: 0d57c3add59014eb3b430595f94dc650, type: 3}
+  m_Name: HealTeammate
+  m_EditorClassIdentifier: Assembly-CSharp::UseAbilityAtTeammate
   MoveTarget: {fileID: 0}
   AimTarget: {fileID: 0}
   Detection: {fileID: 0}
@@ -22,8 +22,4 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
-  destinationSpread: 0
-  PerferedAbilityClass: 256
-  searchRadius: 15
-  behindEdgeOffset: 1
-  edgeSamplesPerSearch: 20
+  PerferedAbilityClass: 4

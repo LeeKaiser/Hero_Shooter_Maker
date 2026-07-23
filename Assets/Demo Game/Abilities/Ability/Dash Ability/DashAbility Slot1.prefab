@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DashAbility
   Stats: {fileID: 11400000, guid: cebae4bbc0ff24cbcbf6aa1a33ef1d87, type: 2}
-  CurrentAbilClass: 5507
+  CurrentAbilClass: 5505
   MinimumRange: 0
   MaximumRange: 4
   AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
+  UseWhenObscured: 0
+  UseWhenOutOfRange: 0
   DashDistance: 4
   DashSpeed: 16
   DashMoveDirection: 1

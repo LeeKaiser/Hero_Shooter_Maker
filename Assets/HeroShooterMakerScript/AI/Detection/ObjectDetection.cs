@@ -34,7 +34,7 @@ public class ObjectDetection : MonoBehaviour
 
     PlayerSummary selfSummary = new PlayerSummary();
 
-    GameObject focusPOI;
+    List<PatrolLandmark> focusPOIList = new List<PatrolLandmark>();
 
     KnownContext currentContext = new KnownContext();
     private JobHandle overlapHandle;
@@ -106,7 +106,8 @@ public class ObjectDetection : MonoBehaviour
                 //check if its self
                 if (obj.collider.gameObject == gameObject)
                 {
-                    continue;
+                    CharCore selfReference = transform.GetComponentInParent<CharCore>();
+                    selfSummary.SetValues(selfReference, selfReference.AbilityManage, transform, transform, 999f);
                 }
                 //check if its teammate
                 else if ((1 << player.gameObject.layer) == TeamMask)
@@ -123,8 +124,8 @@ public class ObjectDetection : MonoBehaviour
             //add other object types
             if (obj.collider.CompareTag("Point Of Interest"))
             {
-                focusPOI = obj.collider.gameObject;
-                //Debug.Log($"point of interest: {focusPOI}");
+                AddPOI(obj.collider.gameObject.GetComponent<PatrolLandmark>());
+                //Debug.Log($"point of interest: {focusPOIList}");
             }
         }
         SetContext();
@@ -168,10 +169,15 @@ public class ObjectDetection : MonoBehaviour
         }
     }
 
+    public void AddPOI(PatrolLandmark landmark)
+    {
+        focusPOIList.Add(landmark);
+    }
+
     public void SetContext()
     {
         currentContext.Init(PlayerReference, knownAllyList, knownEnemyList, selfSummary);
-        currentContext.SetPOI(focusPOI);
+        currentContext.SetPOI(focusPOIList);
     }
 
     //
