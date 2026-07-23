@@ -18,3 +18,4 @@ MonoBehaviour:
   StrafeSpeedBase: 5
   JumpHeightBase: 1.2
   GravityBase: -15
+  PatrolPriorityIndex: 1

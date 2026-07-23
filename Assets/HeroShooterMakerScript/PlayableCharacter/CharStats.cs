@@ -36,4 +36,8 @@ public class CharStats : ScriptableObject
    // private float GravityCurrent = -15f;
     //private float GravityMult = 1f;
 
+    [Header("AI varialbe")]
+    [Tooltip("index to access the priority of patrol point for this character")]
+    public int PatrolPriorityIndex = 0;
+
 }

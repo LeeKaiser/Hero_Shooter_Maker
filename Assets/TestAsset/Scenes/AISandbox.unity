@@ -2236,7 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c1376fd0b784e43b9d4d6e03690719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatrolLandmark
-  PatrolPriority: 02000000
+  PatrolPriority: 0200000003000000
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 0
@@ -7171,7 +7171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c1376fd0b784e43b9d4d6e03690719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PatrolLandmark
-  PatrolPriority: 03000000
+  PatrolPriority: 0300000001000000
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 0

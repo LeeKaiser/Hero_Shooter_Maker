@@ -18,14 +18,17 @@ public class PatrolAction : AIAction
         //when there is no relevant place to go, move to random position near itself
         GameObject playerArmatureRef = Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().PlayerArmature;
         Vector3 nextDestination = playerArmatureRef.transform.position;
-
+        int priorityIndex = Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().Stats.PatrolPriorityIndex;
         //if there is a point of interest, move somewhere around the point of interest
         if (!(Detection.GetCurrentContext().focusPOIList == null))
         {
             int highestPriority = 0;
             foreach (PatrolLandmark x in Detection.GetCurrentContext().focusPOIList)
             {
-                if (x.PatrolPriority[0] > highestPriority)
+                //check if index is present or missing. default to 0 if missing
+                int usedIndex = priorityIndex;
+                if (x.PatrolPriority.Count <= usedIndex) usedIndex = 0;
+                if (x.PatrolPriority[usedIndex] > highestPriority)
                 {
                     highestPriority = x.PatrolPriority[0];
                     nextDestination = x.transform.position;
