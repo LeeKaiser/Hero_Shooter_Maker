@@ -56,6 +56,7 @@ public class UseAbilityAtEnemyInPoint : UseAbilityAtEnemy
             catch (Exception e)
             {
                 base.DetermineMovement();
+                Debug.Log(e);
             }
             
         }

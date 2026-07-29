@@ -63,6 +63,7 @@ public class UseAbilityAtEnemy : PatrolAction
             catch (Exception e)
             {
                 base.DetermineMovement();
+                Debug.Log(e);
             }
             
         }
@@ -84,6 +85,7 @@ public class UseAbilityAtEnemy : PatrolAction
         catch(Exception e)
         {
             base.DetermineAim();
+            Debug.Log(e);
         }
         
     }
