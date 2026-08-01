@@ -10,6 +10,8 @@ AI has modified behavior for when it encounters off mesh link.
 It moves forward and drops if the off mesh link end is close enough to be reached without jumping, 
 and jumps if the distance from self to off mesh link end is too far to be made by dropping. 
 */
+
+[RequireComponent(typeof(NavMeshAgent))]
 public class AIMovement : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
@@ -38,12 +40,13 @@ public class AIMovement : MonoBehaviour
         MoveTarget = playerReference.transform.Find("MoveTarget").transform;
     }
 
-    void OnEnable()
+    public void OnEnable()
     {
+        agent.enabled = true;
     }
-
-    void OnDisable()
+    public void OnDisable()
     {
+        agent.enabled = false;
     }
 
     void Update()

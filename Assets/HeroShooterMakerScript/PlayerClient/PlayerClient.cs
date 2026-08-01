@@ -40,7 +40,7 @@ public class PlayerClient : MonoBehaviour
         listener.SetInputConverter(CharacterReference.PlayerArmature.GetComponent<InputConverter>());
         PlayerCanvas.characterReference = CharacterReference;
         PlayerCanvas.SetUpNewUI();
-        
+        CharacterReference.PlayerArmature.GetComponent<AIProcess>().enabled = false;
     }
 
     
