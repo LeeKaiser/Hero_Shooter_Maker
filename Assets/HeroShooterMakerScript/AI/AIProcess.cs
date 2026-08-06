@@ -6,6 +6,9 @@ using System.Collections;
 AIProcess
 Continuously activates Object Detection, Decision Making, and AI Action
 */
+
+[RequireComponent(typeof(AIMovement))]
+[RequireComponent(typeof(ObjectDetection))]
 public class AIProcess : MonoBehaviour
 {
     [SerializeField] private DecisionTree decisionTree;
@@ -79,9 +82,13 @@ public class AIProcess : MonoBehaviour
             actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputConvert, movement);
 
             //step 3: act on decision
-            actionRunTime.DetermineMovement();
-            actionRunTime.DetermineAim();
-            actionRunTime.DetermineInput();
+            actionRunTime.CommitToAction();
         }
+    }
+
+    public void OnDisable()
+    {
+        movement.enabled = false;
+        objectDetection.enabled = false;
     }
 }

@@ -126,6 +126,7 @@ public class AbilityManager : MonoBehaviour
     public void RemoveAbility(Ability ability)
     {
         //remove on ability list, ability class dictionary, and ability input dictionary
+        //NOT TESTED, ensure it works correctly before use
         if (abilitiesList.Contains(ability))
         {
             abilitiesList.Remove(ability);
@@ -144,7 +145,9 @@ public class AbilityManager : MonoBehaviour
             }
             if (AbiltyToInputDictionary.ContainsKey(ability))
             {
+                InputConvert.InputDict.Remove(AbiltyToInputDictionary[ability]);
                 AbiltyToInputDictionary.Remove(ability);
+
             }
             Destroy(ability.gameObject);
         }
@@ -152,6 +155,8 @@ public class AbilityManager : MonoBehaviour
 
     public void SetupInput(Ability ability, ActiveAbilityID abilID, InputUnit abilInput)
     {
+        //don't add if same input
+        if (InputConvert.InputDict.ContainsKey(abilInput)) return;
         InputConvert.InputDict.Add(abilInput, abilID);
         AbiltyToInputDictionary.Add(ability, abilInput);
     }

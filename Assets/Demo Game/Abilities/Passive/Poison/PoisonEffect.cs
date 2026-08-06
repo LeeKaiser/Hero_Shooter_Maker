@@ -28,7 +28,6 @@ public class PoisonEffect : StatusEffect
 
     protected override void RemoveEffect()
     {
-        //reverse the speed bonus
         Active = false;
     }
 }
