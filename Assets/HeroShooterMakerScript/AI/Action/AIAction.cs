@@ -4,7 +4,7 @@ using UnityEngine;
 AIAction
 Abstract Parent class which determines how AI behaves. 
 */
-public abstract class AIAction : ScriptableObject
+public class AIAction : ScriptableObject
 {
     public Transform MoveTarget;
     public Transform AimTarget;
@@ -12,16 +12,23 @@ public abstract class AIAction : ScriptableObject
     public InputConverter InputConvert;
     public AIMovement Movement;
 
+    public DetermineAim determineAim;
+    public DetermineInput determineInput;
+    public DetermineMovement determineMovement;
+
     public ActiveAbility abilityToUse = null;
-    protected InputUnit abilityInput = null;
-    protected float inputHoldTime;
+    public InputUnit abilityInput = null;
+    public float inputHoldTime;
     public bool HoldingInput = false; //if AI was not holding input, first press then set holding input to true. 
     //  while holding input is true, continuously make hold input, 
     // when changing from holding input from true to false, make release input
 
-    protected GameObject targetPlayer = null;
-    protected GameObject playerArmature;
+    public GameObject targetPlayer = null;
+    public GameObject playerArmature;
     public LayerMask obstacleMask;          // What counts as cover geometry
+
+    public float distanceFromEnemy = 12f;
+    
 
     public void Init(Transform movement, Transform aim, ObjectDetection detection, InputConverter input, AIMovement move)
     {
@@ -99,8 +106,12 @@ public abstract class AIAction : ScriptableObject
         InputConvert.AddReleaseInput(abilityInput.InputCombo);
     }
 
-    public abstract void DetermineMovement();
-    public abstract void DetermineAim();
-    public abstract void DetermineInput();
+
+    public void CommitToAction()
+    {
+        determineAim.ExecuteDetermineAim(this);
+        determineInput.ExecuteDetermineInput(this);
+        determineMovement.ExecuteDetermineMovement(this);
+    }
 
 }

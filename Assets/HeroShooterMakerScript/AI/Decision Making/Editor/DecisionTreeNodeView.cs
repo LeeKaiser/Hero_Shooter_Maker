@@ -16,7 +16,9 @@ public class DecisionTreeNodeView : Node
 
     private readonly SerializedObject _serializedObject;
     private VisualElement _conditionContainer;
-    private VisualElement _actionContainer;
+    private VisualElement _determineAimContainer;
+    private VisualElement _determineInputContainer;
+    private VisualElement _determineMovementContainer;
 
     public DecisionTreeNodeView(DecisionTreeNode node)
     {
@@ -86,14 +88,32 @@ public class DecisionTreeNodeView : Node
         extensionContainer.Add(_conditionContainer);
 
         // ---- Action mode fields ----
-        _actionContainer = new VisualElement();
+        _determineAimContainer = new VisualElement();
 
-        var actionProp = _serializedObject.FindProperty("Action");
-        var actionField = new PropertyField(actionProp, "AI Action");
-        actionField.Bind(_serializedObject);
-        _actionContainer.Add(actionField);
+        var aimProp = _serializedObject.FindProperty("determineAim");
+        var aimField = new PropertyField(aimProp, "Aim");
+        aimField.Bind(_serializedObject);
+        _determineAimContainer.Add(aimField);
 
-        extensionContainer.Add(_actionContainer);
+        extensionContainer.Add(_determineAimContainer);
+
+        _determineInputContainer = new VisualElement();
+
+        var inputProp = _serializedObject.FindProperty("determineInput");
+        var inputField = new PropertyField(inputProp, "Input");
+        inputField.Bind(_serializedObject);
+        _determineInputContainer.Add(inputField);
+
+        extensionContainer.Add(_determineInputContainer);
+
+        _determineMovementContainer = new VisualElement();
+
+        var moveProp = _serializedObject.FindProperty("determineMovement");
+        var moveField = new PropertyField(moveProp, "Movement");
+        moveField.Bind(_serializedObject);
+        _determineMovementContainer.Add(moveField);
+
+        extensionContainer.Add(_determineMovementContainer);
 
         var setRootButton = new Button(() => OnSetAsRoot?.Invoke(Node)) { text = "Set As Root" };
         extensionContainer.Add(setRootButton);
@@ -104,7 +124,9 @@ public class DecisionTreeNodeView : Node
         bool isAction = Node.IsAction;
 
         _conditionContainer.style.display = isAction ? DisplayStyle.None : DisplayStyle.Flex;
-        _actionContainer.style.display = isAction ? DisplayStyle.Flex : DisplayStyle.None;
+        _determineAimContainer.style.display = isAction ? DisplayStyle.Flex : DisplayStyle.None;
+        _determineInputContainer.style.display = isAction ? DisplayStyle.Flex : DisplayStyle.None;
+        _determineMovementContainer.style.display = isAction ? DisplayStyle.Flex : DisplayStyle.None;
 
         YesPort.style.display = isAction ? DisplayStyle.None : DisplayStyle.Flex;
         NoPort.style.display = isAction ? DisplayStyle.None : DisplayStyle.Flex;

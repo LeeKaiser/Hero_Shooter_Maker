@@ -82,9 +82,7 @@ public class AIProcess : MonoBehaviour
             actionRunTime.Init(MoveTarget,AimTarget,objectDetection, inputConvert, movement);
 
             //step 3: act on decision
-            actionRunTime.DetermineMovement();
-            actionRunTime.DetermineAim();
-            actionRunTime.DetermineInput();
+            actionRunTime.CommitToAction();
         }
     }
 

@@ -16,10 +16,12 @@ MonoBehaviour:
   ChildNoNode: {fileID: 3945503231547559122}
   ParentNodes: []
   NodeCondition: 0
-  Action: {fileID: 0}
   IsAction: 0
   ParameterFloat: 0
-  EditorPosition: {x: 638.3817, y: 138.02869}
+  EditorPosition: {x: 0, y: 90}
+  determineAim: {fileID: 0}
+  determineInput: {fileID: 0}
+  determineMovement: {fileID: 0}
 --- !u!114 &-511588644610987827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,17 +32,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
+  m_Name: attack
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 0}
   ChildNoNode: {fileID: 0}
   ParentNodes:
   - {fileID: -819633417283515482}
   NodeCondition: 0
-  Action: {fileID: 11400000, guid: 615056e0e99ab4bcc969daf92ebe1017, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 475.5432, y: 353.06128}
+  EditorPosition: {x: 320, y: 0}
+  determineAim: {fileID: 11400000, guid: 12eea1229f7cb4e0e81b7fd46f7675fc, type: 2}
+  determineInput: {fileID: 11400000, guid: b38b59aaf50b446d08dacf8dbba4ccfa, type: 2}
+  determineMovement: {fileID: 11400000, guid: 3498fe663b29d44c5b3df00f41fbf454, type: 2}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,14 +72,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31c2f9a09df4a4dc98d94cda0ead45e6, type: 3}
-  m_Name: 
+  m_Name: patrol
   m_EditorClassIdentifier: Assembly-CSharp::DecisionTreeNode
   ChildYesNode: {fileID: 0}
   ChildNoNode: {fileID: 0}
   ParentNodes:
   - {fileID: -819633417283515482}
   NodeCondition: 0
-  Action: {fileID: 11400000, guid: f1b3ca0c9bfd54740a5d7bd1bf17a868, type: 2}
   IsAction: 1
   ParameterFloat: 0
-  EditorPosition: {x: 813.1653, y: 353.06146}
+  EditorPosition: {x: 341, y: 215}
+  determineAim: {fileID: 11400000, guid: 63e06834446a64f6cae99d30384543f8, type: 2}
+  determineInput: {fileID: 11400000, guid: b63cd88fb1ab84bff9b7856e6076b891, type: 2}
+  determineMovement: {fileID: 11400000, guid: 9b4c181bbf9e74a2da6ef95810da864b, type: 2}

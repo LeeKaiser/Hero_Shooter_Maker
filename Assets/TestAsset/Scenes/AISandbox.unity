@@ -1303,6 +1303,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6238256676268970773, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: agent
+      value: 
+      objectReference: {fileID: 1772230640}
+    - target: {fileID: 6238256676268970773, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -7433,6 +7437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24669dfbcb8ad4b56af8627cb41bf060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
+--- !u!195 &1772230640 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 7109724660721372481, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+  m_PrefabInstance: {fileID: 497225270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1834102434
 GameObject:
   m_ObjectHideFlags: 0

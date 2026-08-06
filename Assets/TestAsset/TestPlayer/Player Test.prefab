@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcc1249a4a71417486caf373ee8622d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIMovement
-  agent: {fileID: 0}
+  agent: {fileID: 7109724660721372481}
   playerReference: {fileID: 0}
   AimTarget: {fileID: 0}
   MoveTarget: {fileID: 0}
