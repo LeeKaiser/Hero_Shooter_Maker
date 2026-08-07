@@ -43,7 +43,7 @@ public class RegenPassive : Ability
             playerReference.HealHealth(regenAmount, playerReference);
             currentAbilityPause = 1 / Stats.UsePerSec;
             abilityIsPaused = true;
-            playerReference.MovementStyle = MovementStyles.MovementStyle.AlwaysFaceForward; //set to face movement after demo
+            playerReference.MovementStyle = MovementStyles.MovementStyle.FaceMovement; //set to face movement after demo
         }
     }
 
