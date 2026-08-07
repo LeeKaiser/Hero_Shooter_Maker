@@ -40,14 +40,7 @@ public class AIMovement : MonoBehaviour
         MoveTarget = playerReference.transform.Find("MoveTarget").transform;
     }
 
-    public void OnEnable()
-    {
-        agent.enabled = true;
-    }
-    public void OnDisable()
-    {
-        agent.enabled = false;
-    }
+    
 
     void Update()
     {
@@ -113,6 +106,7 @@ public class AIMovement : MonoBehaviour
             Debug.Log(agentDirection);
             
         }
+        //ensures the jump is fully completed
         if (agentDirection == Vector3.zero)
         {
             agentDirection = previousMovement;
@@ -121,6 +115,14 @@ public class AIMovement : MonoBehaviour
         {
             previousMovement = agentDirection;
         }
+
+        //when too close to destination, don't move
+        if ((transform.position - MoveTarget.position).magnitude <= 0.5f)
+        {
+            agentDirection = Vector3.zero;
+            inputJump = false;
+        }
+
         //Debug.Log(inputJump);
         //make input for agent
         Vector2 agentInput = new Vector2(agentDirection.normalized.x, agentDirection.normalized.z);
