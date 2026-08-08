@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using StarterAssets;
 using PlayerEvents;
 
 public class DashAbility : ActiveAbility
