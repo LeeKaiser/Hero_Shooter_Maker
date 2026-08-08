@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using StarterAssets;
 
 public class TestDashAbility : ActiveAbility
 {

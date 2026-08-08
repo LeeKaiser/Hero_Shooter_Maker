@@ -1126,6 +1126,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2197334409710446882, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: decisionTree
+      value: 
+      objectReference: {fileID: 11400000, guid: 877292418249a44aeb170d428410cfa7, type: 2}
     - target: {fileID: 2228378475777895966, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1305,7 +1309,7 @@ PrefabInstance:
     - target: {fileID: 6238256676268970773, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: agent
       value: 
-      objectReference: {fileID: 1772230640}
+      objectReference: {fileID: 0}
     - target: {fileID: 6238256676268970773, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2357,7 +2361,7 @@ MonoBehaviour:
   value: 
   textDisplay: {fileID: 1636324302}
   ReferenceDistance: 1
-  objDetect: {fileID: 1772230638}
+  objDetect: {fileID: 0}
   detectionToString: 
 --- !u!1 &680567723
 GameObject:
@@ -5142,6 +5146,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2197334409710446882, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: decisionTree
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a47bfc71b7d34f70b6bc9f617425c75, type: 2}
     - target: {fileID: 2228378475777895966, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -5455,8 +5463,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d84c740bfd2644a7fa72257f3a951992, type: 2}
     - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: Grounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: jumpRearmDelay
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: GroundLayers.m_Bits
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundContactMask.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308121963934228869, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: groundProbeVerticalOffset
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 7308121963934228878, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Layer
@@ -7426,22 +7450,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1926295607}
   m_SourcePrefab: {fileID: 100100000, guid: a0c3197779f414fc498eb14831a17476, type: 3}
---- !u!114 &1772230638 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5118836739238029101, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
-  m_PrefabInstance: {fileID: 497225270}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24669dfbcb8ad4b56af8627cb41bf060, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObjectDetection
---- !u!195 &1772230640 stripped
-NavMeshAgent:
-  m_CorrespondingSourceObject: {fileID: 7109724660721372481, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
-  m_PrefabInstance: {fileID: 497225270}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1834102434
 GameObject:
   m_ObjectHideFlags: 0

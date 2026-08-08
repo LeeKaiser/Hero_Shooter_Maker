@@ -2554,7 +2554,7 @@ PrefabInstance:
     - target: {fileID: 1235421894220158979, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: decisionTree
       value: 
-      objectReference: {fileID: 11400000, guid: 877292418249a44aeb170d428410cfa7, type: 2}
+      objectReference: {fileID: 11400000, guid: 7a47bfc71b7d34f70b6bc9f617425c75, type: 2}
     - target: {fileID: 1870429013619273472, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2626,6 +2626,14 @@ PrefabInstance:
     - target: {fileID: 5286307687841561981, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: assembleInfo
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885848880901800954, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5885848880901800954, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.34
       objectReference: {fileID: 0}
     - target: {fileID: 6592691900403467927, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: assembleInfo

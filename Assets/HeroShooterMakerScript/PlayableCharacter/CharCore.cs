@@ -2,7 +2,6 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
-using StarterAssets;
 using PlayerEvents;
 
 //rename to CharCore in the future

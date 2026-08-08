@@ -1,558 +1,396 @@
-﻿ using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
-using UnityEngine.InputSystem;
-#endif
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 using MovementInputEvents;
 using UnityEngine.AI;
-/* Note: animations are called via the controller for both the character and capsule using animator null checks
- */
+ 
 /*
-Third person controller
-controls movement
-code based on the Starter Assets package
+ThirdPersonController
+Drives locomotion for a character: directional movement, turning to face the
+current target point, jumping, gravity, and a lightweight NavMeshAgent handoff
+so AI and player characters can share the same controller.
 */
-
-    [RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM 
-    //[RequireComponent(typeof(PlayerInput))]
-#endif
-    public class ThirdPersonController : MonoBehaviour
+ 
+[RequireComponent(typeof(CharacterController))]
+public class ThirdPersonController : MonoBehaviour
+{
+    [Header("Player")]
+ 
+    [Tooltip("controller active")]
+    public bool IsActive = true;
+ 
+    [Tooltip("Move speed of the character in m/s")]
+    public float ForwardMoveSpeed = 2.0f;
+    public float StrafeMoveSpeed = 2.0f;
+    public float BackwardMoveSpeed = 2.0f;
+ 
+    [Tooltip("if the character will turn to face movement direction or not")]
+    public MovementStyles.MovementStyle movementStyle;
+ 
+    [Tooltip("How fast the character turns to face movement direction")]
+    [Range(0.0f, 0.3f)]
+    [FormerlySerializedAs("RotationSmoothTime")]
+    public float turnSmoothTime = 0.12f;
+ 
+    [Tooltip("Acceleration and deceleration")]
+    [FormerlySerializedAs("SpeedChangeRate")]
+    public float accelerationSharpness = 10.0f;
+ 
+    [Space(10)]
+    [Tooltip("The height the player can jump")]
+    public float JumpHeight = 1.2f;
+ 
+    [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
+    public float Gravity = -15.0f;
+ 
+    [Space(10)]
+    [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
+    [FormerlySerializedAs("JumpTimeout")]
+    public float jumpRearmDelay = 0.50f;
+ 
+    [Tooltip("Time required for the grounded status to change")]
+    public float JumpForgivenessTime = 0.3f;
+ 
+    [Header("Player Grounded")]
+    [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
+    public bool Grounded = true;
+    public bool CanJump = true;
+    public bool RecentlyJumped = false;
+ 
+    [Tooltip("Useful for rough ground")]
+    [FormerlySerializedAs("GroundedOffset")]
+    public float groundProbeVerticalOffset = -0.14f;
+ 
+    [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
+    [FormerlySerializedAs("GroundedRadius")]
+    public float groundProbeRadius = 0.28f;
+ 
+    [Tooltip("What layers the character uses as ground")]
+    [FormerlySerializedAs("GroundLayers")]
+    public LayerMask groundContactMask;
+ 
+    [Tooltip("Transform that represents the place player is looking at")]
+    public Transform targetPoint;
+ 
+    // player
+    private float _speed;
+    private float _facingYaw;
+    private float _turnRateRef;
+    private float _verticalVelocity;
+    private readonly float _terminalFallSpeed = 53.0f;
+    private Vector3 _externalForceDirection;
+    private float _externalForceVelocity;
+ 
+    private Vector3 _currentDirection;
+ 
+    private bool _horizontalMovementPause;
+    private bool _verticalMovementPause;
+ 
+    // absolute-time markers used instead of countdown counters
+    private float _nextJumpAllowedTime;
+    private float _lastConfirmedGroundedTime;
+ 
+    // Prevents a jump from re-triggering mid-arc (short rearm delay) or from a single-frame
+    // ground graze (e.g. clipping a ledge corner) - only cleared once truly landed.
+    private bool _isAirborneFromJump;
+    private float _groundedStreak;
+    private const float RequiredGroundedStreakToClearJumpLock = 0.05f;
+ 
+    private CharacterController _controller;
+    private InputConverter _input;
+    private NavMeshAgent _agent;
+ 
+    private void Start()
     {
-        [Header("Player")]
-
-        [Tooltip("controller active")]
-        public bool IsActive = true;
-
-        [Tooltip("Move speed of the character in m/s")]
-        public float ForwardMoveSpeed = 2.0f;
-        public float StrafeMoveSpeed = 2.0f;
-        public float BackwardMoveSpeed = 2.0f;
-
-        [Tooltip("if the character will turn to face movement direction or not")]
-        public MovementStyles.MovementStyle movementStyle;
-
-        [Tooltip("How fast the character turns to face movement direction")]
-        [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
-
-        [Tooltip("Acceleration and deceleration")]
-        public float SpeedChangeRate = 10.0f;
-
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
-        [Space(10)]
-        [Tooltip("The height the player can jump")]
-        public float JumpHeight = 1.2f;
-
-        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
-        public float Gravity = -15.0f;
-
-        [Space(10)]
-        [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
-        public float JumpTimeout = 0.50f;
-
-        [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
-        public float FallTimeout = 0.15f;
-
-        [Tooltip("Time required for the grounded status to change")]
-        public float JumpForgivenessTime = 0.3f;
-
-        [Header("Player Grounded")]
-        [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-        public bool Grounded = true;
-        public bool CanJump = true;
-        public bool RecentlyJumped = false;
-
-        [Tooltip("amount of times the character can jump in the air")]
-        public int AirJumps = 0;
-
-        [Tooltip("Useful for rough ground")]
-        public float GroundedOffset = -0.14f;
-
-        [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
-        public float GroundedRadius = 0.28f;
-
-        [Tooltip("What layers the character uses as ground")]
-        public LayerMask GroundLayers;
-
-        [Tooltip("Transform that represents the place player is looking at")]        
-        public Transform targetPoint;
-
-        
-
-        // player
-        private float _speed;
-        private float _animationBlend;
-        private float _targetRotation = 0.0f;
-        private float _rotationVelocity;
-        private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
-        private Vector3 _externalForceDirection;
-        private float _externalForceVelocity;
-
-        private Vector3 _currentDirection;
-
-        private bool _horizontalMovementPause;
-        private bool _verticalMovementPause;
-
-        // timeout deltatime
-        private float _jumpTimeoutDelta;
-        private float _fallTimeoutDelta;
-
-        // animation IDs
-        private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDJump;
-        private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
-
-#if ENABLE_INPUT_SYSTEM 
-        private PlayerInput _playerInput;
-#endif
-        private Animator _animator;
-        private CharacterController _controller;
-        private InputConverter _input;
-        private bool _hasAnimator;
-        private bool IsCurrentDeviceMouse
-        {
-            get
-            {
-#if ENABLE_INPUT_SYSTEM
-                return _playerInput.currentControlScheme == "KeyboardMouse";
-#else
-				return false;
-#endif
-            }
-        }
-
-        private NavMeshAgent _agent;
-
-        private void Awake()
-        {
-            // get a reference to our main camera
-            
-        }
-
-        private void Start()
-        {   
-            _hasAnimator = TryGetComponent(out _animator);
-            _controller = GetComponent<CharacterController>();
-            _input = GetComponent<InputConverter>();
-#if ENABLE_INPUT_SYSTEM 
-            _playerInput = GetComponent<PlayerInput>();
-#else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
-
-            AssignAnimationIDs();
-
-            // reset our timeouts on start
-            _jumpTimeoutDelta = JumpTimeout;
-            _fallTimeoutDelta = FallTimeout;
-            _agent = GetComponent<NavMeshAgent>();
-            _agent.updateRotation = false;
-            _agent.updatePosition = false;
-        }
-
-        private void Update()
-        {
-            if (IsActive){
-                _hasAnimator = TryGetComponent(out _animator);
-                CheckForLedgeDrop();
-                JumpAndGravity();
-                GroundedCheck();
-                Move();
-
-                
-            }
-
-            if (_agent.enabled)
-            {
-                //
-                Vector3 diff = _agent.nextPosition - transform.position;
-                diff.y = 0;
-
-                if (diff.sqrMagnitude > 0.1f * 0.1f)
-                {
-                    _agent.Warp(transform.position);
-                }
-                else
-                {
-                    _agent.nextPosition = transform.position;
-                }
-            }
-            
-        }
-
-        private void AssignAnimationIDs()
-        {
-            _animIDSpeed = Animator.StringToHash("Speed");
-            _animIDGrounded = Animator.StringToHash("Grounded");
-            _animIDJump = Animator.StringToHash("Jump");
-            _animIDFreeFall = Animator.StringToHash("FreeFall");
-            _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-        }
-
-        //Translate
-        //teleports player to a position
-        public void Translate(Vector3 targetPosition)
-        {
-            _controller.enabled = false;
-            transform.position = targetPosition;
-            _controller.enabled = true;
-        }
-
-        public void ApplyExternalForce(Vector3 direction, float velocity)
-        {
-            _externalForceDirection = direction;
-            _externalForceVelocity = velocity;
-        }
-
-        private void CheckForLedgeDrop()
-        {
-            if (!_agent.enabled) return;
-
-            float yDifference = transform.position.y - _agent.nextPosition.y;
-
-            // transform is above where navmesh wants to snap us = we've walked off an edge
-            if (yDifference > 0.2f || _agent.isOnOffMeshLink)
-            {
-                DisableAgent();
-            }
-        }
-        private void GroundedCheck()
-        {
-            // set sphere position, with offset
-            bool previouslyGrounded = Grounded;
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-                transform.position.z);
-            Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-                QueryTriggerInteraction.Ignore);
-            if (!Grounded)
-            {
-                //do this again cayote time later
-                Invoke("SecondGroundCheck", JumpForgivenessTime);
-                
-            }
-            else{
-                CanJump = true;
-                EnableAgent();
-            }
-
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetBool(_animIDGrounded, Grounded);
-            }
-
-            /* if (!previouslyGrounded && Grounded)
-            {
-                PlayerLandOnGround playerLandType = new PlayerLandOnGround();
-                playerLandType.playerIdentity = GetComponentInParent<CharCore>();
-                EventBus<PlayerLandOnGround>.Invoke(playerLandType);
-            } */
-            PlayerGrounded playerGroundedType = new PlayerGrounded();
-            playerGroundedType.playerIdentity = GetComponentInParent<CharCore>();
-            playerGroundedType.grounded = Grounded;
-            EventBus<PlayerGrounded>.Invoke(playerGroundedType);
-        }
-
-        private void SecondGroundCheck()
-        {
-            Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
-                transform.position.z);
-            CanJump = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers,
-                QueryTriggerInteraction.Ignore);
-        }
-
-        private void Move()
-        {
-            Vector2 moveInput = _input.move.normalized;
-            Vector3 inputDirection = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
-
-            float baseSpeed = DetermineSpeed(moveInput);
-
-            float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
-
-            // Scale final speed using normalized direction vector
-            float targetSpeed = baseSpeed * inputMagnitude;
-            if (_input.move == Vector2.zero) targetSpeed = 0f;
-
-
-            // a reference to the players current horizontal velocity
-            float currentHorizontalSpeed = new Vector3(_controller.velocity.x - (_externalForceDirection.x * _externalForceVelocity), 
-                0.0f, _controller.velocity.z - (_externalForceDirection.z * _externalForceVelocity)).magnitude;
-
-            float speedOffset = 0.1f;
-
-            // accelerate or decelerate to target speed
-            if (currentHorizontalSpeed < targetSpeed - speedOffset ||
-                currentHorizontalSpeed > targetSpeed + speedOffset)
-            {
-                // creates curved result rather than a linear one giving a more organic speed change
-                // note T in Lerp is clamped, so we don't need to clamp our speed
-                _speed = Mathf.Lerp(currentHorizontalSpeed, targetSpeed * inputMagnitude,
-                    Time.deltaTime * SpeedChangeRate);
-
-                // round speed to 3 decimal places
-                _speed = Mathf.Round(_speed * 1000f) / 1000f;
-            }
-            else
-            {
-                _speed = targetSpeed;
-            }
-
-            _animationBlend = Mathf.Lerp(_animationBlend, targetSpeed, Time.deltaTime * SpeedChangeRate);
-            if (_animationBlend < 0.01f) _animationBlend = 0f;
-
-            PlayerFaceTargetPoint(inputDirection);
-
-            _currentDirection = GetTargetDirection();
-
-            // move the player
-            //external force
-            Vector3 baseMovement = Vector3.zero;
-            //movement
-            if (!_horizontalMovementPause) {baseMovement += _currentDirection.normalized * _speed;}
-            if (!_verticalMovementPause) {baseMovement += Vector3.up * _verticalVelocity;}
-            
-            Vector3 externalMovement = _externalForceDirection.normalized * _externalForceVelocity;
-            Vector3 allMovement = baseMovement + externalMovement;
-
-            _controller.Move(allMovement.normalized * allMovement.magnitude * Time.deltaTime);
-            
-
-            // update animator if using character
-            if (_hasAnimator)
-            {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
-            }
-        }
-
-        private float DetermineSpeed(Vector2 moveInput)
-        {
-            switch(movementStyle)
-            {
-                case MovementStyles.MovementStyle.AlwaysFaceForward:
-                    // Determine which axis dominates — this is raw input based, so consistent
-                    if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
-                    {
-                        return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
-                        
-                    }
-                    else
-                    {
-                        return StrafeMoveSpeed;
-                    }
-                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
-                default:
-                    return ForwardMoveSpeed;
-            }
-        }
-
-        private void PlayerFaceTargetPoint(Vector3 inputDirection)
-        {
-            //vector of player facing the targetpoint
-            Vector3 playerFaceTarget = targetPoint.position - transform.position;
-            //playerFaceTarget.y = 0;
-            // note: Vector2's != operator uses approximation so is not floating point error prone, and is cheaper than magnitude
-            // if there is a move input rotate player when the player is moving
-            _targetRotation = Mathf.Atan2(playerFaceTarget.x, playerFaceTarget.z) * Mathf.Rad2Deg;
-
-            switch(movementStyle)
-            {
-                case MovementStyles.MovementStyle.FaceMovement:
-                    _targetRotation += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
-                    break;
-                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    _targetRotation = StrafeMoveSpeed * RotationSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
-                    break;
-                default:
-                    break;
-            }
-
-            float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity,
-                    RotationSmoothTime);
-
-            // rotate
-            transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
-        }
-
-         private Vector3 GetTargetDirection()
-        {
-            switch(movementStyle)
-            {
-                case MovementStyles.MovementStyle.AlwaysFaceForward:
-                    return transform.forward * _input.move.y + transform.right * _input.move.x;
-                case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
-                    return _input.move.y >= 0 ? transform.forward : -transform.forward;
-                default:
-                    return transform.forward;
-            }
-        } 
-
-        private void JumpAndGravity()
-        {
-            if (CanJump)
-            {
-                // update animator if using character
-                if (_hasAnimator)
-                {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
-                }
-
-                // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f )
-                {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
-                    PlayerJump playerJumpType = new PlayerJump();
-                    playerJumpType.playerIdentity = GetComponentInParent<CharCore>();
-                    EventBus<PlayerJump>.Invoke(playerJumpType);
-                    CanJump = false;
-                    
-                }
-                //air jump
-                //else if (_input.jump &&) 
-
-                // jump timeout
-                if (_jumpTimeoutDelta >= 0.0f)
-                {
-                    _jumpTimeoutDelta -= Time.deltaTime;
-                    if (_jumpTimeoutDelta <= 0.0f)
-                    {
-                        RecentlyJumped = false;
-                    }
-                }
-            }
-            else{
-                // reset the jump timeout timer
-                _jumpTimeoutDelta = JumpTimeout;
-
-                // fall timeout
-                if (_fallTimeoutDelta >= 0.0f)
-                {
-                    _fallTimeoutDelta -= Time.deltaTime;
-                }
-                else
-                {
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDFreeFall, true);
-                    }
-                }
-                // if we are not grounded, do not jump
-                _input.jump = false;
-            }
-            if (Grounded)
-            {
-                // stop our velocity dropping infinitely when grounded
-                if (_verticalVelocity < 0.0f)
-                {
-                    _verticalVelocity = -3f;
-                }
-
-                // reset the fall timeout timer
-                _fallTimeoutDelta = FallTimeout;
-
-                
-            }
-
-            // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
-            if (_verticalVelocity < _terminalVelocity)
-            {
-                _verticalVelocity += Gravity * Time.deltaTime;
-            }
-        }
-        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
-        {
-            if (lfAngle < -360f) lfAngle += 360f;
-            if (lfAngle > 360f) lfAngle -= 360f;
-            return Mathf.Clamp(lfAngle, lfMin, lfMax);
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-            if (Grounded) Gizmos.color = transparentGreen;
-            else Gizmos.color = transparentRed;
-
-            // when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
-            Gizmos.DrawSphere(
-                new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z),
-                GroundedRadius);
-        }
-
-        private void OnFootstep(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            }
-        }
-
-        private void OnLand(AnimationEvent animationEvent)
-        {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
-            PlayerLandOnGround playerLandType = new PlayerLandOnGround();
-            playerLandType.playerIdentity = GetComponentInParent<CharCore>();
-            EventBus<PlayerLandOnGround>.Invoke(playerLandType);
-        }
-
-        public void SetForwardMovementSpeed(float speed){ ForwardMoveSpeed = speed;}
-
-        public void SetStrafeMovementSpeed(float speed){StrafeMoveSpeed = speed;}
-
-        public void SetBackwardMovementSpeed(float speed){BackwardMoveSpeed = speed;}
-
-        public void SetGravity(float grav){Gravity = grav;}
-
-        public void SetJumpHeight(float jump){JumpHeight = jump;}
-
-        //intended to be used for air jump mechanics
-        public void SetCanJump(bool canJump){CanJump = canJump;}
-
-        public void setPlayerMovementStyle(MovementStyles.MovementStyle FaceMove){movementStyle = FaceMove;}
-
-        public void SetHorizontalMovementPause(bool pause){_horizontalMovementPause = pause;}
-        public void SetVerticalMovementPause(bool pause){_verticalMovementPause = pause;}
-        public void ResetCharacterVelocity()
-        {
-            _controller.Move(Vector3.zero);
-        }
-
-        public void DisableAgent()
-        {
-            _agent.autoTraverseOffMeshLink = false;
-            _agent.enabled = false;
-        }
-
-        public void EnableAgent()
-        {
-            _agent.autoTraverseOffMeshLink = true;
-            _agent.enabled = true;
-        }
-
-        public Vector3 GetCurrentDirection(){return _currentDirection;}
+        _controller = GetComponent<CharacterController>();
+        _input = GetComponent<InputConverter>();
+ 
+        _nextJumpAllowedTime = Time.time;
+        _lastConfirmedGroundedTime = Time.time;
+ 
+        _agent = GetComponent<NavMeshAgent>();
+        _agent.updateRotation = false;
+        _agent.updatePosition = false;
     }
+ 
+    private void Update()
+    {
+        if (IsActive)
+        {
+            HandleLedgeDropOff();
+            SampleGroundState();
+            UpdateVerticalMotion();
+            Move();
+        }
+ 
+        SyncAgentToTransform();
+    }
+ 
+    // teleports player to a position
+    public void Translate(Vector3 targetPosition)
+    {
+        _controller.enabled = false;
+        transform.position = targetPosition;
+        _controller.enabled = true;
+    }
+ 
+    public void ApplyExternalForce(Vector3 direction, float velocity)
+    {
+        _externalForceDirection = direction;
+        _externalForceVelocity = velocity;
+    }
+ 
+    private void HandleLedgeDropOff()
+    {
+        if (!_agent.enabled) return;
+ 
+        float heightAboveAgent = transform.position.y - _agent.nextPosition.y;
+ 
+        // character has stepped past where the agent's projected surface is - treat as a ledge
+        if (heightAboveAgent > 0.2f || _agent.isOnOffMeshLink)
+        {
+            DisableAgent();
+        }
+    }
+ 
+    private void SyncAgentToTransform()
+    {
+        if (!_agent.enabled) return;
+ 
+        Vector3 planarDelta = _agent.nextPosition - transform.position;
+        planarDelta.y = 0;
+ 
+        if (planarDelta.sqrMagnitude > 0.1f * 0.1f)
+        {
+            _agent.Warp(transform.position);
+        }
+        else
+        {
+            _agent.nextPosition = transform.position;
+        }
+    }
+ 
+    private void SampleGroundState()
+    {
+        bool wasGrounded = Grounded;
+ 
+        // Start comfortably above the character, not just above the check point - SphereCast
+        // will not register a hit against a collider it's already overlapping at the start
+        // position, so the origin needs real clearance from the ground, not a thin buffer.
+        const float startHeightAboveController = 0.5f;
+        Vector3 probeOrigin = transform.position + Vector3.up * startHeightAboveController;
+ 
+        // Sweep down far enough to reach groundProbeVerticalOffset below the character's feet.
+        float probeDistance = Mathf.Max(0.01f, startHeightAboveController - groundProbeVerticalOffset);
+ 
+        bool hitGround = Physics.SphereCast(probeOrigin, groundProbeRadius, Vector3.down,
+            out _, probeDistance, groundContactMask, QueryTriggerInteraction.Ignore);
+ 
+        Grounded = hitGround;
+ 
+        if (hitGround)
+        {
+            _lastConfirmedGroundedTime = Time.time;
+            _groundedStreak += Time.deltaTime;
+            EnableAgent();
+ 
+            // only clear the jump lock once we've been continuously grounded for a beat -
+            // a single-frame graze (e.g. a ledge corner) won't count as a real landing
+            if (_isAirborneFromJump && _groundedStreak >= RequiredGroundedStreakToClearJumpLock)
+            {
+                _isAirborneFromJump = false;
+            }
+        }
+        else
+        {
+            _groundedStreak = 0f;
+        }
+ 
+        bool withinCoyoteWindow = !hitGround && (Time.time - _lastConfirmedGroundedTime <= JumpForgivenessTime);
+        CanJump = !_isAirborneFromJump && (hitGround || withinCoyoteWindow);
+ 
+        PlayerGrounded groundedEvent = new PlayerGrounded();
+        groundedEvent.playerIdentity = GetComponentInParent<CharCore>();
+        groundedEvent.grounded = Grounded;
+        EventBus<PlayerGrounded>.Invoke(groundedEvent);
+ 
+        if (!wasGrounded && Grounded)
+        {
+            OnLanded();
+        }
+    }
+ 
+    private void Move()
+    {
+        Vector2 moveInput = _input.move.normalized;
+        Vector3 inputDirection = new Vector3(_input.move.x, 0f, _input.move.y).normalized;
+ 
+        float baseSpeed = DetermineSpeed(moveInput);
+        float inputMagnitude = _input.analogMovement ? _input.move.magnitude : 1f;
+ 
+        float targetSpeed = baseSpeed * inputMagnitude;
+        if (_input.move == Vector2.zero) targetSpeed = 0f;
+ 
+        Vector3 externalPlanar = new Vector3(_externalForceDirection.x, 0f, _externalForceDirection.z) * _externalForceVelocity;
+        float currentPlanarSpeed = new Vector3(_controller.velocity.x - externalPlanar.x, 0f,
+            _controller.velocity.z - externalPlanar.z).magnitude;
+ 
+        float speedTolerance = 0.1f;
+ 
+        if (Mathf.Abs(currentPlanarSpeed - targetSpeed) > speedTolerance)
+        {
+            _speed = Mathf.Lerp(currentPlanarSpeed, targetSpeed, Time.deltaTime * accelerationSharpness);
+            _speed = Mathf.Round(_speed * 1000f) / 1000f;
+        }
+        else
+        {
+            _speed = targetSpeed;
+        }
+ 
+        FaceTargetPoint(inputDirection);
+        _currentDirection = ResolveMoveDirection();
+ 
+        Vector3 movement = Vector3.zero;
+        if (!_horizontalMovementPause) movement += _currentDirection.normalized * _speed;
+        if (!_verticalMovementPause) movement += Vector3.up * _verticalVelocity;
+        movement += _externalForceDirection.normalized * _externalForceVelocity;
+ 
+        _controller.Move(movement * Time.deltaTime);
+    }
+ 
+    private float DetermineSpeed(Vector2 moveInput)
+    {
+        switch (movementStyle)
+        {
+            case MovementStyles.MovementStyle.AlwaysFaceForward:
+                if (Mathf.Abs(moveInput.y) >= Mathf.Abs(moveInput.x))
+                {
+                    return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+                }
+                return StrafeMoveSpeed;
+            case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
+                return moveInput.y >= 0 ? ForwardMoveSpeed : BackwardMoveSpeed;
+            default:
+                return ForwardMoveSpeed;
+        }
+    }
+ 
+    private void FaceTargetPoint(Vector3 inputDirection)
+    {
+        Vector3 toTarget = targetPoint.position - transform.position;
+        _facingYaw = Mathf.Atan2(toTarget.x, toTarget.z) * Mathf.Rad2Deg;
+ 
+        switch (movementStyle)
+        {
+            case MovementStyles.MovementStyle.FaceMovement:
+                _facingYaw += Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg;
+                break;
+            case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
+                _facingYaw = StrafeMoveSpeed * turnSmoothTime * Mathf.Atan2(inputDirection.x, 0) * Mathf.Rad2Deg + transform.eulerAngles.y;
+                break;
+        }
+ 
+        float smoothedYaw = Mathf.SmoothDampAngle(transform.eulerAngles.y, _facingYaw, ref _turnRateRef, turnSmoothTime);
+        transform.rotation = Quaternion.Euler(0.0f, smoothedYaw, 0.0f);
+    }
+ 
+    private Vector3 ResolveMoveDirection()
+    {
+        switch (movementStyle)
+        {
+            case MovementStyles.MovementStyle.AlwaysFaceForward:
+                return transform.forward * _input.move.y + transform.right * _input.move.x;
+            case MovementStyles.MovementStyle.RotateInsteadOfStrafe:
+                return _input.move.y >= 0 ? transform.forward : -transform.forward;
+            default:
+                return transform.forward;
+        }
+    }
+ 
+    private void UpdateVerticalMotion()
+    {
+        if (CanJump)
+        {
+            if (_input.jump && Time.time >= _nextJumpAllowedTime)
+            {
+                _verticalVelocity = ComputeJumpLaunchSpeed();
+                _nextJumpAllowedTime = Time.time + jumpRearmDelay;
+                _isAirborneFromJump = true;
+                _groundedStreak = 0f;
+ 
+                PlayerJump jumpEvent = new PlayerJump();
+                jumpEvent.playerIdentity = GetComponentInParent<CharCore>();
+                EventBus<PlayerJump>.Invoke(jumpEvent);
+            }
+        }
+        else
+        {
+            _input.jump = false;
+        }
+ 
+        if (Grounded && _verticalVelocity < 0.0f)
+        {
+            _verticalVelocity = -3f;
+        }
+ 
+        if (_verticalVelocity < _terminalFallSpeed)
+        {
+            _verticalVelocity += Gravity * Time.deltaTime;
+        }
+    }
+ 
+    private float ComputeJumpLaunchSpeed()
+    {
+        // vertical speed needed for the character to reach JumpHeight under Gravity
+        return Mathf.Sqrt(2f * Mathf.Abs(Gravity) * JumpHeight);
+    }
+ 
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Grounded
+            ? new Color(0.0f, 1.0f, 0.0f, 0.35f)
+            : new Color(1.0f, 0.0f, 0.0f, 0.35f);
+ 
+        Gizmos.DrawSphere(
+            transform.position + Vector3.up * groundProbeVerticalOffset,
+            groundProbeRadius);
+    }
+ 
+    // Called directly from SampleGroundState() on the airborne -> grounded transition,
+    // now that landing is no longer driven by an Animator clip event.
+    private void OnLanded()
+    {
+ 
+        PlayerLandOnGround landEvent = new PlayerLandOnGround();
+        landEvent.playerIdentity = GetComponentInParent<CharCore>();
+        EventBus<PlayerLandOnGround>.Invoke(landEvent);
+    }
+ 
+    public void SetForwardMovementSpeed(float speed) { ForwardMoveSpeed = speed; }
+    public void SetStrafeMovementSpeed(float speed) { StrafeMoveSpeed = speed; }
+    public void SetBackwardMovementSpeed(float speed) { BackwardMoveSpeed = speed; }
+    public void SetGravity(float grav) { Gravity = grav; }
+    public void SetJumpHeight(float jump) { JumpHeight = jump; }
+    public void SetCanJump(bool canJump) { CanJump = canJump; }
+    public void setPlayerMovementStyle(MovementStyles.MovementStyle style) { movementStyle = style; }
+    public void SetHorizontalMovementPause(bool pause) { _horizontalMovementPause = pause; }
+    public void SetVerticalMovementPause(bool pause) { _verticalMovementPause = pause; }
+ 
+    public void ResetCharacterVelocity()
+    {
+        _controller.Move(Vector3.zero);
+    }
+ 
+    public void DisableAgent()
+    {
+        _agent.autoTraverseOffMeshLink = false;
+        _agent.enabled = false;
+    }
+ 
+    public void EnableAgent()
+    {
+        _agent.autoTraverseOffMeshLink = true;
+        _agent.enabled = true;
+    }
+ 
+    public Vector3 GetCurrentDirection() { return _currentDirection; }
+}
