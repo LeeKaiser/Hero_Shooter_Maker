@@ -75,7 +75,6 @@ public class AIProcess : MonoBehaviour
                     }
                 }
                 
-                
                 currentAction = chosenAction;
                 actionRunTime = Instantiate(currentAction);
             }
@@ -86,9 +85,4 @@ public class AIProcess : MonoBehaviour
         }
     }
 
-    public void OnDisable()
-    {
-        movement.enabled = false;
-        objectDetection.enabled = false;
-    }
 }
