@@ -41,6 +41,8 @@ public class PlayerClient : MonoBehaviour
         PlayerCanvas.characterReference = CharacterReference;
         PlayerCanvas.SetUpNewUI();
         CharacterReference.PlayerArmature.GetComponent<AIProcess>().enabled = false;
+        CharacterReference.PlayerArmature.GetComponent<ObjectDetection>().enabled = false;
+        CharacterReference.PlayerArmature.GetComponent<AIMovement>().enabled = false;
     }
 
     
