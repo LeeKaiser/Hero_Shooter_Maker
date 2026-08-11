@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
 using UnityEngine.UI;
+using HeroShooterMaker.Abilities;
 
 public class ClientUI : MonoBehaviour
 {

@@ -5,40 +5,44 @@ using UnityEngine.InputSystem;
 #endif
 using System.Collections;
 
-public class AbilityTest : ActiveAbility
+
+namespace HeroShooterMaker.Abilities
 {
-    
-    public GameObject SpeedBoostPrefab;
-
-    protected override void Startup()
+    public class AbilityTest : ActiveAbility
     {
-        EventBus<ActiveAbilityID>.Subscribe(executeAbility);
-    }
+        
+        public GameObject SpeedBoostPrefab;
 
-    public void executeAbility(ActiveAbilityID inputEventInfo)
-    {
-        if (inputEventInfo != AbilityID)
+        protected override void Startup()
         {
-            return;
+            EventBus<ActiveAbilityID>.Subscribe(executeAbility);
         }
 
-        if (!CanActivate())
+        public void executeAbility(ActiveAbilityID inputEventInfo)
         {
-            return;
+            if (inputEventInfo != AbilityID)
+            {
+                return;
+            }
+
+            if (!CanActivate())
+            {
+                return;
+            }
+
+            if (currentCharge <= 0)
+            {
+                return;
+            }
+
+            InterruptReload();
+            playerReference.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab, playerReference);
+            ConsumeCharge(1);
         }
 
-        if (currentCharge <= 0)
+        public override void Cleanup()
         {
-            return;
+            EventBus<ActiveAbilityID>.Unsubscribe(executeAbility);
         }
-
-        InterruptReload();
-        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(SpeedBoostPrefab, playerReference);
-        ConsumeCharge(1);
-    }
-
-    public override void Cleanup()
-    {
-        EventBus<ActiveAbilityID>.Unsubscribe(executeAbility);
     }
 }

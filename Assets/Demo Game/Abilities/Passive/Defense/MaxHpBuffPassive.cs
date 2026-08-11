@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class MaxHpBuffPassive : Ability
+//MaxHpBuffPassive
+//example of a passive that changes player's stats
+namespace HeroShooterMaker.Abilities
 {
-    public int ExtraMaxHP;
-
-    protected override void Startup()
+    public class MaxHpBuffPassive : Ability
     {
-        playerReference.ModifyMaxHealth(ExtraMaxHP);
-    }
+        public int ExtraMaxHP;
 
-    public override void Cleanup()
-    {
-        playerReference.ModifyMaxHealth(-ExtraMaxHP);
+        protected override void Startup()
+        {
+            playerReference.ModifyMaxHealth(ExtraMaxHP);
+        }
+
+        public override void Cleanup()
+        {
+            playerReference.ModifyMaxHealth(-ExtraMaxHP);
+        }
     }
 }

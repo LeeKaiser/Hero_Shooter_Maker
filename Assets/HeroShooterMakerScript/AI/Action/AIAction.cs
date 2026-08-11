@@ -1,9 +1,10 @@
 using UnityEngine;
-
+using  HeroShooterMaker.Abilities;
 /* 
 AIAction
 Abstract Parent class which determines how AI behaves. 
 */
+
 public class AIAction : ScriptableObject
 {
     public Transform MoveTarget;

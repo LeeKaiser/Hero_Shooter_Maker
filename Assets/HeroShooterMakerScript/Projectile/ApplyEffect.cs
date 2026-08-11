@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
 
 public abstract class ApplyEffect : MonoBehaviour
 {

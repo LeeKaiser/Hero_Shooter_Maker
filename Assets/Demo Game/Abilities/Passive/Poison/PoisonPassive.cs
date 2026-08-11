@@ -1,35 +1,40 @@
 using UnityEngine;
 
-public class PoisonPassive : Ability
+//PoisonPassive
+//Example of passive ability that causes a certain ability to apply a debuff
+namespace HeroShooterMaker.Abilities
 {
-    public GameObject PoisonEffect;
-
-    protected override void Startup()
+    public class PoisonPassive : Ability
     {
-        EventBus<HitTarget>.Subscribe(executeAbility);
-    }
+        public GameObject PoisonEffect;
 
-    public void executeAbility(HitTarget hitTarget)
-    {
-        if (hitTarget.PlayerIdentity != playerReference)
+        protected override void Startup()
         {
-            return;
-        }
-        if (hitTarget.TargetPlayer.PlayerAllegience == playerReference.PlayerAllegience)
-        {
-            return;
+            EventBus<HitTarget>.Subscribe(executeAbility);
         }
 
+        public void executeAbility(HitTarget hitTarget)
+        {
+            if (hitTarget.PlayerIdentity != playerReference)
+            {
+                return;
+            }
+            if (hitTarget.TargetPlayer.PlayerAllegience == playerReference.PlayerAllegience)
+            {
+                return;
+            }
 
-        //poison target player
-        StatusEffectManager enemyEffectManager = hitTarget.TargetPlayer.GetComponent<StatusEffectManager>();
 
-        enemyEffectManager.AddNewEffect(PoisonEffect, playerReference);
-        
-    }
+            //poison target player
+            StatusEffectManager enemyEffectManager = hitTarget.TargetPlayer.GetComponent<StatusEffectManager>();
 
-    public override void Cleanup()
-    {
-        EventBus<HitTarget>.Unsubscribe(executeAbility);
+            enemyEffectManager.AddNewEffect(PoisonEffect, playerReference);
+            
+        }
+
+        public override void Cleanup()
+        {
+            EventBus<HitTarget>.Unsubscribe(executeAbility);
+        }
     }
 }

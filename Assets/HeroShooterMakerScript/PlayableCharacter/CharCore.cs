@@ -2,7 +2,8 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.Abilities;
 
 //rename to CharCore in the future
 public class CharCore : MonoBehaviour

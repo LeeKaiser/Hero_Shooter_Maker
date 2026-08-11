@@ -1,6 +1,9 @@
 using UnityEngine;
+using HeroShooterMaker.Abilities;
 
-namespace PlayerEvents
+//CharacterEvents
+//structs used for transfering information based on events related to characters
+namespace HeroShooterMaker.CharacterEvents
 {
     //struct for calling events when the player dies
     public struct PlayerDead

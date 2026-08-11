@@ -1,5 +1,5 @@
 using UnityEngine;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
 using System.Collections;
 

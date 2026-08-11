@@ -1,55 +1,61 @@
 using UnityEngine;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
 
-public class RegenPassive : Ability
+//RegenPassive
+//player regenerates health after avoiding taking damage or using abilities for few seconds
+//example of a passive ability that stops itself based on events rather than being activated by it
+namespace HeroShooterMaker.Abilities
 {
-    public int regenAmount;
-    protected override void Startup()
+    public class RegenPassive : Ability
     {
-        EventBus<PlayerTakeDamage>.Subscribe(PauseRecoveryDamage);
-        EventBus<UseAbility>.Subscribe(PauseRecoveryAbility);
-    }
-
-    public void PauseRecoveryDamage(PlayerTakeDamage takeDamage)
-    {
-        if (takeDamage.PlayerIdentity != playerReference)
+        public int regenAmount;
+        protected override void Startup()
         {
-            return;
+            EventBus<PlayerTakeDamage>.Subscribe(PauseRecoveryDamage);
+            EventBus<UseAbility>.Subscribe(PauseRecoveryAbility);
         }
 
-        StopRecovery();
-    }
-
-    public void PauseRecoveryAbility(UseAbility useAbil)
-    {
-        if (useAbil.PlayerIdentity != playerReference)
+        public void PauseRecoveryDamage(PlayerTakeDamage takeDamage)
         {
-            return;
+            if (takeDamage.PlayerIdentity != playerReference)
+            {
+                return;
+            }
+
+            StopRecovery();
         }
 
-        StopRecovery();
-    }
+        public void PauseRecoveryAbility(UseAbility useAbil)
+        {
+            if (useAbil.PlayerIdentity != playerReference)
+            {
+                return;
+            }
 
-    void StopRecovery()
-    {
-        InterruptReload();
-        ConsumeCharge(1);
-        playerReference.MovementStyle = MovementStyles.MovementStyle.AlwaysFaceForward;
-    }
-
-    void Update()
-    {
-        if (CanActivate()){
-            playerReference.HealHealth(regenAmount, playerReference);
-            currentAbilityPause = 1 / Stats.UsePerSec;
-            abilityIsPaused = true;
-            playerReference.MovementStyle = MovementStyles.MovementStyle.FaceMovement; //set to face movement after demo
+            StopRecovery();
         }
-    }
 
-    public override void Cleanup()
-    {
-        EventBus<PlayerTakeDamage>.Unsubscribe(PauseRecoveryDamage);
-        EventBus<UseAbility>.Unsubscribe(PauseRecoveryAbility);
+        void StopRecovery()
+        {
+            InterruptReload();
+            ConsumeCharge(1);
+            playerReference.MovementStyle = MovementStyles.MovementStyle.AlwaysFaceForward;
+        }
+
+        void Update()
+        {
+            if (CanActivate()){
+                playerReference.HealHealth(regenAmount, playerReference);
+                currentAbilityPause = 1 / Stats.UsePerSec;
+                abilityIsPaused = true;
+                playerReference.MovementStyle = MovementStyles.MovementStyle.FaceMovement;
+            }
+        }
+
+        public override void Cleanup()
+        {
+            EventBus<PlayerTakeDamage>.Unsubscribe(PauseRecoveryDamage);
+            EventBus<UseAbility>.Unsubscribe(PauseRecoveryAbility);
+        }
     }
 }

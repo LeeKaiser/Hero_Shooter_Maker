@@ -1,6 +1,7 @@
 using UnityEngine;
 using InputOptions;
 using System.Collections.Generic;
+using HeroShooterMaker.Abilities;
 
 public class CharAssembler : MonoBehaviour
 {

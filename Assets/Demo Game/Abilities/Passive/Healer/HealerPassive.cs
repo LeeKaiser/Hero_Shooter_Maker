@@ -1,34 +1,40 @@
 using UnityEngine;
 
-public class HealerPassive : Ability
+//HealerPassive
+//makes the attack heal teammates when hitting them
+//example of a passive ability that heals a certain player
+namespace HeroShooterMaker.Abilities
 {
-    public float HealPercentage;
-
-    protected override void Startup()
+    public class HealerPassive : Ability
     {
-        EventBus<HitTarget>.Subscribe(executeAbility);
-    }
+        public float HealPercentage;
 
-    public void executeAbility(HitTarget hitTarget)
-    {
-        if (hitTarget.PlayerIdentity != playerReference)
+        protected override void Startup()
         {
-            return;
-        }
-        if (hitTarget.TargetPlayer.PlayerAllegience != playerReference.PlayerAllegience)
-        {
-            return;
+            EventBus<HitTarget>.Subscribe(executeAbility);
         }
 
+        public void executeAbility(HitTarget hitTarget)
+        {
+            if (hitTarget.PlayerIdentity != playerReference)
+            {
+                return;
+            }
+            if (hitTarget.TargetPlayer.PlayerAllegience != playerReference.PlayerAllegience)
+            {
+                return;
+            }
 
-        //heal target player
-        int healAmount = (int)(hitTarget.onHit.GetComponent<ApplyDamage>().BaseDamage * HealPercentage);
-        hitTarget.TargetPlayer.HealHealth(healAmount,playerReference);
-        
-    }
 
-    public override void Cleanup()
-    {
-        EventBus<HitTarget>.Unsubscribe(executeAbility);
+            //heal target player
+            int healAmount = (int)(hitTarget.onHit.GetComponent<ApplyDamage>().BaseDamage * HealPercentage);
+            hitTarget.TargetPlayer.HealHealth(healAmount,playerReference);
+            
+        }
+
+        public override void Cleanup()
+        {
+            EventBus<HitTarget>.Unsubscribe(executeAbility);
+        }
     }
 }

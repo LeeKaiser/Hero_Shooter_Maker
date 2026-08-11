@@ -2,8 +2,7 @@ using UnityEngine;
 using DecisionCondition;
 using System.Collections.Generic;
 using System.Collections;
-using AbilityClassification;
-
+using HeroShooterMaker.Abilities;
 /*
 Condition Check
 Static class containing a method to check if a condition is true or false. 

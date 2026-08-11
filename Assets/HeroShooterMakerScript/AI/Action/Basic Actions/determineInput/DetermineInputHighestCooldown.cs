@@ -1,8 +1,8 @@
 using UnityEngine;
-using AbilityClassification;
 using System.Collections.Generic;
 using InputOptions;
 using System;
+using HeroShooterMaker.Abilities;
 
 [CreateAssetMenu(fileName = "InputHighestCd", menuName = "AIAction/Input/InputHighestCd")]
 public class DetermineInputHighestCooldown : DetermineInput
