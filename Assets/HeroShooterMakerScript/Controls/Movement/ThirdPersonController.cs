@@ -3,6 +3,7 @@ using UnityEngine.Serialization;
 using HeroShooterMaker.CharacterEvents;
 using UnityEngine.AI;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Character;
 
 /*
 ThirdPersonController

@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.MatchSystem;
+using HeroShooterMaker.Character;
 
 public class GenerateDefaultForAllPlayers : MonoBehaviour
 {

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using HeroShooterMaker.Character;
 
 [System.Flags]
     public enum EffectCategory

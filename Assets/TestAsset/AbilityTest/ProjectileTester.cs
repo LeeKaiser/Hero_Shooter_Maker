@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using HeroShooterMaker.Character;
 
 public class ProjectileTester : MonoBehaviour
 {

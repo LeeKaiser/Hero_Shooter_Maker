@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.Character;
 public class ApplyDamage : ApplyEffect
 {
     [Tooltip("damage it deals")]

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.Character;
 
 public abstract class ApplyEffect : MonoBehaviour
 {

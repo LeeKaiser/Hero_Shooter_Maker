@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Character;
 
 //CharacterEvents
 //structs used for transfering information based on events related to characters

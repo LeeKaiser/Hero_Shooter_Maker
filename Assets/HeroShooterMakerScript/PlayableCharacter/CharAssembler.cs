@@ -3,27 +3,30 @@ using HeroShooterMaker.Controls;
 using System.Collections.Generic;
 using HeroShooterMaker.Abilities;
 
-public class CharAssembler : MonoBehaviour
+namespace HeroShooterMaker.Character
 {
-    public CharAssembleInfo assembleInfo;
-
-    public CharCore playerReference;
-    public AbilityManager abilityManager;
-
-    void Awake()
+    public class CharAssembler : MonoBehaviour
     {
-        //put char stat in char core
-        playerReference.Stats = assembleInfo.Stats;
-    }
+        public CharAssembleInfo assembleInfo;
 
-    void Start()
-    {
-        //add all abilities
-        foreach (GameObject abil in assembleInfo.Abilities)
+        public CharCore playerReference;
+        public AbilityManager abilityManager;
+
+        void Awake()
         {
-            GameObject AbilityObject = Instantiate(abil, this.transform);
-            AbilityObject.SetActive(true);
+            //put char stat in char core
+            playerReference.Stats = assembleInfo.Stats;
         }
+
+        void Start()
+        {
+            //add all abilities
+            foreach (GameObject abil in assembleInfo.Abilities)
+            {
+                GameObject AbilityObject = Instantiate(abil, this.transform);
+                AbilityObject.SetActive(true);
+            }
+        }
+
     }
-    
 }

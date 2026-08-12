@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using HeroShooterMaker.Character;
 
 //DetermineAimEnemyPoint
 //Example of an overriden DetermineAim for the demo.

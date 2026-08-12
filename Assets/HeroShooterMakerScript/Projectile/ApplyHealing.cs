@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.Character;
 public class ApplyHealing : ApplyEffect
 {
     [Tooltip("amount of healing applied")]

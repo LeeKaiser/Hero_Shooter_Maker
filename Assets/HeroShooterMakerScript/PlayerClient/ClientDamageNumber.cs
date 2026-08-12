@@ -3,6 +3,7 @@ using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Character;
 
 namespace HeroShooterMakerDemo
 {

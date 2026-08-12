@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.Jobs;
 using Unity.Collections;
+using HeroShooterMaker.Character;
 
 //PatrolLandmark
 //indicates location that agent wants to patrol or thinks is important

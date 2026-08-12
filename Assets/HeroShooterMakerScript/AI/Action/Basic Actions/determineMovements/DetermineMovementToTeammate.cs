@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HeroShooterMaker.Character;
 
 //DetermineMovementToTeammate
 //Example of an overriden DetermineMovement for the demo.

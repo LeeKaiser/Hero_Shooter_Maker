@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using HeroShooterMaker.EventBus;
 using HeroShooterMaker.MatchSystem;
+using HeroShooterMaker.Character;
 
 namespace HeroShooterMakerDemo
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Character;
 
 namespace HeroShooterMaker.MatchSystem
 {

@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Character;
 
 //invokes an event when hitting attack projectile
 //assumption: this script is on projectiles that the developer wants to be considered "attack".

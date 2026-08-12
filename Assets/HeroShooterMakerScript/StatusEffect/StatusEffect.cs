@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.Character;
 
 public abstract class StatusEffect : MonoBehaviour
 {

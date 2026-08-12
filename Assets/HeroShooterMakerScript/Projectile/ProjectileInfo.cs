@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using HeroShooterMaker.MatchSystem;
+using HeroShooterMaker.Character;
 
 public class ProjectileInfo : MonoBehaviour
 {

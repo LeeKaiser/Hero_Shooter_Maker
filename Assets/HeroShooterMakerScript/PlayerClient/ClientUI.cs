@@ -4,6 +4,7 @@ using HeroShooterMaker.CharacterEvents;
 using UnityEngine.UI;
 using HeroShooterMaker.Abilities;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Character;
 
 public class ClientUI : MonoBehaviour
 {

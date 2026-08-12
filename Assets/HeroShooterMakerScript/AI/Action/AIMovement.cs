@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.Character;
 
 /*
 AI Movement

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using HeroShooterMaker.Character;
 
 //DetermineMovementPatrol
 //Example of an overriden DetermineMovement for the demo.

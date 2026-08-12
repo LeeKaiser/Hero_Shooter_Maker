@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Collections;
+using HeroShooterMaker.Character;
 
 /*
 Ability

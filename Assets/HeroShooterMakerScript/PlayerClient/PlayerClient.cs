@@ -2,6 +2,7 @@ using UnityEngine;
 using Cinemachine;
 using HeroShooterMaker.AI;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.Character;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif

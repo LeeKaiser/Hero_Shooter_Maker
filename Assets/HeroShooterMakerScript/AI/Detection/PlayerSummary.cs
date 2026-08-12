@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Character;
 
 /*
 PlayerSummary
