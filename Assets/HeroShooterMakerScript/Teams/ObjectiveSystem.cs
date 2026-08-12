@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.EventBus;
 
 //general abstract class for objectives
 public abstract class ObjectiveSystem : MonoBehaviour

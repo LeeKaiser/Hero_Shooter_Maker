@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using HeroShooterMaker.CharacterEvents;
 using UnityEngine.UI;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.EventBus;
 
 public class ClientUI : MonoBehaviour
 {

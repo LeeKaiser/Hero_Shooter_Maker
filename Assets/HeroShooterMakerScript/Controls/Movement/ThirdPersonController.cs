@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
-using MovementInputEvents;
+using HeroShooterMaker.CharacterEvents;
 using UnityEngine.AI;
+using HeroShooterMaker.EventBus;
 
 /*
 ThirdPersonController

@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.EventBus;
 
 //HealerPassive
 //makes the attack heal teammates when hitting them

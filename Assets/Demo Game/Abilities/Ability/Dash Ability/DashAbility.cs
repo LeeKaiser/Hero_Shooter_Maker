@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.EventBus;
 
 //DashAbility
 //Example of an ability that translates player position

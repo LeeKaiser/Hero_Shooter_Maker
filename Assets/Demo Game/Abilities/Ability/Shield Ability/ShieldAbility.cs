@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.EventBus;
 
 //ShieldAbility
 //example of an ability that applies a status effect to self

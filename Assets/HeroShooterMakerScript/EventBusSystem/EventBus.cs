@@ -2,30 +2,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class EventBus<T>
+namespace HeroShooterMaker.EventBus
 {
-    private static event Action<T> OnEvent;
-
-    public static void Subscribe(Action<T> handler)
+    public static class EventBus<T>
     {
-        OnEvent += handler;
-    }
+        private static event Action<T> OnEvent;
 
-    public static void Unsubscribe(Action<T> handler)
-    {
-        OnEvent -= handler;
-    }
+        public static void Subscribe(Action<T> handler)
+        {
+            OnEvent += handler;
+        }
 
-    public static void Invoke(T data)
-    {
-        OnEvent?.Invoke(data);
-    }
+        public static void Unsubscribe(Action<T> handler)
+        {
+            OnEvent -= handler;
+        }
 
-    public static void Clear()
-    {
-        OnEvent = null;
-    }
+        public static void Invoke(T data)
+        {
+            OnEvent?.Invoke(data);
+        }
 
-    
+        public static void Clear()
+        {
+            OnEvent = null;
+        }
+
+
+    }
 }
+
 

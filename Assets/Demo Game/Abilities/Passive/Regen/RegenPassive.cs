@@ -1,6 +1,7 @@
 using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.EventBus;
 
 //RegenPassive
 //player regenerates health after avoiding taking damage or using abilities for few seconds

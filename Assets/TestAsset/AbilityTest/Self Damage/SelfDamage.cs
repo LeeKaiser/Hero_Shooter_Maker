@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.Controls;
+using HeroShooterMaker.EventBus;
 
 namespace HeroShooterMaker.Abilities
 {

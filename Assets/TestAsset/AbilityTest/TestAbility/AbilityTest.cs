@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 #endif
 using System.Collections;
 using HeroShooterMaker.Controls;
-
+using HeroShooterMaker.EventBus;
 
 namespace HeroShooterMaker.Abilities
 {

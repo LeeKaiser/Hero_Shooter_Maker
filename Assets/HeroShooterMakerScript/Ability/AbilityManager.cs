@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.EventBus;
 
 /*
 Ability Manager

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MovementInputEvents
+namespace HeroShooterMaker.CharacterEvents
 {
     //add all event types for possible playable character movement related events here
 

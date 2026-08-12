@@ -2,6 +2,7 @@ using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
 using System.Collections;
+using HeroShooterMaker.EventBus;
 
 public class ClientDamageNumber : MonoBehaviour
 {

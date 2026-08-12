@@ -1,6 +1,7 @@
 using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
+using HeroShooterMaker.EventBus;
 
 namespace HeroShooterMaker.Abilities
 {
