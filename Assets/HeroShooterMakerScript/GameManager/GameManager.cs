@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Client;
 
 namespace HeroShooterMaker.MatchSystem
 {

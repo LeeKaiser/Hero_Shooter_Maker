@@ -8,46 +8,49 @@ using UnityEngine.InputSystem;
 #endif
 using HeroShooterMakerDemo; //supports UI systems specific to the demo
 
-public class PlayerClient : MonoBehaviour
+namespace HeroShooterMaker.Client
 {
-    public CharCore CharacterReference;
-    public ClientUI PlayerCanvas;
-    public UIBar healthBar;
-    [SerializeField] CinemachineVirtualCamera cinemachine;
-    InputListener listener;
-
-    void Start()
+    public class PlayerClient : MonoBehaviour
     {
-        listener = GetComponent<InputListener>();
-        GetComponent<ClientDamageNumber>().CharacterReference = CharacterReference;
-        ConnectToPlayer();
-    }
+        public CharCore CharacterReference;
+        public ClientUI PlayerCanvas;
+        public UIBar healthBar;
+        [SerializeField] CinemachineVirtualCamera cinemachine;
+        InputListener listener;
 
-    void Update()
-    {
-        if (healthBar != null && CharacterReference != null)
+        void Start()
         {
-            healthBar.UpdateSlider(CharacterReference.GetHitPointsCurrent(), CharacterReference.GetHitPointsBase());
+            listener = GetComponent<InputListener>();
+            GetComponent<ClientDamageNumber>().CharacterReference = CharacterReference;
+            ConnectToPlayer();
         }
-    }
 
-    void GeneratePlayer()
-    {
-        
-    }
+        void Update()
+        {
+            if (healthBar != null && CharacterReference != null)
+            {
+                healthBar.UpdateSlider(CharacterReference.GetHitPointsCurrent(), CharacterReference.GetHitPointsBase());
+            }
+        }
 
-    public void ConnectToPlayer()
-    {
-        Transform cameraRoot = CharacterReference.PlayerArmature.transform.Find("PlayerCameraRoot");
-        cinemachine.LookAt = cameraRoot;
-        cinemachine.Follow = cameraRoot;
-        listener.SetInputConverter(CharacterReference.PlayerArmature.GetComponent<InputConverter>());
-        PlayerCanvas.characterReference = CharacterReference;
-        PlayerCanvas.SetUpNewUI();
-        CharacterReference.PlayerArmature.GetComponent<AIProcess>().enabled = false;
-        CharacterReference.PlayerArmature.GetComponent<ObjectDetection>().enabled = false;
-        CharacterReference.PlayerArmature.GetComponent<AIMovement>().enabled = false;
-    }
+        void GeneratePlayer()
+        {
 
-    
+        }
+
+        public void ConnectToPlayer()
+        {
+            Transform cameraRoot = CharacterReference.PlayerArmature.transform.Find("PlayerCameraRoot");
+            cinemachine.LookAt = cameraRoot;
+            cinemachine.Follow = cameraRoot;
+            listener.SetInputConverter(CharacterReference.PlayerArmature.GetComponent<InputConverter>());
+            PlayerCanvas.characterReference = CharacterReference;
+            PlayerCanvas.SetUpNewUI();
+            CharacterReference.PlayerArmature.GetComponent<AIProcess>().enabled = false;
+            CharacterReference.PlayerArmature.GetComponent<ObjectDetection>().enabled = false;
+            CharacterReference.PlayerArmature.GetComponent<AIMovement>().enabled = false;
+        }
+
+
+    }
 }
