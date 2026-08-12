@@ -1,26 +1,27 @@
 using UnityEngine;
 using TMPro;
 
-public class DamageNumberScript : InGameTxtDisplay
+namespace HeroShooterMakerDemo
 {
-    
-
-    [SerializeField] private float remainingDuration;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class DamageNumberScript : InGameTxtDisplay
     {
-        
-    }
+        [SerializeField] private float remainingDuration;
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        base.Update();
-        remainingDuration -= Time.deltaTime;
-        if (remainingDuration <= 0)
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            Destroy(gameObject);
+
+        }
+
+        // Update is called once per frame
+        public override void Update()
+        {
+            base.Update();
+            remainingDuration -= Time.deltaTime;
+            if (remainingDuration <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

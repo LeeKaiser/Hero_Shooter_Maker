@@ -5,6 +5,7 @@ using HeroShooterMaker.Controls;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
+using HeroShooterMakerDemo; //supports UI systems specific to the demo
 
 public class PlayerClient : MonoBehaviour
 {

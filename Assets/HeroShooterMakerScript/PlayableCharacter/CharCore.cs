@@ -6,6 +6,7 @@ using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Abilities;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.MatchSystem;
 
 //rename to CharCore in the future
 public class CharCore : MonoBehaviour

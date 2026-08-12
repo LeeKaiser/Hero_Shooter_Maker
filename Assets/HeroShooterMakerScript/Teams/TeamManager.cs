@@ -5,86 +5,90 @@ using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.EventBus;
 
-public class TeamManager : MonoBehaviour
+namespace HeroShooterMaker.MatchSystem
 {
-    public CharCore[] TeamMembers;
-    public Transform[] SpawnPositions;
-
-    public LayerMask TeamLayer;
-    public LayerMask EnemyLayer;
-
-    public int SpawnTime;
-
-    private int points;
-    public int PointsToWin;
-
-    void Awake()
+    public class TeamManager : MonoBehaviour
     {
-        
-        TeamLayer = 1 << gameObject.layer;
-        EnemyLayer = ~TeamLayer & EnemyLayer;
-        AssignTeam();
-       
-    }
-    void OnEnable()
-    {
-        //TODO: spawn in all players at correct spawn location
-        EventBus<PlayerDead>.Subscribe(SpawnPlayer);
-        EventBus<TeamGetPoint>.Subscribe(GetPoints);
-    }
-    void OnDisable()
-    {
-        EventBus<PlayerDead>.Unsubscribe(SpawnPlayer);
-        EventBus<TeamGetPoint>.Subscribe(GetPoints);
-        //TODO: disable all players to reset them for next round
-    }
-    public void SpawnPlayer(PlayerDead defeatedPlayer)
-    {
-        if (TeamMembers.Contains(defeatedPlayer.PlayerIdentity))
+        public CharCore[] TeamMembers;
+        public Transform[] SpawnPositions;
+
+        public LayerMask TeamLayer;
+        public LayerMask EnemyLayer;
+
+        public int SpawnTime;
+
+        private int points;
+        public int PointsToWin;
+
+        void Awake()
         {
-            StartCoroutine(SpawnAfterTime(defeatedPlayer.PlayerIdentity));
+
+            TeamLayer = 1 << gameObject.layer;
+            EnemyLayer = ~TeamLayer & EnemyLayer;
+            AssignTeam();
+
         }
-    }
-
-    public void AssignTeam()
-    {
-        foreach(CharCore member in TeamMembers)
+        void OnEnable()
         {
-            member.PlayerAllegience = this;
+            //TODO: spawn in all players at correct spawn location
+            EventBus<PlayerDead>.Subscribe(SpawnPlayer);
+            EventBus<TeamGetPoint>.Subscribe(GetPoints);
         }
-    }
-
-    IEnumerator SpawnAfterTime(CharCore spawnPlayer)
-    {
-        yield return new WaitForSeconds(SpawnTime);
-        //select random spawn position
-        int randomSpawnIndex = Random.Range(0,SpawnPositions.Length);
-        spawnPlayer.Spawn(SpawnPositions[randomSpawnIndex].position);
-        
-    }
-
-    public void GetPoints(TeamGetPoint getPoint)
-    {
-        if (getPoint.TeamIdentity != this)
+        void OnDisable()
         {
-            return;
+            EventBus<PlayerDead>.Unsubscribe(SpawnPlayer);
+            EventBus<TeamGetPoint>.Subscribe(GetPoints);
+            //TODO: disable all players to reset them for next round
         }
-        else
+        public void SpawnPlayer(PlayerDead defeatedPlayer)
         {
-            points += getPoint.pointQuantity;
-            Debug.Log("GotPoints: " + this + "current points: " + points);
-            if (points >= PointsToWin)
+            if (TeamMembers.Contains(defeatedPlayer.PlayerIdentity))
             {
-                TeamCompleteObjective completeObjective = new TeamCompleteObjective();
-                completeObjective.TeamIdentity = this;
-                EventBus<TeamCompleteObjective>.Invoke(completeObjective);
+                StartCoroutine(SpawnAfterTime(defeatedPlayer.PlayerIdentity));
+            }
+        }
+
+        public void AssignTeam()
+        {
+            foreach (CharCore member in TeamMembers)
+            {
+                member.PlayerAllegience = this;
+            }
+        }
+
+        IEnumerator SpawnAfterTime(CharCore spawnPlayer)
+        {
+            yield return new WaitForSeconds(SpawnTime);
+            //select random spawn position
+            int randomSpawnIndex = Random.Range(0, SpawnPositions.Length);
+            spawnPlayer.Spawn(SpawnPositions[randomSpawnIndex].position);
+
+        }
+
+        public void GetPoints(TeamGetPoint getPoint)
+        {
+            if (getPoint.TeamIdentity != this)
+            {
+                return;
+            }
+            else
+            {
+                points += getPoint.pointQuantity;
+                Debug.Log("GotPoints: " + this + "current points: " + points);
+                if (points >= PointsToWin)
+                {
+                    TeamCompleteObjective completeObjective = new TeamCompleteObjective();
+                    completeObjective.TeamIdentity = this;
+                    EventBus<TeamCompleteObjective>.Invoke(completeObjective);
+                }
             }
         }
     }
-}
 
-public struct TeamGetPoint
-{
-    public TeamManager TeamIdentity;
-    public int pointQuantity;
+    public struct TeamGetPoint
+    {
+        public TeamManager TeamIdentity;
+        public int pointQuantity;
+    }
+
 }

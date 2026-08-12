@@ -1,39 +1,42 @@
 using UnityEngine;
 using TMPro;
 
-public class InGameTxtDisplay : MonoBehaviour
+namespace HeroShooterMakerDemo
 {
-    [SerializeField] protected string value;
-    public TextMeshPro textDisplay;
-    public float ReferenceDistance = 1;
-    Transform playerCam;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class InGameTxtDisplay : MonoBehaviour
     {
-        
-    }
+        [SerializeField] protected string value;
+        public TextMeshPro textDisplay;
+        public float ReferenceDistance = 1;
+        Transform playerCam;
 
-    public void Init(Transform camera, string valueTxt)
-    {
-        value = valueTxt;
-        textDisplay.text = value;
-        playerCam = camera;
-        
-    }
-
-    // Update is called once per frame
-    public virtual void Update()
-    {
-        if (!(playerCam == null))
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            Vector3 awayDir =  transform.position - playerCam.position;
-            transform.rotation = Quaternion.LookRotation(awayDir);
-            textDisplay.text = value;
-            float textScale = awayDir.magnitude / ReferenceDistance;
-            transform.localScale = Vector3.one * textScale;
+
         }
-        
-        
+
+        public void Init(Transform camera, string valueTxt)
+        {
+            value = valueTxt;
+            textDisplay.text = value;
+            playerCam = camera;
+
+        }
+
+        // Update is called once per frame
+        public virtual void Update()
+        {
+            if (!(playerCam == null))
+            {
+                Vector3 awayDir = transform.position - playerCam.position;
+                transform.rotation = Quaternion.LookRotation(awayDir);
+                textDisplay.text = value;
+                float textScale = awayDir.magnitude / ReferenceDistance;
+                transform.localScale = Vector3.one * textScale;
+            }
+
+
+        }
     }
 }

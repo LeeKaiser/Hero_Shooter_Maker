@@ -2,45 +2,50 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.MatchSystem;
 
-public class HotZoneObjective : ObjectiveSystem
+namespace HeroShooterMakerDemo
 {
-    public int PointsPerTick = 1;
-    public float TickRate = 1.0f;
-
-    Dictionary<TeamManager, float> alreadyGivenPoint = new Dictionary<TeamManager, float>();
-
-    void Update()
+    public class HotZoneObjective : ObjectiveSystem
     {
-        
-        foreach(TeamManager team in alreadyGivenPoint.Keys.ToList())
+        public int PointsPerTick = 1;
+        public float TickRate = 1.0f;
+
+        Dictionary<TeamManager, float> alreadyGivenPoint = new Dictionary<TeamManager, float>();
+
+        void Update()
         {
-            alreadyGivenPoint[team] -= Time.deltaTime;
-            if (alreadyGivenPoint[team] <= 0)
+
+            foreach (TeamManager team in alreadyGivenPoint.Keys.ToList())
             {
-                alreadyGivenPoint.Remove(team);
+                alreadyGivenPoint[team] -= Time.deltaTime;
+                if (alreadyGivenPoint[team] <= 0)
+                {
+                    alreadyGivenPoint.Remove(team);
+                }
+            }
+        }
+        void OnTriggerStay(Collider other)
+        {
+            //if it is player, get the team and give the team points
+            CharCore player = other.gameObject.GetComponentInParent<CharCore>();
+            if (player != null)
+            {
+                TeamManager team = player.PlayerAllegience;
+                if (team == null)
+                {
+                    return;
+                }
+                if (!alreadyGivenPoint.ContainsKey(team))
+                {
+                    alreadyGivenPoint[team] = TickRate;
+                    TeamGetPoint getpoint = new TeamGetPoint();
+                    getpoint.TeamIdentity = team;
+                    getpoint.pointQuantity = PointsPerTick;
+                    EventBus<TeamGetPoint>.Invoke(getpoint);
+                }
             }
         }
     }
-    void OnTriggerStay(Collider other)
-    {
-        //if it is player, get the team and give the team points
-        CharCore player = other.gameObject.GetComponentInParent<CharCore>();
-        if (player != null)
-        {
-            TeamManager team = player.PlayerAllegience;
-            if (team == null)
-            {
-                return;
-            }
-            if (!alreadyGivenPoint.ContainsKey(team))
-            {
-                alreadyGivenPoint[team] = TickRate;
-                TeamGetPoint getpoint = new TeamGetPoint();
-                getpoint.TeamIdentity = team;
-                getpoint.pointQuantity = PointsPerTick;
-                EventBus<TeamGetPoint>.Invoke(getpoint);
-            }
-        }
-    }
+
 }
