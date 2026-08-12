@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using InputOptions;
 using System;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Controls;
 
 //DetermineInputHighestCooldown
 //Example of an overriden DetermineInput for the demo.

@@ -1,5 +1,5 @@
 using UnityEngine;
-using InputOptions;
+using HeroShooterMaker.Controls;
 using System.Collections.Generic;
 using HeroShooterMaker.Abilities;
 

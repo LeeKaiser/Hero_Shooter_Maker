@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System;
-using InputOptions;
+using HeroShooterMaker.Controls;
 using HeroShooterMaker.CharacterEvents;
 
 /*

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public static class MovementStyles
+namespace HeroShooterMaker.Controls
 {
-    public enum MovementStyle
+    public static class MovementStyles
     {
-        AlwaysFaceForward,
-        FaceMovement,
-        RotateInsteadOfStrafe,
+        public enum MovementStyle
+        {
+            AlwaysFaceForward,
+            FaceMovement,
+            RotateInsteadOfStrafe,
+        }
     }
 }

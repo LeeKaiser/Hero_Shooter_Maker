@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 #endif
 using System.Collections.Generic;
 using System;
-using InputOptions;
+using HeroShooterMaker.Controls;
 /*
 InputListener
 Sends player’s inputs to InputEventCaller

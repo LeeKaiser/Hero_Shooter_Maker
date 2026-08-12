@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 #endif
 using System.Collections;
+using HeroShooterMaker.Controls;
 
 
 namespace HeroShooterMaker.Abilities

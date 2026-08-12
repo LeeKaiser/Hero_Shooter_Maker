@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 #endif
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Controls;
 
 //rename to CharCore in the future
 public class CharCore : MonoBehaviour

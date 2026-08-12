@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.Controls;
 
 /*
 Active Ability

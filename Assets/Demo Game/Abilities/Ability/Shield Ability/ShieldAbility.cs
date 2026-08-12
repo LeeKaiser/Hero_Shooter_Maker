@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.Controls;
 
 //ShieldAbility
 //example of an ability that applies a status effect to self

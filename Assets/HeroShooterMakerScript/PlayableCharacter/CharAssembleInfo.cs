@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using InputOptions;
+using HeroShooterMaker.Controls;
 
 [CreateAssetMenu(fileName = "CharAssembleInfo", menuName = "Scriptable Objects/CharAssembleInfo")]
 public class CharAssembleInfo : ScriptableObject

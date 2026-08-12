@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 using MovementInputEvents;
+using HeroShooterMaker.Controls;
 
 /*
 AI Movement

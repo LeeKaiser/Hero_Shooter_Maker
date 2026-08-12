@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using InputOptions;
+using HeroShooterMaker.Controls;
 using System;
 
 //DetermineInputNone

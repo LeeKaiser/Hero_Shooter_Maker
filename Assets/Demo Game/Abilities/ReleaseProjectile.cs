@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.Controls;
 
 //ReleaseProjectile
 //example of an ability that fires projectiles. 
