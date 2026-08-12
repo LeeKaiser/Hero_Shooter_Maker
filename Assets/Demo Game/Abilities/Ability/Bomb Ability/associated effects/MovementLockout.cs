@@ -1,4 +1,5 @@
 using UnityEngine;
+using HeroShooterMaker.AI;
 
 public class MovementLockout : StatusEffect
 {

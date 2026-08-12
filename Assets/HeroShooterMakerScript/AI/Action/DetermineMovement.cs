@@ -1,7 +1,12 @@
 using UnityEngine;
 
-public abstract class DetermineMovement : ScriptableObject
+//DetermineMovement
+//logic that affects the agent's movement destination
+namespace HeroShooterMaker.AI
 {
-    //set position of movement target
-    public abstract void ExecuteDetermineMovement(AIAction action);
+    public abstract class DetermineMovement : ScriptableObject
+    {
+        //set position of movement target
+        public abstract void ExecuteDetermineMovement(AIAction action);
+    }
 }

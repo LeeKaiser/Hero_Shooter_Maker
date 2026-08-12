@@ -2,59 +2,62 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-[CreateAssetMenu(fileName = "TargetEnemyPoint", menuName = "AIAction/Aim/TargetEnemyPoint")]
-public class DetermineAimEnemyPoint : DetermineAim
+//DetermineAimEnemyPoint
+//Example of an overriden DetermineAim for the demo.
+//Causes the agent to aim at enemy that is closest to highest priority patrol point
+namespace HeroShooterMaker.AI
 {
-    public override void ExecuteDetermineAim(AIAction action)
+    [CreateAssetMenu(fileName = "TargetEnemyPoint", menuName = "AIAction/Aim/TargetEnemyPoint")]
+    public class DetermineAimEnemyPoint : DetermineAim
     {
-        if (!(action.Detection.GetCurrentContext().KnownEnemyList == null))
+        public override void ExecuteDetermineAim(AIAction action)
         {
-            Vector3 pointLocation = action.playerArmature.transform.position;
-            if (action.Detection.GetCurrentContext().focusPOIList != null)
+            if (!(action.Detection.GetCurrentContext().KnownEnemyList == null))
             {
-                int highestPriority = 0;
-                foreach (PatrolLandmark x in action.Detection.GetCurrentContext().focusPOIList)
+                //find highest priority point of interest
+                Vector3 pointLocation = action.playerArmature.transform.position;
+                if (action.Detection.GetCurrentContext().focusPOIList != null)
                 {
-                    if (x.PatrolPriority[0] > highestPriority)
+                    int highestPriority = 0;
+                    foreach (PatrolLandmark x in action.Detection.GetCurrentContext().focusPOIList)
                     {
-                        pointLocation = x.transform.position;
-                        highestPriority = x.PatrolPriority[0];
+                        if (x.PatrolPriority[0] > highestPriority)
+                        {
+                            pointLocation = x.transform.position;
+                            highestPriority = x.PatrolPriority[0];
+                        }
+                    }
+                    
+                } 
+                // identify enemy closest to it
+                float lowestDistance = Mathf.Infinity;
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownEnemyList)
+                {
+                    float dist = (potentialTarget.Key.PlayerArmature.transform.position - pointLocation).magnitude;
+                    if (dist <= lowestDistance)
+                    {
+                        action.targetPlayer = potentialTarget.Key.PlayerArmature;
+                        lowestDistance = dist;
                     }
                 }
-                
-            } 
-            // identify enemy closest to it
-            float lowestDistance = Mathf.Infinity;
-            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownEnemyList)
-            {
-                float dist = (potentialTarget.Key.PlayerArmature.transform.position - pointLocation).magnitude;
-                if (dist <= lowestDistance)
+                try
                 {
-                    action.targetPlayer = potentialTarget.Key.PlayerArmature;
-                    lowestDistance = dist;
+                    //set the aim target
+                    Vector3 targetPosition = action.targetPlayer.transform.position;
+                    float heightAdjustment = action.targetPlayer.GetComponent<CharacterController>().height * 0.8f;
+                    targetPosition.y += heightAdjustment;
+                    action.AimTarget.position = targetPosition;
+                }
+                catch(Exception e)
+                {
+
+                    Debug.Log(e);
                 }
             }
-            
-
-            try
+            else
             {
-                Vector3 targetPosition = action.targetPlayer.transform.position;
-                float heightAdjustment = action.targetPlayer.GetComponent<CharacterController>().height * 0.8f;
-                targetPosition.y += heightAdjustment;
-                action.AimTarget.position = targetPosition;
+                return;
             }
-            catch(Exception e)
-            {
-
-                Debug.Log(e);
-            }
-
-            
-            
-        }
-        else
-        {
-            return;
         }
     }
 }

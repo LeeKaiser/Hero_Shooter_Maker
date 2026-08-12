@@ -1,5 +1,7 @@
 using UnityEngine;
+using HeroShooterMaker.AI;
 
+//Delete before release
 public class ODTextDisplay : InGameTxtDisplay
 {
     public ObjectDetection objDetect;

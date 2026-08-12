@@ -1,35 +1,40 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "ToTeammate", menuName = "AIAction/Movement/MoveToTeammate")]
-public class DetermineMovementToTeammate : DetermineMovement
+//DetermineMovementToTeammate
+//Example of an overriden DetermineMovement for the demo.
+//Choose to move close to teammate
+namespace HeroShooterMaker.AI
 {
-    public float destinationSpread = 1;
-    public override void ExecuteDetermineMovement(AIAction action)
+    [CreateAssetMenu(fileName = "ToTeammate", menuName = "AIAction/Movement/MoveToTeammate")]
+    public class DetermineMovementToTeammate : DetermineMovement
     {
-        GameObject playerArmatureRef = action.Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().PlayerArmature;
-        Vector3 nextDestination = playerArmatureRef.transform.position;
-        
-
-        if (action.Detection.GetCurrentContext().KnownAllyList.Count >= 1)
+        public float destinationSpread = 1;
+        public override void ExecuteDetermineMovement(AIAction action)
         {
-            float highestVuln = 0;
-            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownAllyList)
+            GameObject playerArmatureRef = action.Detection.GetCurrentContext().PlayerReference.GetComponent<CharCore>().PlayerArmature;
+            Vector3 nextDestination = playerArmatureRef.transform.position;
+
+
+            if (action.Detection.GetCurrentContext().KnownAllyList.Count >= 1)
             {
-                //if (potentialTarget.Key.PlayerArmature == playerArmatureRef){ continue;}
-                if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
+                float highestVuln = 0;
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownAllyList)
                 {
-                    nextDestination = potentialTarget.Key.PlayerArmature.transform.position;
-                    highestVuln = potentialTarget.Value.VulnerabilityValue;
+                    //if (potentialTarget.Key.PlayerArmature == playerArmatureRef){ continue;}
+                    if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
+                    {
+                        nextDestination = potentialTarget.Key.PlayerArmature.transform.position;
+                        highestVuln = potentialTarget.Value.VulnerabilityValue;
+                    }
                 }
             }
-        }
 
-        //choose a random position and move to it
-        nextDestination.x = nextDestination.x + Random.Range(destinationSpread,destinationSpread);
-        nextDestination.z = nextDestination.z + Random.Range(destinationSpread,destinationSpread);
-        //Debug.Log(nextDestination);
-        action.MoveTarget.position = nextDestination;
-        action.Movement.MoveToLocation();
+            //choose a random position and move to it
+            nextDestination.x = nextDestination.x + Random.Range(destinationSpread, destinationSpread);
+            nextDestination.z = nextDestination.z + Random.Range(destinationSpread, destinationSpread);
+            action.MoveTarget.position = nextDestination;
+            action.Movement.MoveToLocation();
+        }
     }
 }

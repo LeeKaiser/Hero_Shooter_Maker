@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace StarterAssets
+namespace HeroShooterMaker.AI
 {
 [CustomEditor(typeof(ObjectDetection)), CanEditMultipleObjects]
 public class fieldOfVIewGizmos : Editor

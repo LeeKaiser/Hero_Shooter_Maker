@@ -1,5 +1,6 @@
 using UnityEngine;
 using Cinemachine;
+using HeroShooterMaker.AI;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
