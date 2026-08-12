@@ -1,55 +1,58 @@
 using UnityEngine;
 using HeroShooterMaker.Character;
 
-public abstract class StatusEffect : MonoBehaviour
+namespace HeroShooterMaker.StatusEffects
 {
-
-    public StatusEffectStats Stats;
-
-    protected float RemainingDuration;
-
-    protected CharCore AffectedPlayer;
-    protected CharCore OwningPlayer;
-
-    protected bool Active = true; //is active
-
-    private void Start()
+    public abstract class StatusEffect : MonoBehaviour
     {
-        RemainingDuration = Stats.EffectDuration;
-    }
-    
-    //main effect
-    public abstract void ApplyEffect();
 
-    //inverse of effect that activates to remove the effect
-    protected abstract void RemoveEffect();
+        public StatusEffectStats Stats;
 
-    public void SpendDuration(float timePassed)
-    {
-        RemainingDuration -= timePassed;
-        if (RemainingDuration <= 0)
+        protected float RemainingDuration;
+
+        protected CharCore AffectedPlayer;
+        protected CharCore OwningPlayer;
+
+        protected bool Active = true; //is active
+
+        private void Start()
         {
-            RemoveEffect();
-            Active = false;
+            RemainingDuration = Stats.EffectDuration;
         }
 
-    }
+        //main effect
+        public abstract void ApplyEffect();
 
-    public void SetDuration(float duration)
-    {
-        RemainingDuration = duration;
-    }
+        //inverse of effect that activates to remove the effect
+        protected abstract void RemoveEffect();
 
-    public float GetDuration(){return RemainingDuration;}
+        public void SpendDuration(float timePassed)
+        {
+            RemainingDuration -= timePassed;
+            if (RemainingDuration <= 0)
+            {
+                RemoveEffect();
+                Active = false;
+            }
 
-    public bool CurrentlyActive()
-    {
-        return Active;
-    }
+        }
 
-    public void SetAffectedPlayer(CharCore player, CharCore owningPlayer)
-    {
-        AffectedPlayer = player;
-        OwningPlayer = owningPlayer;
+        public void SetDuration(float duration)
+        {
+            RemainingDuration = duration;
+        }
+
+        public float GetDuration() { return RemainingDuration; }
+
+        public bool CurrentlyActive()
+        {
+            return Active;
+        }
+
+        public void SetAffectedPlayer(CharCore player, CharCore owningPlayer)
+        {
+            AffectedPlayer = player;
+            OwningPlayer = owningPlayer;
+        }
     }
 }

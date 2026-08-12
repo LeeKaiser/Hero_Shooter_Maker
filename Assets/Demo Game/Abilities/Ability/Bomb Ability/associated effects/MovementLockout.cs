@@ -1,22 +1,27 @@
 using UnityEngine;
 using HeroShooterMaker.AI;
+using HeroShooterMaker.StatusEffects;
 
-public class MovementLockout : StatusEffect
+namespace HeroShooterMakerDemo
 {
-    public override void ApplyEffect()
-    {
-        Active = true;
-        RemainingDuration = Stats.EffectDuration;
-        AffectedPlayer.PlayerMovement.SetHorizontalMovementPause(true);
-        
-        AIMovement aimovement = AffectedPlayer.PlayerArmature.GetComponent<AIMovement>();
-        
-        
-    }
 
-    protected override void RemoveEffect()
+    public class MovementLockout : StatusEffect
     {
-        Active = false;
-        AffectedPlayer.PlayerMovement.SetHorizontalMovementPause(false);
+        public override void ApplyEffect()
+        {
+            Active = true;
+            RemainingDuration = Stats.EffectDuration;
+            AffectedPlayer.PlayerMovement.SetHorizontalMovementPause(true);
+
+            AIMovement aimovement = AffectedPlayer.PlayerArmature.GetComponent<AIMovement>();
+
+
+        }
+
+        protected override void RemoveEffect()
+        {
+            Active = false;
+            AffectedPlayer.PlayerMovement.SetHorizontalMovementPause(false);
+        }
     }
 }

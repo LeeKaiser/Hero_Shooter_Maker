@@ -1,21 +1,25 @@
 using UnityEngine;
+using HeroShooterMaker.StatusEffects;
 
-public class ShieldEffect : StatusEffect
+namespace HeroShooterMakerDemo
 {
-    [Tooltip("shield multiplier")]
-    public float ShieldMultiplier;
-
-    public override void ApplyEffect()
+    public class ShieldEffect : StatusEffect
     {
-        Active = true;
-        RemainingDuration = Stats.EffectDuration;
-        AffectedPlayer.ModifyDamageTakeMult(ShieldMultiplier);
-    }
+        [Tooltip("shield multiplier")]
+        public float ShieldMultiplier;
 
-    protected override void RemoveEffect()
-    {
-        //reverse the speed bonus
-        Active = false;
-        AffectedPlayer.ModifyDamageTakeMult(-ShieldMultiplier);
+        public override void ApplyEffect()
+        {
+            Active = true;
+            RemainingDuration = Stats.EffectDuration;
+            AffectedPlayer.ModifyDamageTakeMult(ShieldMultiplier);
+        }
+
+        protected override void RemoveEffect()
+        {
+            //reverse the speed bonus
+            Active = false;
+            AffectedPlayer.ModifyDamageTakeMult(-ShieldMultiplier);
+        }
     }
 }

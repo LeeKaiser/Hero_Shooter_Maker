@@ -1,6 +1,7 @@
 using UnityEngine;
 using HeroShooterMaker.EventBus;
 using HeroShooterMaker.Abilities;
+using HeroShooterMaker.StatusEffects;
 
 //PoisonPassive
 //Example of passive ability that causes a certain ability to apply a debuff

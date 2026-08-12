@@ -1,25 +1,29 @@
 using UnityEngine;
+using HeroShooterMaker.StatusEffects;
 
-public class TestStatusEffect : StatusEffect
+namespace HeroShooterMakerDemo
 {
-    [Tooltip("amount of speed boost")]
-    public float SpeedMultiplierTest;
-
-    public override void ApplyEffect()
+    public class TestStatusEffect : StatusEffect
     {
-        Active = true;
-        RemainingDuration = Stats.EffectDuration;
-        AffectedPlayer.ModifyForwardSpeed(SpeedMultiplierTest);
-        AffectedPlayer.ModifyStrafeSpeed(SpeedMultiplierTest);
-        AffectedPlayer.ModifyBackwardSpeed(SpeedMultiplierTest);
-    }
+        [Tooltip("amount of speed boost")]
+        public float SpeedMultiplierTest;
 
-    protected override void RemoveEffect()
-    {
-        //reverse the speed bonus
-        Active = false;
-        AffectedPlayer.ModifyForwardSpeed(-SpeedMultiplierTest);
-        AffectedPlayer.ModifyStrafeSpeed(-SpeedMultiplierTest);
-        AffectedPlayer.ModifyBackwardSpeed(-SpeedMultiplierTest);
+        public override void ApplyEffect()
+        {
+            Active = true;
+            RemainingDuration = Stats.EffectDuration;
+            AffectedPlayer.ModifyForwardSpeed(SpeedMultiplierTest);
+            AffectedPlayer.ModifyStrafeSpeed(SpeedMultiplierTest);
+            AffectedPlayer.ModifyBackwardSpeed(SpeedMultiplierTest);
+        }
+
+        protected override void RemoveEffect()
+        {
+            //reverse the speed bonus
+            Active = false;
+            AffectedPlayer.ModifyForwardSpeed(-SpeedMultiplierTest);
+            AffectedPlayer.ModifyStrafeSpeed(-SpeedMultiplierTest);
+            AffectedPlayer.ModifyBackwardSpeed(-SpeedMultiplierTest);
+        }
     }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using HeroShooterMaker.Character;
+using HeroShooterMaker.StatusEffects;
 
 namespace HeroShooterMaker.Projectile
 {

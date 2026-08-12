@@ -1,5 +1,7 @@
 using UnityEngine;
 using HeroShooterMaker.Character;
+using HeroShooterMaker.StatusEffects;
+using HeroShooterMakerDemo; //reference knockback status effect
 
 namespace HeroShooterMaker.Projectile
 {

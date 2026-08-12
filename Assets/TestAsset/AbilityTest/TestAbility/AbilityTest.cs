@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.StatusEffects;
 
 namespace HeroShooterMaker.Abilities
 {
