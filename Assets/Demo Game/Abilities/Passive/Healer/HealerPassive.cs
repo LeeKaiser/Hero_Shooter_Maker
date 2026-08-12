@@ -1,10 +1,13 @@
 using UnityEngine;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Projectile;
+
 
 //HealerPassive
 //makes the attack heal teammates when hitting them
 //example of a passive ability that heals a certain player
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class HealerPassive : Ability
     {

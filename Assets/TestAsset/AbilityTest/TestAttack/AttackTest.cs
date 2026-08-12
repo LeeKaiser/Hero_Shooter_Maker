@@ -2,8 +2,10 @@ using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Projectile;
+using HeroShooterMaker.Abilities;
 
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class AttackTest : ActiveAbility
     {

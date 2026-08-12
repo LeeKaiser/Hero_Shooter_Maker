@@ -1,27 +1,31 @@
 using UnityEngine;
 using HeroShooterMaker.EventBus;
 using HeroShooterMaker.Character;
+using HeroShooterMaker.Projectile;
 
 //invokes an event when hitting attack projectile
 //assumption: this script is on projectiles that the developer wants to be considered "attack".
-public class InvokeOnHitAttack : ApplyEffect
+namespace HeroShooterMakerDemo
 {
-    
-    protected override void ActivateEffect(CharCore targetPlayer)
+    public class InvokeOnHitAttack : ApplyEffect
     {
-        HitTarget target = new HitTarget();
-        target.PlayerIdentity = info.OwningPlayer;
-        target.TargetPlayer = targetPlayer;
-        target.onHit = this;
-        EventBus<HitTarget>.Invoke(target);
+
+        protected override void ActivateEffect(CharCore targetPlayer)
+        {
+            HitTarget target = new HitTarget();
+            target.PlayerIdentity = info.OwningPlayer;
+            target.TargetPlayer = targetPlayer;
+            target.onHit = this;
+            EventBus<HitTarget>.Invoke(target);
+        }
+
     }
 
-}
+    public struct HitTarget
+    {
+        public CharCore PlayerIdentity;
+        public CharCore TargetPlayer;
+        public InvokeOnHitAttack onHit;
 
-public struct HitTarget
-{
-    public CharCore PlayerIdentity;
-    public CharCore TargetPlayer;
-    public InvokeOnHitAttack onHit;
-
+    }
 }
