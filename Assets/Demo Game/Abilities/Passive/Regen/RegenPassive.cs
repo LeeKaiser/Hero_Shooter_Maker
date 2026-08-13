@@ -2,11 +2,12 @@ using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Abilities;
 
 //RegenPassive
 //player regenerates health after avoiding taking damage or using abilities for few seconds
 //example of a passive ability that stops itself based on events rather than being activated by it
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class RegenPassive : Ability
     {

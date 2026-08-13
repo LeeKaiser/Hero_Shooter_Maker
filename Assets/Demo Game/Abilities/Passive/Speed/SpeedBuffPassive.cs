@@ -1,8 +1,9 @@
 using UnityEngine;
+using HeroShooterMaker.Abilities;
 
 //SpeedBuffPassive
 //example of a passive ability that affects player's movement
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class SpeedBuffPassive : Ability
     {

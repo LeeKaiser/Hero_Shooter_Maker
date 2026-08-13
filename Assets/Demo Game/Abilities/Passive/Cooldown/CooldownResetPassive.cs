@@ -2,8 +2,9 @@ using UnityEngine;
 using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Abilities;
 
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     //CooldownResetPassive
     //example of a passive ability that activates when defeating an opponent

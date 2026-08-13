@@ -5,10 +5,11 @@ using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
 using HeroShooterMaker.StatusEffects;
+using HeroShooterMaker.Abilities;
 
 //ShieldAbility
 //example of an ability that applies a status effect to self
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class ShieldAbility : ActiveAbility
     {

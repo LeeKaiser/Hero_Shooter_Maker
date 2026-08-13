@@ -4,10 +4,11 @@ using System.Collections;
 using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Abilities;
 
 //DashAbility
 //Example of an ability that translates player position
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class DashAbility : ActiveAbility
     {

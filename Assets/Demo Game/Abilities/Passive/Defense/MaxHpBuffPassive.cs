@@ -1,8 +1,9 @@
 using UnityEngine;
+using HeroShooterMaker.Abilities;
 
 //MaxHpBuffPassive
 //example of a passive that changes player's stats
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class MaxHpBuffPassive : Ability
     {

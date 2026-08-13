@@ -1,16 +1,20 @@
 using UnityEngine;
 using HeroShooterMaker.Character;
 
-public class ClientAbilityButton : MonoBehaviour
+namespace HeroShooterMakerDemo
 {
-    public TestMatchLoader matchLoader;
-    public int abilityIndex;
-    public AbilitySlotManagement abilitySlot;
-    
-    public void AddAbilityToClient()
+    public class ClientAbilityButton : MonoBehaviour
     {
-        CharAssembleInfo assemble = matchLoader.CharAssemble;
-        abilitySlot.AddToAssember(assemble,abilityIndex);
-        
+        public TestMatchLoader matchLoader;
+        public int abilityIndex;
+        public AbilitySlotManagement abilitySlot;
+
+        public void AddAbilityToClient()
+        {
+            CharAssembleInfo assemble = matchLoader.CharAssemble;
+            abilitySlot.AddToAssember(assemble, abilityIndex);
+
+        }
     }
+
 }

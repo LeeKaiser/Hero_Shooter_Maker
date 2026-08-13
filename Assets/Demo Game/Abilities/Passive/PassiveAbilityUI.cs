@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using HeroShooterMaker.Abilities;
 
 //PassiveAbilityUI
 //user interface for passive ability in the demo
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class PassiveAbilityUI : AbilityUI
     {

@@ -3,10 +3,11 @@ using HeroShooterMaker.CharacterEvents;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.EventBus;
 using HeroShooterMaker.Projectile;
+using HeroShooterMaker.Abilities;
 
 //ReleaseProjectile
 //example of an ability that fires projectiles. 
-namespace HeroShooterMaker.Abilities
+namespace HeroShooterMakerDemo
 {
     public class ReleaseProjectile : ActiveAbility
     {
