@@ -14,21 +14,20 @@ If in condition mode, it must have child nodes for the case where the condition 
 it must have an assigned AI Action. If there is a point in the tree that does not end with an AI Action, MakeDecision 
 method will return null
 */
-[CreateAssetMenu(menuName = "DecisionTree")]
-public class DecisionTree : ScriptableObject
+namespace HeroShooterMaker.AI
 {
-    
-    public DecisionTreeNode DecisionTreeRoot = null;
-    
-    public List<DecisionTreeNode> AllNodes = new List<DecisionTreeNode>();
-
-    public AIAction MakeDecision(KnownContext context)
+    [CreateAssetMenu(menuName = "DecisionTree")]
+    public class DecisionTree : ScriptableObject
     {
-        AIAction determinedAction = DecisionTreeRoot.GetAction(context);
-        return determinedAction;
+
+        public DecisionTreeNode DecisionTreeRoot = null;
+
+        public List<DecisionTreeNode> AllNodes = new List<DecisionTreeNode>();
+
+        public AIAction MakeDecision(KnownContext context)
+        {
+            AIAction determinedAction = DecisionTreeRoot.GetAction(context);
+            return determinedAction;
+        }
     }
-
-    
-
-
 }

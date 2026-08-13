@@ -1,17 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InGameBar : MonoBehaviour
+namespace HeroShooterMakerDemo
 {
-    public Slider BarSlider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class InGameBar : MonoBehaviour
     {
-        BarSlider = GetComponent<Slider>();
+        public Slider BarSlider;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            BarSlider = GetComponent<Slider>();
+        }
+
+        public void UpdateSlider(int currentValue, int maxValue)
+        {
+
+        }
     }
 
-    public void UpdateSlider(int currentValue, int maxValue)
-    {
-        
-    }
 }

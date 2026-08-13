@@ -1,49 +1,53 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using HeroShooterMaker.Character;
 
 /*
 Known Context
 struct which contains context at a certain time
 */
-public struct KnownContext
+namespace HeroShooterMaker.AI
 {
-    public GameObject PlayerReference;
-    public Dictionary <CharCore, PlayerSummary> KnownAllyList;
-    public Dictionary <CharCore, PlayerSummary> KnownEnemyList;
-    public PlayerSummary SelfSummary;
-    public List<PatrolLandmark> focusPOIList;
-
-    public void Init(GameObject pr, Dictionary <CharCore, PlayerSummary> kal, Dictionary <CharCore, PlayerSummary> kel, PlayerSummary ss)
+    public struct KnownContext
     {
-        PlayerReference = pr;
-        KnownAllyList = kal;
-        KnownEnemyList = kel;
-        SelfSummary = ss;
-    }
+        public GameObject PlayerReference;
+        public Dictionary<CharCore, PlayerSummary> KnownAllyList;
+        public Dictionary<CharCore, PlayerSummary> KnownEnemyList;
+        public PlayerSummary SelfSummary;
+        public List<PatrolLandmark> focusPOIList;
 
-    public void SetPOI(List<PatrolLandmark> poi){focusPOIList = poi;}
-
-    public string toString()
-    {
-        string retStr = $"self: \n";
-        retStr += SelfSummary.toString();
-
-        retStr += $"\n known allies: \n";
-
-        foreach (KeyValuePair<CharCore, PlayerSummary> player in KnownAllyList)
+        public void Init(GameObject pr, Dictionary<CharCore, PlayerSummary> kal, Dictionary<CharCore, PlayerSummary> kel, PlayerSummary ss)
         {
-            retStr += player.Value.toString();
+            PlayerReference = pr;
+            KnownAllyList = kal;
+            KnownEnemyList = kel;
+            SelfSummary = ss;
         }
 
-        retStr += $"\n known enemies: \n";
-        foreach (KeyValuePair<CharCore, PlayerSummary> player in KnownEnemyList)
+        public void SetPOI(List<PatrolLandmark> poi) { focusPOIList = poi; }
+
+        public string toString()
         {
-            retStr += player.Value.toString();
+            string retStr = $"self: \n";
+            retStr += SelfSummary.toString();
+
+            retStr += $"\n known allies: \n";
+
+            foreach (KeyValuePair<CharCore, PlayerSummary> player in KnownAllyList)
+            {
+                retStr += player.Value.toString();
+            }
+
+            retStr += $"\n known enemies: \n";
+            foreach (KeyValuePair<CharCore, PlayerSummary> player in KnownEnemyList)
+            {
+                retStr += player.Value.toString();
+            }
+
+            retStr += $"point of interest: {focusPOIList}";
+
+            return retStr;
         }
-
-        retStr += $"point of interest: {focusPOIList}";
-
-        return retStr;
     }
 }

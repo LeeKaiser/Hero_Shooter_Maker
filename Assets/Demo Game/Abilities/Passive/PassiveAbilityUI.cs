@@ -1,21 +1,27 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using HeroShooterMaker.Abilities;
 
-public class PassiveAbilityUI : AbilityUI
+//PassiveAbilityUI
+//user interface for passive ability in the demo
+namespace HeroShooterMakerDemo
 {
-    public TMP_Text abilityName;
-
-    public override void Initialize()
+    public class PassiveAbilityUI : AbilityUI
     {
-        if (AbilityReference == null)
+        public TMP_Text abilityName;
+
+        public override void Initialize()
         {
-            return;
+            if (AbilityReference == null)
+            {
+                return;
+            }
+            abilityName.text = AbilityReference.Stats.AbilityName;
+            
         }
-        abilityName.text = AbilityReference.Stats.AbilityName;
-        
+
+        public override void UpdateUI(){}
+
     }
-
-    public override void UpdateUI(){}
-
 }

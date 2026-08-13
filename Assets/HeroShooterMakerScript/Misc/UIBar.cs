@@ -2,26 +2,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIBar : MonoBehaviour
+namespace HeroShooterMakerDemo
 {
-    public Slider BarSlider;
-    public TextMeshProUGUI BarText;
-    public bool ShowMaxValue;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class UIBar : MonoBehaviour
     {
-        BarSlider = GetComponent<Slider>();
-    }
-
-    public void UpdateSlider(int currentValue, int maxValue)
-    {
-        BarSlider.maxValue = maxValue;
-        BarSlider.value = currentValue;
-        string text = ""+currentValue;
-        if (ShowMaxValue)
+        public Slider BarSlider;
+        public TextMeshProUGUI BarText;
+        public bool ShowMaxValue;
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
         {
-            text = text + "/" + maxValue;
+            BarSlider = GetComponent<Slider>();
         }
-        BarText.text = text;
+
+        public void UpdateSlider(int currentValue, int maxValue)
+        {
+            BarSlider.maxValue = maxValue;
+            BarSlider.value = currentValue;
+            string text = "" + currentValue;
+            if (ShowMaxValue)
+            {
+                text = text + "/" + maxValue;
+            }
+            BarText.text = text;
+        }
     }
 }

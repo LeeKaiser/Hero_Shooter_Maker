@@ -2,13 +2,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using System;
 
-[CreateAssetMenu(fileName = "TargetDestination", menuName = "AIAction/Aim/TargetDestination")]
-public class DetermineAimDestination : DetermineAim
+//DetermineAimDestination
+//Example of an overriden DetermineAim for the demo.
+//Causes the agent to aim at where it is moving to
+namespace HeroShooterMaker.AI
 {
-    //aim at where it is moving to
-    public override void ExecuteDetermineAim(AIAction action)
+    [CreateAssetMenu(fileName = "TargetDestination", menuName = "AIAction/Aim/TargetDestination")]
+    public class DetermineAimDestination : DetermineAim
     {
-        action.AimTarget.position = action.MoveTarget.position;
-        return;
+        public override void ExecuteDetermineAim(AIAction action)
+        {
+            action.AimTarget.position = action.MoveTarget.position;
+            return;
+        }
     }
 }

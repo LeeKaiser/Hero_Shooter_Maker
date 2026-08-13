@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using HeroShooterMaker.Character;
+using HeroShooterMaker.Client;
 
 public class TestMatchLoader : MonoBehaviour
 {

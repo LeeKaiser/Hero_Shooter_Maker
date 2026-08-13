@@ -1,33 +1,38 @@
 using UnityEngine;
+using HeroShooterMaker.StatusEffects;
 
-public class PoisonEffect : StatusEffect
+namespace HeroShooterMakerDemo
 {
-    [Tooltip("damage dealt by poison per interval")]
-    public int PoisonDamage;
-    [Tooltip("Amount of interval per second")]
-    public int HitPerSec;
 
-    float interval;
-
-    public override void ApplyEffect()
+    public class PoisonEffect : StatusEffect
     {
-        Active = true;
-        RemainingDuration = Stats.EffectDuration;
-        interval = 1f / HitPerSec;
-    }
+        [Tooltip("damage dealt by poison per interval")]
+        public int PoisonDamage;
+        [Tooltip("Amount of interval per second")]
+        public int HitPerSec;
 
-    void Update()
-    {
-        interval -= Time.deltaTime;
-        if (interval <= 0)
+        float interval;
+
+        public override void ApplyEffect()
         {
+            Active = true;
+            RemainingDuration = Stats.EffectDuration;
             interval = 1f / HitPerSec;
-            AffectedPlayer.DealDamage(PoisonDamage,OwningPlayer);
         }
-    }
 
-    protected override void RemoveEffect()
-    {
-        Active = false;
+        void Update()
+        {
+            interval -= Time.deltaTime;
+            if (interval <= 0)
+            {
+                interval = 1f / HitPerSec;
+                AffectedPlayer.DealDamage(PoisonDamage, OwningPlayer);
+            }
+        }
+
+        protected override void RemoveEffect()
+        {
+            Active = false;
+        }
     }
 }

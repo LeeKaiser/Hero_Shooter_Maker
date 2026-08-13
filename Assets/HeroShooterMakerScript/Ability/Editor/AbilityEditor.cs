@@ -2,11 +2,12 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using System.Reflection;
+using HeroShooterMaker.Abilities;
 
+//Custom Editor for Abilities
 [CustomEditor(typeof(Ability),true)]
 public class AbilityEdtior : Editor
 {
-    //created with assistance of Claude AI
     public override void OnInspectorGUI()
     {
         Ability ability = (Ability)target;

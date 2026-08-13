@@ -1,16 +1,22 @@
 using UnityEngine;
+using HeroShooterMaker.Abilities;
 
-public class SpeedBuffPassive : Ability
+//SpeedBuffPassive
+//example of a passive ability that affects player's movement
+namespace HeroShooterMakerDemo
 {
-    public float ExtraSpeedMult;
-
-    protected override void Startup()
+    public class SpeedBuffPassive : Ability
     {
-        playerReference.ModifyForwardSpeed(ExtraSpeedMult);
-    }
+        public float ExtraSpeedMult;
 
-    public override void Cleanup()
-    {
-        playerReference.ModifyForwardSpeed(-ExtraSpeedMult);
+        protected override void Startup()
+        {
+            playerReference.ModifyForwardSpeed(ExtraSpeedMult);
+        }
+
+        public override void Cleanup()
+        {
+            playerReference.ModifyForwardSpeed(-ExtraSpeedMult);
+        }
     }
 }

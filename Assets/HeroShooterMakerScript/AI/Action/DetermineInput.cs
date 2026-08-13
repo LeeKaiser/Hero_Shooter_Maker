@@ -1,12 +1,18 @@
 using UnityEngine;
-using AbilityClassification;
 using System.Collections.Generic;
-using InputOptions;
+using HeroShooterMaker.Controls;
 using System;
+using HeroShooterMaker.Abilities;
 
-public abstract class DetermineInput : ScriptableObject
+//DetermineInput
+//logic that affects the ability input the agent makes
+namespace HeroShooterMaker.AI
 {
-    //return the input the character should use
-    public AbilityClass PerferedAbilityClass;
-    public abstract void ExecuteDetermineInput(AIAction action);
+    public abstract class DetermineInput : ScriptableObject
+    {
+        public AbilityClass PerferedAbilityClass;
+        
+        //set the input the character should use in action (action.abilityToUse and action.abilityInput variables)
+        public abstract void ExecuteDetermineInput(AIAction action);
+    }
 }

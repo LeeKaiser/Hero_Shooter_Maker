@@ -1,11 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "MoveNone", menuName = "AIAction/Movement/MoveNone")]
-public class DetermineMovementNone : DetermineMovement
+//DetermineMovementNone
+//Example of an overriden DetermineMovement for the demo.
+//Do not choose to move to a new location
+namespace HeroShooterMaker.AI
 {
-    public override void ExecuteDetermineMovement(AIAction action)
+    [CreateAssetMenu(fileName = "MoveNone", menuName = "AIAction/Movement/MoveNone")]
+    public class DetermineMovementNone : DetermineMovement
     {
-        return;
+        public override void ExecuteDetermineMovement(AIAction action)
+        {
+            return;
+        }
     }
 }

@@ -1,37 +1,43 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using HeroShooterMaker.Character;
 
-[CreateAssetMenu(fileName = "TargetAllyVuln", menuName = "AIAction/Aim/TargetAllyVuln")]
-public class DetermineAimAllyVuln : DetermineAim
+//DetermineAimAllyVuln
+//Example of an overriden DetermineAim for the demo.
+//causes the agent to aim at a teammate who is most vulnerable
+namespace HeroShooterMaker.AI
 {
-    public override void ExecuteDetermineAim(AIAction action)
+    [CreateAssetMenu(fileName = "TargetAllyVuln", menuName = "AIAction/Aim/TargetAllyVuln")]
+    public class DetermineAimAllyVuln : DetermineAim
     {
-        if (!(action.Detection.GetCurrentContext().KnownAllyList == null))
+        public override void ExecuteDetermineAim(AIAction action)
         {
-            // identify weakest enemy
-            float highestVuln = 0;
-            foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownAllyList)
+            if (!(action.Detection.GetCurrentContext().KnownAllyList == null))
             {
-                if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
+                // identify weakest teammate
+                float highestVuln = 0;
+                foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownAllyList)
                 {
-                    action.targetPlayer = potentialTarget.Key.PlayerArmature;
-                    highestVuln = potentialTarget.Value.VulnerabilityValue;
+                    if (potentialTarget.Value.VulnerabilityValue >= highestVuln)
+                    {
+                        action.targetPlayer = potentialTarget.Key.PlayerArmature;
+                        highestVuln = potentialTarget.Value.VulnerabilityValue;
+                    }
                 }
             }
-        }
 
-        try
-        {
-            Vector3 targetPosition = action.targetPlayer.transform.position;
-            float heightAdjustment = action.targetPlayer.GetComponent<CharacterController>().height * 0.8f;
-            targetPosition.y += heightAdjustment;
-            action.AimTarget.position = targetPosition;
-        }
-        catch(Exception e)
-        {
-
-            Debug.Log(e);
+            try
+            {
+                Vector3 targetPosition = action.targetPlayer.transform.position;
+                float heightAdjustment = action.targetPlayer.GetComponent<CharacterController>().height * 0.8f;
+                targetPosition.y += heightAdjustment;
+                action.AimTarget.position = targetPosition;
+            }
+            catch(Exception e)
+            {
+                Debug.Log(e);
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace AbilityClassification
+namespace HeroShooterMaker.Abilities
 {
 
     // classification of abilities that allows AI to decide ways it uses the ability.
+    // User can add or remove custom class.
     [System.Flags]
     public enum AbilityClass
     {

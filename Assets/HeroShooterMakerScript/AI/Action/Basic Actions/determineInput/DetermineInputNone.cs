@@ -1,15 +1,20 @@
 using UnityEngine;
-using AbilityClassification;
 using System.Collections.Generic;
-using InputOptions;
+using HeroShooterMaker.Controls;
 using System;
 
-[CreateAssetMenu(fileName = "InputNone", menuName = "AIAction/Input/InputNone")]
-public class DetermineInputNone : DetermineInput
+//DetermineInputNone
+//Example of an overriden DetermineInput for the demo.
+//Do not choose to use any ability input
+namespace HeroShooterMaker.AI
 {
-    //no additional input usage
-    public override void ExecuteDetermineInput(AIAction action)
+    [CreateAssetMenu(fileName = "InputNone", menuName = "AIAction/Input/InputNone")]
+    public class DetermineInputNone : DetermineInput
     {
-        return;
+        //no additional input usage
+        public override void ExecuteDetermineInput(AIAction action)
+        {
+            return;
+        }
     }
 }

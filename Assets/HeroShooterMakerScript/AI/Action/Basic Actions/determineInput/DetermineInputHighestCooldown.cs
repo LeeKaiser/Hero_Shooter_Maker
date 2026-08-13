@@ -1,48 +1,54 @@
 using UnityEngine;
-using AbilityClassification;
 using System.Collections.Generic;
-using InputOptions;
 using System;
+using HeroShooterMaker.Abilities;
+using HeroShooterMaker.Controls;
 
-[CreateAssetMenu(fileName = "InputHighestCd", menuName = "AIAction/Input/InputHighestCd")]
-public class DetermineInputHighestCooldown : DetermineInput
+//DetermineInputHighestCooldown
+//Example of an overriden DetermineInput for the demo.
+//Choose to use an input of ability with lowest cooldown
+namespace HeroShooterMaker.AI
 {
-    public override void ExecuteDetermineInput(AIAction action)
+    [CreateAssetMenu(fileName = "InputHighestCd", menuName = "AIAction/Input/InputHighestCd")]
+    public class DetermineInputHighestCooldown : DetermineInput
     {
-        if (action.abilityToUse == null)
+        public override void ExecuteDetermineInput(AIAction action)
         {
-            //attempt to shoot a damage attack
-
-            //get the attack from the self's ability manager
-            AbilityManager abilManager = action.Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.GetComponent<AbilityManager>();
-            //abilToUse = null;
-            float bestCooldown = 0;
-            foreach (Ability abil in abilManager.GetAbilList())
+            if (action.abilityToUse == null)
             {
-                //assumes that active abilities have active ability classification and has input tied to it
-                if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(PerferedAbilityClass))
+                //attempt to shoot a damage attack
+
+                //get the attack from the self's ability manager
+                AbilityManager abilManager = action.Detection.GetCurrentContext().SelfSummary.SummarizedPlayer.GetComponent<AbilityManager>();
+                //abilToUse = null;
+                float bestCooldown = 0;
+                foreach (Ability abil in abilManager.GetAbilList())
                 {
-                    float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
-                    if (abilCooldown > bestCooldown && abilManager.AbiltyToInputDictionary.ContainsKey(abil))
+                    //assumes that active abilities have active ability classification and has input tied to it
+                    if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active) && abil.CurrentAbilClass.HasFlag(PerferedAbilityClass))
                     {
-                        
-                        action.abilityToUse = (ActiveAbility)abil;
-                        action.abilityInput = abilManager.AbiltyToInputDictionary[abil];
-                        switch (action.abilityInput.ComboInputType)
+                        float abilCooldown = abil.GetCurrentCharge() / abil.GetCurrentMaxCharge();
+                        if (abilCooldown > bestCooldown && abilManager.AbiltyToInputDictionary.ContainsKey(abil))
                         {
-                            case InputType.Hold:
-                                action.inputHoldTime = 99f;
-                                break;
-                            case InputType.Release:
-                                action.inputHoldTime = action.abilityToUse.Stats.UsePerSec;
-                                break;
-                            default:
-                                action.inputHoldTime = 0.2f;
-                                break;
+                            
+                            action.abilityToUse = (ActiveAbility)abil;
+                            action.abilityInput = abilManager.AbiltyToInputDictionary[abil];
+                            switch (action.abilityInput.ComboInputType)
+                            {
+                                case InputType.Hold:
+                                    action.inputHoldTime = 99f;
+                                    break;
+                                case InputType.Release:
+                                    action.inputHoldTime = action.abilityToUse.Stats.UsePerSec;
+                                    break;
+                                default:
+                                    action.inputHoldTime = 0.2f;
+                                    break;
+                            }
                         }
                     }
+                    
                 }
-                
             }
         }
     }

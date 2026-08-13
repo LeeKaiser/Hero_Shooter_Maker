@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
-using InputOptions;
+using HeroShooterMaker.Controls;
 
-[CreateAssetMenu(fileName = "CharAssembleInfo", menuName = "Scriptable Objects/CharAssembleInfo")]
-public class CharAssembleInfo : ScriptableObject
+namespace HeroShooterMaker.Character
 {
-    public CharStats Stats;
-    
-    public List<GameObject> Abilities = new List<GameObject>() ; // gameobject must have child of ability component
+    [CreateAssetMenu(fileName = "CharAssembleInfo", menuName = "Scriptable Objects/CharAssembleInfo")]
+    public class CharAssembleInfo : ScriptableObject
+    {
+        public CharStats Stats;
 
+        public List<GameObject> Abilities = new List<GameObject>(); // gameobject must have child of ability component
+
+
+    }
 
 }

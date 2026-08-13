@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 
 
-namespace InputOptions
+namespace HeroShooterMaker.Controls
 {
+    [System.Flags]
     public enum InputEnum
     {
         Num1 = 1 << 0,
@@ -43,9 +44,11 @@ namespace InputOptions
         Hold = 1 << 1,
         Release = 1 << 2
     }     
+
+    public class ActiveAbilityID{}
 }
 
-public class ActiveAbilityID{}
+
 
 
 

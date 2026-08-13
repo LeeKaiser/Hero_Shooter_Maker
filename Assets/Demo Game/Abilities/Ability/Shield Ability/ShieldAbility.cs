@@ -1,49 +1,58 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
+using HeroShooterMaker.Controls;
+using HeroShooterMaker.EventBus;
+using HeroShooterMaker.StatusEffects;
+using HeroShooterMaker.Abilities;
 
-public class ShieldAbility : ActiveAbility
+//ShieldAbility
+//example of an ability that applies a status effect to self
+namespace HeroShooterMakerDemo
 {
-    
-    public GameObject ShieldPrefab;
-
-    protected override void Startup()
+    public class ShieldAbility : ActiveAbility
     {
-        EventBus<ActiveAbilityID>.Subscribe(executeAbility);
-        SetUpInput();
-    }
+        
+        public GameObject ShieldPrefab;
 
-    public void executeAbility(ActiveAbilityID inputEventInfo)
-    {
-        if (inputEventInfo != AbilityID)
+        protected override void Startup()
         {
-            return;
+            EventBus<ActiveAbilityID>.Subscribe(executeAbility);
+            SetUpInput();
         }
 
-        if (!CanActivate())
+        public void executeAbility(ActiveAbilityID inputEventInfo)
         {
-            return;
+            if (inputEventInfo != AbilityID)
+            {
+                return;
+            }
+
+            if (!CanActivate())
+            {
+                return;
+            }
+
+            if (currentCharge <= 0)
+            {
+                return;
+            }
+
+            InterruptReload();
+            playerReference.GetComponent<StatusEffectManager>().AddNewEffect(ShieldPrefab, playerReference);
+            ConsumeCharge(1);
+
+            //invoke used ability
+            UseAbility usedAbilEvent = new UseAbility();
+            usedAbilEvent.PlayerIdentity = playerReference;
+            usedAbilEvent.UsedAbility = this;
+            EventBus<UseAbility>.Invoke(usedAbilEvent);
         }
 
-        if (currentCharge <= 0)
+        public override void Cleanup()
         {
-            return;
+            EventBus<ActiveAbilityID>.Unsubscribe(executeAbility);
         }
-
-        InterruptReload();
-        playerReference.GetComponent<StatusEffectManager>().AddNewEffect(ShieldPrefab, playerReference);
-        ConsumeCharge(1);
-
-        //invoke used ability
-        UseAbility usedAbilEvent = new UseAbility();
-        usedAbilEvent.PlayerIdentity = playerReference;
-        usedAbilEvent.UsedAbility = this;
-        EventBus<UseAbility>.Invoke(usedAbilEvent);
-    }
-
-    public override void Cleanup()
-    {
-        EventBus<ActiveAbilityID>.Unsubscribe(executeAbility);
     }
 }

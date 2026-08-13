@@ -1,38 +1,46 @@
 using UnityEngine;
-using AbilityClassification;
-using PlayerEvents;
+using HeroShooterMaker.CharacterEvents;
 using System.Collections.Generic;
+using HeroShooterMaker.EventBus;
+using HeroShooterMaker.Abilities;
 
-public class CooldownResetPassive : Ability
+namespace HeroShooterMakerDemo
 {
-    public float RechargePercent;
-
-    protected override void Startup()
+    //CooldownResetPassive
+    //example of a passive ability that activates when defeating an opponent
+    //example of an ability that affects other abilities.
+    public class CooldownResetPassive : Ability
     {
-        EventBus<PlayerDead>.Subscribe(executeAbility);
-    }
+        public float RechargePercent;
 
-    public void executeAbility(PlayerDead deadInfo)
-    {
-        if (deadInfo.PlayerKiller != playerReference)
+        protected override void Startup()
         {
-            return;
+            EventBus<PlayerDead>.Subscribe(executeAbility);
         }
 
-        List<Ability> abilList = manager.GetAbilList();
-        foreach (Ability abil in abilList)
+        public void executeAbility(PlayerDead deadInfo)
         {
-            if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active))
+            if (deadInfo.PlayerKiller != playerReference)
             {
-                float chargeAmount = (abil.Stats.MaxCharge / abil.Stats.ChargeGainPerFullRecharge) * 
-                    abil.Stats.ChargePointsRequired * RechargePercent;
-                abil.RecoverChargePoint(chargeAmount);
+                return;
+            }
+
+            List<Ability> abilList = manager.GetAbilList();
+            foreach (Ability abil in abilList)
+            {
+                if (abil.CurrentAbilClass.HasFlag(AbilityClass.Active))
+                {
+                    float chargeAmount = (abil.Stats.MaxCharge / abil.Stats.ChargeGainPerFullRecharge) * 
+                        abil.Stats.ChargePointsRequired * RechargePercent;
+                    abil.RecoverChargePoint(chargeAmount);
+                }
             }
         }
-    }
 
-    public override void Cleanup()
-    {
-        EventBus<PlayerDead>.Unsubscribe(executeAbility);
+        public override void Cleanup()
+        {
+            EventBus<PlayerDead>.Unsubscribe(executeAbility);
+        }
     }
 }
+
