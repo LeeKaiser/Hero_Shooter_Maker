@@ -47,3 +47,6 @@ MonoBehaviour:
   Stats: {fileID: 11400000, guid: 314cd40cfc60a45d1be55a67745fa488, type: 2}
   CurrentAbilClass: 12
   HealPercentage: 0.5
+  AbilityToChange:
+  - {fileID: -22088878102189575, guid: b22ce7f29cc574c69b107e0b90032d0d, type: 3}
+  - {fileID: 5620641538602010095, guid: 779e094f644234fa890b887d937f6eda, type: 3}

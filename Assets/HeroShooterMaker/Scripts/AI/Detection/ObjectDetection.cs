@@ -75,6 +75,7 @@ namespace HeroShooterMaker.AI
             {
                 return;
             }
+            focusPOIList.Clear();
             //scan for all objects in ScanRads 
             commands = new NativeArray<OverlapSphereCommand>(1, Allocator.TempJob);
             rangeCheck = new NativeArray<ColliderHit>(MaxObjectDetected, Allocator.TempJob); //TODO: set size of array to amount of players present in scene

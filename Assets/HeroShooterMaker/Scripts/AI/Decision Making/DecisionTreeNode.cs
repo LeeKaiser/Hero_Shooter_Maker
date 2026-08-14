@@ -28,6 +28,7 @@ namespace HeroShooterMaker.AI
                 Action.determineAim = determineAim;
                 Action.determineInput = determineInput;
                 Action.determineMovement = determineMovement;
+                Action.name = this.name;
                 return Action;
             }
             else

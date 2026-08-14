@@ -46,11 +46,9 @@ namespace HeroShooterMaker.MatchSystem
 
         public void StopMatch()
         {
-            client.gameObject.SetActive(false);
-            foreach (var team in TeamsInMatch)
-            {
-                team.gameObject.SetActive(false);
-            }
+            Time.timeScale = 0.2f; 
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            
         }
 
         //event called when a team completes their objective
@@ -58,6 +56,7 @@ namespace HeroShooterMaker.MatchSystem
         {
             //something to show team winning
             Debug.Log("GameOver: " + teamComplete.TeamIdentity + "Won");
+            
             StopMatch();
         }
     }
