@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f94cac9563dd4f34a66d47ff02cfb62, type: 3}
-  m_Name: InputUnit
-  m_EditorClassIdentifier: Assembly-CSharp::InputUnit
-  InputCombo: 524288
-  ComboInputType: 2
-  Priority: 1
+  m_Script: {fileID: 11500000, guid: b59b4ef3832474766aa06e8f43039507, type: 3}
+  m_Name: DemoMeleeDecisionTree
+  m_EditorClassIdentifier: Assembly-CSharp::HeroShooterMaker.AI.DecisionTree
+  DecisionTreeRoot: {fileID: 0}
+  AllNodes: []

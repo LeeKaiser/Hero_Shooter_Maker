@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f94cac9563dd4f34a66d47ff02cfb62, type: 3}
-  m_Name: InputUnit
-  m_EditorClassIdentifier: Assembly-CSharp::InputUnit
-  InputCombo: 524288
-  ComboInputType: 2
-  Priority: 1
+  m_Script: {fileID: 11500000, guid: 64dfe681b8f84423580dd1d899fc8af8, type: 3}
+  m_Name: DemoSupport
+  m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
+  Stats: {fileID: 11400000, guid: f5c231b47ed394e64ab9e338101f826e, type: 2}
+  OtherAbilities: []
