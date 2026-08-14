@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: DemoTank
   m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
   Stats: {fileID: 11400000, guid: f5c231b47ed394e64ab9e338101f826e, type: 2}
-  OtherAbilities: []
+  Abilities:
+  - {fileID: 4938865011410206441, guid: 779e094f644234fa890b887d937f6eda, type: 3}
+  - {fileID: 4938865011410206441, guid: 8434be074ecee4dbe844e2fa456b22f9, type: 3}
+  - {fileID: 4938865011410206441, guid: 4af78ec6eb1fc4a319bfa83d4ec366ed, type: 3}
+  - {fileID: 4938865011410206441, guid: 3810d09dfaf1e4b898bc94a2716a7828, type: 3}
+  - {fileID: 4938865011410206441, guid: 3810d09dfaf1e4b898bc94a2716a7828, type: 3}
+  - {fileID: 4938865011410206441, guid: 666b1cb8aea5e45d298f1ce64995d838, type: 3}

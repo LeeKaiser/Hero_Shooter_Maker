@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: DemoMelee
   m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
   Stats: {fileID: 11400000, guid: f5c231b47ed394e64ab9e338101f826e, type: 2}
-  OtherAbilities: []
+  Abilities:
+  - {fileID: 4938865011410206441, guid: 779e094f644234fa890b887d937f6eda, type: 3}
+  - {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
+  - {fileID: 4938865011410206441, guid: 4af78ec6eb1fc4a319bfa83d4ec366ed, type: 3}
+  - {fileID: 4938865011410206441, guid: de34bc1f872dd472a927227fb466c9b7, type: 3}
+  - {fileID: 4938865011410206441, guid: 666b1cb8aea5e45d298f1ce64995d838, type: 3}
+  - {fileID: 4938865011410206441, guid: 7a98c182743af44529f61cf46af773f8, type: 3}

@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: DemoRanged
   m_EditorClassIdentifier: Assembly-CSharp::CharAssembleInfo
   Stats: {fileID: 11400000, guid: f5c231b47ed394e64ab9e338101f826e, type: 2}
-  OtherAbilities: []
+  Abilities:
+  - {fileID: 4938865011410206441, guid: b22ce7f29cc574c69b107e0b90032d0d, type: 3}
+  - {fileID: 4938865011410206441, guid: c994bc72e8b8e4df2918e82e9a71ce42, type: 3}
+  - {fileID: 4938865011410206441, guid: 0664433af57ff4559be550de93c0df5f, type: 3}
+  - {fileID: 4938865011410206441, guid: 1edeaa2431099482381b63255697b880, type: 3}
+  - {fileID: 4938865011410206441, guid: de34bc1f872dd472a927227fb466c9b7, type: 3}
+  - {fileID: 4938865011410206441, guid: de34bc1f872dd472a927227fb466c9b7, type: 3}

@@ -135,15 +135,9 @@ namespace HeroShooterMaker.AI
         //sets navmesh agent's destination to the location in parameter. generally called with position of MoveTarget.
         public void MoveToLocation()
         {
-            if (agent.enabled)
+            if (agent.enabled && agent.isOnNavMesh)
             {
                 agent.SetDestination(MoveTarget.position);
-            }
-            else
-            {
-                agent.enabled = true;
-                agent.SetDestination(MoveTarget.position);
-                agent.enabled = false;
             }
 
         }
