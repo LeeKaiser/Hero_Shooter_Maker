@@ -381,7 +381,11 @@ namespace HeroShooterMaker.Controls
 
         public void ResetCharacterVelocity()
         {
-            _controller.Move(Vector3.zero);
+            if (gameObject.activeSelf)
+            {
+                _controller.Move(Vector3.zero);
+            }
+            
         }
 
         public void DisableAgent()

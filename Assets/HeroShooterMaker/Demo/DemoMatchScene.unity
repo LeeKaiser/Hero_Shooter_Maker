@@ -1424,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 082300c3b5b3344d9b809766945260d5, type: 2}
     - target: {fileID: 5056093052548368157, guid: 12356e4692bd6424382b563d03c02e0e, type: 3}
       propertyPath: PointsToWin
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5056093052548368157, guid: 12356e4692bd6424382b563d03c02e0e, type: 3}
       propertyPath: TeamMembers.Array.size
@@ -3553,6 +3553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400448692}
   - component: {fileID: 400448693}
+  - component: {fileID: 400448694}
   m_Layer: 3
   m_Name: PointOfInterest (1)
   m_TagString: Point Of Interest
@@ -3569,8 +3570,8 @@ Transform:
   m_GameObject: {fileID: 400448691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.3, y: 0.43, z: -8.38}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 8.3, y: -0.21, z: -8.38}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1985284347}
@@ -3591,6 +3592,29 @@ MonoBehaviour:
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 1
+--- !u!136 &400448694
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400448691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &403713715
 GameObject:
   m_ObjectHideFlags: 0
@@ -14544,7 +14568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473388401218375189, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: PointsToWin
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2473388401218375189, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: TeamMembers.Array.size
@@ -15011,6 +15035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1546336072}
   - component: {fileID: 1546336073}
+  - component: {fileID: 1546336074}
   m_Layer: 3
   m_Name: PointOfInterest (2)
   m_TagString: Point Of Interest
@@ -15027,8 +15052,8 @@ Transform:
   m_GameObject: {fileID: 1546336071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99999183, z: -0, w: -0.0040446552}
-  m_LocalPosition: {x: 8.472143, y: 0.43, z: 11.006442}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 8.472143, y: -0.21, z: 11.006442}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1985284347}
@@ -15049,6 +15074,29 @@ MonoBehaviour:
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 1
+--- !u!136 &1546336074
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546336071}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1562815422
 GameObject:
   m_ObjectHideFlags: 0
@@ -21519,6 +21567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728880489}
   - component: {fileID: 1728880490}
+  - component: {fileID: 1728880491}
   m_Layer: 3
   m_Name: PointOfInterest (3)
   m_TagString: Point Of Interest
@@ -21535,8 +21584,8 @@ Transform:
   m_GameObject: {fileID: 1728880488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99999183, z: -0, w: -0.0040446552}
-  m_LocalPosition: {x: -6.82, y: 0.43, z: 8.33}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.82, y: -0.21, z: 8.33}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1985284347}
@@ -21557,6 +21606,29 @@ MonoBehaviour:
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 1
+--- !u!136 &1728880491
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728880488}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1745984998
 GameObject:
   m_ObjectHideFlags: 0
@@ -74245,6 +74317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965113066}
   - component: {fileID: 1965113067}
+  - component: {fileID: 1965113068}
   m_Layer: 3
   m_Name: PointOfInterest
   m_TagString: Point Of Interest
@@ -74261,8 +74334,8 @@ Transform:
   m_GameObject: {fileID: 1965113065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.97, y: 0.43, z: -11.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6.97, y: -0.21, z: -11.18}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1985284347}
@@ -74283,6 +74356,29 @@ MonoBehaviour:
   ScanRads: 30
   MaxObjectDetected: 100
   EnableSelfReveal: 1
+--- !u!136 &1965113068
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965113065}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1976277362
 GameObject:
   m_ObjectHideFlags: 0

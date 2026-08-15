@@ -1,20 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace HeroShooterMakerDemo
 {
+    
     public class UIMessageText : MonoBehaviour
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        public TextMeshProUGUI Text;
+        public void ShowMessage(string message, float duration)
         {
-
+            Text.text = message;
+            Invoke("RemoveMessage", duration);
         }
 
-        // Update is called once per frame
-        void Update()
+        void RemoveMessage()
         {
-
+            Text.text = "";
         }
     }
 
