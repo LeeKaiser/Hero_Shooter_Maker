@@ -129,19 +129,9 @@ namespace HeroShooterMaker.Controls
             SyncAgentToTransform();
         }
 
-        // teleports player to a position
-        public void Translate(Vector3 targetPosition)
-        {
-            _controller.enabled = false;
-            transform.position = targetPosition;
-            _controller.enabled = true;
-        }
+        
 
-        public void ApplyExternalForce(Vector3 direction, float velocity)
-        {
-            _externalForceDirection = direction;
-            _externalForceVelocity = velocity;
-        }
+        
 
         private void HandleLedgeDropOff()
         {
@@ -367,6 +357,20 @@ namespace HeroShooterMaker.Controls
             PlayerLandOnGround landEvent = new PlayerLandOnGround();
             landEvent.playerIdentity = GetComponentInParent<CharCore>();
             EventBus<PlayerLandOnGround>.Invoke(landEvent);
+        }
+        
+        public void ApplyExternalForce(Vector3 direction, float velocity)
+        {
+            _externalForceDirection = direction;
+            _externalForceVelocity = velocity;
+        }
+        
+        // teleports player to a position
+        public void Translate(Vector3 targetPosition)
+        {
+            _controller.enabled = false;
+            transform.position = targetPosition;
+            _controller.enabled = true;
         }
 
         public void SetForwardMovementSpeed(float speed) { ForwardMoveSpeed = speed; }

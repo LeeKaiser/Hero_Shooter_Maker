@@ -49,4 +49,6 @@ MonoBehaviour:
   MinimumRange: 0
   MaximumRange: 0
   AssociatedInput: {fileID: 11400000, guid: 1c1fd533d126d4b43b93fec1fcd64a5a, type: 2}
+  UseWhenObscured: 0
+  UseWhenOutOfRange: 1
   ShieldPrefab: {fileID: 4938865011410206441, guid: fe6448610c7b344ada3580e0b9954e2e, type: 3}
