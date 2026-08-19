@@ -9,9 +9,6 @@ namespace HeroShooterMaker.MatchSystem
 {
     public class GameManager : MonoBehaviour
     {
-        // Singleton instance
-        public static GameManager Instance { get; private set; }
-
         public TeamManager[] TeamsInMatch;
         public PlayerClient client;
 
@@ -67,7 +64,7 @@ namespace HeroShooterMaker.MatchSystem
 
         public void ReloadMatch()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Demo Game/Scenes/MatchScene.unity
     guid: 02ba3fa642f3646b090bd631cc1e030a
-  - enabled: 1
+  - enabled: 0
     path: Assets/HeroShooterMaker/Demo/DemoMatchScene.unity
     guid: ff5397aa52b784b548cba1091ad186c1
   m_configObjects:

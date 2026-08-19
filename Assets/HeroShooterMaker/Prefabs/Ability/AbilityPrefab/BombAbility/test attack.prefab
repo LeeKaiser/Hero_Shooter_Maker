@@ -85,7 +85,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5629084884208175553, guid: 426a2785f8a940049aac2c246661cf09, type: 3}
+  - {fileID: 2100000, guid: 4ce6b28087cba4be29bc66b493c327df, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,6 +107,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &3270334532067908348
 MeshFilter:
@@ -129,9 +130,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyDamage
   MaxHits: 1
-  BaseDamage: 15
   SpawnsObjectInInfo: 0
   HitResetTime: 0.5
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseDamage: 15
 --- !u!114 &4117115725492988505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ApplyHealing
   MaxHits: 1
-  BaseHealing: 0
-  healSelf: 0
   SpawnsObjectInInfo: 0
   HitResetTime: 0
+  ApplyToEnemy: 1
+  ApplyToAllies: 0
+  ApplyToSelf: 1
+  BaseHealing: 0

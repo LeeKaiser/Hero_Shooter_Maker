@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58fb272b0ae9421cad3efd252af1c68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileMovement
-  Speed: 50
+  Speed: 1000
   Gravity: 9.8
   EnemyHitRads: 0.25
   AllyHitRads: 0.25
@@ -201,7 +201,7 @@ MonoBehaviour:
   MaxHitsEnemy: 1
   MaxHitsAlly: 1
   DestroyFromObstacle: 1
-  DestroyFromEnemy: 1
+  DestroyFromEnemy: 0
   DestroyFromAlly: 0
   SpawnsObjectInInfo: 1
 --- !u!114 &1849800936458623266

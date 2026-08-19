@@ -50,7 +50,7 @@ MonoBehaviour:
   MaximumRange: 4
   AssociatedInput: {fileID: 11400000, guid: e41058111c436442eab8ef3aa198f210, type: 2}
   UseWhenObscured: 0
-  UseWhenOutOfRange: 0
+  UseWhenOutOfRange: 1
   DashDistance: 4
   DashSpeed: 16
   DashMoveDirection: 1

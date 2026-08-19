@@ -14557,7 +14557,7 @@ PrefabInstance:
     - target: {fileID: 1130595424938769959, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: assembleInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 6f73fb37657724423a7ac2766c1a75be, type: 2}
+      objectReference: {fileID: 11400000, guid: 6ec63ad3537a14849b258c1d20afdb2d, type: 2}
     - target: {fileID: 1235421894220158979, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: decisionTree
       value: 
@@ -14678,6 +14678,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -36.09
       objectReference: {fileID: 0}
+    - target: {fileID: 7444294513758032345, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e00ecb744922d4445a02113d14cd465d, type: 2}
     - target: {fileID: 7574064609251240923, guid: d300a7a21b89e41eb80f8383440b61ba, type: 3}
       propertyPath: agent
       value: 

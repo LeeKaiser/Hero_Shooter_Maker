@@ -1401,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 7274215674998390361, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: assembleInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 6ec63ad3537a14849b258c1d20afdb2d, type: 2}
+      objectReference: {fileID: 11400000, guid: 6f73fb37657724423a7ac2766c1a75be, type: 2}
     - target: {fileID: 7308121963934228866, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Enabled
       value: 0
