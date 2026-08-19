@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: InputUnit
   m_EditorClassIdentifier: Assembly-CSharp::InputUnit
   InputCombo: 524288
-  ComboInputType: 1
+  ComboInputType: 2
   Priority: 1
