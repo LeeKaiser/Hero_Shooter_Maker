@@ -8,9 +8,7 @@ Made on Unity editor version 6000.4.2f1
 
 Made on MacOS (theoretically should work on Windows as well)
 
-Build by opening build profile by file -> buld profiles, then select appropriate build profile then build.
-
-Alternatively run the builds in the build folder. 
+The primary content and demo is placed in assets/HeroShooterMaker - other files in the assets folder are obsolete or was used for testing purposes.
 
 ## Player Focused Feature
 - Movement & camera controls 
