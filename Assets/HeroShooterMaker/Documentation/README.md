@@ -8,8 +8,7 @@ Made on Unity editor version 6000.4.2f1
 
 Made on MacOS (theoretically should work on Windows as well)
 
-The primary content and demo is placed in assets/HeroShooterMaker
-The package file can be accessed in assets/HSMExport. Keep in mind that this package is under a license with a higher restriction compared to the paid version on the unity asset store.  63cc27a (updated to main)
+Access demo scene through HeroShooterMaker/Demo
 
 ## Player Focused Feature
 - Movement & camera controls 
@@ -26,9 +25,9 @@ The package file can be accessed in assets/HSMExport. Keep in mind that this pac
 
 - Status effect array 
   - handle temporary modifications of a player
-  
+
 - Projectiles
-  - Robust projectile system for implementing wide variety of attacks
+  - Robust projectile system for creating wide variety of attack types.
 
 - AI players
   - Primarily for making players who are not controlled by a client. Should also be applicable for making other AI controlled entity such as spawnables or npc monsters
