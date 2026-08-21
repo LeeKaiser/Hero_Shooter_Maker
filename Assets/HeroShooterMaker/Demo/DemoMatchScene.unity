@@ -14793,40 +14793,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 934412128509908987, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.98795426
+      value: 1024.373
       objectReference: {fileID: 0}
     - target: {fileID: 934412128509908987, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.330987
+      value: 908.2053
       objectReference: {fileID: 0}
     - target: {fileID: 934412128509908987, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.800003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573240424591694673, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
-      propertyPath: ShoulderOffset.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1573240424591694673, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
-      propertyPath: VerticalArmLength
-      value: 0.5
+      value: -1822.003
       objectReference: {fileID: 0}
     - target: {fileID: 1836561720539166733, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_Name
       value: PlayerClient
       objectReference: {fileID: 0}
-    - target: {fileID: 2474858069244727974, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
-      propertyPath: CharacterReference
-      value: 
-      objectReference: {fileID: 1259649713}
-    - target: {fileID: 4214244366876380917, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6738360166723796098, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
-      propertyPath: CharacterReference
-      value: 
-      objectReference: {fileID: 1259649713}
     - target: {fileID: 8116385426343004939, guid: d4304e609f69942859bc61a91b2b29ff, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -8,7 +8,7 @@ Made on Unity editor version 6000.4.2f1
 
 Made on MacOS (theoretically should work on Windows as well)
 
-Access demo scene through HeroShooterMaker/Demo
+The primary content and demo is placed in assets/HeroShooterMaker
 
 ## Player Focused Feature
 - Movement & camera controls 
@@ -25,9 +25,9 @@ Access demo scene through HeroShooterMaker/Demo
 
 - Status effect array 
   - handle temporary modifications of a player
-
+  
 - Projectiles
-  - Robust projectile system for creating wide variety of attack types.
+  - Robust projectile system for implementing wide variety of attacks
 
 - AI players
   - Primarily for making players who are not controlled by a client. Should also be applicable for making other AI controlled entity such as spawnables or npc monsters
