@@ -8,7 +8,8 @@ Made on Unity editor version 6000.4.2f1
 
 Made on MacOS (theoretically should work on Windows as well)
 
-The primary content and demo is placed in assets/HeroShooterMaker - other files in the assets folder are obsolete or was used for testing purposes.
+The primary content and demo is placed in assets/HeroShooterMaker
+The package file can be accessed in assets/HSMExport. Keep in mind that this package is under a license with a higher restriction compared to the paid version on the unity asset store. 
 
 ## Player Focused Feature
 - Movement & camera controls 
