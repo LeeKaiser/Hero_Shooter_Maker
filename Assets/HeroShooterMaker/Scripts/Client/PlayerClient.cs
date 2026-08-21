@@ -1,5 +1,5 @@
 using UnityEngine;
-using Cinemachine;
+using Unity.Cinemachine;
 using HeroShooterMaker.AI;
 using HeroShooterMaker.Controls;
 using HeroShooterMaker.Character;
@@ -15,7 +15,7 @@ namespace HeroShooterMaker.Client
         public CharCore CharacterReference;
         public ClientUI PlayerCanvas;
         public UIBar healthBar;
-        [SerializeField] CinemachineVirtualCamera cinemachine;
+        [SerializeField] CinemachineCamera cinemachine;
         InputListener listener;
 
         void Start()
