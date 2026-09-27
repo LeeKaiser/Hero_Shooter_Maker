@@ -9,7 +9,7 @@ Made on Unity editor version 6000.4.2f1
 Made on MacOS (theoretically should work on Windows as well)
 
 The primary content and demo is placed in assets/HeroShooterMaker
-The package file can be accessed in assets/HSMExport. Keep in mind that this package is under a license with a higher restriction compared to the paid version on the unity asset store.
+The package file can be accessed in assets/HSMExport.
 
 ## Player Focused Feature
 - Movement & camera controls 
@@ -21,24 +21,24 @@ The package file can be accessed in assets/HSMExport. Keep in mind that this pac
 - Player Interaction
   - allow for interaction between players (such as dealing damage to each other)
 
-- Ability array 
+- Ability 
   - it listens for events then makes something happen. has internal cooldown that controls usage
 
-- Status effect array 
+- Status effect 
   - handle temporary modifications of a player
   
 - Projectiles
   - Robust projectile system for implementing wide variety of attacks
 
 - AI players
-  - Primarily for making players who are not controlled by a client. Should also be applicable for making other AI controlled entity such as spawnables or npc monsters
+  - Primarily for making players who are not controlled by a client. also applicable for making other AI controlled entity such as spawnables or npc monsters
 
 ## Match Focused Features
 - Teams 
   - Team objects hold players that belong to the same team, and handle team wide functions
 
 - Objective/win condition
-  - Various template objectives, such as a "payload", "king of the hill", "generic scoreing system", etc.
+  - Parent class for creating objective/win condition. Demo includes an objective that functions like king of the hill.
 
 - Game manager 
   - Manage game wide events, match timer, etc.
