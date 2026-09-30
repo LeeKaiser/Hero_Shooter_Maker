@@ -40,7 +40,7 @@ namespace HeroShooterMakerDemo
                                     action.inputHoldTime = 99f;
                                     break;
                                 case InputType.Release:
-                                    action.inputHoldTime = action.abilityToUse.Stats.UsePerSec;
+                                    action.inputHoldTime = action.abilityToUse.idealHoldTime;
                                     break;
                                 default:
                                     action.inputHoldTime = 0.2f;
