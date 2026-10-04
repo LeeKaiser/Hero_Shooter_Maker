@@ -66,7 +66,7 @@ namespace HeroShooterMaker.AI
 
                 //step 2: make decision
                 AIAction chosenAction = decisionTreeRuntime.MakeDecision(objectDetection.GetCurrentContext());
-                if (currentAction != chosenAction)
+                if (!CompareActions(currentAction, chosenAction))
                 {
                     //finish using an action it was using
                     if (actionRunTime != null)
@@ -85,6 +85,15 @@ namespace HeroShooterMaker.AI
                 //step 3: act on decision
                 actionRunTime.CommitToAction();
             }
+        }
+
+        private bool CompareActions(AIAction action1, AIAction action2)
+        {
+            if (action1 == null || action2 == null) return false;
+            return action1.determineAim == action2.determineAim
+                && action1.determineInput == action2.determineInput
+                && action1.determineMovement == action2.determineMovement
+                && action1.name == action2.name;
         }
 
     }

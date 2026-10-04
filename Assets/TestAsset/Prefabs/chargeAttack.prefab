@@ -51,6 +51,6 @@ MonoBehaviour:
   AssociatedInput: {fileID: 11400000, guid: 468fc0fcf593c4a57a8809bef48858c9, type: 2}
   UseWhenObscured: 0
   UseWhenOutOfRange: 0
-  idealHoldTime: 2
+  idealHoldTime: 5
   attackPrefab: {fileID: 4590517186784251951, guid: 60a126e83216e4185a0f0c0e3f23af28, type: 3}
-  Bloom: 1
+  Bloom: 0

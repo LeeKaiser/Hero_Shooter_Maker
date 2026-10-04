@@ -1691,10 +1691,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0d075d0342e2241fd8d4495b49b63abf, type: 2}
+    - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: MovementStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3363027209936969933, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: decisionTree
       value: 
-      objectReference: {fileID: 11400000, guid: 3075a8fd68b7946d88ef1164b6334436, type: 2}
+      objectReference: {fileID: 11400000, guid: 7a47bfc71b7d34f70b6bc9f617425c75, type: 2}
     - target: {fileID: 3772487131666148388, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: m_Name
       value: TestAgent
