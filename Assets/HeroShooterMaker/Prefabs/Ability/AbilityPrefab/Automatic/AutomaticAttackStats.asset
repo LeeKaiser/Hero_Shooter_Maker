@@ -19,4 +19,4 @@ MonoBehaviour:
   ChargePointsPerSec: 100
   ChargeGainPerFullRecharge: 30
   CanInterruptOthers: 1
-  UsePerSec: 8
+  UsePerSec: 1

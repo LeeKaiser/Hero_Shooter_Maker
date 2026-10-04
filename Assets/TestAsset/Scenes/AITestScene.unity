@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 226980160}
   - component: {fileID: 226980159}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: team1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,6 +1691,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0d075d0342e2241fd8d4495b49b63abf, type: 2}
+    - target: {fileID: 1882099305404397499, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2752219482786120103, guid: 4cd70fc0870ea4a949955c58237a676d, type: 3}
       propertyPath: MovementStyle
       value: 0
@@ -2081,15 +2085,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3799847112381712858, guid: 8f2aadf547d0c4828b73e48c2192b79a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3799847112381712858, guid: 8f2aadf547d0c4828b73e48c2192b79a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0000013664692
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3799847112381712858, guid: 8f2aadf547d0c4828b73e48c2192b79a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3799847112381712858, guid: 8f2aadf547d0c4828b73e48c2192b79a, type: 3}
       propertyPath: m_LocalRotation.w

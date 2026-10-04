@@ -31,15 +31,13 @@ namespace HeroShooterMaker.MatchSystem
         }
         void OnEnable()
         {
-            //TODO: spawn in all players at correct spawn location
             EventBus<PlayerDead>.Subscribe(SpawnPlayer);
             EventBus<TeamGetPoint>.Subscribe(GetPoints);
         }
         void OnDisable()
         {
             EventBus<PlayerDead>.Unsubscribe(SpawnPlayer);
-            EventBus<TeamGetPoint>.Subscribe(GetPoints);
-            //TODO: disable all players to reset them for next round
+            EventBus<TeamGetPoint>.Unsubscribe(GetPoints);
         }
         public void SpawnPlayer(PlayerDead defeatedPlayer)
         {
