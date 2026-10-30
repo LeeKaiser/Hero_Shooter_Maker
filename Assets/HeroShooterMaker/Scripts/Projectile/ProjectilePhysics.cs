@@ -45,13 +45,13 @@ namespace HeroShooterMaker.Projectile
             info.AllyHit = Physics.SphereCastAll(transform.position, AllyHitRads, velocity.normalized, distanceTraveled, info.TeamLayer).ToList();
             info.ProjectileHit = Physics.SphereCastAll(transform.position, ProjectileHitRads, velocity.normalized, distanceTraveled, info.ProjectileLayer).ToList();
             //report to parent projectileinfo if it exists
-            if (info.parentInfo != null)
-            {
-                info.parentInfo.ObstacleHit.AddRange(info.ObstacleHit);
-                info.parentInfo.EnemyHit.AddRange(info.EnemyHit);
-                info.parentInfo.AllyHit.AddRange(info.AllyHit);
-                info.parentInfo.ProjectileHit.AddRange(info.ProjectileHit);
-            }
+            //if (info.parentInfo != null)
+            //{
+            //    info.parentInfo.ObstacleHit.AddRange(info.ObstacleHit);
+            //    info.parentInfo.EnemyHit.AddRange(info.EnemyHit);
+            //    info.parentInfo.AllyHit.AddRange(info.AllyHit);
+            //    info.parentInfo.ProjectileHit.AddRange(info.ProjectileHit);
+            //} 
             transform.position = nextPosition;
 
             duration -= Time.fixedDeltaTime;
