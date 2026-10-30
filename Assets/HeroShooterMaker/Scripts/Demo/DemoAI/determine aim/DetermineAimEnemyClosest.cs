@@ -16,7 +16,7 @@ namespace HeroShooterMakerDemo
         {
             if (!(action.Detection.GetCurrentContext().KnownEnemyList == null))
             {
-                // identify weakest enemy
+                // identify closest enemy
                 float lowestDistance = Mathf.Infinity;
                 foreach (KeyValuePair<CharCore, PlayerSummary> potentialTarget in action.Detection.GetCurrentContext().KnownEnemyList)
                 {

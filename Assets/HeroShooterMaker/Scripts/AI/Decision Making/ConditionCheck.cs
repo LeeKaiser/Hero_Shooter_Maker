@@ -95,8 +95,8 @@ namespace HeroShooterMaker.AI
             else { return false; }
         }
 
-        //self low hp 
-        //if self's remaining hp percentage is lower than or equal to parameter float, return true;
+        //self remaining hp 
+        //if self's remaining hp percentage is greater than or equal to parameter float, return true;
         private static bool SelfRemainingHpCondition(KnownContext context, float parameterFloat)
         {
             if (context.SelfSummary != null)

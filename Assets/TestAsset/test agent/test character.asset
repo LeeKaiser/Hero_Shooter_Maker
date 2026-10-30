@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64dfe681b8f84423580dd1d899fc8af8, type: 3}
+  m_Name: test character
+  m_EditorClassIdentifier: Assembly-CSharp::HeroShooterMaker.Character.CharAssembleInfo
+  Stats: {fileID: 11400000, guid: 1ba3c29bf8dde41ac9319ccfded3146b, type: 2}
+  Abilities:
+  - {fileID: 4938865011410206441, guid: d071191c41a7e4b9ca1f56591dbcf97d, type: 3}

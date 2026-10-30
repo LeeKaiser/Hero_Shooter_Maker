@@ -20,6 +20,7 @@ namespace HeroShooterMaker.Abilities
         [Header("AI relevant information")]
         public bool UseWhenObscured = false;
         public bool UseWhenOutOfRange = false;
+        public float idealHoldTime = 0.1f;
 
         //SetUpInput
         //sets up the input and ability connection

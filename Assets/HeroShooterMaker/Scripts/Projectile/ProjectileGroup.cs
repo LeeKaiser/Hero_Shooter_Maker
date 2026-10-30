@@ -1,14 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
+
 //manages a group of projectiles. is controlled by its own projectile info
 namespace HeroShooterMaker.Projectile
 {
+    [RequireComponent(typeof(ProjectileInfo))]
+    [RequireComponent(typeof(ProjectileGroupHitCollector))]
     public class ProjectileGroup : MonoBehaviour
     {
         public List<GameObject> ProjectilesInGroup = new List<GameObject>();
 
-        ProjectileInfo info;
+        public ProjectileInfo info;
 
         void Start()
         {
@@ -34,6 +38,7 @@ namespace HeroShooterMaker.Projectile
         }
 
         //destroy self when all child projectile is destroyed
+        
         void FixedUpdate()
         {
             ProjectilesInGroup.RemoveAll(item => item == null);
@@ -41,7 +46,10 @@ namespace HeroShooterMaker.Projectile
             if (ProjectilesInGroup.Count <= 0)
             {
                 info.DestroySelf(transform.position);
-            }
+                return;
+            } 
+
+            
         }
     }
 }

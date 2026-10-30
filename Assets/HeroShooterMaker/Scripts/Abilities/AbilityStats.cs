@@ -35,10 +35,6 @@ namespace HeroShooterMaker.Abilities
         [Tooltip("if using ability disables use of other abilities")]
         public bool CanInterruptOthers = false;
 
-        [Header("charge variables")]
-        [Tooltip("amount of time to charge up ability")]
-        public float MaxChargeTime;
-
         [Header("hold fire variables")]
         [Tooltip("amount of time ability is used per second")]
         public float UsePerSec;

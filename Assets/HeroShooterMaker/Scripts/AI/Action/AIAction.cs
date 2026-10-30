@@ -56,11 +56,11 @@ namespace HeroShooterMaker.AI
                     Vector3 playerPos = playerArmature.transform.position;
                     playerPos.y += 1;
                     Vector3 direction = targetPos - playerPos;
-                    if (!abilityToUse.UseWhenObscured)
+                    if (!abilityToUse.UseWhenObscured && canUse)
                     {
                         canUse = !Physics.Raycast(playerPos, direction.normalized, direction.magnitude, obstacleMask);
                     }
-                    if (!abilityToUse.UseWhenOutOfRange)
+                    if (!abilityToUse.UseWhenOutOfRange && canUse)
                     {
                         canUse = direction.magnitude <= abilityToUse.MaximumRange && direction.magnitude >= abilityToUse.MinimumRange;
                     }
